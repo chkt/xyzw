@@ -609,7 +609,7 @@ Matrix4.prototype.inverseGaussOf = function(m) {
 
 		if (max !== r1) {
 			for (var c = 0; c < 4; c++) {
-				ccol = c * 4;
+				var ccol = c * 4;
 
 				var swap = a[r1 + ccol];
 				a[r1 + ccol] = a[max + ccol];
@@ -627,7 +627,7 @@ Matrix4.prototype.inverseGaussOf = function(m) {
 			var n = a[r2 + rcol] / a[r1 + rcol];
 
 			for (c = 0; c < 4; c++) {
-				var ccol = c * 4;
+				ccol = c * 4;
 
 				b[r2 + ccol] -= b[r1 + ccol] * n;
 

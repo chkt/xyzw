@@ -180,7 +180,7 @@ Object.defineProperty(Vector3RGB, 'VERSION', {value: "0.9.17"});
  * @type RegExp
  */
 Object.defineProperty(Vector3RGB, 'EXPR_RGB', {
-	value: /^rgb\(\s*(\d|1\d{1,2}|2[0-4]\d|25[0-5])\s*,\s*{2}(\d|1\d{1,2}|2[0-4]\d|25[0-5])\s*\)$/,
+	value: /^rgb\((:?\s*(\d|1\d{1,2}|2[0-4]\d|25[0-5])\s*,){2}\s*(\d|1\d{1,2}|2[0-4]\d|25[0-5])\s*\)$/,
 	enumerable: true
 });
 

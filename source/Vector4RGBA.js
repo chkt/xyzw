@@ -180,7 +180,7 @@ Object.defineProperty(Vector4RGBA, 'VERSION', {value: "0.5.4"});
  * @type RegExp
  */
 Object.defineProperty(Vector4RGBA, 'EXPR_RGBA', {
-	value: /^rgba\(\s*(\d|1\d{1,2}|2[0-4]\d|25[0-5])\s*,\s*{3}([01](?:\.\d+)?)\s*\)\$/,
+	value: /^rgba\((?:\s*(\d|1\d{1,2}|2[0-4]\d|25[0-5])\s*,){3}\s*([01](?:\.\d+)?)\s*\)\$/,
 	enumerable: true
 });
 

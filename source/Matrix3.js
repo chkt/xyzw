@@ -421,8 +421,8 @@ Matrix3.prototype.transpose = function() {
 
 
 /**
- * Returns a (y,x,z) ordered euler angle representation of the instance
- * @returns {Float[x,y,z]}
+ * Returns a (x,y,z) ordered (y,x,z) euler angle representation of the instance
+ * @returns {Float[]}
  */
 Matrix3.prototype.toEulerYXZ = function() {
 	var n = this.n, x = Math.asin(-n[7]);
@@ -439,8 +439,8 @@ Matrix3.prototype.toEulerYXZ = function() {
 };
 
 /**
- * Returns a (z,x,y) ordered euler angle representation of the instance
- * @returns {Float[x,y,z]}
+ * Returns a (x,y,z) ordered (z,x,y) euler angle representation of the instance
+ * @returns {Float[]}
  */
 Matrix3.prototype.toEulerZXY = function() {
 	var n = this.n, x = Math.asin(-n[5]);

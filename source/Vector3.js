@@ -238,6 +238,23 @@ Vector3.prototype.project = function(v, w) {
 	return this;
 };
 
+/**
+ * The orthonormalization of w against v
+ * <p>Gram-Schmidt-Normalization: t -= n * (t dot n).</p>
+ * @param {Vector3} v The projection vector
+ * @param {Vector3} w The projected vector
+ * @returns {Vector3}
+ */
+Vector3.prototype.orthoNormalize = function(v, w) {
+	var vn = v.n, vx = vn[0], vy = vn[1], vz = vn[2];
+	var wn = w.n, wx = wn[0], wy = wn[1], wz = wn[2];
+	var n = this.n, dot = wx * vx + wy * vy + wz * vz;
+	
+	n[0] = wx - vx * dot, n[1] = wy - vy * dot, n[2] = wz - vz * dot;
+	
+	return this;
+};
+
 
 /**
  * The sum of the instance and w
@@ -293,6 +310,37 @@ Vector3.prototype.projectEQ = function(w) {
 	return this;
 };
 
+/**
+ * The orthonormalization of the instance against v
+ * <p>Gram-Schmidt-Normalization: t -= n * (t dot n).</p>
+ * @param {Vector3} v The projection vector
+ * @returns {Vector3}
+ */
+Vector3.prototype.orthoNormalizeEQ = function(v) {
+	var vn = v.n, vx = vn[0], vy = vn[1], vz = vn[2];
+	var n = this.n, dot = n[0] * vx + n[1] * vy + n[2] * vz;
+	
+	n[0] -= vx * dot, n[1] -= vy * dot, n[2] -= vz * dot;
+	
+	return this;
+};
+
+
+/**
+ * The normal form of v
+ * @param {Vector3} v The source
+ * @returns {Vector3}
+ */
+Vector3.prototype.normalizationOf = function(v) {
+	var vn = v.n, vx = vn[0], vy = vn[1], vz = vn[2];
+	var n = this.n, norm = vx * vx + vy * vy + vz * vz;
+	
+	if (norm !== 0.0 && norm !== 1.0) norm = 1.0 / Math.sqrt(norm);
+	
+	n[0] = vx * norm, n[1] = vy * norm, n[2] = vz * norm;
+	
+	return this;
+};
 
 /**
  * The copy of v
@@ -311,30 +359,13 @@ Vector3.prototype.copyOf = function(v) {
  * @returns {Vector3}
  */
 Vector3.prototype.normalize = function() {
-	var x = this.n[0], y  = this.n[1], z = this.n[2];
-	var norm = Math.sqrt(x * x + y * y + z * z);
-
+	var n = this.n, x = n[0], y = n[1], z = n[2];
+	var norm = x * x + y * y + z * z;
+	
 	if (norm === 0.0 || norm === 1.0) return this;
-
-	norm = 1.0 / norm;
-	this.n[0] *= norm, this.n[1] *= norm, this.n[2] *= norm;
 	
-	return this;
-};
-
-/**
- * The orthonormalization of the instance against v
- * <p>Gram-Schmidt-Normalization: t -= n * (t dot n).</p>
- * @param {Vector3} v The antagonist
- * @returns {Vector3}
- */
-Vector3.prototype.orthoNormalizeEQ = function(v) {
-	var x = v.n[0], y = v.n[1], z = v.n[2];
-	var dot = this.n[0] * x + this.n[1] * y + this.n[2] * z;
-	
-	this.n[0] -= x * dot;
-	this.n[1] -= y * dot;
-	this.n[2] -= z * dot;
+	norm = 1.0 / Math.sqrt(norm);
+	n[0] *= norm, n[1] *= norm, n[2] *= norm;
 	
 	return this;
 };
@@ -371,7 +402,7 @@ Vector3.prototype.valueOf = function() {
  * @memberOf Vector3
  * @type String
  */
-Object.defineProperty(Vector3, 'VERSION', { value : "0.9.18" });
+Object.defineProperty(Vector3, 'VERSION', { value : "0.9.19" });
 
 
 /**
@@ -529,6 +560,27 @@ Vector3.Project = function(v, w, target) {
 	return (target === undefined ? new Vector3() : target).project(v, w);
 };
 
+/**
+ * Returns the orthonormalization of w against v
+ * @param {Vector3}  v       The projection vector
+ * @param {Vector3}  w       The projected vector
+ * @param {Vector3} [target] The target instance
+ * @returns {Vector3}
+ */
+Vector3.OrthoNormalize = function(v, w, target) {
+	return (target === undefined ? new Vector3() : target).orthoNormalize(v, w);
+};
+
+
+/**
+ * Returns the normal form of v
+ * @param {Vector3}  v       The source
+ * @param {Vector3} [target] The target instance
+ * @returns {Vector3}
+ */
+Vector3.Normalize = function(v, target) {
+	return (target === undefined ? new Vector3() : target).normalizationOf(v);
+};
 
 /**
  * Returns a copy of v

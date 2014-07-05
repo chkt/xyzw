@@ -224,6 +224,22 @@ Vector4.prototype.multiplyScalarEQ = function(n) {
 
 
 /**
+ * The normalization of q
+ * @param {Vector4} q The source vector
+ * @returns {Vector4}
+ */
+Vector4.prototype.normalizationOf = function(q) {
+	var qn = q.n, qx = qn[0], qy = qn[1], qz = qn[2], qw = qn[3];
+	var n = this.n, norm = qx * qx + qy * qy + qz * qz + qw * qw;
+	
+	if (norm !== 0.0 && norm !== 1.0) norm = 1.0 / Math.sqrt(norm);
+	
+	n[0] = qx * norm, n[1] = qy * norm, n[2] = qz * norm, n[3] = qw * norm;
+	
+	return this;
+};
+
+/**
  * The conjugate of q
  * @param {Vector4} q The source
  * @returns {Vector4}
@@ -271,10 +287,13 @@ Vector4.prototype.copyOf = function(q) {
  * @returns {Vector4}
  */
 Vector4.prototype.normalize = function() {
-	var x = this.n[0], y = this.n[1], z = this.n[2], w = this.n[3];
-	var norm = 1.0 / Math.sqrt(x * x + y * y + z * z + w * w);
+	var n = this.n, x = n[0], y = n[1], z = [2], w = n[3];
+	var norm = x * x + y * y + z * z + w * w;
 	
-	this.n[0] *= norm; this.n[1] *= norm; this.n[2] *= norm;
+	if (norm === 0.0 || norm === 1.0) return this;
+	
+	norm = 1.0 / Math.sqrt(norm);
+	n[0] *= norm, n[1] *= norm, n[2] *= norm, n[3] *= norm;
 	
 	return this;
 };
@@ -327,7 +346,7 @@ Vector4.prototype.valueOf = function() {
  * @memberOf Vector4
  * @type String
  */
-Object.defineProperty(Vector4, 'VERSION', { value: "0.5.5" });
+Object.defineProperty(Vector4, 'VERSION', { value: "0.5.6" });
 
 
 /**
@@ -493,6 +512,36 @@ Vector4.Multiply = function(q, r, target) {
 	return (target === undefined ? new Vector4() : target).multiply(q, r);
 };
 
+
+/**
+ * Returns the normal form of q
+ * @param {Vector4}  q       The source 
+ * @param {Vector4} [target] The target instance
+ * @returns {Vector4}
+ */
+Vector4.Normalize = function(q, target) {
+	return (target === undefined ? new Vector4() : target).normalizationOf(q);
+};
+
+/**
+ * Returns the conjugate of q
+ * @param {Vector4}  q       The source
+ * @param {Vector4} [target] The target instance
+ * @returns {Vector4}
+ */
+Vector4.Conjugate = function(q, target) {
+	return (target === undefined ? new Vector4() : target).conjugateOf(q);
+};
+
+/**
+ * Returns the inverse of q
+ * @param {Vector4}  q       The source
+ * @param {Vector4} [target] The target instance
+ * @returns {Vector4}
+ */
+Vector4.Inverse = function(q, target) {
+	return (target === undefined ? new Vector4() : target).inverseOf(q); 
+};
 
 /**
  * Returns a copy of q

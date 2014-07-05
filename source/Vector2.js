@@ -322,6 +322,22 @@ Vector2.prototype.projectEQ = function(w) {
 
 
 /**
+ * The normal form of v
+ * @param {Vector2} v The source
+ * @returns {Vector2}
+ */
+Vector2.prototype.normalizationOf = function(v) {
+	var n = this.n, vn = v.n, vx = vn[0], vy = vn[1];
+	var norm = vx * vx + vy * vy;
+	
+	if (norm !== 0.0 && norm !== 1.0) norm = 1.0 / Math.sqrt(norm);
+	
+	n[0] = vx * norm, n[1] = vy * norm;
+	
+	return this;
+};
+
+/**
  * The copy of v
  * @param {Vector2} v The source
  * @returns {Vector2}
@@ -338,10 +354,13 @@ Vector2.prototype.copyOf = function(v) {
  * @returns {Vector2}
  */
 Vector2.prototype.normalize = function() {
-	var x = this.n[0], y = this.n[1];
-	var norm = 1.0 / Math.sqrt(x * x + y * y);
+	var n = this.n, x = n[0], y = n[1];
+	var norm = x * x + y * y;
+	
+	if (norm === 0.0 || norm === 1.0) return this;
 
-	this.n[0] *= norm; this.n[1] *= norm;
+	norm = 1.0 / Math.sqrt(norm);
+	n[0] *= norm, n[1] *= norm;
 	
 	return this;
 };
@@ -377,7 +396,7 @@ Vector2.prototype.valueOf = function() {
  * @memberOf Vector2
  * @type String
  */
-Object.defineProperty(Vector2, 'VERSION', { value: "0.9.12" });
+Object.defineProperty(Vector2, 'VERSION', { value: "0.9.13" });
 
 
 /**
@@ -502,6 +521,16 @@ Vector2.Project = function(v, w, target) {
 
 
 /**
+ * Returns a normal form of v
+ * @param {Vector2}  v       The source
+ * @param {Vector2} [target] The target instance
+ * @returns {Vector2}
+ */
+Vector2.Normalize = function(v, target) {
+	return (target === undefined ? new Vector2() : target).normalizationOf(v);
+};
+
+/**
  * Returns a copy of v
  * @param {Vector2} v The source
  * @param {Vector2} [target] The target instance
@@ -522,7 +551,6 @@ Vector2.cross = function(v, w) {
 	return v.n[0] * w.n[1] - v.n[1] * w.n[0];
 };
 
-
 /**
  * Returns the inner product of v and w (v dot w)
  * @param {Vector2} v The first vector
@@ -532,7 +560,6 @@ Vector2.cross = function(v, w) {
 Vector2.dot = function(v, w) {
 	return v.n[0] * w.n[0] + v.n[1] * w.n[1];
 };
-
 
 /**
  * Returns the angle in radians between v and w (acos(v dot w))

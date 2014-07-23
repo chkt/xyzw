@@ -8,7 +8,7 @@
  * @param {Float} [near=ZPLANE_MIN]       The near plane distance
  * @param {Float} [far=ZPLANE_MAX]        The far plane distance
  * @returns {Matrix4Ortho}
- * @license Licensed under the LGPL 3 (http://www.gnu.org/licenses/lgpl.html)
+ * @license Licensed under the MIT License
  */
 function Matrix4Ortho(extend, aspect, near, far) {
 	Matrix4.call(this);

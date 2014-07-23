@@ -5,7 +5,7 @@
  * @param {Float[]} [n] Array representing the two components
  *	<p>Arrays of <em>length !== 2</em> will return the zero (0,0) vector.</p>
  * @returns {Vector2}
- * @license Licensed under the LGPL 3 (http://www.gnu.org/licenses/lgpl.html)
+ * @license Licensed under the MIT License
  */
 function Vector2(n) {
 	/**

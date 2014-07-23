@@ -5,7 +5,7 @@
  * @param {Float[]} [n] Array representing the four components
  *	<p>Arrays of length <em>!== 4</em> will return the identity (0.0,0.0,0.0,1.0) vector.</p>
  * @returns {Vector4RGBA}
- * @license Licensed under the LGPL 3 (http://www.gnu.org/licenses/lgpl.html)
+ * @license Licensed under the MIT License
  */
 function Vector4RGBA(n) {
 	Vector4.call(this, n);

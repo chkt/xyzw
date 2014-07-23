@@ -5,7 +5,7 @@
  * @param  {Float[]} [n] Array representing 2x2 column-major ordered components
  *   <p>Arrays of length <em>!== 4</em> will return the identity matrix.</p>
  * @returns {Matrix2}
- * @license Licensed under the LGPL 3 (http://www.gnu.org/licenses/lgpl.html)
+ * @license Licensed under the MIT License
  */
 function Matrix2(n) {
 	/**

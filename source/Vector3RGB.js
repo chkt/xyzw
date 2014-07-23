@@ -5,7 +5,7 @@
  * @param {Float[]} [n] Array representing the three components
  *	<p>Arrays of length <em>!== 3</em> will return the zero (0.0,0.0,0.0) vector.</p>
  * @returns {Vector3RGB}
- * @license Licensed under the LGPL 3 (http://www.gnu.org/licenses/lgpl.html)
+ * @license Licensed under the MIT License
  */
 function Vector3RGB(n) {
 	Vector3.call(this, n);

@@ -8,7 +8,7 @@
  * @param {Float} [near=ZPLANE_MIN]       The distance of the near plane
  * @param {Float} [far=ZPLANE_MAX]        The distance of the far plane
  * @returns {Matrix4Frustrum}
- * @license Licensed under the LGPL 3 (http://www.gnu.org/licenses/lgpl.html)
+ * @license Licensed under the MIT License
  */
 function Matrix4Frustrum(fov, aspect, near, far) {
 	Matrix4.call(this);

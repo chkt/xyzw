@@ -1,4 +1,10 @@
 /**
+ * @namespace
+ * @name Math
+ * @license Licensed under the MIT License
+ */
+
+/**
  * Returns the sign of n
  * @param {Number} n The value
  * @returns {Int}
@@ -19,7 +25,7 @@ Math.clamp = function(n, min, max) {
 };
 
 /**
- * Returns the interpolation of a and b
+ * Returns the linear interpolation of a and b
  * @param {Number} a  The first value
  * @param {Number} b  The second value
  * @param {Number} bf The weight of the second value

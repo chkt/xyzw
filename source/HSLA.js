@@ -8,6 +8,7 @@
  * @param {Float} l The lightness
  * @param {Float} a The alpha
  * @returns {HSLA}
+ * @license Licensed under the MIT License
  */
 function HSLA(h, s, l, a) {
 	/**

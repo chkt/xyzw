@@ -589,7 +589,7 @@ Vector3.Normalize = function(v, target) {
  * @returns {Vector3}
  */
 Vector3.Copy = function(v, target) {
-	return (target === undefined ? new Vector3() : target).copy(v);
+	return (target === undefined ? new Vector3() : target).copyOf(v);
 };
 
 

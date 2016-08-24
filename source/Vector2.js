@@ -516,7 +516,7 @@ Vector2.MultiplyMatrix3 = function(m, v, target) {
  * @returns {Vector2}
  */
 Vector2.Project = function(v, w, target) {
-	return (target === undefined ? new Vector2() : target).projectionOf(v, w);
+	return (target === undefined ? new Vector2() : target).project(v, w);
 };
 
 

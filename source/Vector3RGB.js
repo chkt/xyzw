@@ -39,7 +39,7 @@ export default class Vector3RGB extends Vector3 {
 	 * @throws {TypeError} if scale is not a Float or undefined
 	 * @throws {TypeError} if target is not a Vector3 instance or undefined
 	 */
-	static RGB(string, scale = 1.0, target) {
+	static RGB(string, scale = 1.0, target = undefined) {
 		if (typeof string !== 'string' || typeof scale !== 'number') throw new TypeError();
 
 		const n = [0.0, 0.0, 0.0];
@@ -64,15 +64,15 @@ export default class Vector3RGB extends Vector3 {
 	/**
 	 * Returns an instance representing #RGB encoded string
 	 * @constructor
-	 * @param {String} string The hash string
-	 * @param {Float} [scale=1.0] The scale
-	 * @param {Vector3} [target] The target instance
+	 * @param {String} string - The hash string
+	 * @param {Float} [scale=1.0] - The scale
+	 * @param {Vector3} [target] - The target instance
 	 * @returns {Vector3RGB}
 	 * @throws {TypeError} if string is not a String
 	 * @throws {TypeError} if scale is not a Float or undefined
 	 * @throws {TypeError} if target is not a Vector3 instance or undefined
 	 */
-	static HRGB(string, scale = 1.0, target) {
+	static HRGB(string, scale = 1.0, target = undefined) {
 		if (typeof string !== 'string' || typeof scale !== 'number') throw new TypeError();
 
 		const n = [0.0, 0.0, 0.0];
@@ -86,9 +86,9 @@ export default class Vector3RGB extends Vector3 {
 		if (match !== null) {
 			const t = 1.0 / 255.0 * scale, dup = match[1].length === 1;
 
-			n[0] = Number.parseFloat('0x' + match[1] + (dup ? match[1] : '')) * t;
-			n[1] = Number.parseFloat('0x' + match[2] + (dup ? match[2] : '')) * t;
-			n[2] = Number.parseFloat('0x' + match[3] + (dup ? match[3] : '')) * t;
+			n[0] = Number.parseFloat(`0x${ match[1] + (dup ? match[1] : '') }`) * t;
+			n[1] = Number.parseFloat(`0x${ match[2] + (dup ? match[2] : '') }`) * t;
+			n[2] = Number.parseFloat(`0x${ match[3] + (dup ? match[3] : '') }`) * t;
 		}
 
 		return target;
@@ -97,15 +97,15 @@ export default class Vector3RGB extends Vector3 {
 	/**
 	 * Returns an instance representing <em>rrggbb</em> bit encoded <code>i</code>
 	 * @constructor
-	 * @param {Int} i The bit encoded Int
-	 * @param {Float} [scale=1.0] The scale
-	 * @param {Vector3RGB} [target] The target instance
+	 * @param {Int} i - The bit encoded Int
+	 * @param {Float} [scale=1.0] - The scale
+	 * @param {Vector3RGB} [target] - The target instance
 	 * @returns {Vector3RGB}
 	 * @throws {TypeError} if i is not an Int
 	 * @throws {TypeError} if scale is not a Float or undefined
 	 * @throws {TypeError} if target is not a Vector3 instance or undefined
 	 */
-	static Int(i, scale = 1.0, target) {
+	static Int(i, scale = 1.0, target = undefined) {
 		if (Number.isSafeInteger(i) || typeof scale !== 'number') throw new TypeError();
 
 		const n = [0.0, 0.0, 0.0];
@@ -230,15 +230,15 @@ export default class Vector3RGB extends Vector3 {
 	/**
 	 * Returns a string representation of the instance
 	 * @param {String} [type=STRING_XRGB] - The type
-	 * @param {Float} [scale] - The scale
+	 * @param {Float} [scale=1.0] - The scale
 	 * @returns {String}
 	 * @throws {TypeError} if type is not a STRING_* constant
 	 */
-	toString(type = STRING_XRGB, scale) {
+	toString(type = STRING_XRGB, scale = 1.0) {
 		switch (type) {
 			case STRING_RGB :
 				return this.toRGB(scale);
-			case STRING_RRGGBB :
+			case STRING_HRGB :
 				return this.toHRGB(scale);
 			case STRING_XRGB :
 				return this.toInt(scale).toString(16);

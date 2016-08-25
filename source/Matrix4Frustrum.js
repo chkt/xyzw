@@ -1,256 +1,200 @@
-/**
- * Creates a new instance
- * @class Perspectivic projection matrix
- * @extends Matrix4
- * @author Christoph Kettelhoit <ck@christoph-kettelhoit.de>
- * @param {Float} [fov=FOV_DEFAULT]       The vertical <em>field of view</em>, in radians
- * @param {Float} [aspect=ASPECT_DEFAULT] The aspect ratio (w/h)
- * @param {Float} [near=ZPLANE_MIN]       The distance of the near plane
- * @param {Float} [far=ZPLANE_MAX]        The distance of the far plane
- * @returns {Matrix4Frustrum}
- * @license Licensed under the MIT License
- */
-function Matrix4Frustrum(fov, aspect, near, far) {
-	Matrix4.call(this);
-	
-	/**
-	 * The vertical <em>field of view</em>, in radians
-	 * @readonly
-	 * @type Float
-	 * @default FOV_DEFAULT
-	 */
-	Object.defineProperty(this, 'fov', {
-		value: 0.0,
-		configurable: true,
-		enumerable: true
-	});
-	/**
-	 * The projection aspect ratio (w/h)
-	 * @readonly
-	 * @type Float
-	 * @default ASPECT_DEFAULT
-	 */
-	Object.defineProperty(this, 'aspect', {
-		value: 0.0,
-		configurable: true,
-		enumerable: true
-	});
-	
-	/**
-	 * The distance of the near plane
-	 * @readonly
-	 * @type Float
-	 * @default ZPLANE_NEAR
-	 */
-	Object.defineProperty(this, 'near', {
-		value: 0.0,
-		configurable: true,
-		enumerable: true
-	});
-	/**
-	 * The distance of the far plane
-	 * @readonly
-	 * @type Float
-	 * @default ZPLANE_MAX
-	 */
-	Object.defineProperty(this, 'far', {
-		value: 0.0,
-		configurable: true,
-		enumerable: true
-	});
+import Math from './Math';
+import Matrix4 from './Matrix4';
 
-	this.define(fov, aspect, near, far);
-}
-
-
-Matrix4Frustrum.prototype = Object.create(Matrix4.prototype);
-
-/**
- * The constructor
- * @type Function
- */
-Matrix4Frustrum.prototype.constructor = Matrix4Frustrum;
 
 
 /**
- * The minimal vertical <em>field of view</em>
- * @constant
+ * The minimal vertical field of view
  * @type Float
  */
-Object.defineProperty(Matrix4Frustrum.prototype, 'FOV_MIN', {
-	value: 1.0e-10,
-	enumerable: true
-});
+export const FOV_MIN = 1.0e-10;
 /**
- * The maximal vertical <em>field of view</em>
- * @constant
+ * The maximal vertical field of view
  * @type Float
  */
-Object.defineProperty(Matrix4Frustrum.prototype, 'FOV_MAX', {
-	value: Math.PI * 2.0,
-	enumerable: true
-});
+export const FOV_MAX = Math.PI * 2.0;
 /**
- * The default vertical <em>field of view</em>
- * @constant
+ * The default vertical field of view
  * @type Float
  */
-Object.defineProperty(Matrix4Frustrum.prototype, 'FOV_DEFAULT', {
-	value: Math.PI,
-	enumerable: true
-});
+export const FOV_DEFAULT = Math.PI;
 /**
  * The minimal projection aspect ratio (w/h)
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Frustrum.prototype, 'ASPECT_MIN', {
-	value: 1.0e-10,
-	enumerable: true
-});
+export const ASPECT_MIN = 1.0e-10;
 /**
  * The maximal projection aspect ratio (w/h)
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Frustrum.prototype, 'ASPECT_MAX', {
-		value: 1.0e10,
-	enumerable: true
-});
+export const ASPECT_MAX = 1.0e10;
 /**
  * The default projection aspect ratio (w/h)
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Frustrum.prototype, 'ASPECT_DEFAULT', {
-	value: 16.0 / 9.0,
-	enumerable: true
-});
+export const ASPECT_DEFAULT = 16.0 / 9.0;
 /**
  * The minimal z-plane distance
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Frustrum.prototype, 'ZPLANE_MIN', {
-	value: 1.0e-10,
-	enumerable: true
-});
+export const ZPLANE_MIN = 1.0e-10;
 /**
  * The maximal z-plane distance
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Frustrum.prototype, 'ZPLANE_MAX', {
-	value: Number.MAX_VALUE,
-	enumerable: true
-});
+export const ZPLANE_MAX = Number.MAX_VALUE;
 
 
-/**
- * (Re)defines the instance
- * @param {Float} [fov=FOV_DEFAULT]       The vertical <em>field of view</em>, in radians
- * @param {Float} [aspect=ASPECT_DEFAULT] The aspect ratio (w/h)
- * @param {Float} [near=ZPLANE_MIN]       The near plane distance
- * @param {Float} [far=ZPLANE_MAX]        The far plane distance
- * @returns {Matrix4Frustrum}
- */
-Matrix4Frustrum.prototype.define = function(fov, aspect, near, far) {
-	var clamp  = Math.clamp;
 
-	fov    = clamp(fov   , this.FOV_MIN   , this.FOV_MAX);
-	aspect = clamp(aspect, this.ASPECT_MIN, this.ASPECT_MAX);
-	near   = clamp(near  , this.ZPLANE_MIN, this.ZPLANE_MAX);
-	far    = clamp(far   , near           , this.ZPLANE_MAX);
-	
-	Object.defineProperty(this, 'fov'   , { value: fov });
-	Object.defineProperty(this, 'aspect', { value: aspect });
-	Object.defineProperty(this, 'near'  , { value: near });
-	Object.defineProperty(this, 'far'   , { value: far });
-	
-	var near2 = near * 2.0;
-	var zdiff = far - near;
-	
-	var ymax  =  near * Math.tan(fov * 0.5);
-	var ymin  = -ymax;
-	var ydiff =  ymax - ymin;
-	
-	var xmin  =  ymin * aspect;
-	var xmax  =  ymax * aspect;
-	var xdiff =  xmax - xmin;
-	
-	this.n = [
-		 near2         / xdiff,
-		 0.0,
-		 0.0,
-		 0.0,
-		
-		 0.0,
-		 near2         / ydiff,
-		 0.0,
-		 0.0,
-		
-		 (xmax + xmin) / xdiff,
-		 (ymax + ymin) / ydiff,
-		-(far + near)  / zdiff,
-		-1.0,
-	
-		 0.0,
-		 0.0,
-		-near2 * far   / zdiff,
-		 0.0
-	];
-	
-	return this;
-};
-
-
-/**
- * The copy of m
- * @param {Matrix4Frustrum} m The source
- * @returns {Matrix4Frustrum}
- */
-Matrix4Frustrum.prototype.copyOf = function(m) {
-	Object.defineProperty(this, 'fov'   , { value : m.fov });
-	Object.defineProperty(this, 'aspect', { value : m.aspect });
-	Object.defineProperty(this, 'near'  , { value: m.near });
-	Object.defineProperty(this, 'far'   , { value: m.far });
-
-	this.n = m.n.slice(0, 16);
-	
-	return this;
-};
+const _fov = new WeakMap();
+const _aspect = new WeakMap();
+const _near = new WeakMap();
+const _far = new WeakMap();
 
 
 
 /**
- * The version string
- * @constant
- * @name VERSION
- * @memberOf Matrix4Frustrum
- * @type String
+ * Perspectivic projection matrix
  */
-Object.defineProperty(Matrix4Frustrum, 'VERSION', {
-	value: "0.9.5",
-	enumerable: true
-});
+export default class Matrix4Frustrum extends Matrix4 {
+
+	/**
+	 * Returns a copy of m
+	 * @constructor
+	 * @param {Matrix4Frustrum}  m - The source
+	 * @param {Matrix4Frustrum} [target] - The target instance
+	 * @returns {Matrix4Frustrum}
+	 */
+	static Copy(m, target) {
+		if (target !== undefined) return target.copyOf(m);
+		else return new Matrix4Frustrum(m.fov, m.aspect, m.near, m.far);
+	}
 
 
-/**
- * Returns a copy of m
- * @param {Matrix4Frustrum}  m       The source
- * @param {Matrix4Frustrum} [target] The target instance
- * @returns {Matrix4Frustrum}
- */
-Matrix4Frustrum.Copy = function(m, target) {
-	if (target !== undefined) return target.copyOf(m);
-	else return new Matrix4Frustrum(m.fov, m.aspect, m.near, m.far);
-};
+
+	/**
+	 * Creates a new instance
+	 * @param {Float} [fov=FOV_DEFAULT] - The vertical field of view, in radians
+	 * @param {Float} [aspect=ASPECT_DEFAULT] - The aspect ratio (w/h)
+	 * @param {Float} [near=ZPLANE_MIN] - The distance of the near plane
+	 * @param {Float} [far=ZPLANE_MAX] - The distance of the far plane
+	 */
+	constructor(
+		fov = FOV_DEFAULT,
+		aspect = ASPECT_DEFAULT,
+		near = ZPLANE_MIN,
+		far = ZPLANE_MAX
+	) {
+		super();
+
+		this.define(fov, aspect, near, far);
+	}
 
 
-/**
- * Returns a type-version string
- * @returns {String}
- */
-Matrix4Frustrum.toString = function() {
-	return "[Matrix4Frustrum-" + this.VERSION + "]";
-};
+	/**
+	 * (Re)defines the instance
+	 * @param {Float} [fov=FOV_DEFAULT] - The vertical field of view, in radians
+	 * @param {Float} [aspect=ASPECT_DEFAULT] - The aspect ratio (w/h)
+	 * @param {Float} [near=ZPLANE_MIN] - The near plane distance
+	 * @param {Float} [far=ZPLANE_MAX] - The far plane distance
+	 * @returns {Matrix4Frustrum}
+	 */
+	define(fov, aspect, near, far) {
+		const clamp  = Math.clamp;
+
+		fov    = clamp(fov   , FOV_MIN   , FOV_MAX   );
+		aspect = clamp(aspect, ASPECT_MIN, ASPECT_MAX);
+		near   = clamp(near  , ZPLANE_MIN, ZPLANE_MAX);
+		far    = clamp(far   , near      , ZPLANE_MAX);
+
+		_fov.set(this, fov);
+		_aspect.set(this, aspect);
+		_near.set(this, near);
+		_far.set(this, far);
+
+		const near2 = near * 2.0;
+		const zdiff = far - near;
+
+		const ymax  =  near * Math.tan(fov * 0.5);
+		const ymin  = -ymax;
+		const ydiff =  ymax - ymin;
+
+		const xmin  =  ymin * aspect;
+		const xmax  =  ymax * aspect;
+		const xdiff =  xmax - xmin;
+
+		this.n = [
+			near2 / xdiff,
+			0.0,
+			0.0,
+			0.0,
+
+			0.0,
+			near2 / ydiff,
+			0.0,
+			0.0,
+
+			(xmax + xmin) / xdiff,
+			(ymax + ymin) / ydiff,
+			-(far + near) / zdiff,
+			-1.0,
+
+			0.0,
+			0.0,
+			-near2 * far / zdiff,
+			0.0
+		];
+
+		return this;
+	}
+
+
+	/**
+	 * The vertical field of view, in radians
+	 * @type Float
+	 */
+	get fov() {
+		return _fov.get(this);
+	}
+
+	/**
+	 * The projection aspect ratio (w/h)
+	 * @type Float
+	 */
+	get aspect() {
+		return _aspect.get(this);
+	}
+
+	/**
+	 * The distance of the near plane
+	 * @type Float
+	 */
+	get near() {
+		return _near.get(this);
+	}
+
+	/**
+	 * The distance of the far plane
+	 * @type Float
+	 */
+	get far() {
+		return _far.get(this);
+	}
+
+
+	/**
+	 * The copy of m
+	 * @param {Matrix4Frustrum} m - The source
+	 * @returns {Matrix4Frustrum}
+	 */
+	copyOf(m) {
+		_fov.set(this, _fov.get(m));
+		_aspect.set(this, _aspect.get(m));
+		_near.set(this, _near.get(m));
+		_far.set(this, _far.get(m));
+
+		this.n = m.n.slice(0, 16);
+
+		return this;
+	}
+}

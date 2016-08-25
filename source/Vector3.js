@@ -125,7 +125,7 @@ export default class Vector3 {
 	/**
 	 * Returns the transformation of v (m*v)
 	 * @constructor
-	 * @param {Matrix3} m -The transform
+	 * @param {Matrix3} m - The transform
 	 * @param {Vector3} v - The source
 	 * @param {Vector3} [target] - The target instance
 	 * @returns {Vector3}
@@ -532,7 +532,7 @@ export default class Vector3 {
 	projectEQ(w) {
 		const n = this.n, x = n[0], y = n[1], z = n[2];
 
-		const f = (x * w.n[0] + y * w.n[1] + z * w.n[2]) / (x * x + y * y + z* z);
+		const f = (x * w.n[0] + y * w.n[1] + z * w.n[2]) / (x * x + y * y + z * z);
 
 		n[0] *= f, n[1] *= f, n[2] *= f;
 
@@ -602,7 +602,7 @@ export default class Vector3 {
 
 	/**
 	 * Returns a string representation of the instance
-	 * @param {Uint} [digits=3] The decimal digits
+	 * @param {Uint} [digits=3] - The decimal digits
 	 * @returns {String}
 	 */
 	toString(digits = 3) {

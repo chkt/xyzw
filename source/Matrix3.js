@@ -42,9 +42,9 @@ export default class Matrix3 {
 		const cos = Math.cos(rad);
 
 		const n = [
-			1.0,  0.0,  0.0,
-			0.0,  cos,  sin,
-			0.0, -sin,  cos
+			1.0, 0.0, 0.0,
+			0.0, cos, sin,
+			0.0, -sin, cos
 		];
 
 		if (target === undefined) target = new Matrix3(n);
@@ -65,9 +65,9 @@ export default class Matrix3 {
 		const cos = Math.cos(rad);
 
 		const n = [
-			cos,  0.0,  sin,
-			0.0,  1.0,  0.0,
-			-sin,  0.0,  cos
+			cos, 0.0, sin,
+			0.0, 1.0, 0.0,
+			-sin, 0.0, cos
 		];
 
 		if (target === undefined) target = new Matrix3(n);
@@ -88,9 +88,9 @@ export default class Matrix3 {
 		const cos = Math.cos(rad);
 
 		const n = [
-			cos,  sin, 0.0,
-			-sin,  cos, 0.0,
-			0.0,  0.0, 1.0
+			cos, sin, 0.0,
+			-sin, cos, 0.0,
+			0.0, 0.0, 1.0
 		];
 
 		if (target === undefined) target = new Matrix3(n);
@@ -109,7 +109,7 @@ export default class Matrix3 {
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
 	 */
-	static EulerXYZ(x, y ,z, target) {
+	static EulerXYZ(x, y, z, target) {
 		const sx = Math.sin(x), cx = Math.cos(x);
 		const sy = Math.sin(y), cy = Math.cos(y);
 		const sz = Math.sin(z), cz = Math.cos(z);
@@ -215,9 +215,9 @@ export default class Matrix3 {
 		const vn = v.n;
 
 		const n = [
-			vn[0],   0.0,   0.0,
-			0.0, vn[1],   0.0,
-			0.0,   0.0, vn[2]
+			vn[0], 0.0, 0.0,
+			0.0, vn[1], 0.0,
+			0.0, 0.0, vn[2]
 		];
 
 		if (target === undefined) target = new Matrix3(n);
@@ -237,9 +237,9 @@ export default class Matrix3 {
 		const vn = v.n;
 
 		const n = [
-			1.0,   0.0,   0.0,
-			0.0,   1.0,   0.0,
-			vn[0], vn[1],   1.0
+			1.0, 0.0, 0.0,
+			0.0, 1.0, 0.0,
+			vn[0], vn[1], 1.0
 		];
 
 		if (target === undefined) target = new Matrix3(n);
@@ -469,7 +469,7 @@ export default class Matrix3 {
 
 	/**
 	 * Creates a new instance
-	 * @param {Float[]} [n] Array represeting 3x3 column-major ordered components
+	 * @param {Float[]} [n] - Array represeting 3x3 column-major ordered components
 	 * Arrays of length <em>!== 9</em> will return the identity matrix
 	 */
 	constructor(n) {
@@ -679,8 +679,8 @@ export default class Matrix3 {
 	/**
 	 * The 2x3 concatenation of m and matrix-transformed v (m*Matrix3.Translation(v))
 	 * Components 2x are assumed to be (0.0,0.0,1.0)
-	 * @param {Matrix3} m The matrix
-	 * @param {Vector2} v The vector
+	 * @param {Matrix3} m - The matrix
+	 * @param {Vector2} v - The vector
 	 * @returns {Matrix3}
 	 */
 	multiply2x3Vector2Translation(m, v) {
@@ -847,12 +847,13 @@ export default class Matrix3 {
 	 */
 	toEulerYXZ() {
 		const n = this.n, x = Math.asin(-n[7]);
+		let y, z;
 
 		if (Math.abs(n[7]) !== 1.0) {
-			var y = Math.atan2(n[6], n[8]);
-			var z = Math.atan2(n[1], n[4]);
+			y = Math.atan2(n[6], n[8]);
+			z = Math.atan2(n[1], n[4]);
 		}
-		else  {
+		else {
 			y = Math.atan2(n[3], n[0]);
 			z = 0.0;
 		}
@@ -866,10 +867,11 @@ export default class Matrix3 {
 	 */
 	toEulerZXY() {
 		const n = this.n, x = Math.asin(-n[5]);
+		let y, z;
 
 		if (Math.abs(n[5]) !== 1.0) {
-			var y = Math.atan2(-n[2], n[8]);
-			var z = Math.atan2(-n[3], n[4]);
+			y = Math.atan2(-n[2], n[8]);
+			z = Math.atan2(-n[3], n[4]);
 		}
 		else {
 			y = 0.0;
@@ -914,7 +916,7 @@ export default class Matrix3 {
 	 */
 	toString(digits = 3) {
 		const str = this.n
-			.map((item, index, source) => (index % 3 === 0.0 ? "\n" : "\t" ) + item.toFixed(digits))
+			.map((item, index, source) => (index % 3 === 0.0 ? "\n" : "\t") + item.toFixed(digits))
 			.join("");
 
 		return `[Matrix3]${ str }`;

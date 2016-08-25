@@ -15,8 +15,8 @@ export default class Matrix2 {
 		const cos = Math.cos(rad);
 
 		const n = [
-			cos,  sin,
-			-sin,  cos
+			cos, sin,
+			-sin, cos
 		];
 
 		if (target === undefined) target = new Matrix2(n);
@@ -34,7 +34,7 @@ export default class Matrix2 {
 	 */
 	static Scale(v, target) {
 		const n = [
-			v.n[0],    0.0,
+			v.n[0], 0.0,
 			0.0, v.n[1]
 		];
 
@@ -70,6 +70,7 @@ export default class Matrix2 {
 	 */
 	static Matrix3(m, target) {
 		const n = m.n.slice(0, 5);
+
 		n.splice(2, 1);
 
 		if (target === undefined) target = new Matrix2(n);
@@ -393,7 +394,7 @@ export default class Matrix2 {
 	 */
 	toString(digits = 3) {
 		const str = this.n
-			.map((item, index, source) => (i % 2.0 === 0.0 ? "\n" : "\t") + item.toFixed(digits))
+			.map((item, index, source) => (index % 2.0 === 0.0 ? "\n" : "\t") + item.toFixed(digits))
 			.join("");
 
 		return `[Matrix2]${ str }`;

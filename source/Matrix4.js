@@ -760,34 +760,30 @@ export default class Matrix4 {
 	static inverseGaussOf(m) {
 		const a = m.n.slice(0), b = new Matrix4().n, abs = Math.abs;
 
-		for (var r1 = 0; r1 < 4; r1++) {
-			var max = r1, rcol = r1 * 4;
+		for (let r1 = 0; r1 < 4; r1 += 1) {
+			const rcol = r1 * 4;
+			let max = r1;
 
-			for (var r2 = r1 + 1; r2 < 4; r2++) {
+			for (let r2 = r1 + 1; r2 < 4; r2 += 1) {
 				if (abs(a[r2 + rcol]) > abs(a[max + rcol])) max = r2;
 			}
 
 			if (max !== r1) {
-				for (var c = 0; c < 4; c++) {
-					var ccol = c * 4;
+				for (let c = 0; c < 4; c += 1) {
+					const ccol = c * 4, indexA = r1 + ccol, indexB = max + ccol;
 
-					var swap = a[r1 + ccol];
-					a[r1 + ccol] = a[max + ccol];
-					a[max + ccol] = swap;
-
-					swap = b[r1 + ccol];
-					b[r1 + ccol] = b[max + ccol];
-					b[max + ccol] = swap;
+					[a[indexA], a[indexB]] = [a[indexB], a[indexA]];
+					[b[indexA], b[indexB]] = [b[indexB], b[indexA]];
 				}
 			}
 
 			if (abs(a[r1 + rcol]) < 1.0e-10) return false;
 
-			for (r2 = r1 + 1; r2 < 4; r2++) {
-				var n = a[r2 + rcol] / a[r1 + rcol];
+			for (let r2 = r1 + 1; r2 < 4; r2 += 1) {
+				const n = a[r2 + rcol] / a[r1 + rcol];
 
-				for (c = 0; c < 4; c++) {
-					ccol = c * 4;
+				for (let c = 0; c < 4; c += 1) {
+					const ccol = c * 4;
 
 					b[r2 + ccol] -= b[r1 + ccol] * n;
 
@@ -798,26 +794,27 @@ export default class Matrix4 {
 			}
 		}
 
-		for (r1 = 3; r1 > -1; r1--) {
-			rcol = r1 * 4;
-			n = 1.0 / a[r1 + rcol];
+		for (let r1 = 3; r1 > -1; r1 -= 1) {
+			const rcol = r1 * 4;
+			const n = 1.0 / a[r1 + rcol];
 
-			for (r2 = 0; r2 < r1; r2++) {
-				var f = a[r2 + rcol] * n;
+			for (let r2 = 0; r2 < r1; r2 += 1) {
+				const f = a[r2 + rcol] * n;
 
-				for (c = 0; c < 4; c++) {
-					ccol = c * 4;
-					b[r2 + ccol] -= b[r1 + ccol] * f;
+				for (let c = 0; c < 4; c += 1) {
+					const ccol = c * 4, indexA = r2 + ccol, indexB = r1 + ccol;
+
+					b[indexA] -= b[indexB] * f;
 
 					if (c <= r1) continue;
 
-					a[r2 + ccol] -= a[r1 + ccol] + f;
+					a[indexA] -= a[indexB] + f;
 				}
 			}
 
 			a[rcol] *= n;
 
-			for (c = 0; c < 4; c++) b[r1 + c * 4] *= n;
+			for (let c = 0; c < 4; c += 1) b[r1 + c * 4] *= n;
 		}
 
 		this.n = b;

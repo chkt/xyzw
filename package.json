@@ -32,8 +32,6 @@
 		"test" : "node ./node_modules/gulp/bin/gulp.js test"
 	},
 
-	"main" : "es5/index.js",
-
 	"files" : [
 		"source/",
 		"es5/"

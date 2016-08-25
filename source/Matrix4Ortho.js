@@ -1,250 +1,198 @@
-/**
- * Creates a new instance
- * @class Orthographic projection Matrix
- * @extends Matrix4
- * @author Christoph Kettelhoit <ck@christoph-kettelhoit.de>
- * @param {Float} [extend=EXTEND_DEFAULT] The vertical extend of the viewcube
- * @param {Float} [aspect=ASPECT_DEFAULT] The aspect ratio (w/h)
- * @param {Float} [near=ZPLANE_MIN]       The near plane distance
- * @param {Float} [far=ZPLANE_MAX]        The far plane distance
- * @returns {Matrix4Ortho}
- * @license Licensed under the MIT License
- */
-function Matrix4Ortho(extend, aspect, near, far) {
-	Matrix4.call(this);
-	
-	/**
-	 * The vertical extend of the viewcube
-	 * @readonly
-	 * @type Float
-	 * @default EXTEND_DEFAULT
-	 */
-	Object.defineProperty(this, 'extend', {
-		value: 0.0,
-		configurable: true,
-		enumerable: true
-	});
-	/**
-	 * The aspect ratio (w/h)
-	 * @readonly
-	 * @type Float
-	 * @default ASPECT_DEFAULT
-	 */
-	Object.defineProperty(this, 'aspect', {
-		value: 0.0,
-		configurable: true,
-		enumerable: true
-	});
-	/**
-	 * The near plane distance
-	 * @readonly
-	 * @type Float
-	 * @default ZPLANE_MIN
-	 */
-	Object.defineProperty(this, 'near', {
-		value: 0.0,
-		configurable: true,
-		enumerable: true
-	});
-	/**
-	 * The far plane distance
-	 * @readonly
-	 * @type Float
-	 * @default ZPLANE_MAX
-	 */
-	Object.defineProperty(this, 'far', {
-		value: 0.0,
-		configurable: true,
-		enumerable: true
-	});
-	
-	this.define(extend, aspect, near, far);
-}
+import Math from './Math';
+import Matrix4 from './Matrix4';
 
-
-Matrix4Ortho.prototype = Object.create(Matrix4.prototype);
-
-/**
- * The constructor
- * @type Function
- */
-Matrix4Ortho.prototype.constructor = Matrix4Ortho;
 
 
 /**
  * The minimal vertical extend of the viewcube
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Ortho.prototype, 'EXTEND_MIN', {
-	value: 1.0e-10,
-	enumerable: true
-});
+export const EXTEND_MIN = 1.0e-10;
 /**
  * The maximal vertical extend of the viewcube
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Ortho.prototype, 'EXTEND_MAX', {
-	value: 1.0e10,
-	enumerable: true
-});
+export const EXTEND_MAX = 1.0e10;
 /**
  * The default vertical extend of the viewcube
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Ortho.prototype, 'EXTEND_DEFAULT', {
-	value: 100.0,
-	enumerable: true
-});
+export const EXTEND_DEFAULT = 100.0;
 /**
  * The minimal projection aspect ratio (w/h)
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Ortho.prototype, 'ASPECT_MIN', {
-	value: 1.0e-10,
-	enumerable: true
-});
+export const ASPECT_MIN = 1.0e-10;
 /**
  * The maximal projection aspect ratio (w/h)
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Ortho.prototype, 'ASPECT_MAX', {
-	value: 1.0e10,
-	enumerable: true
-});
+export const ASPECT_MAX = 1.0e10;
 /**
  * The default projection aspect ratio (w/h)
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Ortho.prototype, 'ASPECT_DEFAULT', {
-	value: 16.0 / 9.0,
-	enumerable: true
-});
+export const ASPECT_DEFAULT = 16.0 / 9.0;
 /**
  * The minimal z-plane distance
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Ortho.prototype, 'ZPLANE_MIN', {
-	value: 1.0e-10,
-	enumerable: true
-});
+export const ZPLANE_MIN = 1.0e-10;
 /**
  * The maximal z-plane distance
- * @constant
  * @type Float
  */
-Object.defineProperty(Matrix4Ortho.prototype, 'ZPLANE_MAX', {
-	value: Number.MAX_VALUE,
-	enumerable: true
-});
+export const ZPLANE_MAX = Number.MAX_VALUE;
 
 
-/**
- * (Re)defines the instance
- * @param {Float} [extend=EXTEND_DEFAULT] The vertical extend of the viewcube
- * @param {Float} [aspect=ASPECT_DEFAULT] The aspect ratio (w/h)
- * @param {Float} [near=ZPLANE_MIN]       The near plane distance
- * @param {Float} [far=ZPLANE_MAX]        The far plane distance
- * @returns {Matrix4Ortho}
- */
-Matrix4Ortho.prototype.define = function(extend, aspect, near, far) {
-	var clamp  = Math.clamp;
-	
-	extend =  clamp(extend, this.EXTEND_MIN, this.EXTEND_MAX);
-	aspect =  clamp(aspect, this.ASPECT_MIN, this.ASPECT_MAX);
-	near   = -clamp(near  , this.ZPLANE_MIN, this.ZPLANE_MAX);
-	far    = -clamp(far   , -near          , this.ZPLANE_MAX);
-	
-	Object.defineProperty(this, 'extend', { value: extend });
-	Object.defineProperty(this, 'aspect', { value: aspect });
-	Object.defineProperty(this, 'near'  , { value: near });
-	Object.defineProperty(this, 'far'   , { value: far });
-	
-	var zdiff =  far - near;
-	
-	var ymax  =  extend * 0.5;
-	var ymin  = -ymax;
-	
-	var xmin  =  ymin   * aspect;
-	var xmax  =  ymax   * aspect;
-	var xdiff =  extend * aspect;
-	
-	this.n = [
-		 2.0 / xdiff,
-		 0.0,
-		 0.0,
-		 0.0,
-		 
-		 0.0,
-		 2.0 / extend,
-		 0.0,
-		 0.0,
-		 
-		 0.0,
-		 0.0,
-		 2.0 / zdiff,
-		 0.0,
-		 
-		-(xmax + xmin) / xdiff,
-		-(ymax + ymin) / extend,
-		-(far + near)  / zdiff,
-		 1.0
-	];
-	
-	return this;
-};
 
-
-/**
- * The copy of m
- * @param {Matrix4Ortho} m The source
- * @returns {Matrix4Ortho}
- */
-Matrix4Ortho.prototype.copyOf = function(m) {
-	Object.defineProperty(this, 'fov'   , { value: m.fov });
-	Object.defineProperty(this, 'extend', { value: m.extend });
-	Object.defineProperty(this, 'near'  , { value: m.near });
-	Object.defineProperty(this, 'far'   , { value: m.far });
-	
-	this.n = m.n.slice(0, 16);
-	
-	return this;
-};
+const _extend = new WeakMap();
+const _aspect = new WeakMap();
+const _near = new WeakMap();
+const _far = new WeakMap();
 
 
 
 /**
- * The version string
- * @constant
- * @name VERSION
- * @memberOf Matrix4Ortho
- * @type String
+ * Orthographic projection Matrix
  */
-Object.defineProperty(Matrix4Ortho, 'VERSION', {value : "0.5.4"});
+export default class Matrix4Ortho extends Matrix4 {
+
+	/**
+	 * Returns a copy of m
+	 * @constructor
+	 * @param {Matrix4Ortho} m - The source
+	 * @param {Matrix4Ortho} [target] - The target instance
+	 * @returns {Matrix4Ortho}
+	 */
+	static Copy(m, target) {
+		if (target !== undefined) return target.copyOf(m);
+		else return new Matrix4Ortho(m.extend, m.aspect, m.near, m.far);
+	}
 
 
-/**
- * Returns a copy of m
- * @param {Matrix4Ortho}  m       The source
- * @param {Matrix4Ortho} [target] The target instance
- * @returns {Matrix4Ortho}
- */
-Matrix4Ortho.Copy = function(m, target) {
-	if (target !== undefined) return target.copyOf(m);
-	else return new Matrix4Ortho(m.extend, m.aspect, m.near, m.far);
-};
+
+	/**
+	 * Creates a new instance
+	 * @param {Float} [extend=EXTEND_DEFAULT] - The vertical extend of the viewcube
+	 * @param {Float} [aspect=ASPECT_DEFAULT] - The aspect ratio (w/h)
+	 * @param {Float} [near=ZPLANE_MIN] - The near plane distance
+	 * @param {Float} [far=ZPLANE_MAX] - The far plane distance
+	 */
+	constructor(
+		extend = EXTEND_DEFAULT,
+		aspect = ASPECT_DEFAULT,
+		near = ZPLANE_MIN,
+		far = ZPLANE_MAX
+	) {
+		super();
+
+		this.define(extend, aspect, near, far);
+	}
 
 
-/**
- * Returns a type-version string
- * @returns {String}
- */
-Matrix4Ortho.toString =  function() {
-	return "[Matrix4Ortho-" + this.VERSION + "]";
-};
+	/**
+	 * (Re)defines the instance
+	 * @param {Float} [extend=EXTEND_DEFAULT] - The vertical extend of the viewcube
+	 * @param {Float} [aspect=ASPECT_DEFAULT] - The aspect ratio (w/h)
+	 * @param {Float} [near=ZPLANE_MIN] - The near plane distance
+	 * @param {Float} [far=ZPLANE_MAX] - The far plane distance
+	 * @returns {Matrix4Ortho}
+	 */
+	define(extend, aspect, near, far) {
+		const clamp  = Math.clamp;
+
+		extend =  clamp(extend, EXTEND_MIN, EXTEND_MAX);
+		aspect =  clamp(aspect, ASPECT_MIN, ASPECT_MAX);
+		near   = -clamp(near  , ZPLANE_MIN, ZPLANE_MAX);
+		far    = -clamp(far   , -near     , ZPLANE_MAX);
+
+		_extend.set(this, extend);
+		_aspect.set(this, aspect);
+		_near.set(this, near);
+		_far.set(this, far);
+
+		const zdiff =  far - near;
+
+		const ymax  =  extend * 0.5;
+		const ymin  = -ymax;
+
+		const xmin  =  ymin   * aspect;
+		const xmax  =  ymax   * aspect;
+		const xdiff =  extend * aspect;
+
+		this.n = [
+			2.0 / xdiff,
+			0.0,
+			0.0,
+			0.0,
+
+			0.0,
+			2.0 / extend,
+			0.0,
+			0.0,
+
+			0.0,
+			0.0,
+			2.0 / zdiff,
+			0.0,
+
+			-(xmax + xmin) / xdiff,
+			-(ymax + ymin) / extend,
+			-(far + near) / zdiff,
+			1.0
+		];
+
+		return this;
+	}
+
+
+	/**
+	 * The vertical extend of the viewcube
+	 * @type Float
+	 */
+	get extend() {
+		return _extend.get(this);
+	}
+
+	/**
+	 * The aspect ratio (w/h)
+	 * @type Float
+	 */
+	get aspect() {
+		return _aspect.get(this);
+	}
+
+	/**
+	 * The near plane distance
+	 * @type Float
+	 */
+	get near() {
+		return _near.get(this);
+	}
+
+	/**
+	 * The far plane distance
+	 * @type Float
+	 */
+	get far() {
+		return _far.get(this);
+	}
+
+
+	/**
+	 * The copy of m
+	 * @param {Matrix4Ortho} m - The source
+	 * @returns {Matrix4Ortho}
+	 */
+	copyOf(m) {
+		_extend.set(this, _extend.get(m));
+		_aspect.set(this, _aspect.get(m));
+		_near.set(this, _near.get(m));
+		_far.set(this, _far.get(m));
+
+		this.n = m.n.slice(0, 16);
+
+		return this;
+	}
+}

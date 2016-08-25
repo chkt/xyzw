@@ -1,0 +1,59 @@
+{
+	"name" : "xyzw",
+	"description" : "A performant and comprehensive vector algebra library",
+	"version" : "0.9.0",
+	"license" : "MIT",
+
+	"keywords" : [
+		"vector",
+		"matrix",
+		"transform",
+		"projection",
+		"2d",
+		"3d",
+		"rgb",
+		"rgba",
+		"hsla"
+	],
+
+	"author" : {
+		"name" : "Christoph Kettelhoit",
+		"email" : "ck@christoph-kettelhoit.de",
+		"url" : "christoph-kettelhoit.de"
+	},
+
+	"repository" : {
+		"type" : "git",
+		"url" : "https://github.com/chkt/xyzw"
+	},
+
+	"scripts" : {
+		"gulp" : "node ./node_modules/gulp/bin/gulp.js",
+		"test" : "node ./node_modules/gulp/bin/gulp.js test"
+	},
+
+	"main" : "es5/index.js",
+
+	"files" : [
+		"source/",
+		"es5/"
+	],
+
+	"babel" : {
+		"presets" : [ "es2015" ]
+	},
+
+	"devDependencies" : {
+		"del" : "~2.0",
+		"babel" : "~6.5",
+		"babel-polyfill" : "~6.5",
+		"babel-preset-es2015": "~6.5",
+		"jscs" : "~2.1",
+		"tesa" : "~0.2",
+		"gulp" : "~3.9",
+		"gulp-jshint" : "~1.11",
+		"gulp-jscs" : "~2.0",
+		"gulp-babel" : "~6.1",
+		"gulp-mocha" : "~2.1"
+	}
+}

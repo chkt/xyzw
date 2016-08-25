@@ -32,7 +32,7 @@ export default class Vector4RGBA extends Vector4 {
 	 * @throws {TypeError} if scale is not a Float or undefined
 	 * @throws {TypeError} if target is not a Vector4 or undefined
 	 */
-	static RGBA(string, scale = 1.0, target) {
+	static RGBA(string, scale = 1.0, target = undefined) {
 		if (typeof string !== 'string' || typeof scale !== 'number') throw new TypeError();
 
 		const n = [0.0, 0.0, 0.0, 0.0];
@@ -66,7 +66,7 @@ export default class Vector4RGBA extends Vector4 {
 	 * @throws {TypeError} if scale is not a Float or undefined
 	 * @throws {TypeError} if target is not a Vector4 instance or undefined
 	 */
-	static Int(i, scale = 1.0, target) {
+	static Int(i, scale = 1.0, target = undefined) {
 		if (!Number.isSafeInteger(i) || typeof scale !== 'number') throw new TypeError();
 
 		const n = [0.0, 0.0, 0.0, 0.0];
@@ -83,7 +83,7 @@ export default class Vector4RGBA extends Vector4 {
 		n[3] = i >> 24 & 0xFF * t;
 
 		return target;
-	};
+	}
 
 	/**
 	 * Returns an instance representing AARRGGBB encoded string
@@ -157,7 +157,7 @@ export default class Vector4RGBA extends Vector4 {
 
 	/**
 	 * Returns a rgba() encoded string representation of the instance
-	 * @param {Float} [scale=1.0] The rgb scale
+	 * @param {Float} [scale=1.0] - The rgb scale
 	 * @returns {String}
 	 * @throws {TypeError} if scale is not a Float or undefined
 	 */
@@ -175,7 +175,7 @@ export default class Vector4RGBA extends Vector4 {
 
 	/**
 	 * Returns a aarrggbb bit encoded integer representation of the instance
-	 * @param {Float} [scale=1.0] The scale
+	 * @param {Float} [scale=1.0] - The scale
 	 * @returns {Int}
 	 * @throws {TypeError} if scale is not a Float or undefined
 	 */
@@ -196,8 +196,8 @@ export default class Vector4RGBA extends Vector4 {
 	 * @returns {String}
 	 * @throws {TypeError} if type is not a STRING_* constant
 	 */
-	toString(type = STRING_RGBA, scale) {
-		switch(type) {
+	toString(type = STRING_RGBA, scale = 1.0) {
+		switch (type) {
 			case STRING_RGBA : return this.toRGBA(scale);
 			case STRING_XARGB : return this.toInt(scale).toString(16);
 			default : throw new TypeError();

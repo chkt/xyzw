@@ -532,7 +532,7 @@ export default class Vector4 {
 
 	/**
 	 * Returns a string representation of the instance
-	 * @param {Uint} [digits=3] The decimal digits
+	 * @param {Uint} [digits=3] - The decimal digits
 	 * @returns {String}
 	 */
 	toString(digits = 3) {

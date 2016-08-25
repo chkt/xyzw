@@ -102,7 +102,7 @@ export default class Matrix4Frustrum extends Matrix4 {
 	define(fov, aspect, near, far) {
 		const clamp  = Math.clamp;
 
-		fov    = clamp(fov   , FOV_MIN   , FOV_MAX   );
+		fov    = clamp(fov   , FOV_MIN   , FOV_MAX);
 		aspect = clamp(aspect, ASPECT_MIN, ASPECT_MAX);
 		near   = clamp(near  , ZPLANE_MIN, ZPLANE_MAX);
 		far    = clamp(far   , near      , ZPLANE_MAX);

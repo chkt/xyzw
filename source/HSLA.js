@@ -139,12 +139,14 @@ export default class HSLA {
 		const h = this.h / ((1.0 / 3.0) * Math.PI);
 		const x = c * (1.0 - Math.abs(h % 2.0 - 1.0));
 
-		if      (h >= 0.0 && h < 1.0) var r = c, g = x, b = 0.0;
-		else if (h >= 1.0 && h < 2.0)     r = x, g = c, b = 0.0;
-		else if (h >= 2.0 && h < 3.0)     r = 0.0, g = c, b = x;
-		else if (h >= 3.0 && h < 4.0)     r = 0.0, g = x, b = c;
-		else if (h >= 4.0 && h < 5.0)     r = x, g = 0.0, b = c;
-		else                              r = c, g = 0.0, b = x;
+		let r, g, b;
+
+		if      (h >= 0.0 && h < 1.0) r = c, g = x, b = 0.0;
+		else if (h >= 1.0 && h < 2.0) r = x, g = c, b = 0.0;
+		else if (h >= 2.0 && h < 3.0) r = 0.0, g = c, b = x;
+		else if (h >= 3.0 && h < 4.0) r = 0.0, g = x, b = c;
+		else if (h >= 4.0 && h < 5.0) r = x, g = 0.0, b = c;
+		else                          r = c, g = 0.0, b = x;
 
 		const min = this.l - 0.5 * c;
 		const n = [r + min, g + min, b + min, this.a];

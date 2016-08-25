@@ -144,7 +144,7 @@ export default class Vector2 {
 	/**
 	 * Returns a copy of v
 	 * @constructor
-	 * @param {Vector2} - v The source
+	 * @param {Vector2} v - The source
 	 * @param {Vector2} [target] - The target instance
 	 * @returns {Vector2}
 	 */
@@ -199,7 +199,7 @@ export default class Vector2 {
 
 	/**
 	 * Creates a new instance
-	 * @param {Float[]} [n] Array representing the two components
+	 * @param {Float[]} [n] - Array representing the two components
 	 * Arrays of length !== 2 will return the zero (0,0) vector
 	 */
 	constructor(n) {
@@ -366,7 +366,7 @@ export default class Vector2 {
 	 * @param {Vector2} v - The vector
 	 * @returns {Vector2}
 	 */
-	multiplyMatrix3(m ,v) {
+	multiplyMatrix3(m, v) {
 		const mn = m.n, x = v.n[0], y = v.n[1];
 		const w = 1.0 / (x * mn[2] + y * mn[5] + mn[8]);
 

@@ -18,10 +18,10 @@ export default class Matrix4 {
 		const vn = v.n;
 
 		const n = [
-			1.0,   0.0,   0.0,   0.0,
-			0.0,   1.0,   0.0,   0.0,
-			0.0,   0.0,   1.0,   0.0,
-			vn[0], vn[1], vn[2],   1.0
+			1.0, 0.0, 0.0, 0.0,
+			0.0, 1.0, 0.0, 0.0,
+			0.0, 0.0, 1.0, 0.0,
+			vn[0], vn[1], vn[2], 1.0
 		];
 
 		if (target === undefined) target = new Matrix4(n);
@@ -113,7 +113,7 @@ export default class Matrix4 {
 	 * @constructor
 	 * @param {Matrix4} a - The first matrix
 	 * @param {Matrix3} b - The second matrix
-	 * @param {Matrix4} [target] The target instance
+	 * @param {Matrix4} [target] - The target instance
 	 * @returns {Matrix4}
 	 */
 	static Multiply3x4Matrix3(a, b, target) {
@@ -255,7 +255,7 @@ export default class Matrix4 {
 
 	/**
 	 * Redefines the instance
-	 * @param {Float[]} [n] Array representing 4x4 column-major ordered components
+	 * @param {Float[]} [n] - Array representing 4x4 column-major ordered components
 	 * Arrays of length <em>!== 16</em> will return the identity matrix
 	 * @returns {Matrix4}
 	 */
@@ -662,7 +662,7 @@ export default class Matrix4 {
 	 * Beware: method is NOT chainable
 	 * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
 	 * Returns false if m is assumed to be singular, true otherwise
-	 * @param {Matrix4} m The 3x4 source
+	 * @param {Matrix4} m - The 3x4 source
 	 * @returns {Boolean}
 	 */
 	inverse3x4Of(m) {
@@ -754,7 +754,7 @@ export default class Matrix4 {
 	 * Beware: method is NOT chainable
 	 * Using gauss-jordan elimination
 	 * returns false if m is singular, false otherwise
-	 * @param {Matrix4} m The source
+	 * @param {Matrix4} m - The source
 	 * @returns {Boolean}
 	 */
 	static inverseGaussOf(m) {

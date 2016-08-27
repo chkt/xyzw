@@ -671,7 +671,7 @@ export default class Matrix3 {
 
 		n[0] *= v00, n[3] *= v11;
 		n[1] *= v00, n[4] *= v11;
-		n[2] *= v00, n[6] *= v11;
+		n[2] *= v00, n[5] *= v11;
 
 		return this;
 	}

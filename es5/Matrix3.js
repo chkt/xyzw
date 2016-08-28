@@ -4,7 +4,15 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Matrix = require("./Matrix2");
+
+var _Matrix2 = _interopRequireDefault(_Matrix);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -440,6 +448,22 @@ var Matrix3 = function () {
    * Components 2x are assumed to be (0.0,0.0,1.0)
    * @constructor
    * @param {Matrix3} a - The first transform
+   * @param {Matrix2} b - The second transform
+   * @param {Matrix3} [target] - The target instance
+   * @returns {Matrix3}
+   */
+
+	}, {
+		key: "Multiply2x3Matrix2",
+		value: function Multiply2x3Matrix2(a, b, target) {
+			return (target === undefined ? new Matrix3() : target).multiply2x3Matrix2(a, b);
+		}
+
+		/**
+   * Returns the 2x3 concatenation of a and b (a*b)
+   * Components 2x are assumed to be (0.0,0.0,1.0)
+   * @constructor
+   * @param {Matrix3} a - The first transform
    * @param {Matrix3} b - The second transform
    * @param {Matrix3} [target] - The target instance
    * @returns {Matrix3}
@@ -634,7 +658,7 @@ var Matrix3 = function () {
 
 			n[0] *= v00, n[3] *= v11;
 			n[1] *= v00, n[4] *= v11;
-			n[2] *= v00, n[6] *= v11;
+			n[2] *= v00, n[5] *= v11;
 
 			return this;
 		}
@@ -670,6 +694,53 @@ var Matrix3 = function () {
 			n[0] = m00, n[3] = m01, n[6] = m00 * v02 + m01 * v12 + m02;
 			n[1] = m10, n[4] = m11, n[7] = m10 * v02 + m11 * v12 + m12;
 			n[2] = m20, n[5] = m21, n[8] = m20 * v02 + m21 * v12 + m22;
+
+			return this;
+		}
+
+		/**
+   * The 2x3 concatenation of a and b (a*b)
+   * Components 2x are assumed to be (0.0,0.0,1.0)
+   * @param {Matrix3} a - The first transform
+   * @param {Matrix2} b - The second transform
+   * @returns {Matrix3}
+   */
+
+	}, {
+		key: "multiply2x3Matrix2",
+		value: function multiply2x3Matrix2(a, b) {
+			var n = this.n;
+
+			var _a$n = _slicedToArray(a.n, 9);
+
+			var a00 = _a$n[0];
+			var a10 = _a$n[1];
+			var a20 = _a$n[2];
+			var a01 = _a$n[3];
+			var a11 = _a$n[4];
+			var a21 = _a$n[5];
+			var a02 = _a$n[6];
+			var a12 = _a$n[7];
+			var a22 = _a$n[8];
+
+			var _b$n = _slicedToArray(b.n, 4);
+
+			var b00 = _b$n[0];
+			var b10 = _b$n[1];
+			var b01 = _b$n[2];
+			var b11 = _b$n[3];
+
+
+			n[0] = a00 * b00 + a01 * b10;
+			n[3] = a00 * b01 + a01 * b11;
+			n[6] = a02;
+
+			n[1] = a10 * b00 + a11 * b10;
+			n[4] = a10 * b01 + a11 * b11;
+			n[7] = a12;
+
+			n[2] = n[5] = 0.0;
+			n[8] = 1.0;
 
 			return this;
 		}

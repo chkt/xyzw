@@ -37,4 +37,14 @@ ExtMath.reflect = function (n, r) {
   return 2.0 * r - n;
 };
 
+/**
+ * Returns a random number between min and max
+ * @param {Number} min - The minimal value
+ * @param {Number} max - The maximal value
+ * @returns {Number}
+ */
+ExtMath.range = function (min, max) {
+  return min + (max - min) * Math.random();
+};
+
 exports.default = ExtMath;

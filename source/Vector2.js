@@ -142,6 +142,17 @@ export default class Vector2 {
 	}
 
 	/**
+	 * Returns a perpendicular dot product of v
+	 * @constructor
+	 * @param {Vector2} v - The source
+	 * @param {Vector2} [target] - The target instance
+	 * @returns {Vector2}
+	 */
+	static Perpendicular(v, target) {
+		return (target === undefined ? new Vector2() : target).perpendicularOf(v);
+	}
+
+	/**
 	 * Returns a copy of v
 	 * @constructor
 	 * @param {Vector2} v - The source
@@ -492,6 +503,19 @@ export default class Vector2 {
 	}
 
 	/**
+	 * The perpendicular dot product of v
+	 * @param {Vector2} v - The source
+	 * @returns {Vector2}
+	 */
+	perpendicularOf(v) {
+		const n = this.n, vn = v.n;
+
+		[n[0], n[1]] = [-vn[1], vn[0]];
+
+		return this;
+	}
+
+	/**
 	 * The copy of v
 	 * @param {Vector2} v - The source
 	 * @returns {Vector2}
@@ -515,6 +539,18 @@ export default class Vector2 {
 
 		norm = 1.0 / Math.sqrt(norm);
 		n[0] *= norm, n[1] *= norm;
+
+		return this;
+	}
+
+	/**
+	 * The perpendicular dot product of the instance
+	 * @returns {Vector2}
+	 */
+	perpendicular() {
+		const n = this.n;
+
+		[n[0], n[1]] = [-n[1], n[0]];
 
 		return this;
 	}

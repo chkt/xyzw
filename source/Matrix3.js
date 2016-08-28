@@ -1,3 +1,7 @@
+import Matrix2 from './Matrix2';
+
+
+
 /**
  * 2x3 and 3x3 transformations
  */
@@ -389,6 +393,19 @@ export default class Matrix3 {
 	 * Components 2x are assumed to be (0.0,0.0,1.0)
 	 * @constructor
 	 * @param {Matrix3} a - The first transform
+	 * @param {Matrix2} b - The second transform
+	 * @param {Matrix3} [target] - The target instance
+	 * @returns {Matrix3}
+	 */
+	static Multiply2x3Matrix2(a, b, target) {
+		return (target === undefined ? new Matrix3() : target).multiply2x3Matrix2(a, b);
+	}
+
+	/**
+	 * Returns the 2x3 concatenation of a and b (a*b)
+	 * Components 2x are assumed to be (0.0,0.0,1.0)
+	 * @constructor
+	 * @param {Matrix3} a - The first transform
 	 * @param {Matrix3} b - The second transform
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
@@ -695,6 +712,33 @@ export default class Matrix3 {
 		n[0] = m00, n[3] = m01, n[6] = m00 * v02 + m01 * v12 + m02;
 		n[1] = m10, n[4] = m11, n[7] = m10 * v02 + m11 * v12 + m12;
 		n[2] = m20,	n[5] = m21,	n[8] = m20 * v02 + m21 * v12 + m22;
+
+		return this;
+	}
+
+	/**
+	 * The 2x3 concatenation of a and b (a*b)
+	 * Components 2x are assumed to be (0.0,0.0,1.0)
+	 * @param {Matrix3} a - The first transform
+	 * @param {Matrix2} b - The second transform
+	 * @returns {Matrix3}
+	 */
+	multiply2x3Matrix2(a, b) {
+		const n = this.n;
+
+		const [a00, a10, a20, a01, a11, a21, a02, a12, a22] = a.n;
+		const [b00, b10, b01, b11] = b.n;
+
+		n[0] = a00 * b00 + a01 * b10;
+		n[3] = a00 * b01 + a01 * b11;
+		n[6] = a02;
+
+		n[1] = a10 * b00 + a11 * b10;
+		n[4] = a10 * b01 + a11 * b11;
+		n[7] = a12;
+
+		n[2] = n[5] = 0.0;
+		n[8] = 1.0;
 
 		return this;
 	}

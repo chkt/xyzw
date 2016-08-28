@@ -173,6 +173,20 @@ var Vector2 = function () {
 		}
 
 		/**
+   * Returns a perpendicular dot product of v
+   * @constructor
+   * @param {Vector2} v - The source
+   * @param {Vector2} [target] - The target instance
+   * @returns {Vector2}
+   */
+
+	}, {
+		key: "Perpendicular",
+		value: function Perpendicular(v, target) {
+			return (target === undefined ? new Vector2() : target).perpendicularOf(v);
+		}
+
+		/**
    * Returns a copy of v
    * @constructor
    * @param {Vector2} v - The source
@@ -531,6 +545,26 @@ var Vector2 = function () {
 		}
 
 		/**
+   * The perpendicular dot product of v
+   * @param {Vector2} v - The source
+   * @returns {Vector2}
+   */
+
+	}, {
+		key: "perpendicularOf",
+		value: function perpendicularOf(v) {
+			var n = this.n,
+			    vn = v.n;
+
+			var _ref = [-vn[1], vn[0]];
+			n[0] = _ref[0];
+			n[1] = _ref[1];
+
+
+			return this;
+		}
+
+		/**
    * The copy of v
    * @param {Vector2} v - The source
    * @returns {Vector2}
@@ -561,6 +595,24 @@ var Vector2 = function () {
 
 			norm = 1.0 / Math.sqrt(norm);
 			n[0] *= norm, n[1] *= norm;
+
+			return this;
+		}
+
+		/**
+   * The perpendicular dot product of the instance
+   * @returns {Vector2}
+   */
+
+	}, {
+		key: "perpendicular",
+		value: function perpendicular() {
+			var n = this.n;
+
+			var _ref2 = [-n[1], n[0]];
+			n[0] = _ref2[0];
+			n[1] = _ref2[1];
+
 
 			return this;
 		}

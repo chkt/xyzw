@@ -34,9 +34,12 @@ export default class Vector2 {
 	 * @returns {Vector2}
 	 */
 	static BarycentricUV(v0, v1, v2, u, v, target) {
+		const v0x = v0.n[0], v0y = v0.n[1];
+		const v1n = v1.n, v2n = v2.n;
+
 		const n = [
-			v0.n[0] + (v1.n[0] - v0.n[0]) * u + (v2.n[0] - v0.n[0]) * v,
-			v0.n[1] + (v1.n[1] - v0.n[1]) * u + (v2.n[1] - v0.n[1]) * v
+			v0x + (v1n[0] - v0x) * u + (v2n[0] - v0x) * v,
+			v0y + (v1n[1] - v0y) * u + (v2n[1] - v0y) * v
 		];
 
 		if (target === undefined) target = new Vector2(n);

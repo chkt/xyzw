@@ -167,7 +167,7 @@ export default class Vector4RGBA extends Vector4 {
 		scale = 1.0 / scale;
 
 		const str = this.n
-			.map((item, index, source) => (Math.clamp(item * scale, 0.0, 1.0) * 255.0).toFixed())
+			.map((item, index, source) => (Math.clamp(item * scale, 0.0, 1.0) * index < 3 ? 255.0 : 1.0).toFixed())
 			.join(",");
 
 		return `rgba(${ str })`;

@@ -45,5 +45,21 @@ ExtMath.range = function(min, max) {
 };
 
 
+/**
+ * Returns true if ranges (a0 a1) and (b0 b1) overlap, false otherwise
+ * @param {Number} a0 - The first limit of range a
+ * @param {Number} a1 - The second limit of range a
+ * @param {Number} b0 - The first limit of range b
+ * @param {Number} b1 - The second limit of range b
+ * @returns {Boolean}
+ */
+ExtMath.overlap = function(a0, a1, b0, b1) {
+	[a0, a1] = a0 < a1 ? [a0, a1] : [a1, a0];
+	[b0, b1] = b0 < b1 ? [b0, b1] : [b1, b0];
+
+	return a1 - b0 >= 0 && b1 - b0 >= 0;
+};
+
+
 
 export default ExtMath;

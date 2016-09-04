@@ -65,7 +65,7 @@ var Vector4RGBA = function (_Vector) {
 			scale = 1.0 / scale;
 
 			var str = this.n.map(function (item, index, source) {
-				return (_Math2.default.clamp(item * scale, 0.0, 1.0) * 255.0).toFixed();
+				return (_Math2.default.clamp(item * scale, 0.0, 1.0) * index < 3 ? 255.0 : 1.0).toFixed();
 			}).join(",");
 
 			return 'rgba(' + str + ')';

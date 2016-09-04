@@ -46,7 +46,12 @@ var Vector2 = function () {
 	}, {
 		key: "BarycentricUV",
 		value: function BarycentricUV(v0, v1, v2, u, v, target) {
-			var n = [v0.n[0] + (v1.n[0] - v0.n[0]) * u + (v2.n[0] - v0.n[0]) * v, v0.n[1] + (v1.n[1] - v0.n[1]) * u + (v2.n[1] - v0.n[1]) * v];
+			var v0x = v0.n[0],
+			    v0y = v0.n[1];
+			var v1n = v1.n,
+			    v2n = v2.n;
+
+			var n = [v0x + (v1n[0] - v0x) * u + (v2n[0] - v0x) * v, v0y + (v1n[1] - v0y) * u + (v2n[1] - v0y) * v];
 
 			if (target === undefined) target = new Vector2(n);else target.n = n;
 

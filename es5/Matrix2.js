@@ -56,7 +56,7 @@ var Matrix2 = function () {
    * Returns a new instance of axes (x, y)
    * @constructor
    * @param {Vector2} x - The x-axis vector
-   * @param {Vector2} y - The y-axis vector
+   * @param {Vector2} [y] - The y-axis vector
    * @param {Matrix2} [target] - The target instance
    * @returns {Matrix2}
    */
@@ -64,7 +64,9 @@ var Matrix2 = function () {
 	}, {
 		key: "Vector2",
 		value: function Vector2(x, y, target) {
-			var n = [].concat(x.n, y.n);
+			var xn = x.n,
+			    yn = y !== undefined ? y.n : [-xn[1], xn[0]];
+			var n = [].concat(xn, yn);
 
 			if (target === undefined) target = new Matrix2(n);else target.n = n;
 

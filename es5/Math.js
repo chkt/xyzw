@@ -3,6 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var ExtMath = Object.create(Math);
 
 /**
@@ -45,6 +48,33 @@ ExtMath.reflect = function (n, r) {
  */
 ExtMath.range = function (min, max) {
   return min + (max - min) * Math.random();
+};
+
+/**
+ * Returns true if ranges (a0 a1) and (b0 b1) overlap, false otherwise
+ * @param {Number} a0 - The first limit of range a
+ * @param {Number} a1 - The second limit of range a
+ * @param {Number} b0 - The first limit of range b
+ * @param {Number} b1 - The second limit of range b
+ * @returns {Boolean}
+ */
+ExtMath.overlap = function (a0, a1, b0, b1) {
+  var _ref = a0 < a1 ? [a0, a1] : [a1, a0];
+
+  var _ref2 = _slicedToArray(_ref, 2);
+
+  a0 = _ref2[0];
+  a1 = _ref2[1];
+
+  var _ref3 = b0 < b1 ? [b0, b1] : [b1, b0];
+
+  var _ref4 = _slicedToArray(_ref3, 2);
+
+  b0 = _ref4[0];
+  b1 = _ref4[1];
+
+
+  return a1 - b0 >= 0 && b1 - b0 >= 0;
 };
 
 exports.default = ExtMath;

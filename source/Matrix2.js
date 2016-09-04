@@ -48,12 +48,13 @@ export default class Matrix2 {
 	 * Returns a new instance of axes (x, y)
 	 * @constructor
 	 * @param {Vector2} x - The x-axis vector
-	 * @param {Vector2} y - The y-axis vector
+	 * @param {Vector2} [y] - The y-axis vector
 	 * @param {Matrix2} [target] - The target instance
 	 * @returns {Matrix2}
 	 */
 	static Vector2(x, y, target) {
-		const n = [].concat(x.n, y.n);
+		const xn = x.n, yn = y !== undefined ? y.n : [-xn[1], xn[0]];
+		const n = [].concat(xn, yn);
 
 		if (target === undefined) target = new Matrix2(n);
 		else target.n = n;

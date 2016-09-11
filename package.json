@@ -1,7 +1,7 @@
 {
 	"name" : "xyzw",
 	"description" : "A performant and comprehensive vector algebra library",
-	"version" : "0.9.3",
+	"version" : "0.9.4",
 	"license" : "MIT",
 
 	"keywords" : [

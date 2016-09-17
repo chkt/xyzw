@@ -164,13 +164,19 @@ export default class Vector4RGBA extends Vector4 {
 	toRGBA(scale = 1.0) {
 		if (typeof scale !== 'number') throw new TypeError();
 
+		const n = this.n;
+
 		scale = 1.0 / scale;
 
-		const str = this.n
-			.map((item, index, source) => (Math.clamp(item * scale, 0.0, 1.0) * index < 3 ? 255.0 : 1.0).toFixed())
-			.join(",");
-
-		return `rgba(${ str })`;
+		return `rgba(${
+			(Math.clamp(n[0] * scale, 0.0, 1.0) * 255.0).toFixed()
+		},${
+			(Math.clamp(n[1] * scale, 0.0, 1.0) * 255.0).toFixed()
+		},${
+			(Math.clamp(n[2] * scale, 0.0, 1.0) * 255.0).toFixed()
+		},${
+			Math.clamp(n[3] * scale, 0.0, 1.0).toFixed(4)
+		})`;
 	}
 
 	/**

@@ -291,7 +291,7 @@ export default class Vector2 {
 	get norm() {
 		const x = this.n[0], y = this.n[1];
 
-		return Math.sqrt(x * x, y * y);
+		return Math.sqrt(x * x + y * y);
 	}
 
 	/**

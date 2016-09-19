@@ -21,7 +21,7 @@ export default class Vector4 {
 			Math.cos(rad * 0.5)
 		];
 
-		if (target === undefined) target = new Vector4(n);
+		if (target === undefined) target = new this(n);
 		else target.n = n;
 
 		return target.normalize();
@@ -53,7 +53,7 @@ export default class Vector4 {
 			sinQ * sin * q.n[3] + sinR * sin * r.n[3]
 		];
 
-		if (target === undefined) target = new Vector4(n);
+		if (target === undefined) target = new this(n);
 		else target.n = n;
 
 		return target;
@@ -103,7 +103,7 @@ export default class Vector4 {
 			n[3] = (mn[1] + mn[3]) * s;
 		}
 
-		if (target === undefined) target = new Vector4(n);
+		if (target === undefined) target = new this(n);
 		else target.n = n;
 
 		return target;
@@ -119,7 +119,7 @@ export default class Vector4 {
 	static Vector3(v, target) {
 		const n = v.n.concat(1.0);
 
-		if (target === undefined) target = new Vector4(n);
+		if (target === undefined) target = new this(n);
 		else target.n = n;
 
 		return target;
@@ -135,7 +135,7 @@ export default class Vector4 {
 	 * @returns {Vector4}
 	 */
 	static Add(q, r, target) {
-		return (target === undefined ? new Vector4() : target).add(q, r);
+		return (target === undefined ? new this() : target).add(q, r);
 	}
 
 	/**
@@ -147,7 +147,7 @@ export default class Vector4 {
 	 * @returns {Vector4}
 	 */
 	static Subtract(q, r, target) {
-		return (target === undefined ?  new Vector4() : target).subtract(q, r);
+		return (target === undefined ?  new this() : target).subtract(q, r);
 	}
 
 	/**
@@ -159,7 +159,7 @@ export default class Vector4 {
 	 * @returns {Vector4}
 	 */
 	static MultiplyScalar(q, n, target) {
-		return (target === undefined ? new Vector4() : target).multiplyScalar(q, n);
+		return (target === undefined ? new this() : target).multiplyScalar(q, n);
 	}
 
 	/**
@@ -171,7 +171,7 @@ export default class Vector4 {
 	 * @returns {Vector4}
 	 */
 	static Multiply(q, r, target) {
-		return (target === undefined ? new Vector4() : target).multiply(q, r);
+		return (target === undefined ? new this() : target).multiply(q, r);
 	}
 
 
@@ -183,7 +183,7 @@ export default class Vector4 {
 	 * @returns {Vector4}
 	 */
 	static Normalize(q, target) {
-		return (target === undefined ? new Vector4() : target).normalizationOf(q);
+		return (target === undefined ? new this() : target).normalizationOf(q);
 	}
 
 	/**
@@ -194,7 +194,7 @@ export default class Vector4 {
 	 * @returns {Vector4}
 	 */
 	static Conjugate(q, target) {
-		return (target === undefined ? new Vector4() : target).conjugateOf(q);
+		return (target === undefined ? new this() : target).conjugateOf(q);
 	}
 
 	/**
@@ -205,7 +205,7 @@ export default class Vector4 {
 	 * @returns {Vector4}
 	 */
 	static Inverse(q, target) {
-		return (target === undefined ? new Vector4() : target).inverseOf(q);
+		return (target === undefined ? new this() : target).inverseOf(q);
 	}
 
 	/**
@@ -216,7 +216,7 @@ export default class Vector4 {
 	 * @returns {Vector4}
 	 */
 	static Copy(q, target) {
-		return (target === undefined ? new Vector4() : target).copyOf(q);
+		return (target === undefined ? new this() : target).copyOf(q);
 	}
 
 

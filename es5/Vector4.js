@@ -29,7 +29,7 @@ var Vector4 = function () {
 
 			var n = [axis.n[0] * sin, axis.n[1] * sin, axis.n[2] * sin, Math.cos(rad * 0.5)];
 
-			if (target === undefined) target = new Vector4(n);else target.n = n;
+			if (target === undefined) target = new this(n);else target.n = n;
 
 			return target.normalize();
 		}
@@ -64,7 +64,7 @@ var Vector4 = function () {
 
 			var n = [sinQ * sin * q.n[0] + sinR * sin * r.n[0], sinQ * sin * q.n[1] + sinR * sin * r.n[1], sinQ * sin * q.n[2] + sinR * sin * r.n[2], sinQ * sin * q.n[3] + sinR * sin * r.n[3]];
 
-			if (target === undefined) target = new Vector4(n);else target.n = n;
+			if (target === undefined) target = new this(n);else target.n = n;
 
 			return target;
 		}
@@ -114,7 +114,7 @@ var Vector4 = function () {
 				n[3] = (mn[1] + mn[3]) * s;
 			}
 
-			if (target === undefined) target = new Vector4(n);else target.n = n;
+			if (target === undefined) target = new this(n);else target.n = n;
 
 			return target;
 		}
@@ -132,7 +132,7 @@ var Vector4 = function () {
 		value: function Vector3(v, target) {
 			var n = v.n.concat(1.0);
 
-			if (target === undefined) target = new Vector4(n);else target.n = n;
+			if (target === undefined) target = new this(n);else target.n = n;
 
 			return target;
 		}
@@ -149,7 +149,7 @@ var Vector4 = function () {
 	}, {
 		key: "Add",
 		value: function Add(q, r, target) {
-			return (target === undefined ? new Vector4() : target).add(q, r);
+			return (target === undefined ? new this() : target).add(q, r);
 		}
 
 		/**
@@ -164,7 +164,7 @@ var Vector4 = function () {
 	}, {
 		key: "Subtract",
 		value: function Subtract(q, r, target) {
-			return (target === undefined ? new Vector4() : target).subtract(q, r);
+			return (target === undefined ? new this() : target).subtract(q, r);
 		}
 
 		/**
@@ -179,7 +179,7 @@ var Vector4 = function () {
 	}, {
 		key: "MultiplyScalar",
 		value: function MultiplyScalar(q, n, target) {
-			return (target === undefined ? new Vector4() : target).multiplyScalar(q, n);
+			return (target === undefined ? new this() : target).multiplyScalar(q, n);
 		}
 
 		/**
@@ -194,7 +194,7 @@ var Vector4 = function () {
 	}, {
 		key: "Multiply",
 		value: function Multiply(q, r, target) {
-			return (target === undefined ? new Vector4() : target).multiply(q, r);
+			return (target === undefined ? new this() : target).multiply(q, r);
 		}
 
 		/**
@@ -208,7 +208,7 @@ var Vector4 = function () {
 	}, {
 		key: "Normalize",
 		value: function Normalize(q, target) {
-			return (target === undefined ? new Vector4() : target).normalizationOf(q);
+			return (target === undefined ? new this() : target).normalizationOf(q);
 		}
 
 		/**
@@ -222,7 +222,7 @@ var Vector4 = function () {
 	}, {
 		key: "Conjugate",
 		value: function Conjugate(q, target) {
-			return (target === undefined ? new Vector4() : target).conjugateOf(q);
+			return (target === undefined ? new this() : target).conjugateOf(q);
 		}
 
 		/**
@@ -236,7 +236,7 @@ var Vector4 = function () {
 	}, {
 		key: "Inverse",
 		value: function Inverse(q, target) {
-			return (target === undefined ? new Vector4() : target).inverseOf(q);
+			return (target === undefined ? new this() : target).inverseOf(q);
 		}
 
 		/**
@@ -250,7 +250,7 @@ var Vector4 = function () {
 	}, {
 		key: "Copy",
 		value: function Copy(q, target) {
-			return (target === undefined ? new Vector4() : target).copyOf(q);
+			return (target === undefined ? new this() : target).copyOf(q);
 		}
 
 		/**

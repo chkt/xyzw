@@ -44,10 +44,14 @@ ExtMath.reflect = function (n, r) {
  * Returns a random number between min and max
  * @param {Number} min - The minimal value
  * @param {Number} max - The maximal value
+ * @param {Int} [intervals] - The number of discreet intervals
  * @returns {Number}
  */
-ExtMath.range = function (min, max) {
-  return min + (max - min) * Math.random();
+ExtMath.range = function (min, max, intervals) {
+  var n = Math.random();
+  var f = intervals === undefined ? n : Math.floor(n * (intervals + 1)) / intervals;
+
+  return min + (max - min) * f;
 };
 
 /**

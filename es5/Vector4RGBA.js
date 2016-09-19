@@ -62,13 +62,11 @@ var Vector4RGBA = function (_Vector) {
 
 			if (typeof scale !== 'number') throw new TypeError();
 
+			var n = this.n;
+
 			scale = 1.0 / scale;
 
-			var str = this.n.map(function (item, index, source) {
-				return (_Math2.default.clamp(item * scale, 0.0, 1.0) * index < 3 ? 255.0 : 1.0).toFixed();
-			}).join(",");
-
-			return 'rgba(' + str + ')';
+			return 'rgba(' + (_Math2.default.clamp(n[0] * scale, 0.0, 1.0) * 255.0).toFixed() + ',' + (_Math2.default.clamp(n[1] * scale, 0.0, 1.0) * 255.0).toFixed() + ',' + (_Math2.default.clamp(n[2] * scale, 0.0, 1.0) * 255.0).toFixed() + ',' + _Math2.default.clamp(n[3] * scale, 0.0, 1.0).toFixed(4) + ')';
 		}
 
 		/**

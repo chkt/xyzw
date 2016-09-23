@@ -194,15 +194,18 @@ Vector2.BarycentricUV(v0, v1, v2, u, v, target);
 
 ####Accessors
 ```js
-vector2.x
-vector2.y
-vector2.s
-vector2.t
+vector2.x;
+vector2.y;
+vector2.s;
+vector2.t;
 
-vector2.n
+vector2.n;
 
-vector2.norm
-vector2.normSquared
+vector2.norm;
+vector2.normSquared;
+
+vector2.toString();
+vector2.valueOf();
 ````
 
 ####Operators
@@ -244,8 +247,6 @@ Vector2.Copy(v, target);
 Vector2.copyOf(v);
 ```
 
-Vector2 will convert to a `[Vector2](1.234 1.234)` string and use its norm in calculations.
-
 ###Vector3
 
 ####Functions
@@ -270,10 +271,14 @@ Vector3.BarycentricUV(v0, v1, v2, u, v, target);
 vector3.x;
 vector3.y;
 vector3.z;
+
 vector3.n;
 
 vector3.norm;
 vector3.normSquared;
+
+vector3.toString();
+vector3.valueOf();
 ```
 
 ####Operators
@@ -318,9 +323,6 @@ Vector3.Copy(v, target);
 vector3.copyOf(v);
 ```
 
-Vector3 will convert to a `[Vector3](1.234 1.234 1.234)` string and use its norm in calculations.
-
-
 ###Vector4
 
 ####Functions
@@ -342,9 +344,13 @@ vector4.x;
 vector4.y;
 vector4.z;
 vector4.w;
+
 vector4.n;
 
 vector4.norm;
+
+vector4.toString();
+vector4.valueOf();
 ```
 
 ####Operators
@@ -408,6 +414,9 @@ matrix2.n11;
 matrix2.n;
 
 matrix2.determinant;
+
+matrix2.toString();
+matrix2.valueOf();
 ```
 
 ####Operators
@@ -432,8 +441,6 @@ matrix2.transpose();
 Matrix2.Copy(m, target);
 matrix2.copyOf(m);
 ```
-
-Matrix2 will convert to a `[Matrix2]\n1.234\t1.234\n1.234\t1.000` string and use its determinant in calculations.
 
 ###Matrix3
 
@@ -478,6 +485,8 @@ matrix3.determinant;
 matrix3.toEulerZXY();
 matrix3.toCSS2x3(digits);
 matrix3.toCSS(digits);
+matrix3.toString();
+matrix3.valueOf();
 ```
 
 ####Operators
@@ -515,4 +524,84 @@ Matrix3.Copy(m, target);
 matrix3.copyOf(m);
 ```
 
-Matrix3 will convert to a `[Matrix2]\n1.234\t1.234\t1.234[...]\n1.234\t1.234\t1.234` string and use its determinant in calculations.
+###Matrix4
+
+####Functions
+```js
+Matrix4.isEQ(a, b);
+```
+
+####Factories
+```js
+Matrix4.Translation(v, target);
+Matrix4.Vector3(x, y, z, t, target);
+Matrix4.Matrix3(m, target);
+```
+
+####Accessors
+```js
+matrix4.n00;
+matrix4.n01;
+matrix4.n02;
+matrix4.n03;
+matrix4.n10;
+matrix4.n11;
+matrix4.n12;
+matrix4.n13;
+matrix4.n14;
+matrix4.n20;
+matrix4.n21;
+matrix4.n22;
+matrix4.n23;
+matrix4.n30;
+matrix4.n31;
+matrix4.n32;
+matrix4.n33;
+
+matrix4.n;
+
+matrix4.determinant;
+
+matrix4.toString(digits);
+matrix4.valueOf();
+```
+
+####Operators
+```js
+Matrix4.Add(a, b, target);
+matrix4.add(a, b);
+
+Matrix4.Subtract(a, b, target);
+matrix4.subtract(a, b);
+
+Matrix4.Multiply3x4Vector3Scale(m, v, target);
+matrix4.multiply3x4Vector3Scale(m, v);
+
+Matrix4.Multiply3x4Matrix3(a, b, target);
+matrix4.multiply3x4Matrix3(a, b);
+
+Matrix4.Multiply3x4(a, b, target);
+matrix4.multiply3x4(a, b);
+
+Matrix4.Multiply(a, b, target);
+matrix4.multiply(a, b);
+
+Matrix4.Inverse3x4(m, target);
+matrix4.inverse3x4Of(m);
+matrix4.invert3x4();
+
+Matrix4.Inverse(m, target);
+matrix4.inverseOf(m);
+matrix4.invert();
+
+Matrix4.InverseGauss(m, target);
+matrix4.inverseGaussOf(m);
+matrix4.invertGauss();
+
+Matrix4.Transpose(m, target);
+matrix4.transposeOf(m);
+matrix4.transpose();
+
+Matrix4.Copy(m, target);
+matrix4.copyOf(m);
+```

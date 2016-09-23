@@ -381,3 +381,66 @@ vector4.copyOf(q);
 ```
 
 Vector4 will convert to a `[Vector4](1.234 1.234 1.234 1.000)` string and use its norm in calculations.
+
+
+###Matrix3
+
+####Functions
+```js
+Matrix2.isEQ(a, b);
+```
+
+####Factories
+```js
+Matrix2.Rotation(rad, target);
+Matrix2.Scale(v, target);
+Matrix2.Vector2(x, y, target);
+Matrix2.Matrix3(m, target);
+```
+
+####Accessors
+```js
+matrix2.n00;
+matrix2.n01;
+matrix2.n10;
+matrix2.n11;
+
+matrix2.n;
+
+matrix2.determinant;
+```
+
+####Operators
+```js
+Matrix2.Add(a, b, target);
+matrix2.add(a, b);
+
+Matrix2.Subtract(a, b, target);
+matrix2.subtract(a, b);
+
+Matrix2.Multiply(a, b, target);
+matrix2.multiply(a, b);
+
+Matrix2.Inverse(m, target);
+matrix2.inverseOf(m);
+matrix2.invert();
+
+Matrix2.Transpose(m, target);
+matrix2.transposeOf(m);
+matrix2.transpose();
+
+Matrix2.Copy(m, target);
+matrix2.copyOf(m);
+```
+
+Matrix2 will convert to a `[Matrix2]\n1.234\t1.234\n1.234\t1.000` string and use its determinant in calculations.
+
+###Matrix3
+
+####Functions
+
+####Factories
+
+####Accessors
+
+####Operators

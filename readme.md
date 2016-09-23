@@ -319,3 +319,65 @@ vector3.copyOf(v);
 ```
 
 Vector3 will convert to a `[Vector3](1.234 1.234 1.234)` string and use its norm in calculations.
+
+
+###Vector4
+
+####Functions
+```js
+Vector4.dot(q, r);
+Vector4.isEQ(q, r);
+```
+
+####Factories
+```js
+Vector4.Rotation(axis, rad, target);
+Vector4.SLERP(q, r, t, target);
+Vector4.Matrix3(m, target);
+Vector4.Vector3(v, target);
+````
+####Accessors
+```js
+vector4.x;
+vector4.y;
+vector4.z;
+vector4.w;
+vector4.n;
+
+vector4.norm;
+```
+
+####Operators
+```js
+Vector4.Add(q, r, target);
+vector4.add(q, r);
+vector4.addEQ(q);
+
+Vector4.Subtract(q, r, target);
+vector4.subtract(q, r);
+vector4.subtract(q);
+
+Vector4.MultiplyScalar(q, n, target);
+vector4.multiplyScalar(q, n);
+vector4.multiplyScalarEQ(n);
+
+Vector4.Multiply(q, r, target);
+vector4.multiply(q, r);
+
+Vector4.Normalize(q, target);
+vector4.normalizationOf(q);
+vector4.normalize();
+
+Vector4.Conjugate(q, target);
+vector4.conjugateOf(q);
+vector4.conjugate();
+
+Vector4.Inverse(q, target);
+vector4.inverseOf(q);
+vector4.invert();
+
+Vector4.Copy(q, target);
+vector4.copyOf(q);
+```
+
+Vector4 will convert to a `[Vector4](1.234 1.234 1.234 1.000)` string and use its norm in calculations.

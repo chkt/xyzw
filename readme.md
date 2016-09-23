@@ -438,9 +438,81 @@ Matrix2 will convert to a `[Matrix2]\n1.234\t1.234\n1.234\t1.000` string and use
 ###Matrix3
 
 ####Functions
+```js
+Matrix3.isEQ(a, b);
+```
 
 ####Factories
+```js
+Matrix3.Rotation(axis, rad, target);
+Matrix3.RotationX(rad, target);
+Matrix3.RotationY(rad, target);
+Matrix3.RotationZ(rad, target);
+Matrix3.EulerXYZ(x, y, z, target);
+Matrix3.EulerYXZ(x, y, z, target);
+Matrix3.EulerZXY(x, y, z, target);
+Matrix3.Scale(v, target);
+Matrix3.Translation(v, target);
+Matrix3.Vector3(x, y, z, target);
+Matrix3.Vector4(q, target);
+Matrix3.Matrix2(m, target);
+Matrix3.Matrix4(m, target);
+```
 
 ####Accessors
+```js
+matrix3.n00;
+matrix3.n01;
+matrix3.n02;
+matrix3.n10;
+matrix3.n11;
+matrix3.n12;
+matrix3.n20;
+matrix3.n21;
+matrix3.n22;
+
+matrix3.n;
+
+matrix3.determinant;
+
+matrix3.toEulerZXY();
+matrix3.toCSS2x3(digits);
+matrix3.toCSS(digits);
+```
 
 ####Operators
+```js
+Matrix3.Add(a, b, target);
+matrix3.add(a, b);
+
+Matrix3.Subtract(a, b, target);
+matrix3.subtract(a, b);
+
+Matrix3.Multiply2x3Vector2Scale(m, v, target);
+matrix3.multiply2x3Vector2Scale(m, v);
+
+Matrix3.Multiply2x3Vector2Translation(m, v, target);
+matrix3.multiply2x3Vector2Translation(m, v);
+
+Matrix3.Multiply2x3Matrix2(a, b, target);
+matrix3.multiply2x3Matrix2(a, b);
+
+Matrix3.Multiply2x3(a, b, target);
+matrix3.multiply2x3(a, b);
+
+Matrix3.Multiply(a, b, target);
+matrix3.multiply(a, b);
+
+Matrix3.Inverse(m, target);
+matrix3.inverseOf(m);
+matrix3.invert();
+
+Matrix3.Transpose(m, target);
+matrix3.transposeOf(m);
+matrix3.transpose();
+
+Matrix3.Copy(m, target);
+matrix3.copyOf(m);
+```
+
+Matrix3 will convert to a `[Matrix2]\n1.234\t1.234\t1.234[...]\n1.234\t1.234\t1.234` string and use its determinant in calculations.

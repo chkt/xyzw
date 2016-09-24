@@ -4,6 +4,36 @@
 export default class Vector2 {
 
 	/**
+	 * Returns an instance representing the x axis
+	 * @constructor
+	 * @param {Vector2} [target] - The target instance
+	 * @returns {Vector2}
+	 */
+	static X(target) {
+		const n = [1.0, 0.0];
+
+		if (target === undefined) target = new Vector2(n);
+		else target.n = n;
+
+		return target;
+	}
+
+	/**
+	 * Returns an instance representing the y axis
+	 * @constructor
+	 * @param {Vector2} [target] - The target instance
+	 * @returns {Vector2}
+	 */
+	static Y(target) {
+		const n = [0.0, 1.0];
+
+		if (target === undefined) target = new Vector2(n);
+		else target.n = n;
+
+		return target;
+	}
+
+	/**
 	 * Returns a unit instance from rad
 	 * @constructor
 	 * @param {Float} rad - The rotation in radians
@@ -217,6 +247,10 @@ export default class Vector2 {
 	 * Arrays of length !== 2 will return the zero (0,0) vector
 	 */
 	constructor(n) {
+		/**
+		 * The component array
+		 * @type {Float[]}
+		 */
 		this.n = (n && n.constructor === Array && n.length === 2 ? n : [0.0, 0.0]);
 	}
 
@@ -235,7 +269,7 @@ export default class Vector2 {
 
 	/**
 	 * The x component {@link Vector2#n}[0]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get x() {
 		return this.n[0];
@@ -247,7 +281,7 @@ export default class Vector2 {
 
 	/**
 	 * The y component {@link Vector2#n}[1]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get y() {
 		return this.n[1];
@@ -260,7 +294,7 @@ export default class Vector2 {
 	/**
 	 * The s component
 	 * Alias of {@link Vector2#x}
-	 * @type Float
+	 * @type {Float}
 	 */
 	get s() {
 		return this.n[0];
@@ -273,7 +307,7 @@ export default class Vector2 {
 	/**
 	 * The t component
 	 * Alias of {@link Vector2#y}
-	 * @type Float
+	 * @type {Float}
 	 */
 	get t() {
 		return this.n[1];
@@ -286,7 +320,7 @@ export default class Vector2 {
 
 	/**
 	 * The norm
-	 * @type Float
+	 * @type {Float}
 	 */
 	get norm() {
 		const x = this.n[0], y = this.n[1];
@@ -296,7 +330,7 @@ export default class Vector2 {
 
 	/**
 	 * The square of the norm (norm*norm)
-	 * @type Float
+	 * @type {Float}
 	 */
 	get normSquared() {
 		const x = this.n[0], y = this.n[1];

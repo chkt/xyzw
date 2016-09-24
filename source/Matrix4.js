@@ -1,3 +1,4 @@
+import Vector3 from './Vector3';
 import Matrix3 from './Matrix3';
 
 
@@ -35,13 +36,16 @@ export default class Matrix4 {
 	 * @constructor
 	 * @param {Vector3} x - The x-axis vector
 	 * @param {Vector3} y - The y-axis vector
-	 * @param {Vector3} z - The z-axis vector
-	 * @param {Vector3} t - The translation vector
+	 * @param {Vector3} [z] - The z-axis vector
+	 * @param {Vector3} [t] - The translation vector
 	 * @param {Matrix4} [target] - The target instance
 	 * @returns {Matrix4}
 	 */
 	static Vector3(x, y, z, t, target) {
-		const n = [].concat(x.n, 0.0, y.n, 0.0, z.n, 0.0, t.n, 1.0);
+		z = z !== undefined ? z : Vector3.Cross(x, y);
+		const tn = t !== undefined ? t.n : [0.0, 0.0, 0.0];
+
+		const n = [].concat(x.n, 0.0, y.n, 0.0, z.n, 0.0, tn, 1.0);
 
 		if (target === undefined) target = new Matrix4(n);
 		else target.n = n;
@@ -95,7 +99,7 @@ export default class Matrix4 {
 	}
 
 	/**
-	 * Returns the 3x4 concatenation of a and v (a * Matrix4.Matrix3(Matrix3.Scale(v)))
+	 * Returns the 3x4 concatenation of m and matrix-transformed v (m*Matrix4.Matrix3(Matrix3.Scale(v)))
 	 * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
 	 * @constructor
 	 * @param {Matrix4} m - The matrix
@@ -105,6 +109,19 @@ export default class Matrix4 {
 	 */
 	static Multiply3x4Vector3Scale(m, v, target) {
 		return (target === undefined ? new Matrix4() : target).multiply3x4Vector3Scale(m, v);
+	}
+
+	/**
+	 * Returns the 3x4 concatenation of m and matrix-transformed v (m*Matrix4.Translation(v))
+	 * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
+	 * @constructor
+	 * @param {Matrix4} m - The matrix
+	 * @param {Vector3} v - The vector
+	 * @param {Matrix4} [target] - The target instance
+	 * @returns {Matrix4}
+	 */
+	static Multiply3x4Vector3Translation(m, v, target) {
+		return (target === undefined ? new Matrix4() : target).multiply3x4Vector3Translation(m, v);
 	}
 
 	/**
@@ -247,7 +264,7 @@ export default class Matrix4 {
 		 * n[1]:n10 n[5]:n11 n[9] :n12 n[13]:n13
 		 * n[2]:n20 n[6]:n21 n[10]:n22 n[14]:n23
 		 * n[3]:n30 n[7]:n31 n[11]:n32 n[15]:n33
-		 * @type Float[]
+		 * @type {Float[]}
 		 */
 		this.n = (n && n.constructor === Array && n.length === 16 ? n : [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]);
 	}
@@ -268,7 +285,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 0, col 0, {@link Matrix4#n}[0]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n00() {
 		return this.n[0];
@@ -281,7 +298,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 0, col 1, {@link Matrix4#n}[4]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n01() {
 		return this.n[4];
@@ -294,7 +311,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 0, col 2, {@link Matrix4#n}[8]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n02() {
 		return this.n[8];
@@ -307,7 +324,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 0, col 3, {@link Matrix4#n}[12]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n03() {
 		return this.n[12];
@@ -320,7 +337,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 1, col 0, {@link Matrix4#n}[1]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n10() {
 		return this.n[1];
@@ -333,7 +350,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 1, col 1, {@link Matrix4#n}[5]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n11() {
 		return this.n[5];
@@ -346,7 +363,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 1, col 2, {@link Matrix4#n}[9]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n12() {
 		return this.n[9];
@@ -359,7 +376,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 1, col 3, {@link Matrix4#n}[13]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n13() {
 		return this.n[13];
@@ -372,7 +389,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 2, col 0, {@link Matrix4#n}[2]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n20() {
 		return this.n[2];
@@ -385,7 +402,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 2, col 1, {@link Matrix4#n}[6]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n21() {
 		return this.n[6];
@@ -398,7 +415,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 2, col 2, {@link Matrix4#n}[10]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n22() {
 		return this.n[10];
@@ -411,7 +428,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 2, col 3, {@link Matrix4#n}[14]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n23() {
 		return this.n[14];
@@ -424,7 +441,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 3, col 0, {@link Matrix4#n}[3]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n30() {
 		return this.n[3];
@@ -437,7 +454,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 3, col 1, {@link Matrix4#n}[7]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n31() {
 		return this.n[7];
@@ -450,7 +467,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 3, col 2, {@link Matrix4#n}[11]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n32() {
 		return this.n[11];
@@ -463,7 +480,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 3, col 3, {@link Matrix4#n}[15]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n33() {
 		return this.n[15];
@@ -476,7 +493,7 @@ export default class Matrix4 {
 
 	/**
 	 * The determinant
-	 * @type Float
+	 * @type {Float}
 	 */
 	get determinant() {
 		const n = this.n;
@@ -532,6 +549,25 @@ export default class Matrix4 {
 		n[1] *= v00, n[5] *= v11, n[9]  *= v22;
 		n[2] *= v00, n[6] *= v11, n[10] *= v22;
 		n[3] *= v00, n[7] *= v11, n[11] *= v22;
+
+		return this;
+	}
+
+	/**
+	 * The 3x4 concatenation of m and matrix-transformed v (m*Matrix4.Translation(v))
+	 * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
+	 * @param {Matrix4} m - The matrix
+	 * @param {Vector3} v - The vector
+	 * @returns {Matrix4}
+	 */
+	multiply3x4Vector3Translation(m, v) {
+		const mn = m.n, vn = v.n, n = this.n = mn.slice(0);
+
+		const v03 = vn[0], v13 = vn[1], v23 = vn[2];
+
+		n[12] = mn[0] * v03 + mn[4] * v13 + mn[8]  * v23 + mn[12];
+		n[13] = mn[1] * v03 + mn[5] * v13 + mn[9]  * v23 + mn[13];
+		n[14] = mn[2] * v03 + mn[6] * v13 + mn[10] * v23 + mn[14];
 
 		return this;
 	}

@@ -188,6 +188,8 @@ Vector2.isEQ(v, w);
 
 ####Factories
 ```js
+Vector2.X(target);
+Vector2.Y(target);
 Vector2.Rotation(rad, target);
 Vector2.BarycentricUV(v0, v1, v2, u, v, target);
 ```
@@ -204,7 +206,7 @@ vector2.n;
 vector2.norm;
 vector2.normSquared;
 
-vector2.toString();
+vector2.toString(digits);
 vector2.valueOf();
 ````
 
@@ -277,7 +279,7 @@ vector3.n;
 vector3.norm;
 vector3.normSquared;
 
-vector3.toString();
+vector3.toString(digits);
 vector3.valueOf();
 ```
 
@@ -348,8 +350,9 @@ vector4.w;
 vector4.n;
 
 vector4.norm;
+vector4.normSquared;
 
-vector4.toString();
+vector4.toString(digits);
 vector4.valueOf();
 ```
 
@@ -386,10 +389,7 @@ Vector4.Copy(q, target);
 vector4.copyOf(q);
 ```
 
-Vector4 will convert to a `[Vector4](1.234 1.234 1.234 1.000)` string and use its norm in calculations.
-
-
-###Matrix3
+###Matrix2
 
 ####Functions
 ```js
@@ -415,7 +415,7 @@ matrix2.n;
 
 matrix2.determinant;
 
-matrix2.toString();
+matrix2.toString(digits);
 matrix2.valueOf();
 ```
 
@@ -460,6 +460,7 @@ Matrix3.EulerYXZ(x, y, z, target);
 Matrix3.EulerZXY(x, y, z, target);
 Matrix3.Scale(v, target);
 Matrix3.Translation(v, target);
+Matrix3.Vector2(x, y, t, target);
 Matrix3.Vector3(x, y, z, target);
 Matrix3.Vector4(q, target);
 Matrix3.Matrix2(m, target);
@@ -482,10 +483,11 @@ matrix3.n;
 
 matrix3.determinant;
 
+matrix3.toEulerYXZ();
 matrix3.toEulerZXY();
 matrix3.toCSS2x3(digits);
 matrix3.toCSS(digits);
-matrix3.toString();
+matrix3.toString(digits);
 matrix3.valueOf();
 ```
 
@@ -548,7 +550,6 @@ matrix4.n10;
 matrix4.n11;
 matrix4.n12;
 matrix4.n13;
-matrix4.n14;
 matrix4.n20;
 matrix4.n21;
 matrix4.n22;
@@ -576,6 +577,9 @@ matrix4.subtract(a, b);
 
 Matrix4.Multiply3x4Vector3Scale(m, v, target);
 matrix4.multiply3x4Vector3Scale(m, v);
+
+Matrix4.Multiply3x4Vector3Translation(m, v, target);
+matrix4.multiply3x4Vector3Translation(m, v);
 
 Matrix4.Multiply3x4Matrix3(a, b, target);
 matrix4.multiply3x4Matrix3(a, b);

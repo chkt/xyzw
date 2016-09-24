@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -6,7 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Matrix = require("./Matrix3");
+var _Vector2 = require('./Vector3');
+
+var _Vector3 = _interopRequireDefault(_Vector2);
+
+var _Matrix = require('./Matrix3');
 
 var _Matrix2 = _interopRequireDefault(_Matrix);
 
@@ -19,7 +23,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 var Matrix4 = function () {
 	_createClass(Matrix4, null, [{
-		key: "Translation",
+		key: 'Translation',
 
 
 		/**
@@ -44,16 +48,19 @@ var Matrix4 = function () {
    * @constructor
    * @param {Vector3} x - The x-axis vector
    * @param {Vector3} y - The y-axis vector
-   * @param {Vector3} z - The z-axis vector
-   * @param {Vector3} t - The translation vector
+   * @param {Vector3} [z] - The z-axis vector
+   * @param {Vector3} [t] - The translation vector
    * @param {Matrix4} [target] - The target instance
    * @returns {Matrix4}
    */
 
 	}, {
-		key: "Vector3",
+		key: 'Vector3',
 		value: function Vector3(x, y, z, t, target) {
-			var n = [].concat(x.n, 0.0, y.n, 0.0, z.n, 0.0, t.n, 1.0);
+			z = z !== undefined ? z : _Vector3.default.Cross(x, y);
+			var tn = t !== undefined ? t.n : [0.0, 0.0, 0.0];
+
+			var n = [].concat(x.n, 0.0, y.n, 0.0, z.n, 0.0, tn, 1.0);
 
 			if (target === undefined) target = new Matrix4(n);else target.n = n;
 
@@ -70,7 +77,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "Matrix3",
+		key: 'Matrix3',
 		value: function Matrix3(m, target) {
 			var n = m.n.concat([0.0, 0.0, 0.0, 0.0, 1.0]);
 
@@ -92,7 +99,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "Add",
+		key: 'Add',
 		value: function Add(a, b, target) {
 			return (target === undefined ? new Matrix4() : target).add(a, b);
 		}
@@ -107,13 +114,13 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "Subtract",
+		key: 'Subtract',
 		value: function Subtract(a, b, target) {
 			return (target === undefined ? new Matrix4() : target).subtract(a, b);
 		}
 
 		/**
-   * Returns the 3x4 concatenation of a and v (a * Matrix4.Matrix3(Matrix3.Scale(v)))
+   * Returns the 3x4 concatenation of m and matrix-transformed v (m*Matrix4.Matrix3(Matrix3.Scale(v)))
    * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
    * @constructor
    * @param {Matrix4} m - The matrix
@@ -123,9 +130,25 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "Multiply3x4Vector3Scale",
+		key: 'Multiply3x4Vector3Scale',
 		value: function Multiply3x4Vector3Scale(m, v, target) {
 			return (target === undefined ? new Matrix4() : target).multiply3x4Vector3Scale(m, v);
+		}
+
+		/**
+   * Returns the 3x4 concatenation of m and matrix-transformed v (m*Matrix4.Translation(v))
+   * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
+   * @constructor
+   * @param {Matrix4} m - The matrix
+   * @param {Vector3} v - The vector
+   * @param {Matrix4} [target] - The target instance
+   * @returns {Matrix4}
+   */
+
+	}, {
+		key: 'Multiply3x4Vector3Translation',
+		value: function Multiply3x4Vector3Translation(m, v, target) {
+			return (target === undefined ? new Matrix4() : target).multiply3x4Vector3Translation(m, v);
 		}
 
 		/**
@@ -139,7 +162,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "Multiply3x4Matrix3",
+		key: 'Multiply3x4Matrix3',
 		value: function Multiply3x4Matrix3(a, b, target) {
 			return (target === undefined ? new Matrix4() : target).multiply3x4Matrix3(a, b);
 		}
@@ -155,7 +178,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "Multiply3x4",
+		key: 'Multiply3x4',
 		value: function Multiply3x4(a, b, target) {
 			return (target === undefined ? new Matrix4() : target).multiply3x4(a, b);
 		}
@@ -170,7 +193,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "Multiply",
+		key: 'Multiply',
 		value: function Multiply(a, b, target) {
 			return (target === undefined ? new Matrix4() : target).multiply(a, b);
 		}
@@ -186,7 +209,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "Inverse3x4",
+		key: 'Inverse3x4',
 		value: function Inverse3x4(m, target) {
 			if (target === undefined) target = new Matrix4();
 
@@ -204,7 +227,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "Inverse",
+		key: 'Inverse',
 		value: function Inverse(m, target) {
 			if (target === undefined) target = new Matrix4();
 
@@ -222,7 +245,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "InverseGauss",
+		key: 'InverseGauss',
 		value: function InverseGauss(m, target) {
 			if (target === undefined) target = new Matrix4();
 
@@ -238,7 +261,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "Transpose",
+		key: 'Transpose',
 		value: function Transpose(m, target) {
 			return (target === undefined ? new Matrix4() : target).transposeOf(m);
 		}
@@ -252,7 +275,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "Copy",
+		key: 'Copy',
 		value: function Copy(m, target) {
 			return (target === undefined ? new Matrix4() : target).copyOf(m);
 		}
@@ -265,7 +288,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "isEQ",
+		key: 'isEQ',
 		value: function isEQ(a, b) {
 			if (a === b) return true;
 
@@ -297,7 +320,7 @@ var Matrix4 = function () {
    * n[1]:n10 n[5]:n11 n[9] :n12 n[13]:n13
    * n[2]:n20 n[6]:n21 n[10]:n22 n[14]:n23
    * n[3]:n30 n[7]:n31 n[11]:n32 n[15]:n33
-   * @type Float[]
+   * @type {Float[]}
    */
 		this.n = n && n.constructor === Array && n.length === 16 ? n : [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0];
 	}
@@ -311,7 +334,7 @@ var Matrix4 = function () {
 
 
 	_createClass(Matrix4, [{
-		key: "define",
+		key: 'define',
 		value: function define(n) {
 			this.constructor.call(this, n);
 
@@ -320,11 +343,11 @@ var Matrix4 = function () {
 
 		/**
    * row 0, col 0, {@link Matrix4#n}[0]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "add",
+		key: 'add',
 
 
 		/**
@@ -351,7 +374,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "subtract",
+		key: 'subtract',
 		value: function subtract(a, b) {
 			var n = this.n,
 			    an = a.n,
@@ -371,7 +394,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "multiply3x4Vector3Scale",
+		key: 'multiply3x4Vector3Scale',
 		value: function multiply3x4Vector3Scale(m, v) {
 			var n = this.n = m.n.slice(0, 16),
 			    vn = v.n;
@@ -389,6 +412,32 @@ var Matrix4 = function () {
 		}
 
 		/**
+   * The 3x4 concatenation of m and matrix-transformed v (m*Matrix4.Translation(v))
+   * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
+   * @param {Matrix4} m - The matrix
+   * @param {Vector3} v - The vector
+   * @returns {Matrix4}
+   */
+
+	}, {
+		key: 'multiply3x4Vector3Translation',
+		value: function multiply3x4Vector3Translation(m, v) {
+			var mn = m.n,
+			    vn = v.n,
+			    n = this.n = mn.slice(0);
+
+			var v03 = vn[0],
+			    v13 = vn[1],
+			    v23 = vn[2];
+
+			n[12] = mn[0] * v03 + mn[4] * v13 + mn[8] * v23 + mn[12];
+			n[13] = mn[1] * v03 + mn[5] * v13 + mn[9] * v23 + mn[13];
+			n[14] = mn[2] * v03 + mn[6] * v13 + mn[10] * v23 + mn[14];
+
+			return this;
+		}
+
+		/**
    * The 3x4 concatenation of a and b (a*b)
    * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
    * @param {Matrix4} a - The first matrix
@@ -397,7 +446,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "multiply3x4Matrix3",
+		key: 'multiply3x4Matrix3',
 		value: function multiply3x4Matrix3(a, b) {
 			var n = this.n,
 			    an = a.n,
@@ -456,7 +505,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "multiply3x4",
+		key: 'multiply3x4',
 		value: function multiply3x4(a, b) {
 			var n = this.n,
 			    an = a.n,
@@ -517,7 +566,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "multiply",
+		key: 'multiply',
 		value: function multiply(a, b) {
 			var n = this.n,
 			    an = a.n,
@@ -590,7 +639,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "inverse3x4Of",
+		key: 'inverse3x4Of',
 		value: function inverse3x4Of(m) {
 			var n = this.n,
 			    mn = m.n,
@@ -644,7 +693,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "inverseOf",
+		key: 'inverseOf',
 		value: function inverseOf(m) {
 			var n = this.n,
 			    mn = m.n,
@@ -731,7 +780,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "transposeOf",
+		key: 'transposeOf',
 
 
 		/**
@@ -758,7 +807,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "copyOf",
+		key: 'copyOf',
 		value: function copyOf(m) {
 			this.n = m.n.slice(0, 16);
 
@@ -774,7 +823,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "invert3x4",
+		key: 'invert3x4',
 		value: function invert3x4() {
 			return this.inverse3x4Of(this);
 		}
@@ -788,7 +837,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "invert",
+		key: 'invert',
 		value: function invert() {
 			return this.inverseOf(this);
 		}
@@ -802,7 +851,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "invertGauss",
+		key: 'invertGauss',
 		value: function invertGauss() {
 			return this.inverseGaussOf(this);
 		}
@@ -813,7 +862,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "transpose",
+		key: 'transpose',
 		value: function transpose() {
 			return this.transposeOf(this);
 		}
@@ -825,7 +874,7 @@ var Matrix4 = function () {
    */
 
 	}, {
-		key: "toString",
+		key: 'toString',
 		value: function toString() {
 			var digits = arguments.length <= 0 || arguments[0] === undefined ? 3 : arguments[0];
 
@@ -833,10 +882,10 @@ var Matrix4 = function () {
 				return (i % 4.0 === 0.0 ? "\n" : "\t") + item.toFixed(digits);
 			}).join("");
 
-			return "[Matrix4]" + str;
+			return '[Matrix4]' + str;
 		}
 	}, {
-		key: "valueOf",
+		key: 'valueOf',
 
 
 		/**
@@ -847,7 +896,7 @@ var Matrix4 = function () {
 			return this.determinant;
 		}
 	}, {
-		key: "n00",
+		key: 'n00',
 		get: function get() {
 			return this.n[0];
 		},
@@ -857,11 +906,11 @@ var Matrix4 = function () {
 
 		/**
    * row 0, col 1, {@link Matrix4#n}[4]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n01",
+		key: 'n01',
 		get: function get() {
 			return this.n[4];
 		},
@@ -871,11 +920,11 @@ var Matrix4 = function () {
 
 		/**
    * row 0, col 2, {@link Matrix4#n}[8]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n02",
+		key: 'n02',
 		get: function get() {
 			return this.n[8];
 		},
@@ -885,11 +934,11 @@ var Matrix4 = function () {
 
 		/**
    * row 0, col 3, {@link Matrix4#n}[12]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n03",
+		key: 'n03',
 		get: function get() {
 			return this.n[12];
 		},
@@ -899,11 +948,11 @@ var Matrix4 = function () {
 
 		/**
    * row 1, col 0, {@link Matrix4#n}[1]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n10",
+		key: 'n10',
 		get: function get() {
 			return this.n[1];
 		},
@@ -913,11 +962,11 @@ var Matrix4 = function () {
 
 		/**
    * row 1, col 1, {@link Matrix4#n}[5]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n11",
+		key: 'n11',
 		get: function get() {
 			return this.n[5];
 		},
@@ -927,11 +976,11 @@ var Matrix4 = function () {
 
 		/**
    * row 1, col 2, {@link Matrix4#n}[9]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n12",
+		key: 'n12',
 		get: function get() {
 			return this.n[9];
 		},
@@ -941,11 +990,11 @@ var Matrix4 = function () {
 
 		/**
    * row 1, col 3, {@link Matrix4#n}[13]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n13",
+		key: 'n13',
 		get: function get() {
 			return this.n[13];
 		},
@@ -955,11 +1004,11 @@ var Matrix4 = function () {
 
 		/**
    * row 2, col 0, {@link Matrix4#n}[2]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n20",
+		key: 'n20',
 		get: function get() {
 			return this.n[2];
 		},
@@ -969,11 +1018,11 @@ var Matrix4 = function () {
 
 		/**
    * row 2, col 1, {@link Matrix4#n}[6]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n21",
+		key: 'n21',
 		get: function get() {
 			return this.n[6];
 		},
@@ -983,11 +1032,11 @@ var Matrix4 = function () {
 
 		/**
    * row 2, col 2, {@link Matrix4#n}[10]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n22",
+		key: 'n22',
 		get: function get() {
 			return this.n[10];
 		},
@@ -997,11 +1046,11 @@ var Matrix4 = function () {
 
 		/**
    * row 2, col 3, {@link Matrix4#n}[14]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n23",
+		key: 'n23',
 		get: function get() {
 			return this.n[14];
 		},
@@ -1011,11 +1060,11 @@ var Matrix4 = function () {
 
 		/**
    * row 3, col 0, {@link Matrix4#n}[3]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n30",
+		key: 'n30',
 		get: function get() {
 			return this.n[3];
 		},
@@ -1025,11 +1074,11 @@ var Matrix4 = function () {
 
 		/**
    * row 3, col 1, {@link Matrix4#n}[7]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n31",
+		key: 'n31',
 		get: function get() {
 			return this.n[7];
 		},
@@ -1039,11 +1088,11 @@ var Matrix4 = function () {
 
 		/**
    * row 3, col 2, {@link Matrix4#n}[11]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n32",
+		key: 'n32',
 		get: function get() {
 			return this.n[11];
 		},
@@ -1053,11 +1102,11 @@ var Matrix4 = function () {
 
 		/**
    * row 3, col 3, {@link Matrix4#n}[15]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n33",
+		key: 'n33',
 		get: function get() {
 			return this.n[15];
 		},
@@ -1067,11 +1116,11 @@ var Matrix4 = function () {
 
 		/**
    * The determinant
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "determinant",
+		key: 'determinant',
 		get: function get() {
 			var n = this.n;
 
@@ -1087,7 +1136,7 @@ var Matrix4 = function () {
 			return n[0] * n[10] * (n11 * n33 - n13 * n31) + n[4] * n[14] * (n12 * n30 - n10 * n32) + n[8] * n[2] * (n13 * n31 - n11 * n33) + n[12] * n[6] * (n10 * n32 - n12 * n30);
 		}
 	}], [{
-		key: "inverseGaussOf",
+		key: 'inverseGaussOf',
 		value: function inverseGaussOf(m) {
 			var a = m.n.slice(0),
 			    b = new Matrix4().n,

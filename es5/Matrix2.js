@@ -221,7 +221,7 @@ var Matrix2 = function () {
    * The 4 column-major ordered components
    * n[0]:n00 n[2]:n01
    * n[1]:n10 n[3]:n11
-   * @type Float[]
+   * @type {Float[]}
    */
 		this.n = n && n.constructor === Array && n.length === 4 ? n : [1.0, 0.0, 0.0, 1.0];
 	}
@@ -244,7 +244,7 @@ var Matrix2 = function () {
 
 		/**
    * row 0, col0, {@link Matrix2#n}[0]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -443,7 +443,7 @@ var Matrix2 = function () {
 
 		/**
    * row 0, col1, {@link Matrix2#n}[2]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -457,7 +457,7 @@ var Matrix2 = function () {
 
 		/**
    * row 1, col0, {@link Matrix2#n}[1]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -471,7 +471,7 @@ var Matrix2 = function () {
 
 		/**
    * row 1, col1, {@link Matrix2#n}[3]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -485,7 +485,7 @@ var Matrix2 = function () {
 
 		/**
    * The determinant
-   * @type Float
+   * @type {Float}
    */
 
 	}, {

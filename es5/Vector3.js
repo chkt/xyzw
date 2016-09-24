@@ -328,6 +328,10 @@ var Vector3 = function () {
 	function Vector3(n) {
 		_classCallCheck(this, Vector3);
 
+		/**
+   * The component array
+   * @type {Float[]}
+   */
 		this.n = n && n.constructor === Array && n.length === 3 ? n : [0.0, 0.0, 0.0];
 	}
 
@@ -349,7 +353,7 @@ var Vector3 = function () {
 
 		/**
    * The x component, {@link Vector3#n}[0]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -725,7 +729,7 @@ var Vector3 = function () {
 
 		/**
    * The y component, {@link Vector3#n}[1]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -753,7 +757,7 @@ var Vector3 = function () {
 
 		/**
    * The norm
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -768,7 +772,7 @@ var Vector3 = function () {
 
 		/**
    * The square of the norm (norm*norm)
-   * @type Float
+   * @type {Float}
    */
 
 	}, {

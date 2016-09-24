@@ -293,6 +293,10 @@ var Vector4 = function () {
 	function Vector4(n) {
 		_classCallCheck(this, Vector4);
 
+		/**
+   * The component array
+   * @type {Float[]}
+   */
 		this.n = n && n.constructor === Array && n.length === 4 ? n : [0.0, 0.0, 0.0, 1.0];
 	}
 
@@ -314,7 +318,7 @@ var Vector4 = function () {
 
 		/**
    * The x component, {@link Vector4#n}[0]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -612,7 +616,7 @@ var Vector4 = function () {
 
 		/**
    * The y component, {@link Vector4#n}[1]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -626,7 +630,7 @@ var Vector4 = function () {
 
 		/**
    * The z component, {@link Vector4#n}[2]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -640,7 +644,7 @@ var Vector4 = function () {
 
 		/**
    * The w component, {@link Vector4#n}[3]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -654,7 +658,7 @@ var Vector4 = function () {
 
 		/**
    * The norm of the instance
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -666,6 +670,22 @@ var Vector4 = function () {
 			    w = this.n[3];
 
 			return Math.sqrt(x * x + y * y + z * z + w * w);
+		}
+
+		/**
+   * The square of the norm of the instance
+   * @returns {Number}
+   */
+
+	}, {
+		key: "normSquared",
+		get: function get() {
+			var x = this.n[0],
+			    y = this.n[1],
+			    z = this.n[2],
+			    w = this.n[3];
+
+			return x * x + y * y + z * z + w * w;
 		}
 	}]);
 

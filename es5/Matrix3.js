@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -8,7 +8,11 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Matrix = require("./Matrix2");
+var _Vector2 = require('./Vector3');
+
+var _Vector3 = _interopRequireDefault(_Vector2);
+
+var _Matrix = require('./Matrix2');
 
 var _Matrix2 = _interopRequireDefault(_Matrix);
 
@@ -21,7 +25,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 var Matrix3 = function () {
 	_createClass(Matrix3, null, [{
-		key: "Rotation",
+		key: 'Rotation',
 
 
 		/**
@@ -67,7 +71,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "RotationX",
+		key: 'RotationX',
 		value: function RotationX(rad, target) {
 			var sin = Math.sin(rad);
 			var cos = Math.cos(rad);
@@ -88,7 +92,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "RotationY",
+		key: 'RotationY',
 		value: function RotationY(rad, target) {
 			var sin = Math.sin(rad);
 			var cos = Math.cos(rad);
@@ -109,7 +113,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "RotationZ",
+		key: 'RotationZ',
 		value: function RotationZ(rad, target) {
 			var sin = Math.sin(rad);
 			var cos = Math.cos(rad);
@@ -132,7 +136,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "EulerXYZ",
+		key: 'EulerXYZ',
 		value: function EulerXYZ(x, y, z, target) {
 			var sx = Math.sin(x),
 			    cx = Math.cos(x);
@@ -172,7 +176,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "EulerYXZ",
+		key: 'EulerYXZ',
 		value: function EulerYXZ(x, y, z, target) {
 			var sx = Math.sin(x),
 			    cx = Math.cos(x);
@@ -211,7 +215,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "EulerZXY",
+		key: 'EulerZXY',
 		value: function EulerZXY(x, y, z, target) {
 			var sx = Math.sin(x),
 			    cx = Math.cos(x);
@@ -248,7 +252,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Scale",
+		key: 'Scale',
 		value: function Scale(v, target) {
 			var vn = v.n;
 
@@ -268,7 +272,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Translation",
+		key: 'Translation',
 		value: function Translation(v, target) {
 			var vn = v.n;
 
@@ -280,18 +284,43 @@ var Matrix3 = function () {
 		}
 
 		/**
+   * Returns an instance created from axes (x, y) and translation t
+   * @constructor
+   * @param {Vector2} x - The x axis
+   * @param {Vector2} [y] - The y axis
+   * @param {Vector2} [t] - The translation
+   * @param {Matrix3} [target] - the target instance
+   * @returns {Matrix3}
+   */
+
+	}, {
+		key: 'Vector2',
+		value: function Vector2(x, y, t, target) {
+			var xn = x.n,
+			    yn = y !== undefined ? y.n : [-xn[1], xn[0]];
+			var tn = t !== undefined ? t.n : [0.0, 0.0];
+
+			var n = [xn[0], xn[1], 0.0, yn[0], yn[1], 0.0, tn[0], tn[1], 1.0];
+
+			if (target === undefined) target = new Matrix3(n);else target.n = n;
+
+			return target;
+		}
+
+		/**
    * Returns a instance of axes (x, y, z)
    * @constructor
    * @param {Vector3} x - The x-axis vector
    * @param {Vector3} y - The y-axis vector
-   * @param {Vector3} z - The z-axis vector
+   * @param {Vector3} [z] - The z-axis vector
    * @param {Matrix3} [target] - The target instance
    * @return {Matrix3}
    */
 
 	}, {
-		key: "Vector3",
+		key: 'Vector3',
 		value: function Vector3(x, y, z, target) {
+			z = z !== undefined ? z : _Vector3.default.Cross(x, y);
 			var n = [].concat(x.n, y.n, z.n);
 
 			if (target === undefined) target = new Matrix3(n);else target.n = n;
@@ -308,7 +337,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Vector4",
+		key: 'Vector4',
 		value: function Vector4(q, target) {
 			var qn = q.n,
 			    n = [];
@@ -349,7 +378,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Matrix2",
+		key: 'Matrix2',
 		value: function Matrix2(m, target) {
 			var n = m.n.concat([0.0, 0.0, 0.0, 1.0]);
 
@@ -370,7 +399,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Matrix4",
+		key: 'Matrix4',
 		value: function Matrix4(m, target) {
 			var n = m.n.slice(0, 11);
 
@@ -392,7 +421,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Add",
+		key: 'Add',
 		value: function Add(a, b, target) {
 			return (target === undefined ? new Matrix3() : target).add(a, b);
 		}
@@ -407,7 +436,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Subtract",
+		key: 'Subtract',
 		value: function Subtract(a, b, target) {
 			return (target === undefined ? new Matrix3() : target).subtract(a, b);
 		}
@@ -423,7 +452,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Multiply2x3Vector2Scale",
+		key: 'Multiply2x3Vector2Scale',
 		value: function Multiply2x3Vector2Scale(m, v, target) {
 			return (target === undefined ? new Matrix3() : target).multiply2x3Vector2Scale(m, v);
 		}
@@ -438,7 +467,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Multiply2x3Vector2Translation",
+		key: 'Multiply2x3Vector2Translation',
 		value: function Multiply2x3Vector2Translation(m, v, target) {
 			return (target === undefined ? new Matrix3() : target).multiply2x3Vector2Translation(m, v);
 		}
@@ -454,7 +483,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Multiply2x3Matrix2",
+		key: 'Multiply2x3Matrix2',
 		value: function Multiply2x3Matrix2(a, b, target) {
 			return (target === undefined ? new Matrix3() : target).multiply2x3Matrix2(a, b);
 		}
@@ -470,7 +499,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Multiply2x3",
+		key: 'Multiply2x3',
 		value: function Multiply2x3(a, b, target) {
 			return (target === undefined ? new Matrix3() : target).multiply2x3(a, b);
 		}
@@ -485,7 +514,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Multiply",
+		key: 'Multiply',
 		value: function Multiply(a, b, target) {
 			return (target === undefined ? new Matrix3() : target).multiply(a, b);
 		}
@@ -500,7 +529,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Inverse",
+		key: 'Inverse',
 		value: function Inverse(m, target) {
 			if (target === undefined) target = new Matrix3();
 
@@ -516,7 +545,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Transpose",
+		key: 'Transpose',
 		value: function Transpose(m, target) {
 			return (target === undefined ? new Matrix3() : target).transposeOf(m);
 		}
@@ -530,7 +559,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "Copy",
+		key: 'Copy',
 		value: function Copy(m, target) {
 			return (target === undefined ? new Matrix3() : target).copyOf(m);
 		}
@@ -543,7 +572,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "isEQ",
+		key: 'isEQ',
 		value: function isEQ(a, b) {
 			if (a === b) return true;
 
@@ -574,7 +603,7 @@ var Matrix3 = function () {
    * n[0]:n00 n[3]:n01 n[6]:n02
    * n[1]:n10 n[4]:n11 n[7]:n12
    * n[2]:n20 n[5]:n21 n[8]:n22
-   * @type Float[]
+   * @type {Float[]}
    */
 		this.n = n && n.constructor === Array && n.length === 9 ? n : [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0];
 	}
@@ -588,7 +617,7 @@ var Matrix3 = function () {
 
 
 	_createClass(Matrix3, [{
-		key: "define",
+		key: 'define',
 		value: function define(n) {
 			this.constructor.call(this, n);
 
@@ -597,11 +626,11 @@ var Matrix3 = function () {
 
 		/**
    * row 0, col 0, {@link Matrix3#n}[0]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "add",
+		key: 'add',
 
 
 		/**
@@ -628,7 +657,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "subtract",
+		key: 'subtract',
 		value: function subtract(a, b) {
 			var n = this.n,
 			    an = a.n,
@@ -648,7 +677,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "multiply2x3Vector2Scale",
+		key: 'multiply2x3Vector2Scale',
 		value: function multiply2x3Vector2Scale(m, v) {
 			var n = this.n = m.n.slice(0),
 			    vn = v.n;
@@ -672,7 +701,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "multiply2x3Vector2Translation",
+		key: 'multiply2x3Vector2Translation',
 		value: function multiply2x3Vector2Translation(m, v) {
 			var n = this.n,
 			    mn = m.n,
@@ -707,7 +736,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "multiply2x3Matrix2",
+		key: 'multiply2x3Matrix2',
 		value: function multiply2x3Matrix2(a, b) {
 			var n = this.n;
 
@@ -754,7 +783,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "multiply2x3",
+		key: 'multiply2x3',
 		value: function multiply2x3(a, b) {
 			var n = this.n,
 			    an = a.n,
@@ -796,7 +825,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "multiply",
+		key: 'multiply',
 		value: function multiply(a, b) {
 			var n = this.n,
 			    an = a.n,
@@ -846,7 +875,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "inverseOf",
+		key: 'inverseOf',
 		value: function inverseOf(m) {
 			var n = this.n,
 			    mn = m.n,
@@ -888,7 +917,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "transposeOf",
+		key: 'transposeOf',
 		value: function transposeOf(m) {
 			var n = this.n,
 			    mn = m.n.slice(0, 9);
@@ -907,7 +936,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "copyOf",
+		key: 'copyOf',
 		value: function copyOf(m) {
 			this.n = m.n.slice(0, 9);
 
@@ -922,7 +951,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "invert",
+		key: 'invert',
 		value: function invert() {
 			return this.inverseOf(this);
 		}
@@ -933,7 +962,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "transpose",
+		key: 'transpose',
 		value: function transpose() {
 			return this.transposeOf(this);
 		}
@@ -944,7 +973,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "toEulerYXZ",
+		key: 'toEulerYXZ',
 		value: function toEulerYXZ() {
 			var n = this.n,
 			    x = Math.asin(-n[7]);
@@ -968,7 +997,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "toEulerZXY",
+		key: 'toEulerZXY',
 		value: function toEulerZXY() {
 			var n = this.n,
 			    x = Math.asin(-n[5]);
@@ -994,7 +1023,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "toCSS2x3",
+		key: 'toCSS2x3',
 		value: function toCSS2x3() {
 			var digits = arguments.length <= 0 || arguments[0] === undefined ? 3 : arguments[0];
 
@@ -1004,7 +1033,7 @@ var Matrix3 = function () {
 				return item.toFixed(digits);
 			}).join(",");
 
-			return "matrix(" + str + ")";
+			return 'matrix(' + str + ')';
 		}
 
 		/**
@@ -1014,7 +1043,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "toCSS",
+		key: 'toCSS',
 		value: function toCSS() {
 			var digits = arguments.length <= 0 || arguments[0] === undefined ? 3 : arguments[0];
 
@@ -1022,7 +1051,7 @@ var Matrix3 = function () {
 				return item.toFixed(digits);
 			}).join(",");
 
-			return "matrix3d(" + str + ")";
+			return 'matrix3d(' + str + ')';
 		}
 
 		/**
@@ -1032,7 +1061,7 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "toString",
+		key: 'toString',
 		value: function toString() {
 			var digits = arguments.length <= 0 || arguments[0] === undefined ? 3 : arguments[0];
 
@@ -1040,7 +1069,7 @@ var Matrix3 = function () {
 				return (index % 3 === 0.0 ? "\n" : "\t") + item.toFixed(digits);
 			}).join("");
 
-			return "[Matrix3]" + str;
+			return '[Matrix3]' + str;
 		}
 
 		/**
@@ -1049,12 +1078,12 @@ var Matrix3 = function () {
    */
 
 	}, {
-		key: "valueOf",
+		key: 'valueOf',
 		value: function valueOf() {
 			return this.determinant;
 		}
 	}, {
-		key: "n00",
+		key: 'n00',
 		get: function get() {
 			return this.n[0];
 		},
@@ -1064,11 +1093,11 @@ var Matrix3 = function () {
 
 		/**
    * row 0, col 1, {@link Matrix3#n}[3]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n01",
+		key: 'n01',
 		get: function get() {
 			return this.n[3];
 		},
@@ -1078,11 +1107,11 @@ var Matrix3 = function () {
 
 		/**
    * row 0, col 2, {@link Matrix3#n}[6]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n02",
+		key: 'n02',
 		get: function get() {
 			return this.n[6];
 		},
@@ -1092,11 +1121,11 @@ var Matrix3 = function () {
 
 		/**
    * row 1, col 0, {@link Matrix3#n}[1]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n10",
+		key: 'n10',
 		get: function get() {
 			return this.n[1];
 		},
@@ -1106,11 +1135,11 @@ var Matrix3 = function () {
 
 		/**
    * row 1, col 1, {@link Matrix3#n}[4]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n11",
+		key: 'n11',
 		get: function get() {
 			return this.n[4];
 		},
@@ -1120,11 +1149,11 @@ var Matrix3 = function () {
 
 		/**
    * row 1, col 2, {@link Matrix3#n}[7]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n12",
+		key: 'n12',
 		get: function get() {
 			return this.n[7];
 		},
@@ -1134,11 +1163,11 @@ var Matrix3 = function () {
 
 		/**
    * row 2, col 0, {@link Matrix3#n}[2]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n20",
+		key: 'n20',
 		get: function get() {
 			return this.n[2];
 		},
@@ -1148,11 +1177,11 @@ var Matrix3 = function () {
 
 		/**
    * row 2, col 1, {@link Matrix3#n}[5]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n21",
+		key: 'n21',
 		get: function get() {
 			return this.n[5];
 		},
@@ -1162,11 +1191,11 @@ var Matrix3 = function () {
 
 		/**
    * row 2, col 2, {@link Matrix3#n}[8]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "n22",
+		key: 'n22',
 		get: function get() {
 			return this.n[8];
 		},
@@ -1176,11 +1205,11 @@ var Matrix3 = function () {
 
 		/**
    * The determinant
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
-		key: "determinant",
+		key: 'determinant',
 		get: function get() {
 			var n = this.n;
 

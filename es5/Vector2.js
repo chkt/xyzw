@@ -13,8 +13,39 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 var Vector2 = function () {
 	_createClass(Vector2, null, [{
-		key: "Rotation",
+		key: "X",
 
+
+		/**
+   * Returns an instance representing the x axis
+   * @constructor
+   * @param {Vector2} [target] - The target instance
+   * @returns {Vector2}
+   */
+		value: function X(target) {
+			var n = [1.0, 0.0];
+
+			if (target === undefined) target = new Vector2(n);else target.n = n;
+
+			return target;
+		}
+
+		/**
+   * Returns an instance representing the y axis
+   * @constructor
+   * @param {Vector2} [target] - The target instance
+   * @returns {Vector2}
+   */
+
+	}, {
+		key: "Y",
+		value: function Y(target) {
+			var n = [0.0, 1.0];
+
+			if (target === undefined) target = new Vector2(n);else target.n = n;
+
+			return target;
+		}
 
 		/**
    * Returns a unit instance from rad
@@ -23,6 +54,9 @@ var Vector2 = function () {
    * @param {Vector2} [target] - The target instance
    * @returns {Vector2}
    */
+
+	}, {
+		key: "Rotation",
 		value: function Rotation(rad, target) {
 			var n = [Math.cos(rad), Math.sin(rad)];
 
@@ -271,6 +305,10 @@ var Vector2 = function () {
 	function Vector2(n) {
 		_classCallCheck(this, Vector2);
 
+		/**
+   * The component array
+   * @type {Float[]}
+   */
 		this.n = n && n.constructor === Array && n.length === 2 ? n : [0.0, 0.0];
 	}
 
@@ -291,7 +329,7 @@ var Vector2 = function () {
 
 		/**
    * The x component {@link Vector2#n}[0]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -661,7 +699,7 @@ var Vector2 = function () {
 
 		/**
    * The y component {@link Vector2#n}[1]
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -676,7 +714,7 @@ var Vector2 = function () {
 		/**
    * The s component
    * Alias of {@link Vector2#x}
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -691,7 +729,7 @@ var Vector2 = function () {
 		/**
    * The t component
    * Alias of {@link Vector2#y}
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -705,7 +743,7 @@ var Vector2 = function () {
 
 		/**
    * The norm
-   * @type Float
+   * @type {Float}
    */
 
 	}, {
@@ -719,7 +757,7 @@ var Vector2 = function () {
 
 		/**
    * The square of the norm (norm*norm)
-   * @type Float
+   * @type {Float}
    */
 
 	}, {

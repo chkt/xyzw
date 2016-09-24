@@ -254,6 +254,31 @@ export default class Matrix3 {
 	}
 
 	/**
+	 * Returns an instance created from axes (x, y) and translation t
+	 * @constructor
+	 * @param {Vector2} x - The x axis
+	 * @param {Vector2} [y] - The y axis
+	 * @param {Vector2} [t] - The translation
+	 * @param {Matrix3} [target] - the target instance
+	 * @returns {Matrix3}
+	 */
+	static Vector2(x, y, t, target) {
+		const xn = x.n, yn = y !== undefined ? y.n : [-xn[1], xn[0]];
+		const tn = t !== undefined ? t.n : [0.0, 0.0];
+
+		const n = [
+			xn[0], xn[1], 0.0,
+			yn[0], yn[1], 0.0,
+			tn[0], tn[1], 1.0
+		];
+
+		if (target === undefined) target = new Matrix3(n);
+		else target.n = n;
+
+		return target;
+	}
+
+	/**
 	 * Returns a instance of axes (x, y, z)
 	 * @constructor
 	 * @param {Vector3} x - The x-axis vector

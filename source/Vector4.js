@@ -251,6 +251,10 @@ export default class Vector4 {
 	 * Arrays of length !== 4 will return the identity (0.0,0.0,0.0,1.0) vector
 	 */
 	constructor(n) {
+		/**
+		 * The component array
+		 * @type {Float[]}
+		 */
 		this.n = (n && n.constructor === Array && n.length === 4 ? n : [0.0, 0.0, 0.0, 1.0]);
 	}
 
@@ -270,7 +274,7 @@ export default class Vector4 {
 
 	/**
 	 * The x component, {@link Vector4#n}[0]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get x() {
 		return this.n[0];
@@ -283,7 +287,7 @@ export default class Vector4 {
 
 	/**
 	 * The y component, {@link Vector4#n}[1]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get y() {
 		return this.n[1];
@@ -296,7 +300,7 @@ export default class Vector4 {
 
 	/**
 	 * The z component, {@link Vector4#n}[2]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get z() {
 		return this.n[2];
@@ -309,7 +313,7 @@ export default class Vector4 {
 
 	/**
 	 * The w component, {@link Vector4#n}[3]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get w() {
 		return this.n[3];
@@ -322,12 +326,22 @@ export default class Vector4 {
 
 	/**
 	 * The norm of the instance
-	 * @type Float
+	 * @type {Float}
 	 */
 	get norm() {
 		const x = this.n[0], y = this.n[1], z = this.n[2], w = this.n[3];
 
 		return Math.sqrt(x * x + y * y + z * z + w * w);
+	}
+
+	/**
+	 * The square of the norm of the instance
+	 * @returns {Number}
+	 */
+	get normSquared() {
+		const x = this.n[0], y = this.n[1], z = this.n[2], w = this.n[3];
+
+		return x * x + y * y + z * z + w * w;
 	}
 
 

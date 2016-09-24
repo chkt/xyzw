@@ -1,3 +1,4 @@
+import Vector3 from './Vector3';
 import Matrix2 from './Matrix2';
 
 
@@ -257,11 +258,12 @@ export default class Matrix3 {
 	 * @constructor
 	 * @param {Vector3} x - The x-axis vector
 	 * @param {Vector3} y - The y-axis vector
-	 * @param {Vector3} z - The z-axis vector
+	 * @param {Vector3} [z] - The z-axis vector
 	 * @param {Matrix3} [target] - The target instance
 	 * @return {Matrix3}
 	 */
 	static Vector3(x, y, z, target) {
+		z = z !== undefined ? z : Vector3.Cross(x, y);
 		const n = [].concat(x.n, y.n, z.n);
 
 		if (target === undefined) target = new Matrix3(n);
@@ -496,7 +498,7 @@ export default class Matrix3 {
 		 * n[0]:n00 n[3]:n01 n[6]:n02
 		 * n[1]:n10 n[4]:n11 n[7]:n12
 		 * n[2]:n20 n[5]:n21 n[8]:n22
-		 * @type Float[]
+		 * @type {Float[]}
 		 */
 		this.n = (n && n.constructor === Array && n.length === 9 ? n : [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]);
 	}
@@ -517,7 +519,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 0, col 0, {@link Matrix3#n}[0]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n00() {
 		return this.n[0];
@@ -530,7 +532,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 0, col 1, {@link Matrix3#n}[3]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n01() {
 		return this.n[3];
@@ -543,7 +545,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 0, col 2, {@link Matrix3#n}[6]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n02() {
 		return this.n[6];
@@ -556,7 +558,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 1, col 0, {@link Matrix3#n}[1]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n10() {
 		return this.n[1];
@@ -569,7 +571,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 1, col 1, {@link Matrix3#n}[4]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n11() {
 		return this.n[4];
@@ -582,7 +584,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 1, col 2, {@link Matrix3#n}[7]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n12() {
 		return this.n[7];
@@ -595,7 +597,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 2, col 0, {@link Matrix3#n}[2]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n20() {
 		return this.n[2];
@@ -608,7 +610,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 2, col 1, {@link Matrix3#n}[5]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n21() {
 		return this.n[5];
@@ -621,7 +623,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 2, col 2, {@link Matrix3#n}[8]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n22() {
 		return this.n[8];
@@ -634,7 +636,7 @@ export default class Matrix3 {
 
 	/**
 	 * The determinant
-	 * @type Float
+	 * @type {Float}
 	 */
 	get determinant() {
 		const n = this.n;
@@ -711,7 +713,7 @@ export default class Matrix3 {
 
 		n[0] = m00, n[3] = m01, n[6] = m00 * v02 + m01 * v12 + m02;
 		n[1] = m10, n[4] = m11, n[7] = m10 * v02 + m11 * v12 + m12;
-		n[2] = m20,	n[5] = m21,	n[8] = m20 * v02 + m21 * v12 + m22;
+		n[2] = m20, n[5] = m21, n[8] = m20 * v02 + m21 * v12 + m22;
 
 		return this;
 	}

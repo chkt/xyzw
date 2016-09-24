@@ -268,6 +268,10 @@ export default class Vector3 {
 	 * Arrays of length !== 3 will return the zero (0.0,0.0,0.0) vector
 	 */
 	constructor(n) {
+		/**
+		 * The component array
+		 * @type {Float[]}
+		 */
 		this.n = (n && n.constructor === Array && n.length === 3 ? n : [0.0, 0.0, 0.0]);
 	}
 
@@ -287,7 +291,7 @@ export default class Vector3 {
 
 	/**
 	 * The x component, {@link Vector3#n}[0]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get x() {
 		return this.n[0];
@@ -300,7 +304,7 @@ export default class Vector3 {
 
 	/**
 	 * The y component, {@link Vector3#n}[1]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get y() {
 		return this.n[1];
@@ -326,7 +330,7 @@ export default class Vector3 {
 
 	/**
 	 * The norm
-	 * @type Float
+	 * @type {Float}
 	 */
 	get norm() {
 		const x = this.n[0], y = this.n[1], z = this.n[2];
@@ -336,7 +340,7 @@ export default class Vector3 {
 
 	/**
 	 * The square of the norm (norm*norm)
-	 * @type Float
+	 * @type {Float}
 	 */
 	get normSquared() {
 		const x = this.n[0], y = this.n[1], z = this.n[2];

@@ -186,7 +186,7 @@ export default class Matrix2 {
 		 * The 4 column-major ordered components
 		 * n[0]:n00 n[2]:n01
 		 * n[1]:n10 n[3]:n11
-		 * @type Float[]
+		 * @type {Float[]}
 		 */
 		this.n = (n && n.constructor === Array && n.length === 4 ? n : [1.0, 0.0, 0.0, 1.0]);
 	}
@@ -207,7 +207,7 @@ export default class Matrix2 {
 
 	/**
 	 * row 0, col0, {@link Matrix2#n}[0]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n00() {
 		return this.n[0];
@@ -220,7 +220,7 @@ export default class Matrix2 {
 
 	/**
 	 * row 0, col1, {@link Matrix2#n}[2]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n01() {
 		return this.n[2];
@@ -233,7 +233,7 @@ export default class Matrix2 {
 
 	/**
 	 * row 1, col0, {@link Matrix2#n}[1]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n10() {
 		return this.n[1];
@@ -246,7 +246,7 @@ export default class Matrix2 {
 
 	/**
 	 * row 1, col1, {@link Matrix2#n}[3]
-	 * @type Float
+	 * @type {Float}
 	 */
 	get n11() {
 		return this.n[3];
@@ -259,7 +259,7 @@ export default class Matrix2 {
 
 	/**
 	 * The determinant
-	 * @type Float
+	 * @type {Float}
 	 */
 	get determinant() {
 		return this.n[0] * this.n[3] - this.n[2] * this.n[1];

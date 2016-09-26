@@ -4,10 +4,34 @@ import Vector4 from './Vector4';
 
 
 
+const RAD_TO_DEG = 180.0 / Math.PI;
+
+const ONE_THIRD_PI = 1.0 / 3.0 * Math.PI;
+const PI_DIV_THREE = 3.0 / Math.PI;
+
+
+
 /**
  * HSLA color model transform
  */
 export default class HSLA {
+
+	/**
+	 * Returns a defined instance
+	 * @constructor
+	 * @param {Number} h - The hue in radians
+	 * @param {Number} s - The saturation
+	 * @param {Number} l - The luminosity
+	 * @param {Number} a - The alpha
+	 * @param {HSLA} [target] - The target instance
+	 * @returns {HSLA}
+	 */
+	static Define(h, s, l, a, target) {
+		if (target === undefined) target = new this(h, s, l, a);
+		else this.call(target, h, s, l, a);
+
+		return this;
+	}
 
 	/**
 	 * Returns an instance representing v
@@ -29,14 +53,13 @@ export default class HSLA {
 		else if (min === g) h = (b - r) / c + 2.0;
 		else                h = (r - g) / c + 4.0;
 
-		h *= (1.0 / 3.0) * Math.PI;
+		h *= ONE_THIRD_PI;
 		l = 0.5 * (max + min);
 
 		if (c === 0.0) s = 0.0;
 		else s = c / (1.0 - Math.abs(2.0 * l - 1.0));
 
-		if (target === undefined) return new HSLA(h, s, l, v.n[3]);
-		else return target.define(h, s, l, v.n[3]);
+		return this.Define(h, s, l, v.n[3], target);
 	}
 
 	/**
@@ -58,8 +81,7 @@ export default class HSLA {
 	 * @returns {HSLA}
 	 */
 	static Copy(source, target) {
-		if (target === undefined) return new HSLA(source.h, source.s, source.l, source.a);
-		else return target.define(source.h, source.s, source.l, source.a);
+		return this.Define(source.h, source.s, source.l, source.a, target);
 	}
 
 
@@ -79,13 +101,29 @@ export default class HSLA {
 	 * Creates a new instance
 	 * @param {Float} h - The hue in radians
 	 * @param {Float} s - The saturation
-	 * @param {Float} l - The lightness
+	 * @param {Float} l - The luminosity
 	 * @param {Float} a - The alpha
 	 */
 	constructor(h, s, l, a) {
+		/**
+		 * The hue
+		 * @type {Float}
+		 */
 		this.h = h;
+		/**
+		 * The saturation
+		 * @type {Float}
+		 */
 		this.s = s;
+		/**
+		 * The luminosity
+		 * @type {Float}
+		 */
 		this.l = l;
+		/**
+		 * The alpha
+		 * @type {Float}
+		 */
 		this.a = a;
 	}
 
@@ -94,7 +132,7 @@ export default class HSLA {
 	 * Redefines the instance
 	 * @param {Float} h - The hue in radians
 	 * @param {Float} s - The saturation
-	 * @param {Float} l - The lightness
+	 * @param {Float} l - The luminosity
 	 * @param {Float} a - The alpha
 	 * @returns {HSLA}
 	 */
@@ -136,7 +174,7 @@ export default class HSLA {
 	 */
 	toRGBA(target) {
 		const c = this.chroma;
-		const h = this.h / ((1.0 / 3.0) * Math.PI);
+		const h = this.h * PI_DIV_THREE;
 		const x = c * (1.0 - Math.abs(h % 2.0 - 1.0));
 
 		let r, g, b;
@@ -179,12 +217,16 @@ export default class HSLA {
 	 * @returns {String}
 	 */
 	toCSS() {
-		const hsl = Math.round(this.h * (180.0 / Math.PI)) + "," +
-			Math.round(this.s * 100.0) + "%," +
-			Math.round(this.l * 100.0) + "%";
+		const hsl = `${
+				Math.round(this.h * RAD_TO_DEG)
+			},${
+				Math.round(this.s * 100.0)
+			}%,${
+				Math.round(this.l * 100.0)
+			}%`;
 
 		if (this.a === 1.0) return `hsl(${ hsl })`;
-		else return `hsla(${ hsl },${ this.a.toString() })`;
+		else return `hsla(${ hsl },${ this.a.toFixed(4) })`;
 	}
 
 	/**
@@ -193,10 +235,14 @@ export default class HSLA {
 	 * @returns {String}
 	 */
 	toString(digits = 3) {
-		return "[HSLA]" +
-			this.h.toFixed(digits) + " " +
-			this.s.toFixed(digits) + " " +
-			this.l.toFixed(digits) + " " +
-			this.a.toFixed(digits);
+		return `[HSLA](${
+				this.h.toFixed(digits)
+			},${
+				this.s.toFixed(digits)
+			},${
+				this.l.toFixed(digits)
+			},${
+				this.a.toFixed(digits)
+			})`;
 	}
 }

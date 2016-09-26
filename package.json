@@ -1,7 +1,7 @@
 {
 	"name" : "xyzw",
 	"description" : "A generic, fast, comprehensive and dependencyless vector algebra library",
-	"version" : "0.9.6",
+	"version" : "0.9.7",
 	"license" : "MIT",
 
 	"keywords" : [
@@ -23,10 +23,7 @@
 		"inverse",
 		"transpose",
 		"conjugate",
-		"gauss-jordan",
-		"rgb",
-		"rgba",
-		"hsla"
+		"gauss-jordan"
 	],
 
 	"author" : {

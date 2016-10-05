@@ -1,3 +1,6 @@
+/**
+ * @extends Math
+ */
 const ExtMath = Object.create(Math);
 
 

@@ -252,6 +252,13 @@ Creates a new instance
 -   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing 2x2 column-major ordered components
     Arrays of length !== 4 will return the identity matrix
 
+## n
+
+The array representation
+The 4 column-major ordered components
+n[0]&#x3A;n00 n[2]&#x3A;n01
+n[1]&#x3A;n10 n[3]&#x3A;n11
+
 ## define
 
 Redefines the instance
@@ -265,19 +272,19 @@ Returns **[Matrix2](#matrix2)**
 
 ## n00
 
-row 0, col0, [Matrix2#n](Matrix2#n)[0]
+row 0, col0, [Matrix2#n](#matrix2n)[0]
 
 ## n01
 
-row 0, col1, [Matrix2#n](Matrix2#n)[2]
+row 0, col1, [Matrix2#n](#matrix2n)[2]
 
 ## n10
 
-row 1, col0, [Matrix2#n](Matrix2#n)[1]
+row 1, col0, [Matrix2#n](#matrix2n)[1]
 
 ## n11
 
-row 1, col1, [Matrix2#n](Matrix2#n)[3]
+row 1, col1, [Matrix2#n](#matrix2n)[3]
 
 ## determinant
 
@@ -504,42 +511,6 @@ Returns true if a and b are equal, false otherwise (a==b)
 
 Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
-# n
-
-The array representation
-The 4 column-major ordered components
-n[0]&#x3A;n00 n[2]&#x3A;n01
-n[1]&#x3A;n10 n[3]&#x3A;n11
-
-# n
-
-The array representation
-Contains the 9 column-major ordered components of the instance
-n[0]&#x3A;n00 n[3]&#x3A;n01 n[6]&#x3A;n02
-n[1]&#x3A;n10 n[4]&#x3A;n11 n[7]&#x3A;n12
-n[2]&#x3A;n20 n[5]&#x3A;n21 n[8]&#x3A;n22
-
-# n
-
-The array representation
-Contains the 16 column-major ordered components of the instance
-n[0]&#x3A;n00 n[4]&#x3A;n01 n[8] &#x3A;n02 n[12]&#x3A;n03
-n[1]&#x3A;n10 n[5]&#x3A;n11 n[9] &#x3A;n12 n[13]&#x3A;n13
-n[2]&#x3A;n20 n[6]&#x3A;n21 n[10]&#x3A;n22 n[14]&#x3A;n23
-n[3]&#x3A;n30 n[7]&#x3A;n31 n[11]&#x3A;n32 n[15]&#x3A;n33
-
-# n
-
-The component array
-
-# n
-
-The component array
-
-# n
-
-The component array
-
 # Matrix3
 
 2x3 and 3x3 transformations
@@ -552,6 +523,14 @@ Creates a new instance
 
 -   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array represeting 3x3 column-major ordered components
     Arrays of length <em>!== 9</em> will return the identity matrix
+
+## n
+
+The array representation
+Contains the 9 column-major ordered components of the instance
+n[0]&#x3A;n00 n[3]&#x3A;n01 n[6]&#x3A;n02
+n[1]&#x3A;n10 n[4]&#x3A;n11 n[7]&#x3A;n12
+n[2]&#x3A;n20 n[5]&#x3A;n21 n[8]&#x3A;n22
 
 ## define
 
@@ -566,39 +545,39 @@ Returns **[Matrix3](#matrix3)**
 
 ## n00
 
-row 0, col 0, [Matrix3#n](Matrix3#n)[0]
+row 0, col 0, [Matrix3#n](#matrix3n)[0]
 
 ## n01
 
-row 0, col 1, [Matrix3#n](Matrix3#n)[3]
+row 0, col 1, [Matrix3#n](#matrix3n)[3]
 
 ## n02
 
-row 0, col 2, [Matrix3#n](Matrix3#n)[6]
+row 0, col 2, [Matrix3#n](#matrix3n)[6]
 
 ## n10
 
-row 1, col 0, [Matrix3#n](Matrix3#n)[1]
+row 1, col 0, [Matrix3#n](#matrix3n)[1]
 
 ## n11
 
-row 1, col 1, [Matrix3#n](Matrix3#n)[4]
+row 1, col 1, [Matrix3#n](#matrix3n)[4]
 
 ## n12
 
-row 1, col 2, [Matrix3#n](Matrix3#n)[7]
+row 1, col 2, [Matrix3#n](#matrix3n)[7]
 
 ## n20
 
-row 2, col 0, [Matrix3#n](Matrix3#n)[2]
+row 2, col 0, [Matrix3#n](#matrix3n)[2]
 
 ## n21
 
-row 2, col 1, [Matrix3#n](Matrix3#n)[5]
+row 2, col 1, [Matrix3#n](#matrix3n)[5]
 
 ## n22
 
-row 2, col 2, [Matrix3#n](Matrix3#n)[8]
+row 2, col 2, [Matrix3#n](#matrix3n)[8]
 
 ## determinant
 
@@ -1090,6 +1069,15 @@ Creates a new instance
 -   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing 4x4 column-major ordered components
     Arrays of length !== 16 will return the identity matrix
 
+## n
+
+The array representation
+Contains the 16 column-major ordered components of the instance
+n[0]&#x3A;n00 n[4]&#x3A;n01 n[8] &#x3A;n02 n[12]&#x3A;n03
+n[1]&#x3A;n10 n[5]&#x3A;n11 n[9] &#x3A;n12 n[13]&#x3A;n13
+n[2]&#x3A;n20 n[6]&#x3A;n21 n[10]&#x3A;n22 n[14]&#x3A;n23
+n[3]&#x3A;n30 n[7]&#x3A;n31 n[11]&#x3A;n32 n[15]&#x3A;n33
+
 ## define
 
 Redefines the instance
@@ -1103,67 +1091,67 @@ Returns **[Matrix4](#matrix4)**
 
 ## n00
 
-row 0, col 0, [Matrix4#n](Matrix4#n)[0]
+row 0, col 0, [Matrix4#n](#matrix4n)[0]
 
 ## n01
 
-row 0, col 1, [Matrix4#n](Matrix4#n)[4]
+row 0, col 1, [Matrix4#n](#matrix4n)[4]
 
 ## n02
 
-row 0, col 2, [Matrix4#n](Matrix4#n)[8]
+row 0, col 2, [Matrix4#n](#matrix4n)[8]
 
 ## n03
 
-row 0, col 3, [Matrix4#n](Matrix4#n)[12]
+row 0, col 3, [Matrix4#n](#matrix4n)[12]
 
 ## n10
 
-row 1, col 0, [Matrix4#n](Matrix4#n)[1]
+row 1, col 0, [Matrix4#n](#matrix4n)[1]
 
 ## n11
 
-row 1, col 1, [Matrix4#n](Matrix4#n)[5]
+row 1, col 1, [Matrix4#n](#matrix4n)[5]
 
 ## n12
 
-row 1, col 2, [Matrix4#n](Matrix4#n)[9]
+row 1, col 2, [Matrix4#n](#matrix4n)[9]
 
 ## n13
 
-row 1, col 3, [Matrix4#n](Matrix4#n)[13]
+row 1, col 3, [Matrix4#n](#matrix4n)[13]
 
 ## n20
 
-row 2, col 0, [Matrix4#n](Matrix4#n)[2]
+row 2, col 0, [Matrix4#n](#matrix4n)[2]
 
 ## n21
 
-row 2, col 1, [Matrix4#n](Matrix4#n)[6]
+row 2, col 1, [Matrix4#n](#matrix4n)[6]
 
 ## n22
 
-row 2, col 2, [Matrix4#n](Matrix4#n)[10]
+row 2, col 2, [Matrix4#n](#matrix4n)[10]
 
 ## n23
 
-row 2, col 3, [Matrix4#n](Matrix4#n)[14]
+row 2, col 3, [Matrix4#n](#matrix4n)[14]
 
 ## n30
 
-row 3, col 0, [Matrix4#n](Matrix4#n)[3]
+row 3, col 0, [Matrix4#n](#matrix4n)[3]
 
 ## n31
 
-row 3, col 1, [Matrix4#n](Matrix4#n)[7]
+row 3, col 1, [Matrix4#n](#matrix4n)[7]
 
 ## n32
 
-row 3, col 2, [Matrix4#n](Matrix4#n)[11]
+row 3, col 2, [Matrix4#n](#matrix4n)[11]
 
 ## n33
 
-row 3, col 3, [Matrix4#n](Matrix4#n)[15]
+row 3, col 3, [Matrix4#n](#matrix4n)[15]
 
 ## determinant
 
@@ -1763,6 +1751,10 @@ Creates a new instance
 -   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing the two components
     Arrays of length !== 2 will return the zero (0,0) vector
 
+## n
+
+The component array
+
 ## define
 
 Redefines the instance
@@ -1775,11 +1767,11 @@ Returns **[Vector2](#vector2)**
 
 ## x
 
-The x component [Vector2#n](Vector2#n)[0]
+The x component [Vector2#n](#vector2n)[0]
 
 ## y
 
-The y component [Vector2#n](Vector2#n)[1]
+The y component [Vector2#n](#vector2n)[1]
 
 ## s
 
@@ -2216,6 +2208,10 @@ Creates a new instance
 -   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing the three components
     Arrays of length !== 3 will return the zero (0.0,0.0,0.0) vector
 
+## n
+
+The component array
+
 ## define
 
 Redefines the instance
@@ -2229,15 +2225,15 @@ Returns **[Vector3](#vector3)**
 
 ## x
 
-The x component, [Vector3#n](Vector3#n)[0]
+The x component, [Vector3#n](#vector3n)[0]
 
 ## y
 
-The y component, [Vector3#n](Vector3#n)[1]
+The y component, [Vector3#n](#vector3n)[1]
 
 ## z
 
-The z component, [Vector3#n](Vector3#n)[2]
+The z component, [Vector3#n](#vector3n)[2]
 
 ## norm
 
@@ -2683,6 +2679,10 @@ Creates a new instance
 -   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing the four components
     Arrays of length !== 4 will return the identity (0.0,0.0,0.0,1.0) vector
 
+## n
+
+The component array
+
 ## define
 
 Redefines the instance
@@ -2696,19 +2696,19 @@ Returns **[Vector4](#vector4)**
 
 ## x
 
-The x component, [Vector4#n](Vector4#n)[0]
+The x component, [Vector4#n](#vector4n)[0]
 
 ## y
 
-The y component, [Vector4#n](Vector4#n)[1]
+The y component, [Vector4#n](#vector4n)[1]
 
 ## z
 
-The z component, [Vector4#n](Vector4#n)[2]
+The z component, [Vector4#n](#vector4n)[2]
 
 ## w
 
-The w component, [Vector4#n](Vector4#n)[3]
+The w component, [Vector4#n](#vector4n)[3]
 
 ## norm
 

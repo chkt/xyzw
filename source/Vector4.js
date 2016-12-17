@@ -5,9 +5,8 @@ export default class Vector4 {
 
 	/**
 	 * Returns a unit-quaternion instance of axis and rotation
-	 * @constructor
 	 * @param {Vector3} axis - The rotation axis
-	 * @param {Float} rad - The rotation in radians
+	 * @param {number} rad - The rotation in radians
 	 * @param {Vector4} [target] - The target instance
 	 * @returns {Vector4}
 	 */
@@ -29,10 +28,9 @@ export default class Vector4 {
 
 	/**
 	 * Returns a unit-quaternion instance of Spherical Linear intERPolation
-	 * @constructor
 	 * @param {Vector4} q - The starting <em>unit quaternion</em>
 	 * @param {Vector4} r - The ending <em>unit quaternion</em>
-	 * @param {Float} t - The interpolation factor
+	 * @param {number} t - The interpolation factor
 	 * @param {Vector4} [target] - The target instance
 	 * @returns {Vector4}
 	 */
@@ -61,7 +59,6 @@ export default class Vector4 {
 
 	/**
 	 * Returns a unit-quaternion instance of a rotation matrix
-	 * @constructor
 	 * @param {Matrix3} m - The source 3x3 transform
 	 * @param {Vector4} [target] - The target instance
 	 * @returns {Vector4}
@@ -111,7 +108,6 @@ export default class Vector4 {
 
 	/**
 	 * Returns a instance of Vector3
-	 * @constructor
 	 * @param {Vector3} v - The source
 	 * @param {Vector4} [target] - The target instance
 	 * @returns {Vector4}
@@ -128,7 +124,6 @@ export default class Vector4 {
 
 	/**
 	 * Returns the sum of q and r (q+r)
-	 * @constructor
 	 * @param {Vector4} q - The first summand
 	 * @param {Vector4} r - The second summand
 	 * @param {Vector4} [target] - The target instance
@@ -140,7 +135,6 @@ export default class Vector4 {
 
 	/**
 	 * Returns the difference of q and r (q-r)
-	 * @constructor
 	 * @param {Vector4} q - The minuend
 	 * @param {Vector4} r - The subtrahend
 	 * @param {Vector4} [target] - The target instance
@@ -152,9 +146,8 @@ export default class Vector4 {
 
 	/**
 	 * Returns the scalar product of q and n (q*n)
-	 * @constructor
 	 * @param {Vector4} q - The vector
-	 * @param {Float} n - The scalar
+	 * @param {number} n - The scalar
 	 * @param {Vector4} [target] - The target instance
 	 * @returns {Vector4}
 	 */
@@ -164,7 +157,6 @@ export default class Vector4 {
 
 	/**
 	 * Returns the exterior product of q and r (q*r)
-	 * @constructor
 	 * @param {Vector4} q - The first vector
 	 * @param {Vector4} r - The second vector
 	 * @param {Vector4} [target] - The target instance
@@ -177,7 +169,6 @@ export default class Vector4 {
 
 	/**
 	 * Returns the normal form of q
-	 * @constructor
 	 * @param {Vector4} q - The source
 	 * @param {Vector4} [target] - The target instance
 	 * @returns {Vector4}
@@ -188,7 +179,6 @@ export default class Vector4 {
 
 	/**
 	 * Returns the conjugate of q
-	 * @constructor
 	 * @param {Vector4} q - The source
 	 * @param {Vector4} [target] - The target instance
 	 * @returns {Vector4}
@@ -199,7 +189,6 @@ export default class Vector4 {
 
 	/**
 	 * Returns the inverse of q
-	 * @constructor
 	 * @param {Vector4} q - The source
 	 * @param {Vector4} [target] - The target instance
 	 * @returns {Vector4}
@@ -210,7 +199,6 @@ export default class Vector4 {
 
 	/**
 	 * Returns a copy of q
-	 * @constructor
 	 * @param {Vector4} q - The source
 	 * @param {Vector4} [target] - The target instance
 	 * @returns {Vector4}
@@ -224,7 +212,7 @@ export default class Vector4 {
 	 * Returns the inner product of q and r
 	 * @param {Vector4} q - The first vector
 	 * @param {Vector4} r - The second vector
-	 * @returns {Float}
+	 * @returns {number}
 	 */
 	static dot(q, r) {
 		return q.n[0] * r.n[0] + q.n[1] * r.n[1] + q.n[2] * r.n[2] + q.n[3] * r.n[3];
@@ -235,7 +223,7 @@ export default class Vector4 {
 	 * Returns true if q and r are equal, false otherwise (q==r)
 	 * @param {Vector4} q - The protagonist
 	 * @param {Vector4} r - The antagonist
-	 * @returns {Boolean}
+	 * @returns {boolean}
 	 */
 	static isEQ(q, r) {
 		const qn = q.n, rn = r.n;
@@ -247,13 +235,13 @@ export default class Vector4 {
 
 	/**
 	 * Creates a new instance
-	 * @param {Float[]} [n] - Array representing the four components
+	 * @param {number[]} [n] - Array representing the four components
 	 * Arrays of length !== 4 will return the identity (0.0,0.0,0.0,1.0) vector
 	 */
 	constructor(n) {
 		/**
 		 * The component array
-		 * @type {Float[]}
+		 * @type {number[]}
 		 */
 		this.n = (n && n.constructor === Array && n.length === 4 ? n : [0.0, 0.0, 0.0, 1.0]);
 	}
@@ -261,7 +249,7 @@ export default class Vector4 {
 
 	/**
 	 * Redefines the instance
-	 * @param {Float[]} [n] - Array representing the four components
+	 * @param {number[]} [n] - Array representing the four components
 	 * Arrays of length <em>!== 4</em> will return the identity (0.0,0.0,0.0,1.0) vector
 	 * @returns {Vector4}
 	 */
@@ -274,7 +262,7 @@ export default class Vector4 {
 
 	/**
 	 * The x component, {@link Vector4#n}[0]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get x() {
 		return this.n[0];
@@ -287,7 +275,7 @@ export default class Vector4 {
 
 	/**
 	 * The y component, {@link Vector4#n}[1]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get y() {
 		return this.n[1];
@@ -300,7 +288,7 @@ export default class Vector4 {
 
 	/**
 	 * The z component, {@link Vector4#n}[2]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get z() {
 		return this.n[2];
@@ -313,7 +301,7 @@ export default class Vector4 {
 
 	/**
 	 * The w component, {@link Vector4#n}[3]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get w() {
 		return this.n[3];
@@ -326,7 +314,7 @@ export default class Vector4 {
 
 	/**
 	 * The norm of the instance
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get norm() {
 		const x = this.n[0], y = this.n[1], z = this.n[2], w = this.n[3];
@@ -336,7 +324,7 @@ export default class Vector4 {
 
 	/**
 	 * The square of the norm of the instance
-	 * @returns {Number}
+	 * @returns {number}
 	 */
 	get normSquared() {
 		const x = this.n[0], y = this.n[1], z = this.n[2], w = this.n[3];
@@ -378,7 +366,7 @@ export default class Vector4 {
 	/**
 	 * The scalar product of q and n (q*n)
 	 * @param {Vector4} q - The vector
-	 * @param {Float} n - The scalar
+	 * @param {number} n - The scalar
 	 * @returns {Vector4}
 	 */
 	multiplyScalar(q, n) {
@@ -439,7 +427,7 @@ export default class Vector4 {
 
 	/**
 	 * The scalar product of the instance and n
-	 * @param {Float} n - the scalar
+	 * @param {number} n - the scalar
 	 * @returns {Vector4}
 	 */
 	multiplyScalarEQ(n) {
@@ -546,8 +534,8 @@ export default class Vector4 {
 
 	/**
 	 * Returns a string representation of the instance
-	 * @param {Uint} [digits=3] - The decimal digits
-	 * @returns {String}
+	 * @param {int} [digits=3] - The decimal digits
+	 * @returns {string}
 	 */
 	toString(digits = 3) {
 		const str = this.n
@@ -559,7 +547,7 @@ export default class Vector4 {
 
 	/**
 	 * Returns the {@link Vector4#norm} of the instance
-	 * @returns {Float}
+	 * @returns {number}
 	 */
 	valueOf() {
 		return this.norm;

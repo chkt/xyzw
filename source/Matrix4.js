@@ -10,7 +10,6 @@ export default class Matrix4 {
 
 	/**
 	 * Returns a instance of translation vector
-	 * @constructor
 	 * @param {Vector3} v - The source
 	 * @param {Matrix4} [target] - The target instance
 	 * @returns {Matrix4}
@@ -33,7 +32,6 @@ export default class Matrix4 {
 
 	/**
 	 * Returns a instance of axes (x,y,z) and translation (t)
-	 * @constructor
 	 * @param {Vector3} x - The x-axis vector
 	 * @param {Vector3} y - The y-axis vector
 	 * @param {Vector3} [z] - The z-axis vector
@@ -56,7 +54,6 @@ export default class Matrix4 {
 	/**
 	 * Returns a instance of m
 	 * The instance will be padded to 4x4
-	 * @constructor
 	 * @param {Matrix3} m - The source
 	 * @param {Matrix4} [target] - The target instance
 	 * @returns {Matrix4}
@@ -76,7 +73,6 @@ export default class Matrix4 {
 
 	/**
 	 * Returns the sum of a and b (a+b)
-	 * @constructor
 	 * @param {Matrix4} a - The first summand
 	 * @param {Matrix4} b - The second summand
 	 * @param {Matrix4} [target] - The target instance
@@ -88,7 +84,6 @@ export default class Matrix4 {
 
 	/**
 	 * Returns the difference of a and b (a-b)
-	 * @constructor
 	 * @param {Matrix4} a - The minuend
 	 * @param {Matrix4} b - The subtrahend
 	 * @param {Matrix4} [target] - The target instance
@@ -101,7 +96,6 @@ export default class Matrix4 {
 	/**
 	 * Returns the 3x4 concatenation of m and matrix-transformed v (m*Matrix4.Matrix3(Matrix3.Scale(v)))
 	 * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
-	 * @constructor
 	 * @param {Matrix4} m - The matrix
 	 * @param {Vector3} v - The vector
 	 * @param {Matrix4} [target] - The target instance
@@ -114,7 +108,6 @@ export default class Matrix4 {
 	/**
 	 * Returns the 3x4 concatenation of m and matrix-transformed v (m*Matrix4.Translation(v))
 	 * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
-	 * @constructor
 	 * @param {Matrix4} m - The matrix
 	 * @param {Vector3} v - The vector
 	 * @param {Matrix4} [target] - The target instance
@@ -127,7 +120,6 @@ export default class Matrix4 {
 	/**
 	 * Returns the 3x4 concatenation of a and b (a*b)
 	 * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
-	 * @constructor
 	 * @param {Matrix4} a - The first matrix
 	 * @param {Matrix3} b - The second matrix
 	 * @param {Matrix4} [target] - The target instance
@@ -140,7 +132,6 @@ export default class Matrix4 {
 	/**
 	 * Returns the 3x4 concatenation of a and b (a*b)
 	 * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
-	 * @constructor
 	 * @param {Matrix4} a - The first matrix
 	 * @param {Matrix4} b - The second matrix
 	 * @param {Matrix4} [target] - The target instance
@@ -152,7 +143,6 @@ export default class Matrix4 {
 
 	/**
 	 * Returns the concatenation of a and b (a*b)
-	 * @constructor
 	 * @param {Matrix4} a - The first matrix
 	 * @param {Matrix4} b - The second matrix
 	 * @param {Matrix4} [target] - The target instance
@@ -167,7 +157,6 @@ export default class Matrix4 {
 	 * Returns the 3x4 inverse of m
 	 * Components 3x are to be (0.0,0.0,0.0,1.0)
 	 * Returns null if m is assumed to be singular, the 3x4 inverse of m otherwise
-	 * @constructor
 	 * @param {Matrix4} m - The source
 	 * @param {Matrix4} [target] - The target instance
 	 * @returns {Matrix4|null}
@@ -182,7 +171,6 @@ export default class Matrix4 {
 	 * Returns the inverse of m
 	 * Using the adjoint method
 	 * Returns null if m is assumed to be singular, the 4x4 inverse of m otherwise
-	 * @constructor
 	 * @param {Matrix4} m - The source
 	 * @param {Matrix4} [target] - The target instance
 	 * @returns {Matrix4|null}
@@ -197,7 +185,6 @@ export default class Matrix4 {
 	 * Returns the inverse of m
 	 * Using gauss-jordan elimination
 	 * Returns null if m is singular, the 4x4 inverse of m otherwise
-	 * @constructor
 	 * @param {Matrix4} m - The source
 	 * @param {Matrix4} [target] - The target instance
 	 * @returns {Matrix4|null}
@@ -210,7 +197,6 @@ export default class Matrix4 {
 
 	/**
 	 * Returns the transpose of m
-	 * @constructor
 	 * @param {Matrix4} m - The source
 	 * @param {Matrix4} [target] - The target instance
 	 * @returns {Matrix4}
@@ -221,7 +207,6 @@ export default class Matrix4 {
 
 	/**
 	 * Returns a copy of m
-	 * @constructor
 	 * @param {Matrix4} m - The source
 	 * @param {Matrix4} [target] - The target instance
 	 * @returns {Matrix4}
@@ -253,7 +238,7 @@ export default class Matrix4 {
 
 	/**
 	 * Creates a new instance
-	 * @param {Float[]} [n] - Array representing 4x4 column-major ordered components
+	 * @param {number[]} [n] - Array representing 4x4 column-major ordered components
 	 * Arrays of length !== 16 will return the identity matrix
 	 */
 	constructor(n) {
@@ -264,7 +249,7 @@ export default class Matrix4 {
 		 * n[1]:n10 n[5]:n11 n[9] :n12 n[13]:n13
 		 * n[2]:n20 n[6]:n21 n[10]:n22 n[14]:n23
 		 * n[3]:n30 n[7]:n31 n[11]:n32 n[15]:n33
-		 * @type {Float[]}
+		 * @type {number[]}
 		 */
 		this.n = (n && n.constructor === Array && n.length === 16 ? n : [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]);
 	}
@@ -272,7 +257,7 @@ export default class Matrix4 {
 
 	/**
 	 * Redefines the instance
-	 * @param {Float[]} [n] - Array representing 4x4 column-major ordered components
+	 * @param {number[]} [n] - Array representing 4x4 column-major ordered components
 	 * Arrays of length <em>!== 16</em> will return the identity matrix
 	 * @returns {Matrix4}
 	 */
@@ -285,7 +270,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 0, col 0, {@link Matrix4#n}[0]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n00() {
 		return this.n[0];
@@ -298,7 +283,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 0, col 1, {@link Matrix4#n}[4]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n01() {
 		return this.n[4];
@@ -311,7 +296,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 0, col 2, {@link Matrix4#n}[8]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n02() {
 		return this.n[8];
@@ -324,7 +309,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 0, col 3, {@link Matrix4#n}[12]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n03() {
 		return this.n[12];
@@ -337,7 +322,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 1, col 0, {@link Matrix4#n}[1]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n10() {
 		return this.n[1];
@@ -350,7 +335,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 1, col 1, {@link Matrix4#n}[5]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n11() {
 		return this.n[5];
@@ -363,7 +348,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 1, col 2, {@link Matrix4#n}[9]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n12() {
 		return this.n[9];
@@ -376,7 +361,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 1, col 3, {@link Matrix4#n}[13]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n13() {
 		return this.n[13];
@@ -389,7 +374,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 2, col 0, {@link Matrix4#n}[2]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n20() {
 		return this.n[2];
@@ -402,7 +387,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 2, col 1, {@link Matrix4#n}[6]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n21() {
 		return this.n[6];
@@ -415,7 +400,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 2, col 2, {@link Matrix4#n}[10]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n22() {
 		return this.n[10];
@@ -428,7 +413,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 2, col 3, {@link Matrix4#n}[14]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n23() {
 		return this.n[14];
@@ -441,7 +426,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 3, col 0, {@link Matrix4#n}[3]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n30() {
 		return this.n[3];
@@ -454,7 +439,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 3, col 1, {@link Matrix4#n}[7]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n31() {
 		return this.n[7];
@@ -467,7 +452,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 3, col 2, {@link Matrix4#n}[11]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n32() {
 		return this.n[11];
@@ -480,7 +465,7 @@ export default class Matrix4 {
 
 	/**
 	 * row 3, col 3, {@link Matrix4#n}[15]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n33() {
 		return this.n[15];
@@ -493,7 +478,7 @@ export default class Matrix4 {
 
 	/**
 	 * The determinant
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get determinant() {
 		const n = this.n;
@@ -890,7 +875,7 @@ export default class Matrix4 {
 	 * The 3x4 inverse of the instance
 	 * Beware: method is NOT chainable
 	 * Components 3x are assumed to be (0.0,0.0,0.0,1.0)
-	 * @returns {Boolean}
+	 * @returns {boolean}
 	 * Returns false if the instance is assumed to be singular, true otherwise
 	 */
 	invert3x4() {
@@ -901,7 +886,7 @@ export default class Matrix4 {
 	 * The inverse of the instance
 	 * Beware: method is NOT chainable
 	 * Using the adjoint method
-	 * @returns {Boolean}
+	 * @returns {boolean}
 	 * Returns false if the instance is assumed to be singular, true otherwise
 	 */
 	invert() {
@@ -912,7 +897,7 @@ export default class Matrix4 {
 	 * The inverse of the instance
 	 * Beware: method is NOT chainable
 	 * using gauss-jordan elimination
-	 * @returns {Boolean}
+	 * @returns {boolean}
 	 * Returns false if the instance is singular, true otherwise
 	 */
 	invertGauss() {
@@ -930,20 +915,20 @@ export default class Matrix4 {
 
 	/**
 	 * Returns a string representation of the instance
-	 * @param {Uint} [digits=3] - The number of digits
-	 * @returns {String}
+	 * @param {int} [digits=3] - The number of digits
+	 * @returns {string}
 	 */
 	toString(digits = 3) {
 		const str = this.n
-			.map((item, index, source) => (i % 4.0 === 0.0 ? "\n" : "\t") + item.toFixed(digits))
+			.map((item, index, source) => (index % 4.0 === 0.0 ? "\n" : "\t") + item.toFixed(digits))
 			.join("");
 
 		return `[Matrix4]${ str }`;
-	};
+	}
 
 	/**
 	 * Returns the {@link Matrix4#determinant} of the instance
-	 * @returns {Float}
+	 * @returns {number}
 	 */
 	valueOf() {
 		return this.determinant;

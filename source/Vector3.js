@@ -5,7 +5,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns a representation of the x-axis vector (1.0,0.0,0.0)
-	 * @constructor
 	 * @param {Vector3} [target] - The target instance
 	 * @returns {Vector3}
 	 */
@@ -20,7 +19,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns a representation of the y-axis vector (0.0,1.0,0.0)
-	 * @constructor
 	 * @param {Vector3} [target] - The target instance
 	 * @returns {Vector3}
 	 */
@@ -35,7 +33,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns a representation of the z-axis vector (0.0,0.0,1.0)
-	 * @constructor
 	 * @param {Vector3} [target] - The target instance
 	 * @returns {Vector3}
 	 */
@@ -51,12 +48,11 @@ export default class Vector3 {
 
 	/**
 	 * Returns the resulting instance of <em>cw</em> triangle (v0,v1,v2) and barycentric coordinates (u,v)
-	 * @constructor
 	 * @param {Vector3} v0 - The first corner
 	 * @param {Vector3} v1 - The second corner
 	 * @param {Vector3} v2 - The third corner
-	 * @param {Float} u - The u-coordinate
-	 * @param {Float} v - The v-coordinate
+	 * @param {number} u - The u-coordinate
+	 * @param {number} v - The v-coordinate
 	 * @param {Vector3} [target] - The target instance
 	 * @returns {Vector3}
 	 */
@@ -76,7 +72,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns the sum of v and w (v+w)
-	 * @constructor
 	 * @param {Vector3} v - The first summand
 	 * @param {Vector3} w - The second summand
 	 * @param {Vector3} [target] - The target instance
@@ -88,7 +83,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns the difference between v and w (v-w)
-	 * @constructor
 	 * @param {Vector3} v - The minuend
 	 * @param {Vector3} w - The subtrahend
 	 * @param {Vector3} [target] - The target instance
@@ -100,9 +94,8 @@ export default class Vector3 {
 
 	/**
 	 * Returns the scalar product of v and n (v*n)
-	 * @constructor
 	 * @param {Vector3} v - The vector
-	 * @param {Float} n - The scalar
+	 * @param {number} n - The scalar
 	 * @param {Vector3} [target] - The target instance
 	 * @returns {Vector3}
 	 */
@@ -112,7 +105,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns the exterior product of v and w (v cross w)
-	 * @constructor
 	 * @param {Vector3} v - The first vector
 	 * @param {Vector3} w - The second vector
 	 * @param {Vector3} [target] - The target instance
@@ -124,7 +116,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns the transformation of v (m*v)
-	 * @constructor
 	 * @param {Matrix3} m - The transform
 	 * @param {Vector3} v - The source
 	 * @param {Vector3} [target] - The target instance
@@ -136,7 +127,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns the 3x4 transformation of v (m*v)
-	 * @constructor
 	 * @param {Matrix4} m - The transform
 	 * @param {Vector3} v - The vector
 	 * @param {Vector3} [target] - The target instance
@@ -148,7 +138,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns the transformation of v (m*v)
-	 * @constructor
 	 * @param {Matrix4} m - The transform
 	 * @param {Vector3} v - The vector
 	 * @param {Vector3} [target] - The target instance
@@ -161,7 +150,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns the projection of w on v
-	 * @constructor
 	 * @param {Vector3} v - The projection vector
 	 * @param {Vector3} w - The projected vector
 	 * @param {Vector3} [target] - The target instance
@@ -173,7 +161,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns the orthonormalization of w against v
-	 * @constructor
 	 * @param {Vector3} v - The projection vector
 	 * @param {Vector3} w - The projected vector
 	 * @param {Vector3} [target] - The target instance
@@ -186,7 +173,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns the normal form of v
-	 * @constructor
 	 * @param {Vector3} v - The source
 	 * @param {Vector3} [target] - The target instance
 	 * @returns {Vector3}
@@ -197,7 +183,6 @@ export default class Vector3 {
 
 	/**
 	 * Returns a copy of v
-	 * @constructor
 	 * @param {Vector3} v - The source
 	 * @param {Vector3} [target] - The target instance
 	 * @returns {Vector3}
@@ -211,7 +196,7 @@ export default class Vector3 {
 	 * Returns the inner product of v and w (v dot w)
 	 * @param {Vector3} v - The first vector
 	 * @param {Vector3} w - The second vector
-	 * @returns {Float}
+	 * @returns {number}
 	 */
 	static dot(v, w) {
 		return v.n[0] * w.n[0] + v.n[1] * w.n[1] + v.n[2] * w.n[2];
@@ -222,7 +207,7 @@ export default class Vector3 {
 	 * Returns true if v and w are equal, false otherwise (u==v)
 	 * @param {Vector3} v - The protagonist
 	 * @param {Vector3} w - The antagonist
-	 * @returns {Boolean}
+	 * @returns {boolean}
 	 */
 	static isEQ(v, w) {
 		var vn = v.n, wn = w.n;
@@ -233,8 +218,8 @@ export default class Vector3 {
 	/**
 	 * Returns true if the norm of v is less than n, false otherwise (v.norm<n)
 	 * @param {Vector3} v - The protagonist
-	 * @param {Float} n - The antagonist
-	 * @returns {Boolean}
+	 * @param {number} n - The antagonist
+	 * @returns {boolean}
 	 */
 	static isNormLT(v, n) {
 		return v.normSquared < n * n;
@@ -243,8 +228,8 @@ export default class Vector3 {
 	/**
 	 * Returns true if the norm of v is greater than n, false otherwise (v.norm>n)
 	 * @param {Vector3} v - The protagonist
-	 * @param {Float} n - The antagonist
-	 * @returns {Boolean}
+	 * @param {number} n - The antagonist
+	 * @returns {boolean}
 	 */
 	static isNormGT(v, n) {
 		return v.normSquared > n * n;
@@ -253,8 +238,8 @@ export default class Vector3 {
 	/**
 	 * Returns true if the norm of v and n are equal, false otherwise (v.norm===n)
 	 * @param {Vector3} v - The protagonist
-	 * @param {Float} n - The antagonist
-	 * @returns {Boolean}
+	 * @param {number} n - The antagonist
+	 * @returns {boolean}
 	 */
 	static isNormEQ(v, n) {
 		return v.normSquared === n * n;
@@ -264,13 +249,13 @@ export default class Vector3 {
 
 	/**
 	 * Creates a new instance
-	 * @param {Float[]} [n] - Array representing the three components
+	 * @param {number[]} [n] - Array representing the three components
 	 * Arrays of length !== 3 will return the zero (0.0,0.0,0.0) vector
 	 */
 	constructor(n) {
 		/**
 		 * The component array
-		 * @type {Float[]}
+		 * @type {number[]}
 		 */
 		this.n = (n && n.constructor === Array && n.length === 3 ? n : [0.0, 0.0, 0.0]);
 	}
@@ -278,7 +263,7 @@ export default class Vector3 {
 
 	/**
 	 * Redefines the instance
-	 * @param {Float[]} [n] - Array representing the three components
+	 * @param {number[]} [n] - Array representing the three components
 	 * Arrays of length !== 3 will return the zero (0.0,0.0,0.0) vector
 	 * @returns {Vector3}
 	 */
@@ -291,7 +276,7 @@ export default class Vector3 {
 
 	/**
 	 * The x component, {@link Vector3#n}[0]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get x() {
 		return this.n[0];
@@ -304,7 +289,7 @@ export default class Vector3 {
 
 	/**
 	 * The y component, {@link Vector3#n}[1]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get y() {
 		return this.n[1];
@@ -317,7 +302,7 @@ export default class Vector3 {
 
 	/**
 	 * The z component, {@link Vector3#n}[2]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get z() {
 		return this.n[2];
@@ -330,7 +315,7 @@ export default class Vector3 {
 
 	/**
 	 * The norm
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get norm() {
 		const x = this.n[0], y = this.n[1], z = this.n[2];
@@ -340,7 +325,7 @@ export default class Vector3 {
 
 	/**
 	 * The square of the norm (norm*norm)
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get normSquared() {
 		const x = this.n[0], y = this.n[1], z = this.n[2];
@@ -380,7 +365,7 @@ export default class Vector3 {
 	/**
 	 * The scalar product of v and n (v*n)
 	 * @param {Vector3} v - The vector
-	 * @param {Float} n - The scalar
+	 * @param {number} n - The scalar
 	 * @returns {Vector3}
 	 */
 	multiplyScalar(v, n) {
@@ -517,7 +502,7 @@ export default class Vector3 {
 
 	/**
 	 * The scalar product of the instance and n
-	 * @param {Float} n - the scalar
+	 * @param {number} n - the scalar
 	 * @returns {Vector3}
 	 */
 	multiplyScalarEQ(n) {
@@ -606,8 +591,8 @@ export default class Vector3 {
 
 	/**
 	 * Returns a string representation of the instance
-	 * @param {Uint} [digits=3] - The decimal digits
-	 * @returns {String}
+	 * @param {int} [digits=3] - The decimal digits
+	 * @returns {string}
 	 */
 	toString(digits = 3) {
 		const str = this.n
@@ -619,7 +604,7 @@ export default class Vector3 {
 
 	/**
 	 * Returns the {@link Vector3#norm} of the instance
-	 * @returns {Float}
+	 * @returns {number}
 	 */
 	valueOf() {
 		return this.norm;

@@ -5,42 +5,42 @@ import Matrix4 from './Matrix4';
 
 /**
  * The minimal vertical field of view
- * @type Float
+ * @type {number}
  */
 export const FOV_MIN = 1.0e-10;
 /**
  * The maximal vertical field of view
- * @type Float
+ * @type {number}
  */
 export const FOV_MAX = Math.PI * 2.0;
 /**
  * The default vertical field of view
- * @type Float
+ * @type {number}
  */
 export const FOV_DEFAULT = Math.PI;
 /**
  * The minimal projection aspect ratio (w/h)
- * @type Float
+ * @type {number}
  */
 export const ASPECT_MIN = 1.0e-10;
 /**
  * The maximal projection aspect ratio (w/h)
- * @type Float
+ * @type {number}
  */
 export const ASPECT_MAX = 1.0e10;
 /**
  * The default projection aspect ratio (w/h)
- * @type Float
+ * @type {number}
  */
 export const ASPECT_DEFAULT = 16.0 / 9.0;
 /**
  * The minimal z-plane distance
- * @type Float
+ * @type {number}
  */
 export const ZPLANE_MIN = 1.0e-10;
 /**
  * The maximal z-plane distance
- * @type Float
+ * @type {number}
  */
 export const ZPLANE_MAX = Number.MAX_VALUE;
 
@@ -60,7 +60,6 @@ export default class Matrix4Frustrum extends Matrix4 {
 
 	/**
 	 * Returns a copy of m
-	 * @constructor
 	 * @param {Matrix4Frustrum}  m - The source
 	 * @param {Matrix4Frustrum} [target] - The target instance
 	 * @returns {Matrix4Frustrum}
@@ -74,10 +73,10 @@ export default class Matrix4Frustrum extends Matrix4 {
 
 	/**
 	 * Creates a new instance
-	 * @param {Float} [fov=FOV_DEFAULT] - The vertical field of view, in radians
-	 * @param {Float} [aspect=ASPECT_DEFAULT] - The aspect ratio (w/h)
-	 * @param {Float} [near=ZPLANE_MIN] - The distance of the near plane
-	 * @param {Float} [far=ZPLANE_MAX] - The distance of the far plane
+	 * @param {number} [fov=FOV_DEFAULT] - The vertical field of view, in radians
+	 * @param {number} [aspect=ASPECT_DEFAULT] - The aspect ratio (w/h)
+	 * @param {number} [near=ZPLANE_MIN] - The distance of the near plane
+	 * @param {number} [far=ZPLANE_MAX] - The distance of the far plane
 	 */
 	constructor(
 		fov = FOV_DEFAULT,
@@ -93,10 +92,10 @@ export default class Matrix4Frustrum extends Matrix4 {
 
 	/**
 	 * (Re)defines the instance
-	 * @param {Float} [fov=FOV_DEFAULT] - The vertical field of view, in radians
-	 * @param {Float} [aspect=ASPECT_DEFAULT] - The aspect ratio (w/h)
-	 * @param {Float} [near=ZPLANE_MIN] - The near plane distance
-	 * @param {Float} [far=ZPLANE_MAX] - The far plane distance
+	 * @param {number} [fov=FOV_DEFAULT] - The vertical field of view, in radians
+	 * @param {number} [aspect=ASPECT_DEFAULT] - The aspect ratio (w/h)
+	 * @param {number} [near=ZPLANE_MIN] - The near plane distance
+	 * @param {number} [far=ZPLANE_MAX] - The far plane distance
 	 * @returns {Matrix4Frustrum}
 	 */
 	define(fov, aspect, near, far) {
@@ -151,7 +150,7 @@ export default class Matrix4Frustrum extends Matrix4 {
 
 	/**
 	 * The vertical field of view, in radians
-	 * @type Float
+	 * @type {number}
 	 */
 	get fov() {
 		return _fov.get(this);
@@ -159,7 +158,7 @@ export default class Matrix4Frustrum extends Matrix4 {
 
 	/**
 	 * The projection aspect ratio (w/h)
-	 * @type Float
+	 * @type {number}
 	 */
 	get aspect() {
 		return _aspect.get(this);
@@ -167,7 +166,7 @@ export default class Matrix4Frustrum extends Matrix4 {
 
 	/**
 	 * The distance of the near plane
-	 * @type Float
+	 * @type {number}
 	 */
 	get near() {
 		return _near.get(this);
@@ -175,7 +174,7 @@ export default class Matrix4Frustrum extends Matrix4 {
 
 	/**
 	 * The distance of the far plane
-	 * @type Float
+	 * @type {number}
 	 */
 	get far() {
 		return _far.get(this);

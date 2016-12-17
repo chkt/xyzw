@@ -5,8 +5,7 @@ export default class Matrix2 {
 
 	/**
 	 * Returns a instance of z-axis rotation
-	 * @constructor
-	 * @param {Float} rad - The rotation in radians
+	 * @param {number} rad - The rotation in radians
 	 * @param {Matrix2} [target] - The target instance
 	 * @returns {Matrix2}
 	 */
@@ -27,7 +26,6 @@ export default class Matrix2 {
 
 	/**
 	 * Returns a instance of scale vector
-	 * @constructor
 	 * @param {Vector2} v - The source
 	 * @param {Matrix2} [target] - The target instance
 	 * @returns {Matrix2}
@@ -46,7 +44,6 @@ export default class Matrix2 {
 
 	/**
 	 * Returns a new instance of axes (x, y)
-	 * @constructor
 	 * @param {Vector2} x - The x-axis vector
 	 * @param {Vector2} [y] - The y-axis vector
 	 * @param {Matrix2} [target] - The target instance
@@ -83,7 +80,6 @@ export default class Matrix2 {
 
 	/**
 	 * Returns the sum of a and b (a+b)
-	 * @constructor
 	 * @param {Matrix2} a - The first summand
 	 * @param {Matrix2} b - The second summand
 	 * @param {Matrix2} [target] - The target instance
@@ -95,7 +91,6 @@ export default class Matrix2 {
 
 	/**
 	 * Returns the difference of a and b (a-b)
-	 * @constructor
 	 * @param {Matrix2} a - The minuend
 	 * @param {Matrix2} b - The subtrahend
 	 * @param {Matrix2} [target] - The target instance
@@ -107,7 +102,6 @@ export default class Matrix2 {
 
 	/**
 	 * Returns the concatenation of a and b (a*b)
-	 * @constructor
 	 * @param {Matrix2} a - The first matrix
 	 * @param {Matrix2} b - The second matrix
 	 * @param {Matrix2} [target] - The target instance
@@ -121,7 +115,6 @@ export default class Matrix2 {
 	/**
 	 * Returns the inverse of m
 	 * Returns null if m is assumed to be singular, the new instance otherwise
-	 * @constructor
 	 * @param {Matrix2} m - The source
 	 * @param {Matrix2} [target] - The target instance
 	 * @returns {Matrix2|null}
@@ -134,7 +127,6 @@ export default class Matrix2 {
 
 	/**
 	 * Returns the transpose of m
-	 * @constructor
 	 * @param {Matrix2} m - The source
 	 * @param {Matrix2} [target] - The target instance
 	 * @returns {Matrix2}
@@ -145,7 +137,6 @@ export default class Matrix2 {
 
 	/**
 	 * Returns a copy of m
-	 * @constructor
 	 * @param {Matrix2} m - The source
 	 * @param {Matrix2} [target] - The target instance
 	 * @returns {Matrix2}
@@ -159,7 +150,7 @@ export default class Matrix2 {
 	 * Returns true if a and b are equal, false otherwise (a==b)
 	 * @param {Matrix2} a - The first matrix
 	 * @param {Matrix2} b - The second matrix
-	 * @returns {Boolean}
+	 * @returns {boolean}
 	 */
 	static isEQ(a, b) {
 		if (a === b) return true;
@@ -177,7 +168,7 @@ export default class Matrix2 {
 
 	/**
 	 * Creates a new instance
-	 * @param {Float[]} [n] - Array representing 2x2 column-major ordered components
+	 * @param {number[]} [n] - Array representing 2x2 column-major ordered components
 	 * Arrays of length !== 4 will return the identity matrix
 	 */
 	constructor(n) {
@@ -186,7 +177,7 @@ export default class Matrix2 {
 		 * The 4 column-major ordered components
 		 * n[0]:n00 n[2]:n01
 		 * n[1]:n10 n[3]:n11
-		 * @type {Float[]}
+		 * @type {number[]}
 		 */
 		this.n = (n && n.constructor === Array && n.length === 4 ? n : [1.0, 0.0, 0.0, 1.0]);
 	}
@@ -194,7 +185,7 @@ export default class Matrix2 {
 
 	/**
 	 * Redefines the instance
-	 * @param {Float[]} [n] - Array representing the 2x2 column-major ordered compoents
+	 * @param {number[]} [n] - Array representing the 2x2 column-major ordered compoents
 	 * Array of length !== 4 will return the identity matrix
 	 * @returns {Matrix2}
 	 */
@@ -207,7 +198,7 @@ export default class Matrix2 {
 
 	/**
 	 * row 0, col0, {@link Matrix2#n}[0]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n00() {
 		return this.n[0];
@@ -220,7 +211,7 @@ export default class Matrix2 {
 
 	/**
 	 * row 0, col1, {@link Matrix2#n}[2]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n01() {
 		return this.n[2];
@@ -233,7 +224,7 @@ export default class Matrix2 {
 
 	/**
 	 * row 1, col0, {@link Matrix2#n}[1]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n10() {
 		return this.n[1];
@@ -246,7 +237,7 @@ export default class Matrix2 {
 
 	/**
 	 * row 1, col1, {@link Matrix2#n}[3]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n11() {
 		return this.n[3];
@@ -259,7 +250,7 @@ export default class Matrix2 {
 
 	/**
 	 * The determinant
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get determinant() {
 		return this.n[0] * this.n[3] - this.n[2] * this.n[1];
@@ -373,7 +364,7 @@ export default class Matrix2 {
 	/**
 	 * The inverse of the instance
 	 * Returns false if the instance is assumed to singular, true otherwise
-	 * @returns {Boolean}
+	 * @returns {boolean}
 	 */
 	invert() {
 		return this.inverseOf(this);
@@ -390,8 +381,8 @@ export default class Matrix2 {
 
 	/**
 	 * Returns a string representation of the instance
-	 * @param {Uint} [digits=3] - The decimal digits
-	 * @returns {String}
+	 * @param {int} [digits=3] - The decimal digits
+	 * @returns {string}
 	 */
 	toString(digits = 3) {
 		const str = this.n
@@ -403,7 +394,7 @@ export default class Matrix2 {
 
 	/**
 	 * Returns the {@link Matrix2#determinant} of the instance
-	 * @returns {Float}
+	 * @returns {number}
 	 */
 	valueOf() {
 		return this.determinant;

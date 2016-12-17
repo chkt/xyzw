@@ -10,9 +10,8 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a instance of axis and rotation
-	 * @constructor
 	 * @param {Vector3} axis - The rotation axis
-	 * @param {Float} rad - The rotation in radians
+	 * @param {number} rad - The rotation in radians
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
 	 */
@@ -37,8 +36,7 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a instance of x-axis rotation
-	 * @constructor
-	 * @param {Float} rad - The rotation in radians
+	 * @param {number} rad - The rotation in radians
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
 	 */
@@ -60,8 +58,7 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a instance of y-axis rotation
-	 * @constructor
-	 * @param {Float} rad - The rotation in radians
+	 * @param {number} rad - The rotation in radians
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
 	 */
@@ -83,8 +80,7 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a instance of z-axis rotation
-	 * @constructor
-	 * @param {Float} rad - The rotation in radians
+	 * @param {number} rad - The rotation in radians
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
 	 */
@@ -107,10 +103,9 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a instance of (x,y,z) ordered euler angles
-	 * @constructor
-	 * @param {Float} x - The first (x-axis) rotation in radians
-	 * @param {Float} y - The second (y-axis) rotation in radians
-	 * @param {Float} z - The third (z-axis) rotation in radians
+	 * @param {number} x - The first (x-axis) rotation in radians
+	 * @param {number} y - The second (y-axis) rotation in radians
+	 * @param {number} z - The third (z-axis) rotation in radians
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
 	 */
@@ -141,10 +136,9 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a instance of (y,x,z) ordered euler angles
-	 * @constructor
-	 * @param {Float} x - The second (x-axis) rotation in radians
-	 * @param {Float} y - The first (y-axis) rotation in radians
-	 * @param {Float} z - The third (z-axis) rotation in radians
+	 * @param {number} x - The second (x-axis) rotation in radians
+	 * @param {number} y - The first (y-axis) rotation in radians
+	 * @param {number} z - The third (z-axis) rotation in radians
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
 	 *
@@ -176,10 +170,9 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a instance of (z,x,y) ordered euler angles
-	 * @constructor
-	 * @param {Float} x - The second (x-axis) rotation in radians
-	 * @param {Float} y - The third (y-axis) rotation in radians
-	 * @param {Float} z - The first (z-axis) rotation in radians
+	 * @param {number} x - The second (x-axis) rotation in radians
+	 * @param {number} y - The third (y-axis) rotation in radians
+	 * @param {number} z - The first (z-axis) rotation in radians
 	 * @param {Matrix3} [target] - The target instance
 	 * @return {Matrix3}
 	 */
@@ -211,7 +204,6 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a instance of scale vector
-	 * @constructor
 	 * @param {Vector3} v - The source
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
@@ -233,7 +225,6 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a instance of translation vector
-	 * @constructor
 	 * @param {Vector2} v - The source
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
@@ -255,7 +246,6 @@ export default class Matrix3 {
 
 	/**
 	 * Returns an instance created from axes (x, y) and translation t
-	 * @constructor
 	 * @param {Vector2} x - The x axis
 	 * @param {Vector2} [y] - The y axis
 	 * @param {Vector2} [t] - The translation
@@ -280,7 +270,6 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a instance of axes (x, y, z)
-	 * @constructor
 	 * @param {Vector3} x - The x-axis vector
 	 * @param {Vector3} y - The y-axis vector
 	 * @param {Vector3} [z] - The z-axis vector
@@ -299,7 +288,6 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a instance of unit-quaternion q
-	 * @constructor
 	 * @param {Vector4} q - The source
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
@@ -329,7 +317,6 @@ export default class Matrix3 {
 	/**
 	 * Returns a instance of m
 	 * The instance will be padded to 3x3
-	 * @constructor
 	 * @param {Matrix2} m - The source
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
@@ -348,7 +335,6 @@ export default class Matrix3 {
 	/**
 	 * Returns a instance of m
 	 * The instance will be cropped to 3x3 by removing the fourth row & column of m
-	 * @constructor
 	 * @param {Matrix4} m - The source
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
@@ -368,7 +354,6 @@ export default class Matrix3 {
 
 	/**
 	 * Returns the sum of a and b (a+b)
-	 * @constructor
 	 * @param {Matrix3} a - The first summand
 	 * @param {Matrix3} b - The second summand
 	 * @param {Matrix3} [target] - The target instance
@@ -380,7 +365,6 @@ export default class Matrix3 {
 
 	/**
 	 * Returns the difference of a and b (a-b)
-	 * @constructor
 	 * @param {Matrix3} a - The minuend
 	 * @param {Matrix3} b - The subtrahend
 	 * @param {Matrix3} [target] - The target instance
@@ -393,7 +377,6 @@ export default class Matrix3 {
 	/**
 	 * Returns the 2x3 concatenation of m and matrix-transformed v (m*Matrix3.Matrix2(Matrix2.Scale(v)))
 	 * Components 2x are assumed to be (0.0,0.0,1.0)
-	 * @constructor
 	 * @param {Matrix3} m - The matrix
 	 * @param {Vector2} v - The vector
 	 * @param {Matrix3} [target] - The target instance
@@ -405,7 +388,6 @@ export default class Matrix3 {
 
 	/**
 	 * Returns the 2x3 concatenation of m and matrix-transformed v (m*Matrix3.Translation(v))
-	 * @constructor
 	 * @param {Matrix3} m - The matrix
 	 * @param {Vector2} v - The vector
 	 * @param {Matrix3} [target] - The target instance
@@ -418,7 +400,6 @@ export default class Matrix3 {
 	/**
 	 * Returns the 2x3 concatenation of a and b (a*b)
 	 * Components 2x are assumed to be (0.0,0.0,1.0)
-	 * @constructor
 	 * @param {Matrix3} a - The first transform
 	 * @param {Matrix2} b - The second transform
 	 * @param {Matrix3} [target] - The target instance
@@ -431,7 +412,6 @@ export default class Matrix3 {
 	/**
 	 * Returns the 2x3 concatenation of a and b (a*b)
 	 * Components 2x are assumed to be (0.0,0.0,1.0)
-	 * @constructor
 	 * @param {Matrix3} a - The first transform
 	 * @param {Matrix3} b - The second transform
 	 * @param {Matrix3} [target] - The target instance
@@ -443,7 +423,6 @@ export default class Matrix3 {
 
 	/**
 	 * Returns the concatenation of a and b (a*b)
-	 * @constructor
 	 * @param {Matrix3} a - The first transform
 	 * @param {Matrix3} b - The second transform
 	 * @param {Matrix3} [target] - The target instance
@@ -457,7 +436,6 @@ export default class Matrix3 {
 	/**
 	 * Returns the inverse of m
 	 * Returns null if m is assumed to be singular, the inverse of m otherwise
-	 * @constructor
 	 * @param {Matrix3} m - The source
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3|null}
@@ -470,7 +448,6 @@ export default class Matrix3 {
 
 	/**
 	 * Returns the transpose of m
-	 * @constructor
 	 * @param {Matrix3} m - The source
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
@@ -481,7 +458,6 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a copy of m
-	 * @constructor
 	 * @param {Matrix3} m - The source
 	 * @param {Matrix3} [target] - The target instance
 	 * @returns {Matrix3}
@@ -495,7 +471,7 @@ export default class Matrix3 {
 	 * Returns true if a and b are equal, false otherwise
 	 * @param {Matrix3} a - The protagonist
 	 * @param {Matrix3} b - The antagonist
-	 * @returns {Boolean}
+	 * @returns {boolean}
 	 */
 	static isEQ(a, b) {
 		if (a === b) return true;
@@ -513,7 +489,7 @@ export default class Matrix3 {
 
 	/**
 	 * Creates a new instance
-	 * @param {Float[]} [n] - Array represeting 3x3 column-major ordered components
+	 * @param {number[]} [n] - Array represeting 3x3 column-major ordered components
 	 * Arrays of length <em>!== 9</em> will return the identity matrix
 	 */
 	constructor(n) {
@@ -523,7 +499,7 @@ export default class Matrix3 {
 		 * n[0]:n00 n[3]:n01 n[6]:n02
 		 * n[1]:n10 n[4]:n11 n[7]:n12
 		 * n[2]:n20 n[5]:n21 n[8]:n22
-		 * @type {Float[]}
+		 * @type {number[]}
 		 */
 		this.n = (n && n.constructor === Array && n.length === 9 ? n : [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]);
 	}
@@ -531,7 +507,7 @@ export default class Matrix3 {
 
 	/**
 	 * Redefines the instance
-	 * @param {Float[]} [n] - Array representing 3x3 column-major ordered components
+	 * @param {number[]} [n] - Array representing 3x3 column-major ordered components
 	 * Arrays of length <em>!== 9</em> will return the identity matrix.
 	 * @returns {Matrix3}
 	 */
@@ -544,7 +520,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 0, col 0, {@link Matrix3#n}[0]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n00() {
 		return this.n[0];
@@ -557,7 +533,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 0, col 1, {@link Matrix3#n}[3]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n01() {
 		return this.n[3];
@@ -570,7 +546,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 0, col 2, {@link Matrix3#n}[6]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n02() {
 		return this.n[6];
@@ -583,7 +559,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 1, col 0, {@link Matrix3#n}[1]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n10() {
 		return this.n[1];
@@ -596,7 +572,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 1, col 1, {@link Matrix3#n}[4]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n11() {
 		return this.n[4];
@@ -609,7 +585,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 1, col 2, {@link Matrix3#n}[7]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n12() {
 		return this.n[7];
@@ -622,7 +598,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 2, col 0, {@link Matrix3#n}[2]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n20() {
 		return this.n[2];
@@ -635,7 +611,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 2, col 1, {@link Matrix3#n}[5]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n21() {
 		return this.n[5];
@@ -648,7 +624,7 @@ export default class Matrix3 {
 
 	/**
 	 * row 2, col 2, {@link Matrix3#n}[8]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get n22() {
 		return this.n[8];
@@ -661,7 +637,7 @@ export default class Matrix3 {
 
 	/**
 	 * The determinant
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get determinant() {
 		const n = this.n;
@@ -914,7 +890,7 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a (x,y,z) ordered (y,x,z) euler angle representation of the instance
-	 * @returns {Float[]}
+	 * @returns {number[]}
 	 */
 	toEulerYXZ() {
 		const n = this.n, x = Math.asin(-n[7]);
@@ -934,7 +910,7 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a (x,y,z) ordered (z,x,y) euler angle representation of the instance
-	 * @returns {Float[]}
+	 * @returns {number[]}
 	 */
 	toEulerZXY() {
 		const n = this.n, x = Math.asin(-n[5]);
@@ -955,7 +931,7 @@ export default class Matrix3 {
 	/**
 	 * Returns a css-formated 2x3 string representation of the instance
 	 * Components 2x are assumed to be (0.0,0.0,1.0)
-	 * @param {Uint} [digits=3] - The decimal digits
+	 * @param {int} [digits=3] - The decimal digits
 	 * @returns {String}
 	 */
 	toCSS2x3(digits = 3) {
@@ -969,7 +945,7 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a css-formated 3x3 string representation of the instance
-	 * @param {Uint} [digits=3] - The decimal digits
+	 * @param {int} [digits=3] - The decimal digits
 	 * @returns {String}
 	 */
 	toCSS(digits = 3) {
@@ -982,7 +958,7 @@ export default class Matrix3 {
 
 	/**
 	 * Returns a string representation of the instance
-	 * @param {Uint} [digits=3] - The decimal digits
+	 * @param {int} [digits=3] - The decimal digits
 	 * @returns {String}
 	 */
 	toString(digits = 3) {
@@ -995,7 +971,7 @@ export default class Matrix3 {
 
 	/**
 	 * Returns the {@link Matrix3#determinant} of the instance
-	 * @returns {Float}
+	 * @returns {number}
 	 */
 	valueOf() {
 		return this.determinant;

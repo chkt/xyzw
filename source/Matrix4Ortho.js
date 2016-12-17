@@ -5,42 +5,42 @@ import Matrix4 from './Matrix4';
 
 /**
  * The minimal vertical extend of the viewcube
- * @type Float
+ * @type {number}
  */
 export const EXTEND_MIN = 1.0e-10;
 /**
  * The maximal vertical extend of the viewcube
- * @type Float
+ * @type {number}
  */
 export const EXTEND_MAX = 1.0e10;
 /**
  * The default vertical extend of the viewcube
- * @type Float
+ * @type {number}
  */
 export const EXTEND_DEFAULT = 100.0;
 /**
  * The minimal projection aspect ratio (w/h)
- * @type Float
+ * @type {number}
  */
 export const ASPECT_MIN = 1.0e-10;
 /**
  * The maximal projection aspect ratio (w/h)
- * @type Float
+ * @type {number}
  */
 export const ASPECT_MAX = 1.0e10;
 /**
  * The default projection aspect ratio (w/h)
- * @type Float
+ * @type {number}
  */
 export const ASPECT_DEFAULT = 16.0 / 9.0;
 /**
  * The minimal z-plane distance
- * @type Float
+ * @type {number}
  */
 export const ZPLANE_MIN = 1.0e-10;
 /**
  * The maximal z-plane distance
- * @type Float
+ * @type {number}
  */
 export const ZPLANE_MAX = Number.MAX_VALUE;
 
@@ -60,7 +60,6 @@ export default class Matrix4Ortho extends Matrix4 {
 
 	/**
 	 * Returns a copy of m
-	 * @constructor
 	 * @param {Matrix4Ortho} m - The source
 	 * @param {Matrix4Ortho} [target] - The target instance
 	 * @returns {Matrix4Ortho}
@@ -74,10 +73,10 @@ export default class Matrix4Ortho extends Matrix4 {
 
 	/**
 	 * Creates a new instance
-	 * @param {Float} [extend=EXTEND_DEFAULT] - The vertical extend of the viewcube
-	 * @param {Float} [aspect=ASPECT_DEFAULT] - The aspect ratio (w/h)
-	 * @param {Float} [near=ZPLANE_MIN] - The near plane distance
-	 * @param {Float} [far=ZPLANE_MAX] - The far plane distance
+	 * @param {number} [extend=EXTEND_DEFAULT] - The vertical extend of the viewcube
+	 * @param {number} [aspect=ASPECT_DEFAULT] - The aspect ratio (w/h)
+	 * @param {number} [near=ZPLANE_MIN] - The near plane distance
+	 * @param {number} [far=ZPLANE_MAX] - The far plane distance
 	 */
 	constructor(
 		extend = EXTEND_DEFAULT,
@@ -93,10 +92,10 @@ export default class Matrix4Ortho extends Matrix4 {
 
 	/**
 	 * (Re)defines the instance
-	 * @param {Float} [extend=EXTEND_DEFAULT] - The vertical extend of the viewcube
-	 * @param {Float} [aspect=ASPECT_DEFAULT] - The aspect ratio (w/h)
-	 * @param {Float} [near=ZPLANE_MIN] - The near plane distance
-	 * @param {Float} [far=ZPLANE_MAX] - The far plane distance
+	 * @param {number} [extend=EXTEND_DEFAULT] - The vertical extend of the viewcube
+	 * @param {number} [aspect=ASPECT_DEFAULT] - The aspect ratio (w/h)
+	 * @param {number} [near=ZPLANE_MIN] - The near plane distance
+	 * @param {number} [far=ZPLANE_MAX] - The far plane distance
 	 * @returns {Matrix4Ortho}
 	 */
 	define(extend, aspect, near, far) {
@@ -149,7 +148,7 @@ export default class Matrix4Ortho extends Matrix4 {
 
 	/**
 	 * The vertical extend of the viewcube
-	 * @type Float
+	 * @type {number}
 	 */
 	get extend() {
 		return _extend.get(this);
@@ -157,7 +156,7 @@ export default class Matrix4Ortho extends Matrix4 {
 
 	/**
 	 * The aspect ratio (w/h)
-	 * @type Float
+	 * @type {number}
 	 */
 	get aspect() {
 		return _aspect.get(this);
@@ -165,7 +164,7 @@ export default class Matrix4Ortho extends Matrix4 {
 
 	/**
 	 * The near plane distance
-	 * @type Float
+	 * @type {number}
 	 */
 	get near() {
 		return _near.get(this);
@@ -173,7 +172,7 @@ export default class Matrix4Ortho extends Matrix4 {
 
 	/**
 	 * The far plane distance
-	 * @type Float
+	 * @type {number}
 	 */
 	get far() {
 		return _far.get(this);

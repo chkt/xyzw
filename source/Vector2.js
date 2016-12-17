@@ -5,7 +5,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns an instance representing the x axis
-	 * @constructor
 	 * @param {Vector2} [target] - The target instance
 	 * @returns {Vector2}
 	 */
@@ -20,7 +19,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns an instance representing the y axis
-	 * @constructor
 	 * @param {Vector2} [target] - The target instance
 	 * @returns {Vector2}
 	 */
@@ -35,7 +33,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns a unit instance from rad
-	 * @constructor
 	 * @param {Float} rad - The rotation in radians
 	 * @param {Vector2} [target] - The target instance
 	 * @returns {Vector2}
@@ -54,7 +51,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns the resulting instance of cw triangle (v0,v1,v2) and barycentric coordinates (u,v)
-	 * @constructor
 	 * @param {Vector2} v0 - The first corner
 	 * @param {Vector2} v1 - The second corner
 	 * @param {Vector2} v2 - The third corner
@@ -81,7 +77,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns the sum of v and w (v+w)
-	 * @constructor
 	 * @param {Vector2} v - The first summand
 	 * @param {Vector2} w - The second summand
 	 * @param {Vector2} [target] - The target instance
@@ -93,7 +88,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns the difference of v and w (v-w)
-	 * @constructor
 	 * @param {Vector2} v - The minuend
 	 * @param {Vector2} w - The subtrahend
 	 * @param {Vector2} [target] - The target instance
@@ -105,7 +99,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns the scalar product of v and n (v*n)
-	 * @constructor
 	 * @param {Vector2} v - The vector
 	 * @param {Float} n - The scalar
 	 * @param {Vector2} [target] - The target instance
@@ -117,7 +110,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns the transformation of v (m*v)
-	 * @constructor
 	 * @param {Matrix2} m - The transform
 	 * @param {Vector2} v - The vector
 	 * @param {Vector2} [target] - The target instance
@@ -129,7 +121,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns the 2x3 transformation of v (m*v)
-	 * @constructor
 	 * @param {Matrix3} m - The transform
 	 * @param {Vector2} v - The vector
 	 * @param {Vector2} [target] - The target instance
@@ -141,7 +132,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns the transformation of v (m*v)
-	 * @constructor
 	 * @param {Matrix3} m - The transform
 	 * @param {Vector2} v - The vector
 	 * @param {Vector2} [target] - The target instance
@@ -153,7 +143,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns the orthogonal projection of w on v
-	 * @constructor
 	 * @param {Vector2} v - The projection vector
 	 * @param {Vector2} w - The projected vector
 	 * @param {Vector2} [target] - The target instance
@@ -165,7 +154,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns a normal form of v
-	 * @constructor
 	 * @param {Vector2} v - The source
 	 * @param {Vector2} [target] - The target instance
 	 * @returns {Vector2}
@@ -176,7 +164,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns a perpendicular dot product of v
-	 * @constructor
 	 * @param {Vector2} v - The source
 	 * @param {Vector2} [target] - The target instance
 	 * @returns {Vector2}
@@ -187,7 +174,6 @@ export default class Vector2 {
 
 	/**
 	 * Returns a copy of v
-	 * @constructor
 	 * @param {Vector2} v - The source
 	 * @param {Vector2} [target] - The target instance
 	 * @returns {Vector2}
@@ -201,7 +187,7 @@ export default class Vector2 {
 	 * Returns the outer product of v and w (v cross w)
 	 * @param {Vector2} v - The first vector
 	 * @param {Vector2} w - The second vector
-	 * @returns {Float}
+	 * @returns {number}
 	 */
 	static cross(v, w) {
 		return v.n[0] * w.n[1] - v.n[1] * w.n[0];
@@ -211,7 +197,7 @@ export default class Vector2 {
 	 * Returns the inner product of v and w (v dot w)
 	 * @param {Vector2} v - The first vector
 	 * @param {Vector2} w - The second vector
-	 * @returns {Float}
+	 * @returns {number}
 	 */
 	static dot(v, w) {
 		return v.n[0] * w.n[0] + v.n[1] * w.n[1];
@@ -221,7 +207,7 @@ export default class Vector2 {
 	 * Returns the angle in radians between v and w (acos(v dot w))
 	 * @param {Vector2} v - The first vector
 	 * @param {Vector2} w - The second vector
-	 * @returns {Float}
+	 * @returns {number}
 	 */
 	static rad(v, w) {
 		return Math.acos(v.n[0] * w.n[0] + v.n[1] * w.n[1]);
@@ -232,7 +218,7 @@ export default class Vector2 {
 	 * Returns true if v and w are equal, false otherwise
 	 * @param {Vector2} v - The protagonist
 	 * @param {Vector2} w - The antagonist
-	 * @returns {Boolean}
+	 * @returns {boolean}
 	 */
 	static isEQ(v, w) {
 		const vn = v.n, wn = w.n;
@@ -243,13 +229,13 @@ export default class Vector2 {
 
 	/**
 	 * Creates a new instance
-	 * @param {Float[]} [n] - Array representing the two components
+	 * @param {number[]} [n] - Array representing the two components
 	 * Arrays of length !== 2 will return the zero (0,0) vector
 	 */
 	constructor(n) {
 		/**
 		 * The component array
-		 * @type {Float[]}
+		 * @type {number[]}
 		 */
 		this.n = (n && n.constructor === Array && n.length === 2 ? n : [0.0, 0.0]);
 	}
@@ -257,7 +243,7 @@ export default class Vector2 {
 
 	/**
 	 * Redefines the instance
-	 * @param {Float[]} n - Array representing the two components
+	 * @param {number[]} n - Array representing the two components
 	 * @returns {Vector2}
 	 */
 	define(n) {
@@ -269,7 +255,7 @@ export default class Vector2 {
 
 	/**
 	 * The x component {@link Vector2#n}[0]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get x() {
 		return this.n[0];
@@ -281,7 +267,7 @@ export default class Vector2 {
 
 	/**
 	 * The y component {@link Vector2#n}[1]
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get y() {
 		return this.n[1];
@@ -294,7 +280,7 @@ export default class Vector2 {
 	/**
 	 * The s component
 	 * Alias of {@link Vector2#x}
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get s() {
 		return this.n[0];
@@ -307,7 +293,7 @@ export default class Vector2 {
 	/**
 	 * The t component
 	 * Alias of {@link Vector2#y}
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get t() {
 		return this.n[1];
@@ -320,7 +306,7 @@ export default class Vector2 {
 
 	/**
 	 * The norm
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get norm() {
 		const x = this.n[0], y = this.n[1];
@@ -330,7 +316,7 @@ export default class Vector2 {
 
 	/**
 	 * The square of the norm (norm*norm)
-	 * @type {Float}
+	 * @type {number}
 	 */
 	get normSquared() {
 		const x = this.n[0], y = this.n[1];
@@ -368,7 +354,7 @@ export default class Vector2 {
 	/**
 	 * The scalar product of v and n (v*n)
 	 * @param {Vector2} v - The vector
-	 * @param {Float}   n - The scalar
+	 * @param {number}   n - The scalar
 	 * @returns {Vector2}
 	 */
 	multiplyScalar(v, n) {
@@ -497,7 +483,7 @@ export default class Vector2 {
 
 	/**
 	 * The scalar product of the instance and n (v*n)
-	 * @param {Float} n - The scalar
+	 * @param {number} n - The scalar
 	 * @returns {Vector2}
 	 */
 	multiplyScalarEQ(n) {
@@ -595,8 +581,8 @@ export default class Vector2 {
 
 	/**
 	 * Returns a string representation of the instance
-	 * @param {Uint} [digits=3] - The decimal digits
-	 * @returns {String}
+	 * @param {int} [digits=3] - The decimal digits
+	 * @returns {string}
 	 */
 	toString(digits = 3) {
 		const str = this.n
@@ -608,7 +594,7 @@ export default class Vector2 {
 
 	/**
 	 * Returns the {@link Vector2#norm} of the instance
-	 * @returns {Float}
+	 * @returns {number}
 	 */
 	valueOf() {
 		return this.norm;

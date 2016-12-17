@@ -59,7 +59,7 @@
 		"babel-preset-es2015": "~6.5",
 		"jscs" : "~2.1",
 		"tesa" : "~0.2",
-		"documentation" : "4.0.0-beta11",
+		"documentation" : "4.0.0-beta16",
 		"gulp" : "~3.9",
 		"gulp-jshint" : "~1.11",
 		"gulp-jscs" : "~2.0",

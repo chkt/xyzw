@@ -33,7 +33,7 @@ export default class Vector2 {
 
 	/**
 	 * Returns a unit instance from rad
-	 * @param {Float} rad - The rotation in radians
+	 * @param {number} rad - The rotation in radians
 	 * @param {Vector2} [target] - The target instance
 	 * @returns {Vector2}
 	 */
@@ -54,8 +54,8 @@ export default class Vector2 {
 	 * @param {Vector2} v0 - The first corner
 	 * @param {Vector2} v1 - The second corner
 	 * @param {Vector2} v2 - The third corner
-	 * @param {Float} u - The u-coordinate
-	 * @param {Float} v - The v-coordinate
+	 * @param {number} u - The u-coordinate
+	 * @param {number} v - The v-coordinate
 	 * @param {Vector2} [target] - The target instance
 	 * @returns {Vector2}
 	 */
@@ -100,7 +100,7 @@ export default class Vector2 {
 	/**
 	 * Returns the scalar product of v and n (v*n)
 	 * @param {Vector2} v - The vector
-	 * @param {Float} n - The scalar
+	 * @param {number} n - The scalar
 	 * @param {Vector2} [target] - The target instance
 	 * @returns {Vector2}
 	 */

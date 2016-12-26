@@ -177,82 +177,100 @@ The equivalent concatenations for 3x4 matrices.
 
 # ExtMath
 
+[source/Math.js:4-4](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Math.js#L4-L4 "Source code on GitHub")
+
 **Extends Math**
 
 ## clamp
+
+[source/Math.js:15-17](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Math.js#L15-L17 "Source code on GitHub")
 
 Returns the clamped value of n
 
 **Parameters**
 
--   `n` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The value
--   `min` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The minimal value
--   `max` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The maximal value
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The value
+-   `min` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The minimal value
+-   `max` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The maximal value
 
-Returns **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## mix
+
+[source/Math.js:26-28](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Math.js#L26-L28 "Source code on GitHub")
 
 Returns the linear interpolation of a and b
 
 **Parameters**
 
--   `a` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The first value
--   `b` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The second value
--   `bf` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The weight of the second value
+-   `a` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The first value
+-   `b` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The second value
+-   `bf` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The weight of the second value
 
-Returns **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## reflect
+
+[source/Math.js:36-38](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Math.js#L36-L38 "Source code on GitHub")
 
 Returns the reflected value of n against r
 
 **Parameters**
 
--   `n` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The value
--   `r` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The reflection value
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The value
+-   `r` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The reflection value
 
-Returns **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## range
+
+[source/Math.js:47-52](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Math.js#L47-L52 "Source code on GitHub")
 
 Returns a random number between min and max
 
 **Parameters**
 
--   `min` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The minimal value
--   `max` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The maximal value
--   `intervals` **\[Int]** The number of discreet intervals
+-   `min` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The minimal value
+-   `max` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The maximal value
+-   `intervals` **int?** The number of discreet intervals
 
-Returns **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## overlap
+
+[source/Math.js:63-68](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Math.js#L63-L68 "Source code on GitHub")
 
 Returns true if ranges (a0 a1) and (b0 b1) overlap, false otherwise
 
 **Parameters**
 
--   `a0` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The first limit of range a
--   `a1` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The second limit of range a
--   `b0` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The first limit of range b
--   `b1` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The second limit of range b
+-   `a0` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The first limit of range a
+-   `a1` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The second limit of range a
+-   `b0` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The first limit of range b
+-   `b1` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The second limit of range b
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 # Matrix2
+
+[source/Matrix2.js:4-402](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L4-L402 "Source code on GitHub")
 
 2x2 transformations
 
 ## constructor
 
+[source/Matrix2.js:174-183](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L174-L183 "Source code on GitHub")
+
 Creates a new instance
 
 **Parameters**
 
--   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing 2x2 column-major ordered components
+-   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Array representing 2x2 column-major ordered components
     Arrays of length !== 4 will return the identity matrix
 
 ## n
+
+[source/Matrix2.js:182-182](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L182-L182 "Source code on GitHub")
 
 The array representation
 The 4 column-major ordered components
@@ -261,36 +279,50 @@ n[1]&#x3A;n10 n[3]&#x3A;n11
 
 ## define
 
+[source/Matrix2.js:192-196](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L192-L196 "Source code on GitHub")
+
 Redefines the instance
 
 **Parameters**
 
--   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing the 2x2 column-major ordered compoents
+-   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Array representing the 2x2 column-major ordered compoents
     Array of length !== 4 will return the identity matrix
 
 Returns **[Matrix2](#matrix2)** 
 
 ## n00
 
+[source/Matrix2.js:203-205](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L203-L205 "Source code on GitHub")
+
 row 0, col0, [Matrix2#n](#matrix2n)[0]
 
 ## n01
+
+[source/Matrix2.js:216-218](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L216-L218 "Source code on GitHub")
 
 row 0, col1, [Matrix2#n](#matrix2n)[2]
 
 ## n10
 
+[source/Matrix2.js:229-231](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L229-L231 "Source code on GitHub")
+
 row 1, col0, [Matrix2#n](#matrix2n)[1]
 
 ## n11
+
+[source/Matrix2.js:242-244](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L242-L244 "Source code on GitHub")
 
 row 1, col1, [Matrix2#n](#matrix2n)[3]
 
 ## determinant
 
+[source/Matrix2.js:255-257](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L255-L257 "Source code on GitHub")
+
 The determinant
 
 ## add
+
+[source/Matrix2.js:266-272](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L266-L272 "Source code on GitHub")
 
 The sum of a and b (a+b)
 
@@ -303,6 +335,8 @@ Returns **[Matrix2](#matrix2)**
 
 ## subtract
 
+[source/Matrix2.js:280-286](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L280-L286 "Source code on GitHub")
+
 The difference of a and b (a-b)
 
 **Parameters**
@@ -314,6 +348,8 @@ Returns **[Matrix2](#matrix2)**
 
 ## multiply
 
+[source/Matrix2.js:294-310](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L294-L310 "Source code on GitHub")
+
 The concatenation of a and b (a\*b)
 
 **Parameters**
@@ -324,6 +360,8 @@ The concatenation of a and b (a\*b)
 Returns **[Matrix2](#matrix2)** 
 
 ## inverseOf
+
+[source/Matrix2.js:320-336](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L320-L336 "Source code on GitHub")
 
 The inverse of m
 Beware: method is NOT chainable
@@ -337,6 +375,8 @@ Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 ## transposeOf
 
+[source/Matrix2.js:343-350](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L343-L350 "Source code on GitHub")
+
 The transpose of m
 
 **Parameters**
@@ -346,6 +386,8 @@ The transpose of m
 Returns **[Matrix2](#matrix2)** 
 
 ## copyOf
+
+[source/Matrix2.js:357-361](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L357-L361 "Source code on GitHub")
 
 The copy of m
 
@@ -357,12 +399,16 @@ Returns **[Matrix2](#matrix2)**
 
 ## invert
 
+[source/Matrix2.js:369-371](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L369-L371 "Source code on GitHub")
+
 The inverse of the instance
 Returns false if the instance is assumed to singular, true otherwise
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 ## transpose
+
+[source/Matrix2.js:377-379](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L377-L379 "Source code on GitHub")
 
 The transpose of the instance
 
@@ -370,55 +416,67 @@ Returns **[Matrix2](#matrix2)**
 
 ## toString
 
+[source/Matrix2.js:387-393](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L387-L393 "Source code on GitHub")
+
 Returns a string representation of the instance
 
 **Parameters**
 
--   `digits` **\[Uint]** The decimal digits (optional, default `3`)
+-   `digits` **int?** The decimal digits (optional, default `3`)
 
-Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+Returns **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## valueOf
 
+[source/Matrix2.js:399-401](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L399-L401 "Source code on GitHub")
+
 Returns the [Matrix2#determinant](#matrix2determinant) of the instance
 
-Returns **Float** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## Rotation
+
+[source/Matrix2.js:12-25](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L12-L25 "Source code on GitHub")
 
 Returns a instance of z-axis rotation
 
 **Parameters**
 
--   `rad` **Float** The rotation in radians
--   `target` **\[[Matrix2](#matrix2)]** The target instance
+-   `rad` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The rotation in radians
+-   `target` **[Matrix2](#matrix2)?** The target instance
 
 Returns **[Matrix2](#matrix2)** 
 
 ## Scale
+
+[source/Matrix2.js:33-43](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L33-L43 "Source code on GitHub")
 
 Returns a instance of scale vector
 
 **Parameters**
 
 -   `v` **[Vector2](#vector2)** The source
--   `target` **\[[Matrix2](#matrix2)]** The target instance
+-   `target` **[Matrix2](#matrix2)?** The target instance
 
 Returns **[Matrix2](#matrix2)** 
 
 ## Vector2
+
+[source/Matrix2.js:52-60](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L52-L60 "Source code on GitHub")
 
 Returns a new instance of axes (x, y)
 
 **Parameters**
 
 -   `x` **[Vector2](#vector2)** The x-axis vector
--   `y` **\[[Vector2](#vector2)]** The y-axis vector
--   `target` **\[[Matrix2](#matrix2)]** The target instance
+-   `y` **[Vector2](#vector2)?** The y-axis vector
+-   `target` **[Matrix2](#matrix2)?** The target instance
 
 Returns **[Matrix2](#matrix2)** 
 
 ## Matrix3
+
+[source/Matrix2.js:69-78](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L69-L78 "Source code on GitHub")
 
 Returns a new instance of converted m
 The instance will be cropped to 2x2 by removing the third row & column of m
@@ -426,11 +484,13 @@ The instance will be cropped to 2x2 by removing the third row & column of m
 **Parameters**
 
 -   `m` **[Matrix3](#matrix3)** The source
--   `target` **\[[Matrix2](#matrix2)]** The target instance
+-   `target` **[Matrix2](#matrix2)?** The target instance
 
 Returns **[Matrix2](#matrix2)** 
 
 ## Add
+
+[source/Matrix2.js:88-90](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L88-L90 "Source code on GitHub")
 
 Returns the sum of a and b (a+b)
 
@@ -438,11 +498,13 @@ Returns the sum of a and b (a+b)
 
 -   `a` **[Matrix2](#matrix2)** The first summand
 -   `b` **[Matrix2](#matrix2)** The second summand
--   `target` **\[[Matrix2](#matrix2)]** The target instance
+-   `target` **[Matrix2](#matrix2)?** The target instance
 
 Returns **[Matrix2](#matrix2)** 
 
 ## Subtract
+
+[source/Matrix2.js:99-101](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L99-L101 "Source code on GitHub")
 
 Returns the difference of a and b (a-b)
 
@@ -450,11 +512,13 @@ Returns the difference of a and b (a-b)
 
 -   `a` **[Matrix2](#matrix2)** The minuend
 -   `b` **[Matrix2](#matrix2)** The subtrahend
--   `target` **\[[Matrix2](#matrix2)]** The target instance
+-   `target` **[Matrix2](#matrix2)?** The target instance
 
 Returns **[Matrix2](#matrix2)** 
 
 ## Multiply
+
+[source/Matrix2.js:110-112](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L110-L112 "Source code on GitHub")
 
 Returns the concatenation of a and b (a\*b)
 
@@ -462,11 +526,13 @@ Returns the concatenation of a and b (a\*b)
 
 -   `a` **[Matrix2](#matrix2)** The first matrix
 -   `b` **[Matrix2](#matrix2)** The second matrix
--   `target` **\[[Matrix2](#matrix2)]** The target instance
+-   `target` **[Matrix2](#matrix2)?** The target instance
 
 Returns **[Matrix2](#matrix2)** 
 
 ## Inverse
+
+[source/Matrix2.js:122-126](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L122-L126 "Source code on GitHub")
 
 Returns the inverse of m
 Returns null if m is assumed to be singular, the new instance otherwise
@@ -474,33 +540,39 @@ Returns null if m is assumed to be singular, the new instance otherwise
 **Parameters**
 
 -   `m` **[Matrix2](#matrix2)** The source
--   `target` **\[[Matrix2](#matrix2)]** The target instance
+-   `target` **[Matrix2](#matrix2)?** The target instance
 
 Returns **([Matrix2](#matrix2) | null)** 
 
 ## Transpose
+
+[source/Matrix2.js:134-136](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L134-L136 "Source code on GitHub")
 
 Returns the transpose of m
 
 **Parameters**
 
 -   `m` **[Matrix2](#matrix2)** The source
--   `target` **\[[Matrix2](#matrix2)]** The target instance
+-   `target` **[Matrix2](#matrix2)?** The target instance
 
 Returns **[Matrix2](#matrix2)** 
 
 ## Copy
+
+[source/Matrix2.js:144-146](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L144-L146 "Source code on GitHub")
 
 Returns a copy of m
 
 **Parameters**
 
 -   `m` **[Matrix2](#matrix2)** The source
--   `target` **\[[Matrix2](#matrix2)]** The target instance
+-   `target` **[Matrix2](#matrix2)?** The target instance
 
 Returns **[Matrix2](#matrix2)** 
 
 ## isEQ
+
+[source/Matrix2.js:155-165](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix2.js#L155-L165 "Source code on GitHub")
 
 Returns true if a and b are equal, false otherwise (a==b)
 
@@ -509,22 +581,28 @@ Returns true if a and b are equal, false otherwise (a==b)
 -   `a` **[Matrix2](#matrix2)** The first matrix
 -   `b` **[Matrix2](#matrix2)** The second matrix
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 # Matrix3
+
+[source/Matrix3.js:9-979](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L9-L979 "Source code on GitHub")
 
 2x3 and 3x3 transformations
 
 ## constructor
 
+[source/Matrix3.js:495-505](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L495-L505 "Source code on GitHub")
+
 Creates a new instance
 
 **Parameters**
 
--   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array represeting 3x3 column-major ordered components
+-   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Array represeting 3x3 column-major ordered components
     Arrays of length <em>!== 9</em> will return the identity matrix
 
 ## n
+
+[source/Matrix3.js:504-504](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L504-L504 "Source code on GitHub")
 
 The array representation
 Contains the 9 column-major ordered components of the instance
@@ -534,56 +612,80 @@ n[2]&#x3A;n20 n[5]&#x3A;n21 n[8]&#x3A;n22
 
 ## define
 
+[source/Matrix3.js:514-518](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L514-L518 "Source code on GitHub")
+
 Redefines the instance
 
 **Parameters**
 
--   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing 3x3 column-major ordered components
+-   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Array representing 3x3 column-major ordered components
     Arrays of length <em>!== 9</em> will return the identity matrix.
 
 Returns **[Matrix3](#matrix3)** 
 
 ## n00
 
+[source/Matrix3.js:525-527](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L525-L527 "Source code on GitHub")
+
 row 0, col 0, [Matrix3#n](#matrix3n)[0]
 
 ## n01
+
+[source/Matrix3.js:538-540](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L538-L540 "Source code on GitHub")
 
 row 0, col 1, [Matrix3#n](#matrix3n)[3]
 
 ## n02
 
+[source/Matrix3.js:551-553](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L551-L553 "Source code on GitHub")
+
 row 0, col 2, [Matrix3#n](#matrix3n)[6]
 
 ## n10
+
+[source/Matrix3.js:564-566](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L564-L566 "Source code on GitHub")
 
 row 1, col 0, [Matrix3#n](#matrix3n)[1]
 
 ## n11
 
+[source/Matrix3.js:577-579](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L577-L579 "Source code on GitHub")
+
 row 1, col 1, [Matrix3#n](#matrix3n)[4]
 
 ## n12
+
+[source/Matrix3.js:590-592](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L590-L592 "Source code on GitHub")
 
 row 1, col 2, [Matrix3#n](#matrix3n)[7]
 
 ## n20
 
+[source/Matrix3.js:603-605](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L603-L605 "Source code on GitHub")
+
 row 2, col 0, [Matrix3#n](#matrix3n)[2]
 
 ## n21
+
+[source/Matrix3.js:616-618](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L616-L618 "Source code on GitHub")
 
 row 2, col 1, [Matrix3#n](#matrix3n)[5]
 
 ## n22
 
+[source/Matrix3.js:629-631](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L629-L631 "Source code on GitHub")
+
 row 2, col 2, [Matrix3#n](#matrix3n)[8]
 
 ## determinant
 
+[source/Matrix3.js:642-649](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L642-L649 "Source code on GitHub")
+
 The determinant
 
 ## add
+
+[source/Matrix3.js:658-664](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L658-L664 "Source code on GitHub")
 
 The sum of a and b (a+b)
 
@@ -596,6 +698,8 @@ Returns **[Matrix3](#matrix3)**
 
 ## subtract
 
+[source/Matrix3.js:672-678](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L672-L678 "Source code on GitHub")
+
 The difference of a and b (a-b)
 
 **Parameters**
@@ -606,6 +710,8 @@ The difference of a and b (a-b)
 Returns **[Matrix3](#matrix3)** 
 
 ## multiply2x3Vector2Scale
+
+[source/Matrix3.js:687-697](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L687-L697 "Source code on GitHub")
 
 The 2x3 concatenation of m and matrix-transformed v (m\*Matrix3.Matrix2(Matrix2.Scale(v)))
 Components 2x are assumed to be (0.0,0.0,1.0)
@@ -619,6 +725,8 @@ Returns **[Matrix3](#matrix3)**
 
 ## multiply2x3Vector2Translation
 
+[source/Matrix3.js:706-720](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L706-L720 "Source code on GitHub")
+
 The 2x3 concatenation of m and matrix-transformed v (m\*Matrix3.Translation(v))
 Components 2x are assumed to be (0.0,0.0,1.0)
 
@@ -630,6 +738,8 @@ Components 2x are assumed to be (0.0,0.0,1.0)
 Returns **[Matrix3](#matrix3)** 
 
 ## multiply2x3Matrix2
+
+[source/Matrix3.js:729-747](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L729-L747 "Source code on GitHub")
 
 The 2x3 concatenation of a and b (a\*b)
 Components 2x are assumed to be (0.0,0.0,1.0)
@@ -643,6 +753,8 @@ Returns **[Matrix3](#matrix3)**
 
 ## multiply2x3
 
+[source/Matrix3.js:756-777](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L756-L777 "Source code on GitHub")
+
 The 2x3 concatenation of a and b (a\*b)
 Components 2x are assumed to be (0.0,0.0,1.0)
 
@@ -655,6 +767,8 @@ Returns **[Matrix3](#matrix3)**
 
 ## multiply
 
+[source/Matrix3.js:785-809](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L785-L809 "Source code on GitHub")
+
 The concatenation of a and b (a\*b)
 
 **Parameters**
@@ -665,6 +779,8 @@ The concatenation of a and b (a\*b)
 Returns **[Matrix3](#matrix3)** 
 
 ## inverseOf
+
+[source/Matrix3.js:819-843](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L819-L843 "Source code on GitHub")
 
 The inverse of m
 Beware: method is NOT chainable
@@ -677,6 +793,8 @@ Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 ## transposeOf
 
+[source/Matrix3.js:850-858](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L850-L858 "Source code on GitHub")
+
 The transpose of m
 
 **Parameters**
@@ -686,6 +804,8 @@ The transpose of m
 Returns **[Matrix3](#matrix3)** 
 
 ## copyOf
+
+[source/Matrix3.js:865-869](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L865-L869 "Source code on GitHub")
 
 The copy of m
 
@@ -697,6 +817,8 @@ Returns **[Matrix3](#matrix3)**
 
 ## invert
 
+[source/Matrix3.js:878-880](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L878-L880 "Source code on GitHub")
+
 The inverse of the instance
 Beware: method is NOT chainable
 
@@ -704,179 +826,215 @@ Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 ## transpose
 
+[source/Matrix3.js:886-888](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L886-L888 "Source code on GitHub")
+
 The transpose of the instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## toEulerYXZ
 
+[source/Matrix3.js:895-909](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L895-L909 "Source code on GitHub")
+
 Returns a (x,y,z) ordered (y,x,z) euler angle representation of the instance
 
-Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>** 
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
 
 ## toEulerZXY
 
+[source/Matrix3.js:915-929](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L915-L929 "Source code on GitHub")
+
 Returns a (x,y,z) ordered (z,x,y) euler angle representation of the instance
 
-Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>** 
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
 
 ## toCSS2x3
+
+[source/Matrix3.js:937-944](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L937-L944 "Source code on GitHub")
 
 Returns a css-formated 2x3 string representation of the instance
 Components 2x are assumed to be (0.0,0.0,1.0)
 
 **Parameters**
 
--   `digits` **\[Uint]** The decimal digits (optional, default `3`)
+-   `digits` **int?** The decimal digits (optional, default `3`)
 
 Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## toCSS
 
+[source/Matrix3.js:951-957](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L951-L957 "Source code on GitHub")
+
 Returns a css-formated 3x3 string representation of the instance
 
 **Parameters**
 
--   `digits` **\[Uint]** The decimal digits (optional, default `3`)
+-   `digits` **int?** The decimal digits (optional, default `3`)
 
 Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## toString
 
+[source/Matrix3.js:964-970](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L964-L970 "Source code on GitHub")
+
 Returns a string representation of the instance
 
 **Parameters**
 
--   `digits` **\[Uint]** The decimal digits (optional, default `3`)
+-   `digits` **int?** The decimal digits (optional, default `3`)
 
 Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## valueOf
 
+[source/Matrix3.js:976-978](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L976-L978 "Source code on GitHub")
+
 Returns the [Matrix3#determinant](#matrix3determinant) of the instance
 
-Returns **Float** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## Rotation
+
+[source/Matrix3.js:18-35](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L18-L35 "Source code on GitHub")
 
 Returns a instance of axis and rotation
 
 **Parameters**
 
 -   `axis` **[Vector3](#vector3)** The rotation axis
--   `rad` **Float** The rotation in radians
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `rad` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The rotation in radians
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## RotationX
 
+[source/Matrix3.js:43-57](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L43-L57 "Source code on GitHub")
+
 Returns a instance of x-axis rotation
 
 **Parameters**
 
--   `rad` **Float** The rotation in radians
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `rad` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The rotation in radians
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## RotationY
 
+[source/Matrix3.js:65-79](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L65-L79 "Source code on GitHub")
+
 Returns a instance of y-axis rotation
 
 **Parameters**
 
--   `rad` **Float** The rotation in radians
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `rad` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The rotation in radians
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## RotationZ
 
+[source/Matrix3.js:87-101](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L87-L101 "Source code on GitHub")
+
 Returns a instance of z-axis rotation
 
 **Parameters**
 
--   `rad` **Float** The rotation in radians
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `rad` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The rotation in radians
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## EulerXYZ
 
+[source/Matrix3.js:112-135](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L112-L135 "Source code on GitHub")
+
 Returns a instance of (x,y,z) ordered euler angles
 
 **Parameters**
 
--   `x` **Float** The first (x-axis) rotation in radians
--   `y` **Float** The second (y-axis) rotation in radians
--   `z` **Float** The third (z-axis) rotation in radians
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `x` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The first (x-axis) rotation in radians
+-   `y` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The second (y-axis) rotation in radians
+-   `z` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The third (z-axis) rotation in radians
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## EulerYXZ
 
+[source/Matrix3.js:146-169](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L146-L169 "Source code on GitHub")
+
 Returns a instance of (y,x,z) ordered euler angles
 
 **Parameters**
 
--   `x` **Float** The second (x-axis) rotation in radians
--   `y` **Float** The first (y-axis) rotation in radians
--   `z` **Float** The third (z-axis) rotation in radians
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `x` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The second (x-axis) rotation in radians
+-   `y` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The first (y-axis) rotation in radians
+-   `z` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The third (z-axis) rotation in radians
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## EulerZXY
 
+[source/Matrix3.js:179-202](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L179-L202 "Source code on GitHub")
+
 Returns a instance of (z,x,y) ordered euler angles
 
 **Parameters**
 
--   `x` **Float** The second (x-axis) rotation in radians
--   `y` **Float** The third (y-axis) rotation in radians
--   `z` **Float** The first (z-axis) rotation in radians
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `x` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The second (x-axis) rotation in radians
+-   `y` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The third (y-axis) rotation in radians
+-   `z` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The first (z-axis) rotation in radians
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Scale
+
+[source/Matrix3.js:211-224](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L211-L224 "Source code on GitHub")
 
 Returns a instance of scale vector
 
 **Parameters**
 
 -   `v` **[Vector3](#vector3)** The source
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Translation
+
+[source/Matrix3.js:232-245](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L232-L245 "Source code on GitHub")
 
 Returns a instance of translation vector
 
 **Parameters**
 
 -   `v` **[Vector2](#vector2)** The source
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Vector2
+
+[source/Matrix3.js:255-269](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L255-L269 "Source code on GitHub")
 
 Returns an instance created from axes (x, y) and translation t
 
 **Parameters**
 
 -   `x` **[Vector2](#vector2)** The x axis
--   `y` **\[[Vector2](#vector2)]** The y axis
--   `t` **\[[Vector2](#vector2)]** The translation
--   `target` **\[[Matrix3](#matrix3)]** the target instance
+-   `y` **[Vector2](#vector2)?** The y axis
+-   `t` **[Vector2](#vector2)?** The translation
+-   `target` **[Matrix3](#matrix3)?** the target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Vector3
+
+[source/Matrix3.js:279-287](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L279-L287 "Source code on GitHub")
 
 Returns a instance of axes (x, y, z)
 
@@ -884,23 +1042,27 @@ Returns a instance of axes (x, y, z)
 
 -   `x` **[Vector3](#vector3)** The x-axis vector
 -   `y` **[Vector3](#vector3)** The y-axis vector
--   `z` **\[[Vector3](#vector3)]** The z-axis vector
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `z` **[Vector3](#vector3)?** The z-axis vector
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Vector4
+
+[source/Matrix3.js:295-314](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L295-L314 "Source code on GitHub")
 
 Returns a instance of unit-quaternion q
 
 **Parameters**
 
 -   `q` **[Vector4](#vector4)** The source
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Matrix2
+
+[source/Matrix3.js:324-333](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L324-L333 "Source code on GitHub")
 
 Returns a instance of m
 The instance will be padded to 3x3
@@ -908,11 +1070,13 @@ The instance will be padded to 3x3
 **Parameters**
 
 -   `m` **[Matrix2](#matrix2)** The source
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Matrix4
+
+[source/Matrix3.js:342-352](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L342-L352 "Source code on GitHub")
 
 Returns a instance of m
 The instance will be cropped to 3x3 by removing the fourth row & column of m
@@ -920,11 +1084,13 @@ The instance will be cropped to 3x3 by removing the fourth row & column of m
 **Parameters**
 
 -   `m` **[Matrix4](#matrix4)** The source
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Add
+
+[source/Matrix3.js:362-364](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L362-L364 "Source code on GitHub")
 
 Returns the sum of a and b (a+b)
 
@@ -932,11 +1098,13 @@ Returns the sum of a and b (a+b)
 
 -   `a` **[Matrix3](#matrix3)** The first summand
 -   `b` **[Matrix3](#matrix3)** The second summand
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Subtract
+
+[source/Matrix3.js:373-375](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L373-L375 "Source code on GitHub")
 
 Returns the difference of a and b (a-b)
 
@@ -944,11 +1112,13 @@ Returns the difference of a and b (a-b)
 
 -   `a` **[Matrix3](#matrix3)** The minuend
 -   `b` **[Matrix3](#matrix3)** The subtrahend
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Multiply2x3Vector2Scale
+
+[source/Matrix3.js:385-387](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L385-L387 "Source code on GitHub")
 
 Returns the 2x3 concatenation of m and matrix-transformed v (m\*Matrix3.Matrix2(Matrix2.Scale(v)))
 Components 2x are assumed to be (0.0,0.0,1.0)
@@ -957,11 +1127,13 @@ Components 2x are assumed to be (0.0,0.0,1.0)
 
 -   `m` **[Matrix3](#matrix3)** The matrix
 -   `v` **[Vector2](#vector2)** The vector
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Multiply2x3Vector2Translation
+
+[source/Matrix3.js:396-398](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L396-L398 "Source code on GitHub")
 
 Returns the 2x3 concatenation of m and matrix-transformed v (m\*Matrix3.Translation(v))
 
@@ -969,11 +1141,13 @@ Returns the 2x3 concatenation of m and matrix-transformed v (m\*Matrix3.Translat
 
 -   `m` **[Matrix3](#matrix3)** The matrix
 -   `v` **[Vector2](#vector2)** The vector
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Multiply2x3Matrix2
+
+[source/Matrix3.js:408-410](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L408-L410 "Source code on GitHub")
 
 Returns the 2x3 concatenation of a and b (a\*b)
 Components 2x are assumed to be (0.0,0.0,1.0)
@@ -982,11 +1156,13 @@ Components 2x are assumed to be (0.0,0.0,1.0)
 
 -   `a` **[Matrix3](#matrix3)** The first transform
 -   `b` **[Matrix2](#matrix2)** The second transform
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Multiply2x3
+
+[source/Matrix3.js:420-422](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L420-L422 "Source code on GitHub")
 
 Returns the 2x3 concatenation of a and b (a\*b)
 Components 2x are assumed to be (0.0,0.0,1.0)
@@ -995,11 +1171,13 @@ Components 2x are assumed to be (0.0,0.0,1.0)
 
 -   `a` **[Matrix3](#matrix3)** The first transform
 -   `b` **[Matrix3](#matrix3)** The second transform
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Multiply
+
+[source/Matrix3.js:431-433](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L431-L433 "Source code on GitHub")
 
 Returns the concatenation of a and b (a\*b)
 
@@ -1007,11 +1185,13 @@ Returns the concatenation of a and b (a\*b)
 
 -   `a` **[Matrix3](#matrix3)** The first transform
 -   `b` **[Matrix3](#matrix3)** The second transform
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Inverse
+
+[source/Matrix3.js:443-447](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L443-L447 "Source code on GitHub")
 
 Returns the inverse of m
 Returns null if m is assumed to be singular, the inverse of m otherwise
@@ -1019,33 +1199,39 @@ Returns null if m is assumed to be singular, the inverse of m otherwise
 **Parameters**
 
 -   `m` **[Matrix3](#matrix3)** The source
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **([Matrix3](#matrix3) | null)** 
 
 ## Transpose
+
+[source/Matrix3.js:455-457](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L455-L457 "Source code on GitHub")
 
 Returns the transpose of m
 
 **Parameters**
 
 -   `m` **[Matrix3](#matrix3)** The source
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## Copy
+
+[source/Matrix3.js:465-467](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L465-L467 "Source code on GitHub")
 
 Returns a copy of m
 
 **Parameters**
 
 -   `m` **[Matrix3](#matrix3)** The source
--   `target` **\[[Matrix3](#matrix3)]** The target instance
+-   `target` **[Matrix3](#matrix3)?** The target instance
 
 Returns **[Matrix3](#matrix3)** 
 
 ## isEQ
+
+[source/Matrix3.js:476-486](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix3.js#L476-L486 "Source code on GitHub")
 
 Returns true if a and b are equal, false otherwise
 
@@ -1054,22 +1240,28 @@ Returns true if a and b are equal, false otherwise
 -   `a` **[Matrix3](#matrix3)** The protagonist
 -   `b` **[Matrix3](#matrix3)** The antagonist
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 # Matrix4
+
+[source/Matrix4.js:9-936](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L9-L936 "Source code on GitHub")
 
 3x4 and 4x4 transformations
 
 ## constructor
 
+[source/Matrix4.js:244-255](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L244-L255 "Source code on GitHub")
+
 Creates a new instance
 
 **Parameters**
 
--   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing 4x4 column-major ordered components
+-   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Array representing 4x4 column-major ordered components
     Arrays of length !== 16 will return the identity matrix
 
 ## n
+
+[source/Matrix4.js:254-254](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L254-L254 "Source code on GitHub")
 
 The array representation
 Contains the 16 column-major ordered components of the instance
@@ -1080,84 +1272,122 @@ n[3]&#x3A;n30 n[7]&#x3A;n31 n[11]&#x3A;n32 n[15]&#x3A;n33
 
 ## define
 
+[source/Matrix4.js:264-268](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L264-L268 "Source code on GitHub")
+
 Redefines the instance
 
 **Parameters**
 
--   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing 4x4 column-major ordered components
+-   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Array representing 4x4 column-major ordered components
     Arrays of length <em>!== 16</em> will return the identity matrix
 
 Returns **[Matrix4](#matrix4)** 
 
 ## n00
 
+[source/Matrix4.js:275-277](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L275-L277 "Source code on GitHub")
+
 row 0, col 0, [Matrix4#n](#matrix4n)[0]
 
 ## n01
+
+[source/Matrix4.js:288-290](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L288-L290 "Source code on GitHub")
 
 row 0, col 1, [Matrix4#n](#matrix4n)[4]
 
 ## n02
 
+[source/Matrix4.js:301-303](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L301-L303 "Source code on GitHub")
+
 row 0, col 2, [Matrix4#n](#matrix4n)[8]
 
 ## n03
+
+[source/Matrix4.js:314-316](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L314-L316 "Source code on GitHub")
 
 row 0, col 3, [Matrix4#n](#matrix4n)[12]
 
 ## n10
 
+[source/Matrix4.js:327-329](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L327-L329 "Source code on GitHub")
+
 row 1, col 0, [Matrix4#n](#matrix4n)[1]
 
 ## n11
+
+[source/Matrix4.js:340-342](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L340-L342 "Source code on GitHub")
 
 row 1, col 1, [Matrix4#n](#matrix4n)[5]
 
 ## n12
 
+[source/Matrix4.js:353-355](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L353-L355 "Source code on GitHub")
+
 row 1, col 2, [Matrix4#n](#matrix4n)[9]
 
 ## n13
+
+[source/Matrix4.js:366-368](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L366-L368 "Source code on GitHub")
 
 row 1, col 3, [Matrix4#n](#matrix4n)[13]
 
 ## n20
 
+[source/Matrix4.js:379-381](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L379-L381 "Source code on GitHub")
+
 row 2, col 0, [Matrix4#n](#matrix4n)[2]
 
 ## n21
+
+[source/Matrix4.js:392-394](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L392-L394 "Source code on GitHub")
 
 row 2, col 1, [Matrix4#n](#matrix4n)[6]
 
 ## n22
 
+[source/Matrix4.js:405-407](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L405-L407 "Source code on GitHub")
+
 row 2, col 2, [Matrix4#n](#matrix4n)[10]
 
 ## n23
+
+[source/Matrix4.js:418-420](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L418-L420 "Source code on GitHub")
 
 row 2, col 3, [Matrix4#n](#matrix4n)[14]
 
 ## n30
 
+[source/Matrix4.js:431-433](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L431-L433 "Source code on GitHub")
+
 row 3, col 0, [Matrix4#n](#matrix4n)[3]
 
 ## n31
+
+[source/Matrix4.js:444-446](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L444-L446 "Source code on GitHub")
 
 row 3, col 1, [Matrix4#n](#matrix4n)[7]
 
 ## n32
 
+[source/Matrix4.js:457-459](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L457-L459 "Source code on GitHub")
+
 row 3, col 2, [Matrix4#n](#matrix4n)[11]
 
 ## n33
+
+[source/Matrix4.js:470-472](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L470-L472 "Source code on GitHub")
 
 row 3, col 3, [Matrix4#n](#matrix4n)[15]
 
 ## determinant
 
+[source/Matrix4.js:483-490](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L483-L490 "Source code on GitHub")
+
 The determinant
 
 ## add
+
+[source/Matrix4.js:499-505](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L499-L505 "Source code on GitHub")
 
 The sum of a and b (a+b)
 
@@ -1170,6 +1400,8 @@ Returns **[Matrix4](#matrix4)**
 
 ## subtract
 
+[source/Matrix4.js:513-519](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L513-L519 "Source code on GitHub")
+
 The difference of a and b (a-b)
 
 **Parameters**
@@ -1180,6 +1412,8 @@ The difference of a and b (a-b)
 Returns **[Matrix4](#matrix4)** 
 
 ## multiply3x4Vector3Scale
+
+[source/Matrix4.js:528-539](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L528-L539 "Source code on GitHub")
 
 The 3x4 concatenation of m and matrix-transformed v (m\*Matrix4.Matrix3(Matrix3.Scale(v)))
 Components 3x are assumed to be (0.0,0.0,0.0,1.0)
@@ -1193,6 +1427,8 @@ Returns **[Matrix4](#matrix4)**
 
 ## multiply3x4Vector3Translation
 
+[source/Matrix4.js:548-558](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L548-L558 "Source code on GitHub")
+
 The 3x4 concatenation of m and matrix-transformed v (m\*Matrix4.Translation(v))
 Components 3x are assumed to be (0.0,0.0,0.0,1.0)
 
@@ -1204,6 +1440,8 @@ Components 3x are assumed to be (0.0,0.0,0.0,1.0)
 Returns **[Matrix4](#matrix4)** 
 
 ## multiply3x4Matrix3
+
+[source/Matrix4.js:567-597](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L567-L597 "Source code on GitHub")
 
 The 3x4 concatenation of a and b (a\*b)
 Components 3x are assumed to be (0.0,0.0,0.0,1.0)
@@ -1217,6 +1455,8 @@ Returns **[Matrix4](#matrix4)**
 
 ## multiply3x4
 
+[source/Matrix4.js:606-636](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L606-L636 "Source code on GitHub")
+
 The 3x4 concatenation of a and b (a\*b)
 Components 3x are assumed to be (0.0,0.0,0.0,1.0)
 
@@ -1229,6 +1469,8 @@ Returns **[Matrix4](#matrix4)**
 
 ## multiply
 
+[source/Matrix4.js:644-678](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L644-L678 "Source code on GitHub")
+
 The concatenation of a and b (a\*b)
 
 **Parameters**
@@ -1239,6 +1481,8 @@ The concatenation of a and b (a\*b)
 Returns **[Matrix4](#matrix4)** 
 
 ## inverse3x4Of
+
+[source/Matrix4.js:689-719](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L689-L719 "Source code on GitHub")
 
 The 3x4 inverse of m
 Beware: method is NOT chainable
@@ -1253,6 +1497,8 @@ Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 ## inverseOf
 
+[source/Matrix4.js:729-771](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L729-L771 "Source code on GitHub")
+
 The inverse of m
 Beware: method is NOT chainable.
 Using the adjoint method - m[ij] = 1 / d _ (-1)^(i + j) _ det(adj(m[ji]))
@@ -1266,6 +1512,8 @@ Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 ## transposeOf
 
+[source/Matrix4.js:851-860](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L851-L860 "Source code on GitHub")
+
 The transpose of m
 
 **Parameters**
@@ -1275,6 +1523,8 @@ The transpose of m
 Returns **[Matrix4](#matrix4)** 
 
 ## copyOf
+
+[source/Matrix4.js:867-871](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L867-L871 "Source code on GitHub")
 
 The copy of m
 
@@ -1286,29 +1536,37 @@ Returns **[Matrix4](#matrix4)**
 
 ## invert3x4
 
+[source/Matrix4.js:881-883](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L881-L883 "Source code on GitHub")
+
 The 3x4 inverse of the instance
 Beware: method is NOT chainable
 Components 3x are assumed to be (0.0,0.0,0.0,1.0)
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Returns false if the instance is assumed to be singular, true otherwise
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Returns false if the instance is assumed to be singular, true otherwise
 
 ## invert
+
+[source/Matrix4.js:892-894](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L892-L894 "Source code on GitHub")
 
 The inverse of the instance
 Beware: method is NOT chainable
 Using the adjoint method
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Returns false if the instance is assumed to be singular, true otherwise
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Returns false if the instance is assumed to be singular, true otherwise
 
 ## invertGauss
+
+[source/Matrix4.js:903-905](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L903-L905 "Source code on GitHub")
 
 The inverse of the instance
 Beware: method is NOT chainable
 using gauss-jordan elimination
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Returns false if the instance is singular, true otherwise
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Returns false if the instance is singular, true otherwise
 
 ## transpose
+
+[source/Matrix4.js:911-913](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L911-L913 "Source code on GitHub")
 
 The transpose of the instance
 
@@ -1316,32 +1574,40 @@ Returns **[Matrix4](#matrix4)**
 
 ## toString
 
+[source/Matrix4.js:921-927](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L921-L927 "Source code on GitHub")
+
 Returns a string representation of the instance
 
 **Parameters**
 
--   `digits` **\[Uint]** The number of digits (optional, default `3`)
+-   `digits` **int?** The number of digits (optional, default `3`)
 
-Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+Returns **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## valueOf
 
+[source/Matrix4.js:933-935](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L933-L935 "Source code on GitHub")
+
 Returns the [Matrix4#determinant](#matrix4determinant) of the instance
 
-Returns **Float** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## Translation
+
+[source/Matrix4.js:17-31](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L17-L31 "Source code on GitHub")
 
 Returns a instance of translation vector
 
 **Parameters**
 
 -   `v` **[Vector3](#vector3)** The source
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **[Matrix4](#matrix4)** 
 
 ## Vector3
+
+[source/Matrix4.js:42-52](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L42-L52 "Source code on GitHub")
 
 Returns a instance of axes (x,y,z) and translation (t)
 
@@ -1349,13 +1615,15 @@ Returns a instance of axes (x,y,z) and translation (t)
 
 -   `x` **[Vector3](#vector3)** The x-axis vector
 -   `y` **[Vector3](#vector3)** The y-axis vector
--   `z` **\[[Vector3](#vector3)]** The z-axis vector
--   `t` **\[[Vector3](#vector3)]** The translation vector
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `z` **[Vector3](#vector3)?** The z-axis vector
+-   `t` **[Vector3](#vector3)?** The translation vector
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **[Matrix4](#matrix4)** 
 
 ## Matrix3
+
+[source/Matrix4.js:61-71](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L61-L71 "Source code on GitHub")
 
 Returns a instance of m
 The instance will be padded to 4x4
@@ -1363,11 +1631,13 @@ The instance will be padded to 4x4
 **Parameters**
 
 -   `m` **[Matrix3](#matrix3)** The source
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **[Matrix4](#matrix4)** 
 
 ## Add
+
+[source/Matrix4.js:81-83](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L81-L83 "Source code on GitHub")
 
 Returns the sum of a and b (a+b)
 
@@ -1375,11 +1645,13 @@ Returns the sum of a and b (a+b)
 
 -   `a` **[Matrix4](#matrix4)** The first summand
 -   `b` **[Matrix4](#matrix4)** The second summand
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **[Matrix4](#matrix4)** 
 
 ## Subtract
+
+[source/Matrix4.js:92-94](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L92-L94 "Source code on GitHub")
 
 Returns the difference of a and b (a-b)
 
@@ -1387,11 +1659,13 @@ Returns the difference of a and b (a-b)
 
 -   `a` **[Matrix4](#matrix4)** The minuend
 -   `b` **[Matrix4](#matrix4)** The subtrahend
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **[Matrix4](#matrix4)** 
 
 ## Multiply3x4Vector3Scale
+
+[source/Matrix4.js:104-106](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L104-L106 "Source code on GitHub")
 
 Returns the 3x4 concatenation of m and matrix-transformed v (m\*Matrix4.Matrix3(Matrix3.Scale(v)))
 Components 3x are assumed to be (0.0,0.0,0.0,1.0)
@@ -1400,11 +1674,13 @@ Components 3x are assumed to be (0.0,0.0,0.0,1.0)
 
 -   `m` **[Matrix4](#matrix4)** The matrix
 -   `v` **[Vector3](#vector3)** The vector
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **[Matrix4](#matrix4)** 
 
 ## Multiply3x4Vector3Translation
+
+[source/Matrix4.js:116-118](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L116-L118 "Source code on GitHub")
 
 Returns the 3x4 concatenation of m and matrix-transformed v (m\*Matrix4.Translation(v))
 Components 3x are assumed to be (0.0,0.0,0.0,1.0)
@@ -1413,11 +1689,13 @@ Components 3x are assumed to be (0.0,0.0,0.0,1.0)
 
 -   `m` **[Matrix4](#matrix4)** The matrix
 -   `v` **[Vector3](#vector3)** The vector
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **[Matrix4](#matrix4)** 
 
 ## Multiply3x4Matrix3
+
+[source/Matrix4.js:128-130](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L128-L130 "Source code on GitHub")
 
 Returns the 3x4 concatenation of a and b (a\*b)
 Components 3x are assumed to be (0.0,0.0,0.0,1.0)
@@ -1426,11 +1704,13 @@ Components 3x are assumed to be (0.0,0.0,0.0,1.0)
 
 -   `a` **[Matrix4](#matrix4)** The first matrix
 -   `b` **[Matrix3](#matrix3)** The second matrix
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **[Matrix4](#matrix4)** 
 
 ## Multiply3x4
+
+[source/Matrix4.js:140-142](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L140-L142 "Source code on GitHub")
 
 Returns the 3x4 concatenation of a and b (a\*b)
 Components 3x are assumed to be (0.0,0.0,0.0,1.0)
@@ -1439,11 +1719,13 @@ Components 3x are assumed to be (0.0,0.0,0.0,1.0)
 
 -   `a` **[Matrix4](#matrix4)** The first matrix
 -   `b` **[Matrix4](#matrix4)** The second matrix
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **[Matrix4](#matrix4)** 
 
 ## Multiply
+
+[source/Matrix4.js:151-153](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L151-L153 "Source code on GitHub")
 
 Returns the concatenation of a and b (a\*b)
 
@@ -1451,11 +1733,13 @@ Returns the concatenation of a and b (a\*b)
 
 -   `a` **[Matrix4](#matrix4)** The first matrix
 -   `b` **[Matrix4](#matrix4)** The second matrix
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **[Matrix4](#matrix4)** 
 
 ## Inverse3x4
+
+[source/Matrix4.js:164-168](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L164-L168 "Source code on GitHub")
 
 Returns the 3x4 inverse of m
 Components 3x are to be (0.0,0.0,0.0,1.0)
@@ -1464,11 +1748,13 @@ Returns null if m is assumed to be singular, the 3x4 inverse of m otherwise
 **Parameters**
 
 -   `m` **[Matrix4](#matrix4)** The source
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **([Matrix4](#matrix4) | null)** 
 
 ## Inverse
+
+[source/Matrix4.js:178-182](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L178-L182 "Source code on GitHub")
 
 Returns the inverse of m
 Using the adjoint method
@@ -1477,11 +1763,13 @@ Returns null if m is assumed to be singular, the 4x4 inverse of m otherwise
 **Parameters**
 
 -   `m` **[Matrix4](#matrix4)** The source
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **([Matrix4](#matrix4) | null)** 
 
 ## InverseGauss
+
+[source/Matrix4.js:192-196](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L192-L196 "Source code on GitHub")
 
 Returns the inverse of m
 Using gauss-jordan elimination
@@ -1490,33 +1778,39 @@ Returns null if m is singular, the 4x4 inverse of m otherwise
 **Parameters**
 
 -   `m` **[Matrix4](#matrix4)** The source
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **([Matrix4](#matrix4) | null)** 
 
 ## Transpose
+
+[source/Matrix4.js:204-206](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L204-L206 "Source code on GitHub")
 
 Returns the transpose of m
 
 **Parameters**
 
 -   `m` **[Matrix4](#matrix4)** The source
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **[Matrix4](#matrix4)** 
 
 ## Copy
+
+[source/Matrix4.js:214-216](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L214-L216 "Source code on GitHub")
 
 Returns a copy of m
 
 **Parameters**
 
 -   `m` **[Matrix4](#matrix4)** The source
--   `target` **\[[Matrix4](#matrix4)]** The target instance
+-   `target` **[Matrix4](#matrix4)?** The target instance
 
 Returns **[Matrix4](#matrix4)** 
 
 ## isEQ
+
+[source/Matrix4.js:225-235](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L225-L235 "Source code on GitHub")
 
 Returns true if a and b are equal, false otherwise (a == b)
 
@@ -1528,6 +1822,8 @@ Returns true if a and b are equal, false otherwise (a == b)
 Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 ## inverseGaussOf
+
+[source/Matrix4.js:781-844](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4.js#L781-L844 "Source code on GitHub")
 
 The inverse of m
 Beware: method is NOT chainable
@@ -1542,57 +1838,99 @@ Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 # FOV_MIN
 
+[source/Matrix4Frustrum.js:10-10](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L10-L10 "Source code on GitHub")
+
 The minimal vertical field of view
 
+Type: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
 # FOV_MAX
+
+[source/Matrix4Frustrum.js:15-15](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L15-L15 "Source code on GitHub")
 
 The maximal vertical field of view
 
 # FOV_DEFAULT
 
+[source/Matrix4Frustrum.js:20-20](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L20-L20 "Source code on GitHub")
+
 The default vertical field of view
 
 # ASPECT_MIN
 
+[source/Matrix4Frustrum.js:25-25](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L25-L25 "Source code on GitHub")
+
 The minimal projection aspect ratio (w/h)
+
+Type: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 # ASPECT_MIN
 
+[source/Matrix4Ortho.js:25-25](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L25-L25 "Source code on GitHub")
+
 The minimal projection aspect ratio (w/h)
 
-# ASPECT_MAX
-
-The maximal projection aspect ratio (w/h)
+Type: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 # ASPECT_MAX
 
+[source/Matrix4Frustrum.js:30-30](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L30-L30 "Source code on GitHub")
+
 The maximal projection aspect ratio (w/h)
+
+Type: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+# ASPECT_MAX
+
+[source/Matrix4Ortho.js:30-30](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L30-L30 "Source code on GitHub")
+
+The maximal projection aspect ratio (w/h)
+
+Type: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 # ASPECT_DEFAULT
+
+[source/Matrix4Frustrum.js:35-35](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L35-L35 "Source code on GitHub")
 
 The default projection aspect ratio (w/h)
 
 # ASPECT_DEFAULT
 
+[source/Matrix4Ortho.js:35-35](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L35-L35 "Source code on GitHub")
+
 The default projection aspect ratio (w/h)
 
 # ZPLANE_MIN
 
+[source/Matrix4Frustrum.js:40-40](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L40-L40 "Source code on GitHub")
+
 The minimal z-plane distance
+
+Type: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 # ZPLANE_MIN
 
+[source/Matrix4Ortho.js:40-40](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L40-L40 "Source code on GitHub")
+
 The minimal z-plane distance
+
+Type: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 # ZPLANE_MAX
+
+[source/Matrix4Frustrum.js:45-45](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L45-L45 "Source code on GitHub")
 
 The maximal z-plane distance
 
 # ZPLANE_MAX
+
+[source/Matrix4Ortho.js:45-45](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L45-L45 "Source code on GitHub")
 
 The maximal z-plane distance
 
 # Matrix4Frustrum
+
+[source/Matrix4Frustrum.js:59-199](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L59-L199 "Source code on GitHub")
 
 **Extends Matrix4**
 
@@ -1600,45 +1938,59 @@ Perspectivic projection matrix
 
 ## constructor
 
+[source/Matrix4Frustrum.js:81-90](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L81-L90 "Source code on GitHub")
+
 Creates a new instance
 
 **Parameters**
 
--   `fov` **\[Float]** The vertical field of view, in radians (optional, default `FOV_DEFAULT`)
--   `aspect` **\[Float]** The aspect ratio (w/h) (optional, default `ASPECT_DEFAULT`)
--   `near` **\[Float]** The distance of the near plane (optional, default `ZPLANE_MIN`)
--   `far` **\[Float]** The distance of the far plane (optional, default `ZPLANE_MAX`)
+-   `fov` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The vertical field of view, in radians (optional, default `FOV_DEFAULT`)
+-   `aspect` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The aspect ratio (w/h) (optional, default `ASPECT_DEFAULT`)
+-   `near` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The distance of the near plane (optional, default `ZPLANE_MIN`)
+-   `far` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The distance of the far plane (optional, default `ZPLANE_MAX`)
 
 ## define
+
+[source/Matrix4Frustrum.js:101-148](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L101-L148 "Source code on GitHub")
 
 (Re)defines the instance
 
 **Parameters**
 
--   `fov` **\[Float]** The vertical field of view, in radians (optional, default `FOV_DEFAULT`)
--   `aspect` **\[Float]** The aspect ratio (w/h) (optional, default `ASPECT_DEFAULT`)
--   `near` **\[Float]** The near plane distance (optional, default `ZPLANE_MIN`)
--   `far` **\[Float]** The far plane distance (optional, default `ZPLANE_MAX`)
+-   `fov` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The vertical field of view, in radians (optional, default `FOV_DEFAULT`)
+-   `aspect` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The aspect ratio (w/h) (optional, default `ASPECT_DEFAULT`)
+-   `near` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The near plane distance (optional, default `ZPLANE_MIN`)
+-   `far` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The far plane distance (optional, default `ZPLANE_MAX`)
 
 Returns **[Matrix4Frustrum](#matrix4frustrum)** 
 
 ## fov
 
+[source/Matrix4Frustrum.js:155-157](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L155-L157 "Source code on GitHub")
+
 The vertical field of view, in radians
 
 ## aspect
+
+[source/Matrix4Frustrum.js:163-165](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L163-L165 "Source code on GitHub")
 
 The projection aspect ratio (w/h)
 
 ## near
 
+[source/Matrix4Frustrum.js:171-173](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L171-L173 "Source code on GitHub")
+
 The distance of the near plane
 
 ## far
 
+[source/Matrix4Frustrum.js:179-181](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L179-L181 "Source code on GitHub")
+
 The distance of the far plane
 
 ## copyOf
+
+[source/Matrix4Frustrum.js:189-198](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L189-L198 "Source code on GitHub")
 
 The copy of m
 
@@ -1650,28 +2002,44 @@ Returns **[Matrix4Frustrum](#matrix4frustrum)**
 
 ## Copy
 
+[source/Matrix4Frustrum.js:67-70](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Frustrum.js#L67-L70 "Source code on GitHub")
+
 Returns a copy of m
 
 **Parameters**
 
 -   `m` **[Matrix4Frustrum](#matrix4frustrum)** The source
--   `target` **\[[Matrix4Frustrum](#matrix4frustrum)]** The target instance
+-   `target` **[Matrix4Frustrum](#matrix4frustrum)?** The target instance
 
 Returns **[Matrix4Frustrum](#matrix4frustrum)** 
 
 # EXTEND_MIN
 
+[source/Matrix4Ortho.js:10-10](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L10-L10 "Source code on GitHub")
+
 The minimal vertical extend of the viewcube
+
+Type: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 # EXTEND_MAX
 
+[source/Matrix4Ortho.js:15-15](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L15-L15 "Source code on GitHub")
+
 The maximal vertical extend of the viewcube
+
+Type: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 # EXTEND_DEFAULT
 
+[source/Matrix4Ortho.js:20-20](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L20-L20 "Source code on GitHub")
+
 The default vertical extend of the viewcube
 
+Type: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
 # Matrix4Ortho
+
+[source/Matrix4Ortho.js:59-197](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L59-L197 "Source code on GitHub")
 
 **Extends Matrix4**
 
@@ -1679,45 +2047,59 @@ Orthographic projection Matrix
 
 ## constructor
 
+[source/Matrix4Ortho.js:81-90](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L81-L90 "Source code on GitHub")
+
 Creates a new instance
 
 **Parameters**
 
--   `extend` **\[Float]** The vertical extend of the viewcube (optional, default `EXTEND_DEFAULT`)
--   `aspect` **\[Float]** The aspect ratio (w/h) (optional, default `ASPECT_DEFAULT`)
--   `near` **\[Float]** The near plane distance (optional, default `ZPLANE_MIN`)
--   `far` **\[Float]** The far plane distance (optional, default `ZPLANE_MAX`)
+-   `extend` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The vertical extend of the viewcube (optional, default `EXTEND_DEFAULT`)
+-   `aspect` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The aspect ratio (w/h) (optional, default `ASPECT_DEFAULT`)
+-   `near` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The near plane distance (optional, default `ZPLANE_MIN`)
+-   `far` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The far plane distance (optional, default `ZPLANE_MAX`)
 
 ## define
+
+[source/Matrix4Ortho.js:101-146](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L101-L146 "Source code on GitHub")
 
 (Re)defines the instance
 
 **Parameters**
 
--   `extend` **\[Float]** The vertical extend of the viewcube (optional, default `EXTEND_DEFAULT`)
--   `aspect` **\[Float]** The aspect ratio (w/h) (optional, default `ASPECT_DEFAULT`)
--   `near` **\[Float]** The near plane distance (optional, default `ZPLANE_MIN`)
--   `far` **\[Float]** The far plane distance (optional, default `ZPLANE_MAX`)
+-   `extend` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The vertical extend of the viewcube (optional, default `EXTEND_DEFAULT`)
+-   `aspect` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The aspect ratio (w/h) (optional, default `ASPECT_DEFAULT`)
+-   `near` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The near plane distance (optional, default `ZPLANE_MIN`)
+-   `far` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The far plane distance (optional, default `ZPLANE_MAX`)
 
 Returns **[Matrix4Ortho](#matrix4ortho)** 
 
 ## extend
 
+[source/Matrix4Ortho.js:153-155](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L153-L155 "Source code on GitHub")
+
 The vertical extend of the viewcube
 
 ## aspect
+
+[source/Matrix4Ortho.js:161-163](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L161-L163 "Source code on GitHub")
 
 The aspect ratio (w/h)
 
 ## near
 
+[source/Matrix4Ortho.js:169-171](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L169-L171 "Source code on GitHub")
+
 The near plane distance
 
 ## far
 
+[source/Matrix4Ortho.js:177-179](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L177-L179 "Source code on GitHub")
+
 The far plane distance
 
 ## copyOf
+
+[source/Matrix4Ortho.js:187-196](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L187-L196 "Source code on GitHub")
 
 The copy of m
 
@@ -1729,69 +2111,93 @@ Returns **[Matrix4Ortho](#matrix4ortho)**
 
 ## Copy
 
+[source/Matrix4Ortho.js:67-70](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Matrix4Ortho.js#L67-L70 "Source code on GitHub")
+
 Returns a copy of m
 
 **Parameters**
 
 -   `m` **[Matrix4Ortho](#matrix4ortho)** The source
--   `target` **\[[Matrix4Ortho](#matrix4ortho)]** The target instance
+-   `target` **[Matrix4Ortho](#matrix4ortho)?** The target instance
 
 Returns **[Matrix4Ortho](#matrix4ortho)** 
 
 # Vector2
 
+[source/Vector2.js:4-602](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L4-L602 "Source code on GitHub")
+
 Two component vector
 
 ## constructor
+
+[source/Vector2.js:235-241](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L235-L241 "Source code on GitHub")
 
 Creates a new instance
 
 **Parameters**
 
--   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing the two components
+-   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Array representing the two components
     Arrays of length !== 2 will return the zero (0,0) vector
 
 ## n
+
+[source/Vector2.js:240-240](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L240-L240 "Source code on GitHub")
 
 The component array
 
 ## define
 
+[source/Vector2.js:249-253](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L249-L253 "Source code on GitHub")
+
 Redefines the instance
 
 **Parameters**
 
--   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>** Array representing the two components
+-   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** Array representing the two components
 
 Returns **[Vector2](#vector2)** 
 
 ## x
 
+[source/Vector2.js:260-262](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L260-L262 "Source code on GitHub")
+
 The x component [Vector2#n](#vector2n)[0]
 
 ## y
 
+[source/Vector2.js:272-274](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L272-L274 "Source code on GitHub")
+
 The y component [Vector2#n](#vector2n)[1]
 
 ## s
+
+[source/Vector2.js:285-287](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L285-L287 "Source code on GitHub")
 
 The s component
 Alias of [Vector2#x](#vector2x)
 
 ## t
 
+[source/Vector2.js:298-300](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L298-L300 "Source code on GitHub")
+
 The t component
 Alias of [Vector2#y](#vector2y)
 
 ## norm
 
+[source/Vector2.js:311-315](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L311-L315 "Source code on GitHub")
+
 The norm
 
 ## normSquared
 
+[source/Vector2.js:321-325](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L321-L325 "Source code on GitHub")
+
 The square of the norm (norm\*norm)
 
 ## add
+
+[source/Vector2.js:334-339](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L334-L339 "Source code on GitHub")
 
 The sum of v and w (v+w)
 
@@ -1804,6 +2210,8 @@ Returns **[Vector2](#vector2)**
 
 ## subtract
 
+[source/Vector2.js:347-352](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L347-L352 "Source code on GitHub")
+
 The difference of v and w (v-w)
 
 **Parameters**
@@ -1815,16 +2223,20 @@ Returns **[Vector2](#vector2)**
 
 ## multiplyScalar
 
+[source/Vector2.js:360-365](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L360-L365 "Source code on GitHub")
+
 The scalar product of v and n (v\*n)
 
 **Parameters**
 
 -   `v` **[Vector2](#vector2)** The vector
--   `n` **Float** The scalar
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The scalar
 
 Returns **[Vector2](#vector2)** 
 
 ## multiplyMatrix2
+
+[source/Vector2.js:373-380](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L373-L380 "Source code on GitHub")
 
 The transformation of v (m\*v)
 
@@ -1837,6 +2249,8 @@ Returns **[Vector2](#vector2)**
 
 ## multiply2x3Matrix3
 
+[source/Vector2.js:388-395](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L388-L395 "Source code on GitHub")
+
 The 2x3 transformation of v (m\*v)
 
 **Parameters**
@@ -1848,6 +2262,8 @@ Returns **[Vector2](#vector2)**
 
 ## multiplyMatrix3
 
+[source/Vector2.js:403-411](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L403-L411 "Source code on GitHub")
+
 The transformation of v (m\*v)
 
 **Parameters**
@@ -1858,6 +2274,8 @@ The transformation of v (m\*v)
 Returns **[Vector2](#vector2)** 
 
 ## project
+
+[source/Vector2.js:419-427](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L419-L427 "Source code on GitHub")
 
 The orthogonal projection of w on v
 
@@ -1870,6 +2288,8 @@ Returns **[Vector2](#vector2)**
 
 ## minXY
 
+[source/Vector2.js:435-442](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L435-L442 "Source code on GitHub")
+
 The componentwise minimum of v and w (min(v,w))
 
 **Parameters**
@@ -1880,6 +2300,8 @@ The componentwise minimum of v and w (min(v,w))
 Returns **[Vector2](#vector2)** 
 
 ## maxXY
+
+[source/Vector2.js:450-457](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L450-L457 "Source code on GitHub")
 
 The componentwise maximum of v and w (max(v,w))
 
@@ -1892,6 +2314,8 @@ Returns **[Vector2](#vector2)**
 
 ## addEQ
 
+[source/Vector2.js:465-470](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L465-L470 "Source code on GitHub")
+
 The sum of the instance and w (v+w)
 
 **Parameters**
@@ -1901,6 +2325,8 @@ The sum of the instance and w (v+w)
 Returns **[Vector2](#vector2)** 
 
 ## subtractEQ
+
+[source/Vector2.js:477-482](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L477-L482 "Source code on GitHub")
 
 The difference of the instance and w (v-w)
 
@@ -1912,15 +2338,19 @@ Returns **[Vector2](#vector2)**
 
 ## multiplyScalarEQ
 
+[source/Vector2.js:489-494](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L489-L494 "Source code on GitHub")
+
 The scalar product of the instance and n (v\*n)
 
 **Parameters**
 
--   `n` **Float** The scalar
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The scalar
 
 Returns **[Vector2](#vector2)** 
 
 ## projectEQ
+
+[source/Vector2.js:501-509](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L501-L509 "Source code on GitHub")
 
 The orthogonal projection of w on the instance
 
@@ -1932,6 +2362,8 @@ Returns **[Vector2](#vector2)**
 
 ## normalizationOf
 
+[source/Vector2.js:517-526](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L517-L526 "Source code on GitHub")
+
 The normal form of v
 
 **Parameters**
@@ -1941,6 +2373,8 @@ The normal form of v
 Returns **[Vector2](#vector2)** 
 
 ## perpendicularOf
+
+[source/Vector2.js:533-539](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L533-L539 "Source code on GitHub")
 
 The perpendicular dot product of v
 
@@ -1952,6 +2386,8 @@ Returns **[Vector2](#vector2)**
 
 ## copyOf
 
+[source/Vector2.js:546-550](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L546-L550 "Source code on GitHub")
+
 The copy of v
 
 **Parameters**
@@ -1962,11 +2398,15 @@ Returns **[Vector2](#vector2)**
 
 ## normalize
 
+[source/Vector2.js:557-567](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L557-L567 "Source code on GitHub")
+
 The normal form of the instance
 
 Returns **[Vector2](#vector2)** 
 
 ## perpendicular
+
+[source/Vector2.js:573-579](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L573-L579 "Source code on GitHub")
 
 The perpendicular dot product of the instance
 
@@ -1974,52 +2414,64 @@ Returns **[Vector2](#vector2)**
 
 ## toString
 
+[source/Vector2.js:587-593](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L587-L593 "Source code on GitHub")
+
 Returns a string representation of the instance
 
 **Parameters**
 
--   `digits` **\[Uint]** The decimal digits (optional, default `3`)
+-   `digits` **int?** The decimal digits (optional, default `3`)
 
-Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+Returns **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## valueOf
 
+[source/Vector2.js:599-601](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L599-L601 "Source code on GitHub")
+
 Returns the [Vector2#norm](#vector2norm) of the instance
 
-Returns **Float** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## X
+
+[source/Vector2.js:11-18](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L11-L18 "Source code on GitHub")
 
 Returns an instance representing the x axis
 
 **Parameters**
 
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## Y
 
+[source/Vector2.js:25-32](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L25-L32 "Source code on GitHub")
+
 Returns an instance representing the y axis
 
 **Parameters**
 
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## Rotation
 
+[source/Vector2.js:40-50](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L40-L50 "Source code on GitHub")
+
 Returns a unit instance from rad
 
 **Parameters**
 
--   `rad` **Float** The rotation in radians
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `rad` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The rotation in radians
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## BarycentricUV
+
+[source/Vector2.js:62-75](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L62-L75 "Source code on GitHub")
 
 Returns the resulting instance of cw triangle (v0,v1,v2) and barycentric coordinates (u,v)
 
@@ -2028,13 +2480,15 @@ Returns the resulting instance of cw triangle (v0,v1,v2) and barycentric coordin
 -   `v0` **[Vector2](#vector2)** The first corner
 -   `v1` **[Vector2](#vector2)** The second corner
 -   `v2` **[Vector2](#vector2)** The third corner
--   `u` **Float** The u-coordinate
--   `v` **Float** The v-coordinate
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `u` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The u-coordinate
+-   `v` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The v-coordinate
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## Add
+
+[source/Vector2.js:85-87](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L85-L87 "Source code on GitHub")
 
 Returns the sum of v and w (v+w)
 
@@ -2042,11 +2496,13 @@ Returns the sum of v and w (v+w)
 
 -   `v` **[Vector2](#vector2)** The first summand
 -   `w` **[Vector2](#vector2)** The second summand
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## Subtract
+
+[source/Vector2.js:96-98](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L96-L98 "Source code on GitHub")
 
 Returns the difference of v and w (v-w)
 
@@ -2054,23 +2510,27 @@ Returns the difference of v and w (v-w)
 
 -   `v` **[Vector2](#vector2)** The minuend
 -   `w` **[Vector2](#vector2)** The subtrahend
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## MultiplyScalar
+
+[source/Vector2.js:107-109](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L107-L109 "Source code on GitHub")
 
 Returns the scalar product of v and n (v\*n)
 
 **Parameters**
 
 -   `v` **[Vector2](#vector2)** The vector
--   `n` **Float** The scalar
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The scalar
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## MultiplyMatrix2
+
+[source/Vector2.js:118-120](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L118-L120 "Source code on GitHub")
 
 Returns the transformation of v (m\*v)
 
@@ -2078,11 +2538,13 @@ Returns the transformation of v (m\*v)
 
 -   `m` **[Matrix2](#matrix2)** The transform
 -   `v` **[Vector2](#vector2)** The vector
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## Multiply2x3Matrix3
+
+[source/Vector2.js:129-131](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L129-L131 "Source code on GitHub")
 
 Returns the 2x3 transformation of v (m\*v)
 
@@ -2090,11 +2552,13 @@ Returns the 2x3 transformation of v (m\*v)
 
 -   `m` **[Matrix3](#matrix3)** The transform
 -   `v` **[Vector2](#vector2)** The vector
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## MultiplyMatrix3
+
+[source/Vector2.js:140-142](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L140-L142 "Source code on GitHub")
 
 Returns the transformation of v (m\*v)
 
@@ -2102,11 +2566,13 @@ Returns the transformation of v (m\*v)
 
 -   `m` **[Matrix3](#matrix3)** The transform
 -   `v` **[Vector2](#vector2)** The vector
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## Project
+
+[source/Vector2.js:151-153](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L151-L153 "Source code on GitHub")
 
 Returns the orthogonal projection of w on v
 
@@ -2114,44 +2580,52 @@ Returns the orthogonal projection of w on v
 
 -   `v` **[Vector2](#vector2)** The projection vector
 -   `w` **[Vector2](#vector2)** The projected vector
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## Normalize
+
+[source/Vector2.js:161-163](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L161-L163 "Source code on GitHub")
 
 Returns a normal form of v
 
 **Parameters**
 
 -   `v` **[Vector2](#vector2)** The source
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## Perpendicular
+
+[source/Vector2.js:171-173](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L171-L173 "Source code on GitHub")
 
 Returns a perpendicular dot product of v
 
 **Parameters**
 
 -   `v` **[Vector2](#vector2)** The source
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## Copy
+
+[source/Vector2.js:181-183](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L181-L183 "Source code on GitHub")
 
 Returns a copy of v
 
 **Parameters**
 
 -   `v` **[Vector2](#vector2)** The source
--   `target` **\[[Vector2](#vector2)]** The target instance
+-   `target` **[Vector2](#vector2)?** The target instance
 
 Returns **[Vector2](#vector2)** 
 
 ## cross
+
+[source/Vector2.js:192-194](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L192-L194 "Source code on GitHub")
 
 Returns the outer product of v and w (v cross w)
 
@@ -2160,9 +2634,11 @@ Returns the outer product of v and w (v cross w)
 -   `v` **[Vector2](#vector2)** The first vector
 -   `w` **[Vector2](#vector2)** The second vector
 
-Returns **Float** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## dot
+
+[source/Vector2.js:202-204](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L202-L204 "Source code on GitHub")
 
 Returns the inner product of v and w (v dot w)
 
@@ -2171,9 +2647,11 @@ Returns the inner product of v and w (v dot w)
 -   `v` **[Vector2](#vector2)** The first vector
 -   `w` **[Vector2](#vector2)** The second vector
 
-Returns **Float** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## rad
+
+[source/Vector2.js:212-214](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L212-L214 "Source code on GitHub")
 
 Returns the angle in radians between v and w (acos(v dot w))
 
@@ -2182,9 +2660,11 @@ Returns the angle in radians between v and w (acos(v dot w))
 -   `v` **[Vector2](#vector2)** The first vector
 -   `w` **[Vector2](#vector2)** The second vector
 
-Returns **Float** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## isEQ
+
+[source/Vector2.js:223-227](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector2.js#L223-L227 "Source code on GitHub")
 
 Returns true if v and w are equal, false otherwise
 
@@ -2193,57 +2673,77 @@ Returns true if v and w are equal, false otherwise
 -   `v` **[Vector2](#vector2)** The protagonist
 -   `w` **[Vector2](#vector2)** The antagonist
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 # Vector3
+
+[source/Vector3.js:4-612](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L4-L612 "Source code on GitHub")
 
 Three component vector
 
 ## constructor
 
+[source/Vector3.js:255-261](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L255-L261 "Source code on GitHub")
+
 Creates a new instance
 
 **Parameters**
 
--   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing the three components
+-   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Array representing the three components
     Arrays of length !== 3 will return the zero (0.0,0.0,0.0) vector
 
 ## n
+
+[source/Vector3.js:260-260](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L260-L260 "Source code on GitHub")
 
 The component array
 
 ## define
 
+[source/Vector3.js:270-274](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L270-L274 "Source code on GitHub")
+
 Redefines the instance
 
 **Parameters**
 
--   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing the three components
+-   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Array representing the three components
     Arrays of length !== 3 will return the zero (0.0,0.0,0.0) vector
 
 Returns **[Vector3](#vector3)** 
 
 ## x
 
+[source/Vector3.js:281-283](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L281-L283 "Source code on GitHub")
+
 The x component, [Vector3#n](#vector3n)[0]
 
 ## y
+
+[source/Vector3.js:294-296](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L294-L296 "Source code on GitHub")
 
 The y component, [Vector3#n](#vector3n)[1]
 
 ## z
 
+[source/Vector3.js:307-309](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L307-L309 "Source code on GitHub")
+
 The z component, [Vector3#n](#vector3n)[2]
 
 ## norm
+
+[source/Vector3.js:320-324](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L320-L324 "Source code on GitHub")
 
 The norm
 
 ## normSquared
 
+[source/Vector3.js:330-334](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L330-L334 "Source code on GitHub")
+
 The square of the norm (norm\*norm)
 
 ## add
+
+[source/Vector3.js:343-349](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L343-L349 "Source code on GitHub")
 
 The sum of v and w (v+w)
 
@@ -2256,6 +2756,8 @@ Returns **[Vector3](#vector3)**
 
 ## subtract
 
+[source/Vector3.js:357-363](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L357-L363 "Source code on GitHub")
+
 The difference of v and w (v-w)
 
 **Parameters**
@@ -2267,16 +2769,20 @@ Returns **[Vector3](#vector3)**
 
 ## multiplyScalar
 
+[source/Vector3.js:371-377](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L371-L377 "Source code on GitHub")
+
 The scalar product of v and n (v\*n)
 
 **Parameters**
 
 -   `v` **[Vector3](#vector3)** The vector
--   `n` **Float** The scalar
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The scalar
 
 Returns **[Vector3](#vector3)** 
 
 ## cross
+
+[source/Vector3.js:385-391](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L385-L391 "Source code on GitHub")
 
 The exterior product of v and w (v cross w)
 
@@ -2289,6 +2795,8 @@ Returns **[Vector3](#vector3)**
 
 ## multiplyMatrix3
 
+[source/Vector3.js:399-408](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L399-L408 "Source code on GitHub")
+
 The transformation of v (m\*v)
 
 **Parameters**
@@ -2299,6 +2807,8 @@ The transformation of v (m\*v)
 Returns **[Vector3](#vector3)** 
 
 ## multiply3x4Matrix4
+
+[source/Vector3.js:416-424](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L416-L424 "Source code on GitHub")
 
 The 3x4 transformation of v (m\*v)
 
@@ -2311,6 +2821,8 @@ Returns **[Vector3](#vector3)**
 
 ## multiplyMatrix4
 
+[source/Vector3.js:432-441](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L432-L441 "Source code on GitHub")
+
 The transformation of v (m\*v)
 
 **Parameters**
@@ -2322,6 +2834,8 @@ Returns **[Vector3](#vector3)**
 
 ## project
 
+[source/Vector3.js:449-457](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L449-L457 "Source code on GitHub")
+
 The projection of w on v
 
 **Parameters**
@@ -2332,6 +2846,8 @@ The projection of w on v
 Returns **[Vector3](#vector3)** 
 
 ## orthoNormalize
+
+[source/Vector3.js:466-474](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L466-L474 "Source code on GitHub")
 
 The orthonormalization of w against v
 Gram-Schmidt-Normalization: t -= n \* (t dot n)
@@ -2345,6 +2861,8 @@ Returns **[Vector3](#vector3)**
 
 ## addEQ
 
+[source/Vector3.js:482-488](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L482-L488 "Source code on GitHub")
+
 The sum of the instance and w
 
 **Parameters**
@@ -2354,6 +2872,8 @@ The sum of the instance and w
 Returns **[Vector3](#vector3)** 
 
 ## subtractEQ
+
+[source/Vector3.js:495-501](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L495-L501 "Source code on GitHub")
 
 The difference of the instance and w
 
@@ -2365,15 +2885,19 @@ Returns **[Vector3](#vector3)**
 
 ## multiplyScalarEQ
 
+[source/Vector3.js:508-514](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L508-L514 "Source code on GitHub")
+
 The scalar product of the instance and n
 
 **Parameters**
 
--   `n` **Float** the scalar
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the scalar
 
 Returns **[Vector3](#vector3)** 
 
 ## projectEQ
+
+[source/Vector3.js:521-529](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L521-L529 "Source code on GitHub")
 
 The projection of w on the instance
 
@@ -2384,6 +2908,8 @@ The projection of w on the instance
 Returns **[Vector3](#vector3)** 
 
 ## orthoNormalizeEQ
+
+[source/Vector3.js:537-544](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L537-L544 "Source code on GitHub")
 
 The orthonormalization of the instance against v
 Gram-Schmidt-Normalization: t -= n \* (t dot n)
@@ -2396,6 +2922,8 @@ Returns **[Vector3](#vector3)**
 
 ## normalizationOf
 
+[source/Vector3.js:552-561](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L552-L561 "Source code on GitHub")
+
 The normal form of v
 
 **Parameters**
@@ -2405,6 +2933,8 @@ The normal form of v
 Returns **[Vector3](#vector3)** 
 
 ## copyOf
+
+[source/Vector3.js:568-572](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L568-L572 "Source code on GitHub")
 
 The copy of v
 
@@ -2416,57 +2946,71 @@ Returns **[Vector3](#vector3)**
 
 ## normalize
 
+[source/Vector3.js:579-589](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L579-L589 "Source code on GitHub")
+
 The normal form of the instance
 
 Returns **[Vector3](#vector3)** 
 
 ## toString
 
+[source/Vector3.js:597-603](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L597-L603 "Source code on GitHub")
+
 Returns a string representation of the instance
 
 **Parameters**
 
--   `digits` **\[Uint]** The decimal digits (optional, default `3`)
+-   `digits` **int?** The decimal digits (optional, default `3`)
 
-Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+Returns **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## valueOf
 
+[source/Vector3.js:609-611](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L609-L611 "Source code on GitHub")
+
 Returns the [Vector3#norm](#vector3norm) of the instance
 
-Returns **Float** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## X
+
+[source/Vector3.js:11-18](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L11-L18 "Source code on GitHub")
 
 Returns a representation of the x-axis vector (1.0,0.0,0.0)
 
 **Parameters**
 
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## Y
 
+[source/Vector3.js:25-32](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L25-L32 "Source code on GitHub")
+
 Returns a representation of the y-axis vector (0.0,1.0,0.0)
 
 **Parameters**
 
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## Z
 
+[source/Vector3.js:39-46](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L39-L46 "Source code on GitHub")
+
 Returns a representation of the z-axis vector (0.0,0.0,1.0)
 
 **Parameters**
 
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## BarycentricUV
+
+[source/Vector3.js:59-70](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L59-L70 "Source code on GitHub")
 
 Returns the resulting instance of <em>cw</em> triangle (v0,v1,v2) and barycentric coordinates (u,v)
 
@@ -2475,13 +3019,15 @@ Returns the resulting instance of <em>cw</em> triangle (v0,v1,v2) and barycentri
 -   `v0` **[Vector3](#vector3)** The first corner
 -   `v1` **[Vector3](#vector3)** The second corner
 -   `v2` **[Vector3](#vector3)** The third corner
--   `u` **Float** The u-coordinate
--   `v` **Float** The v-coordinate
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `u` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The u-coordinate
+-   `v` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The v-coordinate
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## Add
+
+[source/Vector3.js:80-82](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L80-L82 "Source code on GitHub")
 
 Returns the sum of v and w (v+w)
 
@@ -2489,11 +3035,13 @@ Returns the sum of v and w (v+w)
 
 -   `v` **[Vector3](#vector3)** The first summand
 -   `w` **[Vector3](#vector3)** The second summand
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## Subtract
+
+[source/Vector3.js:91-93](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L91-L93 "Source code on GitHub")
 
 Returns the difference between v and w (v-w)
 
@@ -2501,23 +3049,27 @@ Returns the difference between v and w (v-w)
 
 -   `v` **[Vector3](#vector3)** The minuend
 -   `w` **[Vector3](#vector3)** The subtrahend
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## MultiplyScalar
+
+[source/Vector3.js:102-104](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L102-L104 "Source code on GitHub")
 
 Returns the scalar product of v and n (v\*n)
 
 **Parameters**
 
 -   `v` **[Vector3](#vector3)** The vector
--   `n` **Float** The scalar
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The scalar
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## Cross
+
+[source/Vector3.js:113-115](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L113-L115 "Source code on GitHub")
 
 Returns the exterior product of v and w (v cross w)
 
@@ -2525,11 +3077,13 @@ Returns the exterior product of v and w (v cross w)
 
 -   `v` **[Vector3](#vector3)** The first vector
 -   `w` **[Vector3](#vector3)** The second vector
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## MultiplyMatrix3
+
+[source/Vector3.js:124-126](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L124-L126 "Source code on GitHub")
 
 Returns the transformation of v (m\*v)
 
@@ -2537,11 +3091,13 @@ Returns the transformation of v (m\*v)
 
 -   `m` **[Matrix3](#matrix3)** The transform
 -   `v` **[Vector3](#vector3)** The source
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## Multiply3x4Matrix4
+
+[source/Vector3.js:135-137](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L135-L137 "Source code on GitHub")
 
 Returns the 3x4 transformation of v (m\*v)
 
@@ -2549,11 +3105,13 @@ Returns the 3x4 transformation of v (m\*v)
 
 -   `m` **[Matrix4](#matrix4)** The transform
 -   `v` **[Vector3](#vector3)** The vector
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## MultiplyMatrix4
+
+[source/Vector3.js:146-148](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L146-L148 "Source code on GitHub")
 
 Returns the transformation of v (m\*v)
 
@@ -2561,11 +3119,13 @@ Returns the transformation of v (m\*v)
 
 -   `m` **[Matrix4](#matrix4)** The transform
 -   `v` **[Vector3](#vector3)** The vector
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## Project
+
+[source/Vector3.js:158-160](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L158-L160 "Source code on GitHub")
 
 Returns the projection of w on v
 
@@ -2573,11 +3133,13 @@ Returns the projection of w on v
 
 -   `v` **[Vector3](#vector3)** The projection vector
 -   `w` **[Vector3](#vector3)** The projected vector
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## OrthoNormalize
+
+[source/Vector3.js:169-171](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L169-L171 "Source code on GitHub")
 
 Returns the orthonormalization of w against v
 
@@ -2585,33 +3147,39 @@ Returns the orthonormalization of w against v
 
 -   `v` **[Vector3](#vector3)** The projection vector
 -   `w` **[Vector3](#vector3)** The projected vector
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## Normalize
+
+[source/Vector3.js:180-182](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L180-L182 "Source code on GitHub")
 
 Returns the normal form of v
 
 **Parameters**
 
 -   `v` **[Vector3](#vector3)** The source
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## Copy
+
+[source/Vector3.js:190-192](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L190-L192 "Source code on GitHub")
 
 Returns a copy of v
 
 **Parameters**
 
 -   `v` **[Vector3](#vector3)** The source
--   `target` **\[[Vector3](#vector3)]** The target instance
+-   `target` **[Vector3](#vector3)?** The target instance
 
 Returns **[Vector3](#vector3)** 
 
 ## dot
+
+[source/Vector3.js:201-203](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L201-L203 "Source code on GitHub")
 
 Returns the inner product of v and w (v dot w)
 
@@ -2620,9 +3188,11 @@ Returns the inner product of v and w (v dot w)
 -   `v` **[Vector3](#vector3)** The first vector
 -   `w` **[Vector3](#vector3)** The second vector
 
-Returns **Float** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## isEQ
+
+[source/Vector3.js:212-216](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L212-L216 "Source code on GitHub")
 
 Returns true if v and w are equal, false otherwise (u==v)
 
@@ -2631,96 +3201,124 @@ Returns true if v and w are equal, false otherwise (u==v)
 -   `v` **[Vector3](#vector3)** The protagonist
 -   `w` **[Vector3](#vector3)** The antagonist
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 ## isNormLT
+
+[source/Vector3.js:224-226](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L224-L226 "Source code on GitHub")
 
 Returns true if the norm of v is less than n, false otherwise (v.norm&lt;n)
 
 **Parameters**
 
 -   `v` **[Vector3](#vector3)** The protagonist
--   `n` **Float** The antagonist
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The antagonist
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 ## isNormGT
+
+[source/Vector3.js:234-236](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L234-L236 "Source code on GitHub")
 
 Returns true if the norm of v is greater than n, false otherwise (v.norm>n)
 
 **Parameters**
 
 -   `v` **[Vector3](#vector3)** The protagonist
--   `n` **Float** The antagonist
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The antagonist
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 ## isNormEQ
+
+[source/Vector3.js:244-246](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector3.js#L244-L246 "Source code on GitHub")
 
 Returns true if the norm of v and n are equal, false otherwise (v.norm===n)
 
 **Parameters**
 
 -   `v` **[Vector3](#vector3)** The protagonist
--   `n` **Float** The antagonist
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The antagonist
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 # Vector4
+
+[source/Vector4.js:4-555](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L4-L555 "Source code on GitHub")
 
 Four component vector
 
 ## constructor
 
+[source/Vector4.js:241-247](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L241-L247 "Source code on GitHub")
+
 Creates a new instance
 
 **Parameters**
 
--   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing the four components
+-   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Array representing the four components
     Arrays of length !== 4 will return the identity (0.0,0.0,0.0,1.0) vector
 
 ## n
+
+[source/Vector4.js:246-246](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L246-L246 "Source code on GitHub")
 
 The component array
 
 ## define
 
+[source/Vector4.js:256-260](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L256-L260 "Source code on GitHub")
+
 Redefines the instance
 
 **Parameters**
 
--   `n` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Float>]** Array representing the four components
+-   `n` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Array representing the four components
     Arrays of length <em>!== 4</em> will return the identity (0.0,0.0,0.0,1.0) vector
 
 Returns **[Vector4](#vector4)** 
 
 ## x
 
+[source/Vector4.js:267-269](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L267-L269 "Source code on GitHub")
+
 The x component, [Vector4#n](#vector4n)[0]
 
 ## y
+
+[source/Vector4.js:280-282](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L280-L282 "Source code on GitHub")
 
 The y component, [Vector4#n](#vector4n)[1]
 
 ## z
 
+[source/Vector4.js:293-295](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L293-L295 "Source code on GitHub")
+
 The z component, [Vector4#n](#vector4n)[2]
 
 ## w
+
+[source/Vector4.js:306-308](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L306-L308 "Source code on GitHub")
 
 The w component, [Vector4#n](#vector4n)[3]
 
 ## norm
 
+[source/Vector4.js:319-323](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L319-L323 "Source code on GitHub")
+
 The norm of the instance
 
 ## normSquared
 
+[source/Vector4.js:329-333](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L329-L333 "Source code on GitHub")
+
 The square of the norm of the instance
 
-Returns **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## add
+
+[source/Vector4.js:342-349](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L342-L349 "Source code on GitHub")
 
 The sum of q and r (q+r)
 
@@ -2733,6 +3331,8 @@ Returns **[Vector4](#vector4)**
 
 ## subtract
 
+[source/Vector4.js:357-364](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L357-L364 "Source code on GitHub")
+
 The difference of q and r (q-r)
 
 **Parameters**
@@ -2744,16 +3344,20 @@ Returns **[Vector4](#vector4)**
 
 ## multiplyScalar
 
+[source/Vector4.js:372-379](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L372-L379 "Source code on GitHub")
+
 The scalar product of q and n (q\*n)
 
 **Parameters**
 
 -   `q` **[Vector4](#vector4)** The vector
--   `n` **Float** The scalar
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The scalar
 
 Returns **[Vector4](#vector4)** 
 
 ## multiply
+
+[source/Vector4.js:387-397](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L387-L397 "Source code on GitHub")
 
 The exterior product of q and r (q cross r)
 
@@ -2766,6 +3370,8 @@ Returns **[Vector4](#vector4)**
 
 ## addEQ
 
+[source/Vector4.js:405-412](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L405-L412 "Source code on GitHub")
+
 The sum of the instance and q
 
 **Parameters**
@@ -2775,6 +3381,8 @@ The sum of the instance and q
 Returns **[Vector4](#vector4)** 
 
 ## subtractEQ
+
+[source/Vector4.js:419-426](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L419-L426 "Source code on GitHub")
 
 The difference of the instance and q
 
@@ -2786,15 +3394,19 @@ Returns **[Vector4](#vector4)**
 
 ## multiplyScalarEQ
 
+[source/Vector4.js:433-440](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L433-L440 "Source code on GitHub")
+
 The scalar product of the instance and n
 
 **Parameters**
 
--   `n` **Float** the scalar
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the scalar
 
 Returns **[Vector4](#vector4)** 
 
 ## normalizationOf
+
+[source/Vector4.js:448-457](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L448-L457 "Source code on GitHub")
 
 The normalization of q
 
@@ -2806,6 +3418,8 @@ Returns **[Vector4](#vector4)**
 
 ## conjugateOf
 
+[source/Vector4.js:464-471](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L464-L471 "Source code on GitHub")
+
 The conjugate of q
 
 **Parameters**
@@ -2815,6 +3429,8 @@ The conjugate of q
 Returns **[Vector4](#vector4)** 
 
 ## inverseOf
+
+[source/Vector4.js:478-488](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L478-L488 "Source code on GitHub")
 
 The inverse of q
 
@@ -2826,6 +3442,8 @@ Returns **[Vector4](#vector4)**
 
 ## copyOf
 
+[source/Vector4.js:495-499](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L495-L499 "Source code on GitHub")
+
 The copy of q
 
 **Parameters**
@@ -2836,11 +3454,15 @@ Returns **[Vector4](#vector4)**
 
 ## normalize
 
+[source/Vector4.js:506-516](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L506-L516 "Source code on GitHub")
+
 The normal form of the instance
 
 Returns **[Vector4](#vector4)** 
 
 ## conjugate
+
+[source/Vector4.js:522-524](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L522-L524 "Source code on GitHub")
 
 The conjugate of the instance
 
@@ -2848,39 +3470,49 @@ Returns **[Vector4](#vector4)**
 
 ## invert
 
+[source/Vector4.js:530-532](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L530-L532 "Source code on GitHub")
+
 The inverse of the instance
 
 Returns **[Vector4](#vector4)** 
 
 ## toString
 
+[source/Vector4.js:540-546](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L540-L546 "Source code on GitHub")
+
 Returns a string representation of the instance
 
 **Parameters**
 
--   `digits` **\[Uint]** The decimal digits (optional, default `3`)
+-   `digits` **int?** The decimal digits (optional, default `3`)
 
-Returns **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+Returns **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## valueOf
 
+[source/Vector4.js:552-554](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L552-L554 "Source code on GitHub")
+
 Returns the [Vector4#norm](#vector4norm) of the instance
 
-Returns **Float** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## Rotation
+
+[source/Vector4.js:13-27](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L13-L27 "Source code on GitHub")
 
 Returns a unit-quaternion instance of axis and rotation
 
 **Parameters**
 
 -   `axis` **[Vector3](#vector3)** The rotation axis
--   `rad` **Float** The rotation in radians
--   `target` **\[[Vector4](#vector4)]** The target instance
+-   `rad` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The rotation in radians
+-   `target` **[Vector4](#vector4)?** The target instance
 
 Returns **[Vector4](#vector4)** 
 
 ## SLERP
+
+[source/Vector4.js:37-58](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L37-L58 "Source code on GitHub")
 
 Returns a unit-quaternion instance of Spherical Linear intERPolation
 
@@ -2888,34 +3520,40 @@ Returns a unit-quaternion instance of Spherical Linear intERPolation
 
 -   `q` **[Vector4](#vector4)** The starting <em>unit quaternion</em>
 -   `r` **[Vector4](#vector4)** The ending <em>unit quaternion</em>
--   `t` **Float** The interpolation factor
--   `target` **\[[Vector4](#vector4)]** The target instance
+-   `t` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The interpolation factor
+-   `target` **[Vector4](#vector4)?** The target instance
 
 Returns **[Vector4](#vector4)** 
 
 ## Matrix3
+
+[source/Vector4.js:66-107](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L66-L107 "Source code on GitHub")
 
 Returns a unit-quaternion instance of a rotation matrix
 
 **Parameters**
 
 -   `m` **[Matrix3](#matrix3)** The source 3x3 transform
--   `target` **\[[Vector4](#vector4)]** The target instance
+-   `target` **[Vector4](#vector4)?** The target instance
 
 Returns **[Vector4](#vector4)** 
 
 ## Vector3
+
+[source/Vector4.js:115-122](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L115-L122 "Source code on GitHub")
 
 Returns a instance of Vector3
 
 **Parameters**
 
 -   `v` **[Vector3](#vector3)** The source
--   `target` **\[[Vector4](#vector4)]** The target instance
+-   `target` **[Vector4](#vector4)?** The target instance
 
 Returns **[Vector4](#vector4)** 
 
 ## Add
+
+[source/Vector4.js:132-134](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L132-L134 "Source code on GitHub")
 
 Returns the sum of q and r (q+r)
 
@@ -2923,11 +3561,13 @@ Returns the sum of q and r (q+r)
 
 -   `q` **[Vector4](#vector4)** The first summand
 -   `r` **[Vector4](#vector4)** The second summand
--   `target` **\[[Vector4](#vector4)]** The target instance
+-   `target` **[Vector4](#vector4)?** The target instance
 
 Returns **[Vector4](#vector4)** 
 
 ## Subtract
+
+[source/Vector4.js:143-145](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L143-L145 "Source code on GitHub")
 
 Returns the difference of q and r (q-r)
 
@@ -2935,23 +3575,27 @@ Returns the difference of q and r (q-r)
 
 -   `q` **[Vector4](#vector4)** The minuend
 -   `r` **[Vector4](#vector4)** The subtrahend
--   `target` **\[[Vector4](#vector4)]** The target instance
+-   `target` **[Vector4](#vector4)?** The target instance
 
 Returns **[Vector4](#vector4)** 
 
 ## MultiplyScalar
+
+[source/Vector4.js:154-156](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L154-L156 "Source code on GitHub")
 
 Returns the scalar product of q and n (q\*n)
 
 **Parameters**
 
 -   `q` **[Vector4](#vector4)** The vector
--   `n` **Float** The scalar
--   `target` **\[[Vector4](#vector4)]** The target instance
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The scalar
+-   `target` **[Vector4](#vector4)?** The target instance
 
 Returns **[Vector4](#vector4)** 
 
 ## Multiply
+
+[source/Vector4.js:165-167](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L165-L167 "Source code on GitHub")
 
 Returns the exterior product of q and r (q\*r)
 
@@ -2959,55 +3603,65 @@ Returns the exterior product of q and r (q\*r)
 
 -   `q` **[Vector4](#vector4)** The first vector
 -   `r` **[Vector4](#vector4)** The second vector
--   `target` **\[[Vector4](#vector4)]** The target instance
+-   `target` **[Vector4](#vector4)?** The target instance
 
 Returns **[Vector4](#vector4)** 
 
 ## Normalize
+
+[source/Vector4.js:176-178](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L176-L178 "Source code on GitHub")
 
 Returns the normal form of q
 
 **Parameters**
 
 -   `q` **[Vector4](#vector4)** The source
--   `target` **\[[Vector4](#vector4)]** The target instance
+-   `target` **[Vector4](#vector4)?** The target instance
 
 Returns **[Vector4](#vector4)** 
 
 ## Conjugate
+
+[source/Vector4.js:186-188](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L186-L188 "Source code on GitHub")
 
 Returns the conjugate of q
 
 **Parameters**
 
 -   `q` **[Vector4](#vector4)** The source
--   `target` **\[[Vector4](#vector4)]** The target instance
+-   `target` **[Vector4](#vector4)?** The target instance
 
 Returns **[Vector4](#vector4)** 
 
 ## Inverse
+
+[source/Vector4.js:196-198](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L196-L198 "Source code on GitHub")
 
 Returns the inverse of q
 
 **Parameters**
 
 -   `q` **[Vector4](#vector4)** The source
--   `target` **\[[Vector4](#vector4)]** The target instance
+-   `target` **[Vector4](#vector4)?** The target instance
 
 Returns **[Vector4](#vector4)** 
 
 ## Copy
+
+[source/Vector4.js:206-208](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L206-L208 "Source code on GitHub")
 
 Returns a copy of q
 
 **Parameters**
 
 -   `q` **[Vector4](#vector4)** The source
--   `target` **\[[Vector4](#vector4)]** The target instance
+-   `target` **[Vector4](#vector4)?** The target instance
 
 Returns **[Vector4](#vector4)** 
 
 ## dot
+
+[source/Vector4.js:217-219](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L217-L219 "Source code on GitHub")
 
 Returns the inner product of q and r
 
@@ -3016,9 +3670,11 @@ Returns the inner product of q and r
 -   `q` **[Vector4](#vector4)** The first vector
 -   `r` **[Vector4](#vector4)** The second vector
 
-Returns **Float** 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## isEQ
+
+[source/Vector4.js:228-232](https://github.com/chkt/xyzw/blob/0c785fff0e807f9354e60dc98ceb770fa0fb3237/source/Vector4.js#L228-L232 "Source code on GitHub")
 
 Returns true if q and r are equal, false otherwise (q==r)
 
@@ -3027,4 +3683,4 @@ Returns true if q and r are equal, false otherwise (q==r)
 -   `q` **[Vector4](#vector4)** The protagonist
 -   `r` **[Vector4](#vector4)** The antagonist
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 

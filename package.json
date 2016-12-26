@@ -40,7 +40,7 @@
 	"scripts" : {
 		"gulp" : "node ./node_modules/gulp/bin/gulp.js",
 		"test" : "node ./node_modules/gulp/bin/gulp.js test",
-		"doc" : "less package.md > readme.md && node ./node_modules/documentation/bin/documentation.js build -f md source/ >> readme.md"
+		"doc" : "less package.md > readme.md && node ./node_modules/documentation/bin/documentation.js build -g -f md source/ >> readme.md"
 	},
 
 	"files" : [

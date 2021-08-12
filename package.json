@@ -1,69 +1,68 @@
 {
-	"name" : "xyzw",
-	"description" : "A generic, fast, comprehensive and dependencyless vector algebra library",
-	"version" : "0.9.7",
-	"license" : "MIT",
-
-	"keywords" : [
+	"name": "xyzw",
+	"description": "A functional, fast, comprehensive and dependencyless typescript vector algebra library",
+	"version": "2.0.0",
+	"license": "MIT",
+	"keywords": [
 		"algebra",
 		"vector",
 		"matrix",
 		"rotation",
+		"shear",
 		"translation",
 		"transform",
+		"perspective",
+		"orthographic",
 		"projection",
 		"2d",
 		"3d",
+		"outer",
+		"inner",
 		"cross",
 		"dot",
+		"product",
+		"concatenation",
 		"barycentric",
+		"coordinates",
+		"unit",
 		"quaternion",
 		"slerp",
 		"determinant",
 		"inverse",
 		"transpose",
 		"conjugate",
-		"gauss-jordan"
+		"gauss-jordan",
+		"identity"
 	],
-
-	"author" : {
-		"name" : "Christoph Kettelhoit",
-		"email" : "ck@christoph-kettelhoit.de",
-		"url" : "christoph-kettelhoit.de"
+	"author": {
+		"name": "chkt",
+		"email": "ck@chkt.one",
+		"url": "chkt.one"
 	},
-
-	"repository" : {
-		"type" : "git",
-		"url" : "https://github.com/chkt/xyzw"
+	"repository": {
+		"url": "https://github.com/chkt/xyzw"
 	},
-
-	"scripts" : {
-		"gulp" : "node ./node_modules/gulp/bin/gulp.js",
-		"test" : "node ./node_modules/gulp/bin/gulp.js test",
-		"doc" : "less package.md > readme.md && node ./node_modules/documentation/bin/documentation.js build -g -f md source/ >> readme.md"
-	},
-
-	"files" : [
-		"source/",
-		"es5/"
+	"main": "./dist/index.js",
+	"files": [
+		"./dist"
 	],
-
-	"babel" : {
-		"presets" : [ "es2015" ]
+	"scripts": {
+		"prepublishOnly": "yarn outdated && yarn ../test && yarn lint && yarn build && yarn doc",
+		"lint": "./node_modules/tslint/bin/tslint -p tsconfig.json",
+		"test": "./node_modules/mocha/bin/mocha -r ts-node/register test/**/*.ts --exclude test/perf.ts",
+		"doc" : "./node_modules/.bin/typedoc --theme ../typedoc_theme --readme ./module.md --out ./.docs source/*.ts && cp ./.docs/modules.md ./readme.md",
+		"build": "rm -rf ./dist/* && ../node_modules/typescript/bin/tsc"
 	},
-
-	"devDependencies" : {
-		"del" : "~2.0",
-		"babel" : "~6.5",
-		"babel-polyfill" : "~6.5",
-		"babel-preset-es2015": "~6.5",
-		"jscs" : "~2.1",
-		"tesa" : "~0.2",
-		"documentation" : "4.0.0-beta16",
-		"gulp" : "~3.9",
-		"gulp-jshint" : "~1.11",
-		"gulp-jscs" : "~2.0",
-		"gulp-babel" : "~6.1",
-		"gulp-mocha" : "~2.1"
+	"dependencies": {
+	},
+	"devDependencies": {
+		"@types/mocha": "^9.0",
+		"@types/node": "^16.6",
+		"mocha": "^9.0",
+		"nyc": "^15.1",
+		"ts-node": "^10.2",
+		"tslint": "^6.1",
+		"typedoc": "^0.21.5",
+		"typescript": "^4.3"
 	}
 }

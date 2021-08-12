@@ -1,0 +1,75 @@
+xtends: tslint:latest
+
+rules:
+  arrow-parens:
+    - true
+    - ban-single-arg-parens
+  curly:
+    - true
+    - ignore-same-line
+  indent:
+    - true
+    - tabs
+    - 4
+  interface-name: false
+  no-consecutive-blank-lines:
+    - true
+    - 2
+  no-console:
+    - false
+  no-implicit-dependencies:
+    - true
+    - dev
+  no-namespace:
+    - true
+    - allow-declarations
+  no-shadowed-variable:
+    - true
+    - class : true
+      enum : true
+      function : true
+      import : true
+      interface: false
+      namespace: true
+      typeAlias: false
+      typeParameter: false
+      temporalDeadZone : false
+      underscore : true
+  no-submodule-imports: false
+  object-literal-sort-keys:
+    - false
+  one-line:
+    - true
+    - check-open-brace
+    - check-whitespace
+  ordered-imports: false
+  one-variable-per-declaration: false
+  quotemark:
+    - false
+  trailing-comma: false
+  typedef-whitespace:
+    - true
+    - call-signature: onespace
+      index-signature: onespace
+      parameter: nospace
+      property-declaration: space
+      variable-declaration: nospace
+    - call-signature: onespace
+      index-signature: onespace
+      parameter: nospace
+      property-declaration: space
+      variable-declaration: nospace
+  variable-name:
+    options:
+      - check-format
+      - require-const-for-all-caps
+  whitespace:
+    - true
+    - check-branch
+    - check-decl
+    - check-operator
+    - check-module
+    - check-separator
+    - check-rest-spread
+    - check-typecast
+    - check-preblock

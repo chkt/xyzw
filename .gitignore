@@ -1,8 +1,6 @@
-#ide
-/.idea
+/.docs/
+/.nyc_output/
+/dist/
+/node_modules/
 
-#lib
-/node_modules
-
-#files
-/npm-debug.log
+/yarn.lock

@@ -3,7 +3,7 @@
 ![Node](https://img.shields.io/node/v/xyzw)
 ![Dependencies](https://img.shields.io/librariesio/release/npm/xyzw)
 ![Licence](https://img.shields.io/npm/l/xyzw)
-![Language](https://img.shields.io/github/languages/top/xyzw)
+![Language](https://img.shields.io/github/languages/top/chkt/xyzw)
 ![Size](https://img.shields.io/bundlephobia/min/xyzw)
 
 # xyzw

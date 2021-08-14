@@ -1,7 +1,7 @@
 {
 	"name": "xyzw",
 	"description": "A functional, fast, comprehensive and dependencyless typescript vector algebra library",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"license": "MIT",
 	"keywords": [
 		"algebra",
@@ -43,25 +43,24 @@
 	"repository": {
 		"url": "https://github.com/chkt/xyzw"
 	},
-	"bugs" : {
-		"url" : "https://github.com/chkt/xyzw/issues"
+	"bugs": {
+		"url": "https://github.com/chkt/xyzw/issues"
 	},
-	"engines" : {
-		"node" : ">=10.0"
+	"engines": {
+		"node": ">=10.0"
 	},
 	"main": "./dist/index.js",
 	"files": [
-		"./dist"
+		"/dist/"
 	],
 	"scripts": {
 		"prepublishOnly": "yarn outdated && yarn test && yarn lint && yarn build && yarn doc",
 		"lint": "./node_modules/tslint/bin/tslint -p tsconfig.json",
 		"test": "./node_modules/mocha/bin/mocha -r ts-node/register test/**/*.ts --exclude test/perf.ts",
-		"doc" : "./node_modules/.bin/typedoc --theme ../typedoc_theme --readme ./module.md --out ./.docs source/*.ts && cp ./.docs/modules.md ./readme.md",
+		"doc": "./node_modules/.bin/typedoc --theme ../typedoc_theme --readme ./module.md --out ./.docs source/*.ts && cp ./.docs/modules.md ./readme.md",
 		"build": "rm -rf ./dist/* && ./node_modules/typescript/bin/tsc"
 	},
-	"dependencies": {
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"@types/mocha": "^9.0",
 		"@types/node": "^16.6",

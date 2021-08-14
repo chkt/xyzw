@@ -3,8 +3,8 @@
 		"./source/**/*"
 	],
 	"compilerOptions": {
-		"baseUrl": "..",
-		"outDir": "../dist",
+		"baseUrl": ".",
+		"outDir": "./dist",
 
 		"target": "es2015",
 		"lib": [],

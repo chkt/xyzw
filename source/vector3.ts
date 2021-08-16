@@ -464,3 +464,51 @@ export function copy(r:Vector3, v:Vector3) : Vector3 {
 
 	return r;
 }
+
+export function toF32(v:Vector3) : Float32Array {
+	return new Float32Array([ v.x, v.y, v.z ]);
+}
+
+export function assignF32(r:Float32Array, v:Vector3) : Float32Array {
+	r[0] = v.x;
+	r[1] = v.y;
+	r[2] = v.z;
+
+	return r;
+}
+
+export function toF64(v:Vector3) : Float64Array {
+	return new Float64Array([ v.x, v.y, v.z ]);
+}
+
+export function assignF64(r:Float64Array, v:Vector3) : Float64Array {
+	r[0] = v.x;
+	r[1] = v.y;
+	r[2] = v.z;
+
+	return r;
+}
+
+export function F32(n:Float32Array) : Vector3 {
+	return { x : n[0], y : n[1], z : n[2] };
+}
+
+export function f32(r:Vector3, n:Float32Array) : Vector3 {
+	r.x = n[0];
+	r.y = n[1];
+	r.z = n[2];
+
+	return r;
+}
+
+export function F64(n:Float64Array) : Vector3 {
+	return { x : n[0], y : n[1], z : n[2] };
+}
+
+export function f64(r:Vector3, n:Float64Array) : Vector3 {
+	r.x = n[0];
+	r.y = n[1];
+	r.z = n[2];
+
+	return r;
+}

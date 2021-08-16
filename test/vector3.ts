@@ -853,3 +853,83 @@ describe('copy', () => {
 		assert.strictEqual(w, r);
 	});
 });
+
+describe('toF32', () => {
+	it('should return a Float32Array representing a Vector3', () => {
+		assert.deepStrictEqual(
+			vector3.toF32(vector3.Create(1.0, 2.0, 3.0)),
+			new Float32Array([ 1.0, 2.0, 3.0 ])
+		);
+	});
+});
+
+describe('assignF32', () => {
+	it('should assign a Float32Array representing a Vector3', () => {
+		const v = vector3.Create(1.0, 2.0, 3.0);
+		const f = new Float32Array(3);
+		const r = vector3.assignF32(f, v);
+
+		assert.deepStrictEqual(r, new Float32Array([ 1.0, 2.0, 3.0 ]));
+		assert.strictEqual(f, r);
+	});
+});
+
+describe('toF64', () => {
+	it('should return a Float64Array representing a Vector3', () => {
+		assert.deepStrictEqual(
+			vector3.toF64(vector3.Create(1.0, 2.0, 3.0)),
+			new Float64Array([ 1.0, 2.0, 3.0])
+		);
+	});
+});
+
+describe('assignF64', () => {
+	it('should assign a Float64Array representing a Vector3', () => {
+		const v = vector3.Create(1.0, 2.0, 3.0);
+		const f = new Float64Array(3);
+		const r = vector3.assignF64(f, v);
+
+		assert.deepStrictEqual(r, new Float64Array([ 1.0, 2.0, 3.0 ]));
+		assert.strictEqual(f, r);
+	});
+});
+
+describe('F32', () => {
+	it('should return a Vector3 representing a Float32Array', () => {
+		assert.deepStrictEqual(
+			vector3.F32(new Float32Array([ 1.0, 2.0, 3.0 ])),
+			{ x : 1.0, y : 2.0, z : 3.0 }
+		);
+	});
+});
+
+describe('f32', () => {
+	it('should assign a Vector3 representing a Float32Array', () => {
+		const f = new Float32Array([ 1.0, 2.0, 3.0]);
+		const v = vector3.Create();
+		const r = vector3.f32(v, f);
+
+		assert.deepStrictEqual(r, { x : 1.0, y : 2.0, z : 3.0 });
+		assert.strictEqual(v, r);
+	});
+});
+
+describe('F64', () => {
+	it('should return a Vector3 representing a Float64Array', () => {
+		assert.deepStrictEqual(
+			vector3.F64(new Float64Array([ 1.0, 2.0, 3.0 ])),
+			{ x : 1.0, y : 2.0, z : 3.0 }
+		);
+	});
+});
+
+describe('f64', () => {
+	it('should assign a Vector3 representing a Float64Array', () => {
+		const f = new Float64Array([ 1.0, 2.0, 3.0]);
+		const v = vector3.Create();
+		const r = vector3.f64(v, f);
+
+		assert.deepStrictEqual(r, { x : 1.0, y : 2.0, z : 3.0 });
+		assert.strictEqual(v, r);
+	});
+});

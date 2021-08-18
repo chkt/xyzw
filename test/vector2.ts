@@ -78,13 +78,16 @@ describe('cross', () => {
 
 describe('dot', () => {
 	it('should return the dot (inner) product of v and w', () => {
-		assert.strictEqual(vector2.dot(vector2.AxisX(), vector2.AxisX()),  1.0);
-		assert.strictEqual(vector2.dot(vector2.AxisX(), vector2.AxisY()),  0.0);
-		assert.strictEqual(vector2.dot(vector2.AxisY(), vector2.AxisX()),  0.0);
-		assert.strictEqual(vector2.dot(vector2.AxisY(), vector2.AxisY()),  1.0);
+		assert.strictEqual(vector2.dot(vector2.AxisX(), vector2.AxisX()), 1.0);
+		assert.strictEqual(vector2.dot(vector2.AxisX(), vector2.AxisY()), 0.0);
+		assert.strictEqual(vector2.dot(vector2.AxisY(), vector2.AxisX()), 0.0);
+		assert.strictEqual(vector2.dot(vector2.AxisY(), vector2.AxisY()), 1.0);
+		assert.strictEqual(vector2.dot(vector2.AxisX(), vector2.AxisX(-1.0)), -1.0);
+		assert.strictEqual(vector2.dot(vector2.AxisY(), vector2.AxisY(-1.0)), -1.0);
 		assert.strictEqual(vector2.dot(vector2.Rotation(0.25 * Math.PI), vector2.Rotation(0.75 * Math.PI)),  0.0);
 		assert.strictEqual(vector2.dot(vector2.Rotation(0.25 * Math.PI), vector2.Rotation(0.25 * Math.PI)),  1.0);
-		assert.strictEqual(vector2.dot(vector2.AxisX(2.0), vector2.AxisX(2.0)),  4.0);
+		assert.strictEqual(vector2.dot(vector2.Rotation(0.25 * Math.PI), vector2.Rotation(1.25 * Math.PI)), -1.0);
+		assert.strictEqual(vector2.dot(vector2.AxisX(2.0), vector2.AxisX(2.0)), 4.0);
 	});
 });
 

@@ -139,20 +139,27 @@ describe('normSquared', () => {
 
 describe('dot', () => {
 	it('should return the dot (inner) product of v and w', () => {
-		assert.strictEqual(vector3.dot(vector3.AxisX(), vector3.AxisX()),  1.0);
-		assert.strictEqual(vector3.dot(vector3.AxisX(), vector3.AxisY()),  0.0);
-		assert.strictEqual(vector3.dot(vector3.AxisX(), vector3.AxisZ()),  0.0);
-		assert.strictEqual(vector3.dot(vector3.AxisY(), vector3.AxisX()),  0.0);
-		assert.strictEqual(vector3.dot(vector3.AxisY(), vector3.AxisY()),  1.0);
-		assert.strictEqual(vector3.dot(vector3.AxisY(), vector3.AxisZ()),  0.0);
-		assert.strictEqual(vector3.dot(vector3.AxisZ(), vector3.AxisX()),  0.0);
-		assert.strictEqual(vector3.dot(vector3.AxisZ(), vector3.AxisY()),  0.0);
-		assert.strictEqual(vector3.dot(vector3.AxisZ(), vector3.AxisZ()),  1.0);
+		assert.strictEqual(vector3.dot(vector3.AxisX(), vector3.AxisX()), 1.0);
+		assert.strictEqual(vector3.dot(vector3.AxisX(), vector3.AxisY()), 0.0);
+		assert.strictEqual(vector3.dot(vector3.AxisX(), vector3.AxisZ()), 0.0);
+		assert.strictEqual(vector3.dot(vector3.AxisY(), vector3.AxisX()), 0.0);
+		assert.strictEqual(vector3.dot(vector3.AxisY(), vector3.AxisY()), 1.0);
+		assert.strictEqual(vector3.dot(vector3.AxisY(), vector3.AxisZ()), 0.0);
+		assert.strictEqual(vector3.dot(vector3.AxisZ(), vector3.AxisX()), 0.0);
+		assert.strictEqual(vector3.dot(vector3.AxisZ(), vector3.AxisY()), 0.0);
+		assert.strictEqual(vector3.dot(vector3.AxisZ(), vector3.AxisZ()), 1.0);
+		assert.strictEqual(vector3.dot(vector3.AxisX(), vector3.AxisX(-1.0)), -1.0);
+		assert.strictEqual(vector3.dot(vector3.AxisY(), vector3.AxisY(-1.0)), -1.0);
+		assert.strictEqual(vector3.dot(vector3.AxisZ(), vector3.AxisZ(-1.0)), -1.0);
 
 		assert.strictEqual(vector3.dot(
 			vector3.Normalize(vector3.Create(1.0, 1.0, 0.0)),
 			vector3.Normalize(vector3.Create(-1.0, 1.0, 0.0))
 		), 0.0);
+		assertEqualsScalar(vector3.dot(
+			vector3.Normalize(vector3.Create(1.0, 1.0, 0.0)),
+			vector3.Normalize(vector3.Create(-1.0, -1.0, 0.0))
+		), -1.0, epsilon);
 
 		assertEqualsScalar(vector3.dot(
 			vector3.Normalize(vector3.Create( 1.0, 1.0, 1.0)),

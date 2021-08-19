@@ -1,7 +1,7 @@
 {
 	"name": "xyzw",
 	"description": "A functional, fast, comprehensive and dependencyless typescript vector algebra library",
-	"version": "2.0.1",
+	"version": "2.1.0",
 	"license": "MIT",
 	"keywords": [
 		"algebra",
@@ -64,8 +64,8 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@types/mocha": "^9.0",
-		"@types/node": "^16.6",
-		"mocha": "^9.0",
+		"@types/node": "^16.7",
+		"mocha": "^9.1",
 		"nyc": "^15.1",
 		"ts-node": "^10.2",
 		"tslint": "^6.1",

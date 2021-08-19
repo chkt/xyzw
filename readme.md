@@ -337,6 +337,7 @@ function MultiplyScalar(v:Vector2, n:number) : Vector2;  // nv⃗
 function Normalize(v:Vector2) : Vector2;  // v̂
 function Perpendicular(v:Vector2) : Vector2;  // v⃗⊥
 function Project(v:Vector2, w:Vector2) : Vector2;  // Return the projection of w⃗ onto v⃗, (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
+function Reflect(v:Vector2, w:Vector2) : Vector2;  // Return the reflection of w⃗ against v⃗, 2(v⃗⋅w⃗ )w⃗-v⃗
 function Rotation(rad:number) : Vector2;
 function Subtract(v:Vector2, w:Vector2) : Vector2;  // v⃗-w⃗
 function add(r:Vector2, v:Vector2, w:Vector2) : Vector2;  // r⃗ = v⃗+w⃗
@@ -360,6 +361,7 @@ function normalize(r:Vector2, v:Vector2) : Vector2;  // r⃗ = v̂
 function perpendicular(r:Vector2, v:Vector2) : Vector2;  // r⃗ = v⃗⊥
 function project(r:Vector2, v:Vector2, w:Vector2) : Vector2;  // Assign the projection of w⃗ onto v⃗ to r⃗, r⃗ = (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
 function radians(v:Vector2, w:Vector2) : number;  // acos(v⃗⋅w⃗ )
+function reflect(r:Vector2, v:Vector2, w:Vector2) : Vector2;  // Assign the reflection of w⃗ against v⃗, r⃗ = 2(v⃗⋅w⃗ )w⃗-v⃗
 function rotation(r:Vector2, rad:number) : Vector2;
 function subtract(r:Vector2, v:Vector2, w:Vector2) : Vector2;  // r⃗ = v⃗-w⃗
 function subtractAssign(v:Vector2, w:Vector2) : Vector2;  // v⃗ = v⃗-w⃗
@@ -389,6 +391,8 @@ function Cross(v:Vector3, w:Vector3) : Vector3;  // v⃗×w⃗
 function EulerXYZ(m:Matrix3) : Vector3;
 function EulerYXZ(m:Matrix3) : Vector3;
 function EulerZXY(m:Matrix3) : Vector3;
+function F32(n:Float32Array) : Vector3;
+function F64(n:Float64Array) : Vector3;
 function Multiply3x4Matrix4(m:Matrix4, v:Vector3) : Vector3;  // M₃ₓ₄v⃗
 function MultiplyMatrix3(m:Matrix3, v:Vector3) : Vector3;  // M₃ₓ₃v⃗
 function MultiplyMatrix4(m:Matrix4, v:Vector3) : Vector3;  // M₄ₓ₄v⃗
@@ -396,10 +400,13 @@ function MultiplyScalar(v:Vector3, n:number) : Vector3;  // nv⃗
 function Normalize(v:Vector3) : Vector3;  // v̂
 function OrthoNormalize(v:Vector3, w:Vector3) : Vector3;  // w⃗ - (v⃗⋅w⃗ )v⃗
 function Project(v:Vector3, w:Vector3) : Vector3;  // Return the projection of w⃗ onto v⃗, (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
+function Reflect(v:Vector3, w:Vector3) : Vector3;  // Return the reflection of w⃗ against v⃗, 2(v⃗⋅w⃗ )w⃗-v⃗
 function Subtract(v:Vector3, w:Vector3) : Vector3;  // v⃗-w⃗
 function add(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = v⃗+w⃗
 function addAssign(v:Vector3, w:Vector3) : Vector3;  // v⃗ = v⃗+w⃗
 function assign(r:Vector3, x:number = 0.0, y:number = 0.0, z:number = 0.0) : Vector3;
+function assignF32(r:Float32Array, v:Vector3) : Float32Array;
+function assignF64(r:Float64Array, v:Vector3) : Float64Array;
 function axisX(r:Vector3, s:number = 1.0) : Vector3;  // r⃗ = sx̂
 function axisY(r:Vector3, s:number = 1.0) : Vector3;  // r⃗ = sŷ
 function axisZ(r:Vector3, s:number = 1.0) : Vector3;  // r⃗ = sẑ
@@ -411,6 +418,8 @@ function equals(v:Vector3, w:Vector3, e?:number) : boolean;
 function eulerXYZ(r:Vector3, m:Matrix3) : Vector3;
 function eulerYXZ(r:Vector3, m:Matrix3) : Vector3;
 function eulerZXY(r:Vector3, m:Matrix3) : Vector3;
+function f32(r:Vector3, n:Float32Array) : Vector3;
+function f64(r:Vector3, n:Float64Array) : Vector3;
 function isNormEqual(v:Vector3, n:number, e?:number) : boolean;  // ‖ v⃗ ‖ - n < ϵ
 function isNormGt(v:Vector3, n:number) : boolean;  // ‖ v⃗ ‖ > n
 function isNormLt(v:Vector3, n:number) : boolean;  // ‖ v⃗ ‖ < n
@@ -424,8 +433,11 @@ function normSquared(v:Vector3) : number;  // ‖ v⃗ ‖²
 function normalize(r:Vector3, v:Vector3) : Vector3;  // r⃗ = v̂
 function orthoNormalize(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = w⃗ - (v⃗⋅w⃗ )v⃗
 function project(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // Assign the projection of w⃗ onto v⃗ to r⃗, r⃗ = (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
+function reflect(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // Assign the reflection of w⃗ against v⃗, r⃗ = 2(v⃗⋅w⃗ )w⃗-v⃗
 function subtract(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = v⃗-w⃗
 function subtractAssign(v:Vector3, w:Vector3) : Vector3;  // v⃗ = v⃗-w⃗
+function toF32(v:Vector3) : Float32Array;
+function toF64(v:Vector3) : Float64Array;
 ```
 
 ## vector4

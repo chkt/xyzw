@@ -1,4 +1,3 @@
-import * as assert from 'assert';
 import { describe, it } from 'mocha';
 
 
@@ -17,10 +16,10 @@ function test(name:string, fn:test, num:number) : void {
 	fn(num);
 
 	console.log(`${ num }x ${ name }: ${ Date.now() - now }ms`);
-};
+}
 
 describe('read/write', () => {
-	const num = 100_000_000;
+	const n = 100_000_000;
 
 	it('should measure array assignments', () => {
 		test('assignArray', num => {
@@ -29,7 +28,7 @@ describe('read/write', () => {
 			for (let i = 0; i < num; i += 1) {
 				arr = [ arr[Y], arr[Z], arr[W], arr[X] ];
 			}
-		}, num);
+		}, n);
 	});
 
 	it('should measure array mutations', () => {
@@ -47,13 +46,13 @@ describe('read/write', () => {
 				arr[Z] = w;
 				arr[W] = x;
 			}
-		}, num);
+		}, n);
 	});
 
 	it('should measure array mutations with destructured reads', () => {
 		const arr = [ 0.1, 1.2, 2.3, 3.4 ];
 
-		for (let i = 0; i < num; i += 1) {
+		for (let i = 0; i < n; i += 1) {
 			const [x, y, z, w] = arr;
 
 			arr[X] = y;
@@ -67,7 +66,7 @@ describe('read/write', () => {
 		test('assignObject', () => {
 			let obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
 
-			for (let i = 0; i < num; i += 1) {
+			for (let i = 0; i < n; i += 1) {
 				obj = {
 					x : obj.y,
 					y : obj.z,
@@ -75,14 +74,14 @@ describe('read/write', () => {
 					w : obj.x
 				};
 			}
-		}, num);
+		}, n);
 	});
 
 	it('should measure object mutations', () => {
 		test('mutateObject', () => {
 			const obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
 
-			for (let i = 0; i < num; i += 1) {
+			for (let i = 0; i < n; i += 1) {
 				const x = obj.x;
 				const y = obj.y;
 				const z = obj.z;
@@ -93,14 +92,14 @@ describe('read/write', () => {
 				obj.z = w;
 				obj.w = x;
 			}
-		}, num);
+		}, n);
 	});
 
 	it('should measure object mutations with destructured reads', () => {
 		test('mutateObjectDestructuredRead', () => {
 			const obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
 
-			for (let i = 0; i < num; i += 1) {
+			for (let i = 0; i < n; i += 1) {
 				const {x, y, z, w} = obj;
 
 				obj.x = y;
@@ -108,34 +107,49 @@ describe('read/write', () => {
 				obj.z = w;
 				obj.w = x;
 			}
-		}, num);
+		}, n);
+	});
+
+	it('should measure object mutations with reassigned destructured reads', () => {
+		test('mutateObjectDestructuredRead', () => {
+			const obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
+
+			for (let i = 0; i < n; i += 1) {
+				const {x : xx, y : yy, z : zz, w : ww} = obj;
+
+				obj.x = yy;
+				obj.y = zz;
+				obj.z = ww;
+				obj.w = xx;
+			}
+		}, n);
 	});
 
 	it('should measure new Float32Array() assignments', () => {
 		test('assignFloat32New', () => {
 			let f32 = new Float32Array([0.1, 1.2, 2.3, 3.4]);
 
-			for (let i = 0; i < num; i += 1) {
+			for (let i = 0; i < n; i += 1) {
 				f32 = new Float32Array([f32[Y], f32[Z], f32[W], f32[X]]);
 			}
-		}, num);
+		}, n);
 	});
 
 	it('should measure Float32Array.of() assignments', () => {
 		test('assignFloat32Of', () => {
 			let f32 = new Float32Array([0.1, 1.2, 2.3, 3.4]);
 
-			for (let i = 0; i < num; i += 1) {
+			for (let i = 0; i < n; i += 1) {
 				f32 = Float32Array.of(f32[Y], f32[Z], f32[W], f32[X]);
 			}
-		}, num);
+		}, n);
 	});
 
 	it('should measure Float32Array[] mutations', () => {
 		test('mutateFloat32', () => {
 			const f32 = new Float32Array([0.1, 1.2, 2.3, 3.4]);
 
-			for (let i = 0; i < num; i += 1) {
+			for (let i = 0; i < n; i += 1) {
 				const x = f32[X];
 				const y = f32[Y];
 				const z = f32[Z];
@@ -146,14 +160,14 @@ describe('read/write', () => {
 				f32[Z] = w;
 				f32[W] = x;
 			}
-		}, num);
+		}, n);
 	});
 
 	it('should measure Float64Array[] mutations', () => {
 		test('mutateFloat64', () => {
 			const f32 = new Float64Array([0.1, 1.2, 2.3, 3.4]);
 
-			for (let i = 0; i < num; i += 1) {
+			for (let i = 0; i < n; i += 1) {
 				const x = f32[X];
 				const y = f32[Y];
 				const z = f32[Z];
@@ -164,14 +178,14 @@ describe('read/write', () => {
 				f32[Z] = w;
 				f32[W] = x;
 			}
-		}, num);
+		}, n);
 	});
 
 	it('should measure Float32Array.set() mutations', () => {
 		test('mutateFloat32Set', () => {
 			const f32 = new Float32Array([0.1, 1.2, 2.3, 3.4]);
 
-			for (let i = 0; i < num; i += 1) {
+			for (let i = 0; i < n; i += 1) {
 				const x = f32[X];
 				const y = f32[Y];
 				const z = f32[Z];
@@ -179,7 +193,7 @@ describe('read/write', () => {
 
 				f32.set([y, z, w, x]);
 			}
-		}, num);
+		}, n);
 	});
 });
 

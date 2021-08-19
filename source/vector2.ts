@@ -292,6 +292,27 @@ export function project(r:Vector2, v:Vector2, w:Vector2) : Vector2 {
 }
 
 /**
+ * Return the reflection of w⃗ against v⃗, 2(v⃗⋅w⃗ )w⃗-v⃗
+ */
+export function Reflect(v:Vector2, w:Vector2) : Vector2 {
+	return reflect({ x : 0.0, y : 0.0 }, v, w);
+}
+
+/**
+ * Assign the reflection of w⃗ against v⃗, r⃗ = 2(v⃗⋅w⃗ )w⃗-v⃗
+ */
+export function reflect(r:Vector2, v:Vector2, w:Vector2) : Vector2 {
+	const {x : vx, y : vy} = v;
+	const {x : wx, y : wy} = w;
+	const d = 2.0 * (vx * wx + vy * wy);
+
+	r.x = vx * d - wx;
+	r.y = vy * d - wy;
+
+	return r;
+}
+
+/**
  * v̂
  */
 export function Normalize(v:Vector2) : Vector2 {

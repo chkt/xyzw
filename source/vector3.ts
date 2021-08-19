@@ -406,6 +406,27 @@ export function project(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
 	return r;
 }
 
+/**
+ * Return the reflection of w⃗ against v⃗, 2(v⃗⋅w⃗ )w⃗-v⃗
+ */
+export function Reflect(v:Vector3, w:Vector3) : Vector3 {
+	return reflect({ x : 0.0, y : 0.0, z : 0.0 }, v, w);
+}
+
+/**
+ * Assign the reflection of w⃗ against v⃗, r⃗ = 2(v⃗⋅w⃗ )w⃗-v⃗
+ */
+export function reflect(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
+	const {x : vx, y : vy, z : vz} = v;
+	const {x : wx, y : wy, z : wz} = w;
+	const d = 2.0 * (vx * wx + vy * wy + vz * wz);
+
+	r.x = vx * d - wx;
+	r.y = vy * d - wy;
+	r.z = vz * d - wz;
+
+	return r;
+}
 
 /**
  * w⃗ - (v⃗⋅w⃗ )v⃗

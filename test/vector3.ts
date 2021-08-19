@@ -791,6 +791,59 @@ describe('orthoNormalize', () => {
 	});
 });
 
+describe('Reflect', () => {
+	it('should return a Vector3 representing a reflection', () => {
+		assertEquals(vector3.Reflect(vector3.AxisY(), vector3.AxisX()), vector3.AxisX(-1.0), epsilon);
+		assertEquals(vector3.Reflect(vector3.AxisZ(), vector3.AxisX()), vector3.AxisX(-1.0), epsilon);
+		assertEquals(vector3.Reflect(vector3.AxisX(), vector3.AxisY()), vector3.AxisY(-1.0), epsilon);
+		assertEquals(vector3.Reflect(vector3.AxisZ(), vector3.AxisY()), vector3.AxisY(-1.0), epsilon);
+		assertEquals(vector3.Reflect(vector3.AxisX(), vector3.AxisZ()), vector3.AxisZ(-1.0), epsilon);
+		assertEquals(vector3.Reflect(vector3.AxisY(), vector3.AxisZ()), vector3.AxisZ(-1.0), epsilon);
+
+		assertEquals(vector3.Reflect(vector3.AxisX(), vector3.AxisX()), vector3.AxisX(), epsilon);
+		assertEquals(vector3.Reflect(vector3.AxisY(), vector3.AxisY()), vector3.AxisY(), epsilon);
+		assertEquals(vector3.Reflect(vector3.AxisZ(), vector3.AxisZ()), vector3.AxisZ(), epsilon);
+
+		assertEquals(vector3.Reflect(vector3.Normalize(vector3.Create(1.0, 1.0)), vector3.AxisX()), vector3.AxisY(), epsilon);
+		assertEquals(vector3.Reflect(vector3.Normalize(vector3.Create(1.0, 1.0)), vector3.AxisY()), vector3.AxisX(), epsilon);
+
+		assertEquals(
+			vector3.Reflect(vector3.Normalize(vector3.Create(1.0, 1.0, 0.0)), vector3.Create(1.0, 1.0, 1.0)),
+			vector3.Create(1.0, 1.0, -1.0),
+			epsilon
+		);
+	});
+});
+
+describe('reflect', () => {
+	it('should assign a Vector3 representing a reflection', () => {
+		const v = vector3.Create();
+
+		assertEquals(vector3.reflect(v, vector3.AxisY(), vector3.AxisX()), vector3.AxisX(-1.0), epsilon);
+		assertEquals(vector3.reflect(v, vector3.AxisZ(), vector3.AxisX()), vector3.AxisX(-1.0), epsilon);
+		assertEquals(vector3.reflect(v, vector3.AxisX(), vector3.AxisY()), vector3.AxisY(-1.0), epsilon);
+		assertEquals(vector3.reflect(v, vector3.AxisZ(), vector3.AxisY()), vector3.AxisY(-1.0), epsilon);
+		assertEquals(vector3.reflect(v, vector3.AxisX(), vector3.AxisZ()), vector3.AxisZ(-1.0), epsilon);
+		assertEquals(vector3.reflect(v, vector3.AxisY(), vector3.AxisZ()), vector3.AxisZ(-1.0), epsilon);
+
+		assertEquals(vector3.reflect(v, vector3.AxisX(), vector3.AxisX()), vector3.AxisX(), epsilon);
+		assertEquals(vector3.reflect(v, vector3.AxisY(), vector3.AxisY()), vector3.AxisY(), epsilon);
+		assertEquals(vector3.reflect(v, vector3.AxisZ(), vector3.AxisZ()), vector3.AxisZ(), epsilon);
+
+		const r = vector3.reflect(v, vector3.Normalize(vector3.Create(1.0, 1.0, 0.0)), vector3.AxisX());
+		assertEquals(r, vector3.AxisY(), epsilon);
+		assert.strictEqual(v, r);
+
+		assertEquals(vector3.reflect(v, vector3.Normalize(vector3.Create(1.0, 1.0, 0.0)), vector3.AxisY()), vector3.AxisX(), epsilon);
+
+		assertEquals(
+			vector3.reflect(v, vector3.Normalize(vector3.Create(1.0, 1.0, 0.0)), vector3.Create(1.0, 1.0, 1.0)),
+			vector3.Create(1.0, 1.0, -1.0),
+			epsilon
+		);
+	});
+});
+
 describe('Normalize', () => {
 	it('should return a Vector3 representing a normalization', () => {
 		const rot2 = Math.sqrt(1 / 2);

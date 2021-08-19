@@ -480,6 +480,34 @@ describe('project', () => {
 	});
 });
 
+describe('Reflect', () => {
+	it('should return a Vector2 representing a reflection', () => {
+		assertEquals(vector2.Reflect(vector2.AxisY(), vector2.AxisX()), vector2.AxisX(-1.0), epsilon);
+		assertEquals(vector2.Reflect(vector2.AxisX(), vector2.AxisY()), vector2.AxisY(-1.0), epsilon);
+		assertEquals(vector2.Reflect(vector2.AxisX(), vector2.AxisX()), vector2.AxisX(), epsilon);
+		assertEquals(vector2.Reflect(vector2.AxisY(), vector2.AxisY()), vector2.AxisY(), epsilon);
+		assertEquals(vector2.Reflect(vector2.Normalize(vector2.Create(1.0, 1.0)), vector2.AxisX()), vector2.AxisY(), epsilon);
+		assertEquals(vector2.Reflect(vector2.Normalize(vector2.Create(1.0, 1.0)), vector2.AxisY()), vector2.AxisX(), epsilon);
+	});
+});
+
+describe('reflect', () => {
+	it('should assign a Vector2 representing a reflection', () => {
+		const v = vector2.Create();
+
+		assertEquals(vector2.reflect(v, vector2.AxisY(), vector2.AxisX()), vector2.AxisX(-1.0), epsilon);
+		assertEquals(vector2.reflect(v, vector2.AxisX(), vector2.AxisY()), vector2.AxisY(-1.0), epsilon);
+		assertEquals(vector2.reflect(v, vector2.AxisX(), vector2.AxisX()), vector2.AxisX(), epsilon);
+		assertEquals(vector2.reflect(v, vector2.AxisY(), vector2.AxisY()), vector2.AxisY(), epsilon);
+
+		const r = vector2.reflect(v, vector2.Normalize(vector2.Create(1.0, 1.0)), vector2.AxisX());
+		assertEquals(r, vector2.AxisY(), epsilon);
+		assert.strictEqual(v, r);
+
+		assertEquals(vector2.reflect(v, vector2.Normalize(vector2.Create(1.0, 1.0)), vector2.AxisY()), vector2.AxisX(), epsilon);
+	});
+});
+
 describe('Normalize', () => {
 	it('should return a Vector2 representing a normalization', () => {
 		assertEquals(vector2.Normalize(vector2.Create()), { x : 0.0, y : 0.0 }, epsilon);

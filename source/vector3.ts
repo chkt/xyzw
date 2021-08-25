@@ -66,7 +66,7 @@ export function dot(v:Vector3, w:Vector3) : number {
 }
 
 /**
- * Return the cosine of azimuth angle ϕ between v̂ and ŵ against polar axis ẑ, ( (v̂ - ẑ(v̂⋅ẑ)) / ‖ v̂ - ẑ(v̂⋅ẑ) ‖ )⋅( (ŵ - ẑ(ŵ⋅ẑ)) / ‖ ŵ - ẑ(ŵ⋅ẑ) ‖ )
+ * Return the cosine of azimuth angle ϕ between v̂ and ŵ against polar axis ẑ, ( (v̂ - (v̂⋅ẑ)ẑ) / ‖ v̂ - (v̂⋅ẑ)ẑ ‖ )⋅( (ŵ - (ŵ⋅ẑ)ẑ) / ‖ ŵ - (ŵ⋅ẑ)ẑ ‖ )
  */
 export function azimuth(v:Vector3, w:Vector3, z:Vector3) : number {
 	const cosThetaV = dot(v, z);
@@ -446,14 +446,14 @@ export function reflect(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
 }
 
 /**
- * w⃗ - (v⃗⋅w⃗ )v⃗
+ * w⃗ - (w⃗⋅v⃗ )v⃗
  */
 export function OrthoNormalize(v:Vector3, w:Vector3) : Vector3 {
 	return orthoNormalize({ x : 0.0, y : 0.0, z : 0.0 }, v, w);
 }
 
 /**
- * r⃗ = w⃗ - (v⃗⋅w⃗ )v⃗
+ * r⃗ = w⃗ - (w⃗⋅v⃗ )v⃗
  */
 export function orthoNormalize(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
 	const {x : vx, y : vy, z : vz} = v;

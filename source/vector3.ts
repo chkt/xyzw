@@ -14,6 +14,9 @@ const asin = Math.asin;
 const atan = Math.atan2;
 const sqrt = Math.sqrt;
 
+const vec3a:Vector3 = { x : 0.0, y : 0.0, z : 0.0 };
+const vec3b:Vector3 = { x : 0.0, y : 0.0, z : 0.0 };
+
 
 export function equals(v:Vector3, w:Vector3, e:number = epsilon) : boolean {
 
@@ -62,6 +65,20 @@ export function dot(v:Vector3, w:Vector3) : number {
 	return v.x * w.x + v.y * w.y + v.z * w.z;
 }
 
+/**
+ * Return the cosine of azimuth angle ϕ between v̂ and ŵ against polar axis ẑ, ( (v̂ - ẑ(v̂⋅ẑ)) / ‖ v̂ - ẑ(v̂⋅ẑ) ‖ )⋅( (ŵ - ẑ(ŵ⋅ẑ)) / ‖ ŵ - ẑ(ŵ⋅ẑ) ‖ )
+ */
+export function azimuth(v:Vector3, w:Vector3, z:Vector3) : number {
+	const cosThetaV = dot(v, z);
+	const cosThetaW = dot(w, z);
+
+	if (abs(cosThetaV) === 1.0 || abs(cosThetaW) === 1.0) return 1.0;
+
+	const normalVZ = normalize(vec3a, subtract(vec3a, v, multiplyScalar(vec3a, z, cosThetaV)));
+	const normalWZ = normalize(vec3b, subtract(vec3b, w, multiplyScalar(vec3b, z, cosThetaW)));
+
+	return dot(normalVZ, normalWZ);
+}
 
 export function Create(x:number = 0.0, y:number = 0.0, z:number = 0.0) : Vector3 {
 	return { x, y, z };

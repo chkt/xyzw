@@ -410,6 +410,7 @@ function assignF64(r:Float64Array, v:Vector3) : Float64Array;
 function axisX(r:Vector3, s:number = 1.0) : Vector3;  // r⃗ = sx̂
 function axisY(r:Vector3, s:number = 1.0) : Vector3;  // r⃗ = sŷ
 function axisZ(r:Vector3, s:number = 1.0) : Vector3;  // r⃗ = sẑ
+function azimuth(v:Vector3, w:Vector3, z:Vector3) : number;  // Return the cosine of azimuth angle ϕ between v̂ and ŵ against polar axis ẑ, ( (v̂ - ẑ(v̂⋅ẑ)) / ‖ v̂ - ẑ(v̂⋅ẑ) ‖ )⋅( (ŵ - ẑ(ŵ⋅ẑ)) / ‖ ŵ - ẑ(ŵ⋅ẑ) ‖ )
 function barycentricUV(r:Vector3, vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v:number) : Vector3;  // Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
 function copy(r:Vector3, v:Vector3) : Vector3;
 function cross(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = v⃗×w⃗

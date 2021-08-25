@@ -169,6 +169,73 @@ describe('dot', () => {
 	});
 });
 
+describe('azimuth', () => {
+	it('should return the cosine of the spherical coordinate azimuth between two vectors', () => {
+		assertEqualsScalar(vector3.azimuth(vector3.AxisX(), vector3.AxisX(), vector3.AxisX()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisY(), vector3.AxisY(), vector3.AxisY()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisZ(), vector3.AxisZ(), vector3.AxisZ()), 1.0, epsilon);
+
+		assertEqualsScalar(vector3.azimuth(vector3.AxisX(), vector3.AxisY(), vector3.AxisX()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisX(), vector3.AxisX(), vector3.AxisY()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisX(), vector3.AxisZ(), vector3.AxisX()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisX(), vector3.AxisX(), vector3.AxisZ()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisX(), vector3.AxisY(), vector3.AxisZ()), 0.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisX(), vector3.AxisZ(), vector3.AxisY()), 0.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisX(), vector3.AxisY(), vector3.AxisY()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisX(), vector3.AxisZ(), vector3.AxisZ()), 1.0, epsilon);
+
+		assertEqualsScalar(vector3.azimuth(vector3.AxisY(), vector3.AxisX(), vector3.AxisY()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisY(), vector3.AxisY(), vector3.AxisX()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisY(), vector3.AxisZ(), vector3.AxisY()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisY(), vector3.AxisY(), vector3.AxisZ()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisY(), vector3.AxisX(), vector3.AxisZ()), 0.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisY(), vector3.AxisZ(), vector3.AxisX()), 0.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisY(), vector3.AxisX(), vector3.AxisX()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisY(), vector3.AxisZ(), vector3.AxisZ()), 1.0, epsilon);
+
+		assertEqualsScalar(vector3.azimuth(vector3.AxisZ(), vector3.AxisX(), vector3.AxisZ()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisZ(), vector3.AxisZ(), vector3.AxisX()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisZ(), vector3.AxisY(), vector3.AxisZ()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisZ(), vector3.AxisZ(), vector3.AxisY()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisZ(), vector3.AxisX(), vector3.AxisY()), 0.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisZ(), vector3.AxisY(), vector3.AxisX()), 0.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisZ(), vector3.AxisX(), vector3.AxisX()), 1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisZ(), vector3.AxisY(), vector3.AxisY()), 1.0, epsilon);
+
+		assertEqualsScalar(vector3.azimuth(vector3.AxisX(), vector3.AxisX(-1.0), vector3.AxisZ()), -1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisX(), vector3.AxisX(-1.0), vector3.AxisY()), -1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisY(), vector3.AxisY(-1.0), vector3.AxisX()), -1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisY(), vector3.AxisY(-1.0), vector3.AxisZ()), -1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisZ(), vector3.AxisZ(-1.0), vector3.AxisX()), -1.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(vector3.AxisZ(), vector3.AxisZ(-1.0), vector3.AxisY()), -1.0, epsilon);
+
+		assertEqualsScalar(vector3.azimuth(
+			vector3.Normalize(vector3.Create(1.0, 0.0, 1.0)),
+			vector3.Normalize(vector3.Create(0.0, 1.0, 1.0)),
+			vector3.AxisZ()
+		), 0.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(
+			vector3.Normalize(vector3.Create(1.0, 1.0, 0.0)),
+			vector3.Normalize(vector3.Create(0.0, 1.0, 1.0)),
+			vector3.AxisY()
+		), 0.0, epsilon);
+		assertEqualsScalar(vector3.azimuth(
+			vector3.Normalize(vector3.Create(1.0, 1.0, 0.0)),
+			vector3.Normalize(vector3.Create(1.0, 0.0, 1.0)),
+			vector3.AxisX()
+		), 0.0, epsilon);
+
+		assertEqualsScalar(vector3.azimuth(
+			vector3.Normalize(vector3.Create(1.0, 1.0, 1.0)),
+			vector3.Normalize(vector3.Cross(
+				vector3.Create(0.0, -1.0, 1.0),
+				vector3.Create(1.0, 1.0, 1.0)
+			)),
+			vector3.Normalize(vector3.Create(0.0, -1.0, 1.0))
+		), 0.0, epsilon);
+	});
+});
+
 describe('Create', () => {
 	it('should return a Vector3', () => {
 		assert.deepStrictEqual(vector3.Create(), { x: 0.0, y: 0.0, z : 0.0 });

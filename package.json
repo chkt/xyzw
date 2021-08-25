@@ -1,7 +1,7 @@
 {
 	"name": "xyzw",
 	"description": "A functional, fast, comprehensive and dependencyless typescript vector algebra library",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"license": "MIT",
 	"keywords": [
 		"algebra",
@@ -33,7 +33,9 @@
 		"transpose",
 		"conjugate",
 		"gauss-jordan",
-		"identity"
+		"identity",
+		"azimuth",
+		"phi"
 	],
 	"author": {
 		"name": "chkt",

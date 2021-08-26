@@ -491,6 +491,35 @@ export function normalize(r:Vector3, v:Vector3) : Vector3 {
 	return r;
 }
 
+/**
+ * -v⃗
+ */
+export function Negate(v:Vector3) : Vector3 {
+	return { x : -v.x, y : -v.y, z : -v.z };
+}
+
+/**
+ * r⃗ = -v⃗
+ */
+export function negate(r:Vector3, v:Vector3) : Vector3 {
+	r.x = -v.x;
+	r.y = -v.y;
+	r.z = -v.z;
+
+	return r;
+}
+
+/**
+ * v⃗ = -v⃗
+ */
+export function negateAssign(v:Vector3) : Vector3 {
+	v.x *= -1.0;
+	v.y *= -1.0;
+	v.z *= -1.0;
+
+	return v;
+}
+
 export function Copy(v:Vector3) : Vector3 {
 	return { x : v.x, y : v.y, z : v.z };
 }

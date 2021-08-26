@@ -959,6 +959,41 @@ describe('normalize', () => {
 	});
 });
 
+describe('Negate', () => {
+	it('should return the additive inverse of a vector', () => {
+		assert.deepStrictEqual(vector3.Negate(vector3.Create(0.0, 0.0, 0.0)), vector3.Create(-0.0, -0.0, -0.0));
+		assert.deepStrictEqual(vector3.Negate(vector3.Create(1.0, -2.0, 3.0)), vector3.Create(-1.0, 2.0, -3.0));
+		assert.deepStrictEqual(vector3.Negate(vector3.Create(-1.0, 2.0, -3.0)), vector3.Create(1.0, -2.0, 3.0));
+	});
+});
+
+describe('negate', () => {
+	it('should assign the additive inverse of a vector', () => {
+		const v = vector3.Create(0.0, 0.0, 0.0);
+
+		assert.deepStrictEqual(vector3.negate(v, vector3.Create(0.0, 0.0, 0.0)), vector3.Create(-0.0, -0.0, -0.0));
+
+		const r = vector3.negate(v, vector3.Create(1.0, -2.0, 3.0));
+		assert.deepStrictEqual(r, vector3.Create(-1.0, 2.0, -3.0));
+		assert.strictEqual(v, r);
+
+		assert.deepStrictEqual(vector3.negate(v, vector3.Create(-1.0, 2.0, -3.0)), vector3.Create(1.0, -2.0, 3.0));
+	});
+});
+
+describe('negateAssign', () => {
+	it('should return the additive inverse of a vector', () => {
+		assert.deepStrictEqual(vector3.negateAssign(vector3.Create(0.0, 0.0, 0.0)), vector3.Create(-0.0, -0.0, -0.0));
+
+		const v = vector3.Create(1.0, -2.0, 3.0)
+		const r = vector3.negateAssign(v);
+		assert.deepStrictEqual(r, vector3.Create(-1.0, 2.0, -3.0));
+		assert.strictEqual(v, r);
+
+		assert.deepStrictEqual(vector3.negateAssign(vector3.Create(-1.0, 2.0, -3.0)), vector3.Create(1.0, -2.0, 3.0));
+	});
+});
+
 describe('Copy', () => {
 	it('should return a Vector3 representing a copy', () => {
 		const v = vector3.Create(1.0, 2.0, 4.0);

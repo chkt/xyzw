@@ -688,6 +688,50 @@ describe('cross', () => {
 	});
 });
 
+describe('Hadamard', () => {
+	it('should return a Vector3 representing a component-wise multiplication', () => {
+		assert.deepStrictEqual(vector3.Hadamard(vector3.Create(0.0, 0.0, 0.0), vector3.Create(0.0, 0.0, 0.0)), vector3.Create(0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vector3.Hadamard(vector3.Create(1.0, 2.0, 3.0), vector3.Create(0.0, 0.0, 0.0)), vector3.Create(0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vector3.Hadamard(vector3.Create(0.0, 0.0, 0.0), vector3.Create(5.0, 6.0, 7.0)), vector3.Create(0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vector3.Hadamard(vector3.Create(2.0, 3.0, 4.0), vector3.Create(5.0, 6.0, 7.0)), vector3.Create(10.0, 18.0, 28.0));
+		assert.deepStrictEqual(vector3.Hadamard(vector3.Create(-2.0, 3.0, -4.0), vector3.Create(5.0, -6.0, 7.0)), vector3.Create(-10.0, -18.0, -28.0));
+		assert.deepStrictEqual(vector3.Hadamard(vector3.Create(-2.0, -3.0, -4.0), vector3.Create(-5.0, -6.0, -7.0)), vector3.Create(10.0, 18.0, 28.0));
+	});
+});
+
+describe('hadamard', () => {
+	it('should assign a Vector3 representing a component-wise multiplication', () => {
+		const v = vector3.Create();
+
+		assert.deepStrictEqual(vector3.hadamard(v, vector3.Create(0.0, 0.0, 0.0), vector3.Create(0.0, 0.0, 0.0)), vector3.Create(0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vector3.hadamard(v, vector3.Create(1.0, 2.0, 3.0), vector3.Create(0.0, 0.0, 0.0)), vector3.Create(0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vector3.hadamard(v, vector3.Create(0.0, 0.0, 0.0), vector3.Create(5.0, 6.0, 7.0)), vector3.Create(0.0, 0.0, 0.0));
+
+		const r = vector3.hadamard(v, vector3.Create(2.0, 3.0, 4.0), vector3.Create(5.0, 6.0, 7.0))
+		assert.deepStrictEqual(r, vector3.Create(10.0, 18.0, 28.0));
+		assert.strictEqual(v, r);
+
+		assert.deepStrictEqual(vector3.hadamard(v, vector3.Create(-2.0, 3.0, -4.0), vector3.Create(5.0, -6.0, 7.0)), vector3.Create(-10.0, -18.0, -28.0));
+		assert.deepStrictEqual(vector3.hadamard(v, vector3.Create(-2.0, -3.0, -4.0), vector3.Create(-5.0, -6.0, -7.0)), vector3.Create(10.0, 18.0, 28.0));
+	});
+});
+
+describe('hadamardAssign', () => {
+	it('should assign a Vector3 representing a component-wise multiplication', () => {
+		assert.deepStrictEqual(vector3.hadamardAssign(vector3.Create(0.0, 0.0, 0.0), vector3.Create(0.0, 0.0, 0.0)), vector3.Create(0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vector3.hadamardAssign(vector3.Create(1.0, 2.0, 3.0), vector3.Create(0.0, 0.0, 0.0)), vector3.Create(0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vector3.hadamardAssign(vector3.Create(0.0, 0.0, 0.0), vector3.Create(5.0, 6.0, 7.0)), vector3.Create(0.0, 0.0, 0.0));
+
+		const v = vector3.Create(2.0, 3.0, 4.0);
+		const r = vector3.hadamardAssign(v, vector3.Create(5.0, 6.0, 7.0));
+		assert.deepStrictEqual(r, vector3.Create(10.0, 18.0, 28.0));
+		assert.strictEqual(v, r);
+
+		assert.deepStrictEqual(vector3.hadamardAssign(vector3.Create(-2.0, 3.0, -4.0), vector3.Create(5.0, -6.0, 7.0)), vector3.Create(-10.0, -18.0, -28.0));
+		assert.deepStrictEqual(vector3.hadamardAssign(vector3.Create(-2.0, -3.0, -4.0), vector3.Create(-5.0, -6.0, -7.0)), vector3.Create(10.0, 18.0, 28.0));
+	});
+});
+
 describe('MultiplyMatrix3', () => {
 	it('should return a Vector3 representing a Matrix3 multiplication', () => {
 		const v = vector3.Create(4.0, 2.0, 1.0);

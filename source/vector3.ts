@@ -342,6 +342,35 @@ export function cross(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
 }
 
 /**
+ * v⃗⊙w⃗
+ */
+export function Hadamard(v:Vector3, w:Vector3) : Vector3 {
+	return { x : v.x * w.x, y : v.y * w.y, z : v.z * w.z };
+}
+
+/**
+ * r⃗ = v⃗⊙w⃗
+ */
+export function hadamard(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
+	r.x = v.x * w.x;
+	r.y = v.y * w.y;
+	r.z = v.z * w.z;
+
+	return r;
+}
+
+/**
+ * v⃗ = v⃗⊙w⃗
+ */
+export function hadamardAssign(v:Vector3, w:Vector3) : Vector3 {
+	v.x *= w.x;
+	v.y *= w.y;
+	v.z *= w.z;
+
+	return v;
+}
+
+/**
  * M₃ₓ₃v⃗
  */
 export function MultiplyMatrix3(m:Matrix3, v:Vector3) : Vector3 {

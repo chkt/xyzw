@@ -385,6 +385,7 @@ function AxisX(s:number = 1.0) : Vector3;  // sx̂
 function AxisY(s:number = 1.0) : Vector3;  // sŷ
 function AxisZ(s:number = 1.0) : Vector3;  // sẑ
 function BarycentricUV(vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v:number) : Vector3;  // Return the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2)
+function ClampScalar(v:Vector3, a:number, b:number) : Vector3;  // min(max(v⃗, min(a, b)), max(a, b))
 function Copy(v:Vector3) : Vector3;
 function Create(x:number = 0.0, y:number = 0.0, z:number = 0.0) : Vector3;
 function Cross(v:Vector3, w:Vector3) : Vector3;  // v⃗×w⃗
@@ -393,12 +394,16 @@ function EulerYXZ(m:Matrix3) : Vector3;
 function EulerZXY(m:Matrix3) : Vector3;
 function F32(n:Float32Array) : Vector3;
 function F64(n:Float64Array) : Vector3;
+function Hadamard(v:Vector3, w:Vector3) : Vector3;  // v⃗⊙w⃗
+function MaxScalar(v:Vector3, n:number) : Vector3;  // max(v⃗, n)
+function MinScalar(v:Vector3, n:number) : Vector3;  // min(v⃗, n)
 function Multiply3x4Matrix4(m:Matrix4, v:Vector3) : Vector3;  // M₃ₓ₄v⃗
 function MultiplyMatrix3(m:Matrix3, v:Vector3) : Vector3;  // M₃ₓ₃v⃗
 function MultiplyMatrix4(m:Matrix4, v:Vector3) : Vector3;  // M₄ₓ₄v⃗
 function MultiplyScalar(v:Vector3, n:number) : Vector3;  // nv⃗
+function Negate(v:Vector3) : Vector3;  // -v⃗
 function Normalize(v:Vector3) : Vector3;  // v̂
-function OrthoNormalize(v:Vector3, w:Vector3) : Vector3;  // w⃗ - (v⃗⋅w⃗ )v⃗
+function OrthoNormalize(v:Vector3, w:Vector3) : Vector3;  // w⃗ - (w⃗⋅v⃗ )v⃗
 function Project(v:Vector3, w:Vector3) : Vector3;  // Return the projection of w⃗ onto v⃗, (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
 function Reflect(v:Vector3, w:Vector3) : Vector3;  // Return the reflection of w⃗ against v⃗, 2(v⃗⋅w⃗ )w⃗-v⃗
 function Subtract(v:Vector3, w:Vector3) : Vector3;  // v⃗-w⃗
@@ -410,8 +415,9 @@ function assignF64(r:Float64Array, v:Vector3) : Float64Array;
 function axisX(r:Vector3, s:number = 1.0) : Vector3;  // r⃗ = sx̂
 function axisY(r:Vector3, s:number = 1.0) : Vector3;  // r⃗ = sŷ
 function axisZ(r:Vector3, s:number = 1.0) : Vector3;  // r⃗ = sẑ
-function azimuth(v:Vector3, w:Vector3, z:Vector3) : number;  // Return the cosine of azimuth angle ϕ between v̂ and ŵ against polar axis ẑ, ( (v̂ - ẑ(v̂⋅ẑ)) / ‖ v̂ - ẑ(v̂⋅ẑ) ‖ )⋅( (ŵ - ẑ(ŵ⋅ẑ)) / ‖ ŵ - ẑ(ŵ⋅ẑ) ‖ )
+function azimuth(v:Vector3, w:Vector3, z:Vector3) : number;  // Return the cosine of azimuth angle ϕ between v̂ and ŵ against polar axis ẑ, ( (v̂ - (v̂⋅ẑ)ẑ) / ‖ v̂ - (v̂⋅ẑ)ẑ ‖ )⋅( (ŵ - (ŵ⋅ẑ)ẑ) / ‖ ŵ - (ŵ⋅ẑ)ẑ ‖ )
 function barycentricUV(r:Vector3, vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v:number) : Vector3;  // Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
+function clampScalar(r:Vector3, v:Vector3, a:number, b:number) : Vector3;  // r⃗ = min(max(v⃗, min(a, b)), max(a, b))
 function copy(r:Vector3, v:Vector3) : Vector3;
 function cross(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = v⃗×w⃗
 function dot(v:Vector3, w:Vector3) : number;  // v⃗⋅w⃗
@@ -421,18 +427,24 @@ function eulerYXZ(r:Vector3, m:Matrix3) : Vector3;
 function eulerZXY(r:Vector3, m:Matrix3) : Vector3;
 function f32(r:Vector3, n:Float32Array) : Vector3;
 function f64(r:Vector3, n:Float64Array) : Vector3;
+function hadamard(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = v⃗⊙w⃗
+function hadamardAssign(v:Vector3, w:Vector3) : Vector3;  // v⃗ = v⃗⊙w⃗
 function isNormEqual(v:Vector3, n:number, e?:number) : boolean;  // ‖ v⃗ ‖ - n < ϵ
 function isNormGt(v:Vector3, n:number) : boolean;  // ‖ v⃗ ‖ > n
 function isNormLt(v:Vector3, n:number) : boolean;  // ‖ v⃗ ‖ < n
+function maxScalar(r:Vector3, v:Vector3, n:number) : Vector3;  // r⃗ = max(v⃗, n)
+function minScalar(r:Vector3, v:Vector3, n:number) : Vector3;  // r⃗ = min(v⃗, n)
 function multiply3x4Matrix4(r:Vector3, m:Matrix4, v:Vector3) : Vector3;  // r⃗ = M₃ₓ₄v⃗
 function multiplyAssignScalar(v:Vector3, n:number) : Vector3;  // v⃗ = nv⃗
 function multiplyMatrix3(r:Vector3, m:Matrix3, v:Vector3) : Vector3;  // r⃗ = M₃ₓ₃v⃗
 function multiplyMatrix4(r:Vector3, m:Matrix4, v:Vector3) : Vector3;  // r⃗ = M₄ₓ₄v⃗
 function multiplyScalar(r:Vector3, v:Vector3, n:number) : Vector3;  // r⃗ = nv⃗
+function negate(r:Vector3, v:Vector3) : Vector3;  // r⃗ = -v⃗
+function negateAssign(v:Vector3) : Vector3;  // v⃗ = -v⃗
 function norm(v:Vector3) : number;  // ‖ v⃗ ‖
 function normSquared(v:Vector3) : number;  // ‖ v⃗ ‖²
 function normalize(r:Vector3, v:Vector3) : Vector3;  // r⃗ = v̂
-function orthoNormalize(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = w⃗ - (v⃗⋅w⃗ )v⃗
+function orthoNormalize(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = w⃗ - (w⃗⋅v⃗ )v⃗
 function project(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // Assign the projection of w⃗ onto v⃗ to r⃗, r⃗ = (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
 function reflect(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // Assign the reflection of w⃗ against v⃗, r⃗ = 2(v⃗⋅w⃗ )w⃗-v⃗
 function subtract(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = v⃗-w⃗

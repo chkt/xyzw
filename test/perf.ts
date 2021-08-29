@@ -293,3 +293,70 @@ describe('epsilon', () => {
 		}
 	});
 });
+
+describe('branching', () => {
+	const minfn = Math.min;
+	const num = 100_000_000;
+	let a = 1.0;
+
+	function umin(n:number, min:number) {
+		return n < min ? n : min;
+	}
+
+	function bindableUmin(min:number, n:number) {
+		return n < min ? n : min;
+	}
+
+	const amin = (n:number, min:number) => n < min ? n : min;
+	const bmin = bindableUmin.bind(null, 1.0);
+	const pmin = (n:number, min:number) => (n * Number(n < min) + Number(n >= min));
+
+
+	it('should measure ternary conditions', () => {
+		for (let i = 0; i < num; i += 1) {
+			a = -(a < 1.0 ? a : 1.0) * 1.1;
+		}
+	});
+
+	it('should measure conditional products with type coercion', () => {
+		for (let i = 0; i < num; i += 1) {
+			a = -(a * Number(a < 1.0) + Number(a >= 1.0)) * 1.1;
+		}
+	});
+
+	it('should measure conditional products w/o type coercion', () => {
+		for (let i = 0; i < num; i += 1) {
+			a = -(a * ((a < 1.0) as any) + ((a >= 1.0) as any)) * 1.1;
+		}
+	});
+
+	it('should measure jsapi function', () => {
+		for (let i = 0; i < num; i += 1) {
+			a = -minfn(a, 1.0) * 1.1;
+		}
+	});
+
+	it('should measure ternary conditions in js function', () => {
+		for (let i = 0; i < num; i += 1) {
+			a = -umin(a, 1.0) * 1.1;
+		}
+	});
+
+	it('should measure ternary conditions in arrow function', () => {
+		for (let i = 0; i < num; i += 1) {
+			a = -amin(a, 1.0) * 1.1;
+		}
+	});
+
+	it('should measure ternary conditions in bound function', () => {
+		for (let i = 0; i < num; i += 1) {
+			a = -bmin(a) * 1.1;
+		}
+	});
+
+	it('should measure conditional product in arrow function', () => {
+		for (let i = 0; i < num; i += 1) {
+			a = -pmin(a, 1.0) * 1.1;
+		}
+	});
+});

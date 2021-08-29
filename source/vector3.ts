@@ -10,6 +10,8 @@ export interface Vector3 extends Vector2 {
 
 const epsilon = 1e-10;
 const abs = Math.abs;
+const minfn = Math.min;
+const maxfn = Math.max;
 const asin = Math.asin;
 const atan = Math.atan2;
 const sqrt = Math.sqrt;
@@ -547,6 +549,62 @@ export function negateAssign(v:Vector3) : Vector3 {
 	v.z *= -1.0;
 
 	return v;
+}
+
+/**
+ * min(v⃗, n)
+ */
+export function MinScalar(v:Vector3, n:number) : Vector3 {
+	return { x : minfn(v.x, n), y : minfn(v.y, n), z : minfn(v.z, n) };
+}
+
+/**
+ * r⃗ = min(v⃗, n)
+ */
+export function minScalar(r:Vector3, v:Vector3, n:number) : Vector3 {
+	r.x = minfn(v.x, n);
+	r.y = minfn(v.y, n);
+	r.z = minfn(v.z, n);
+
+	return r;
+}
+
+/**
+ * max(v⃗, n)
+ */
+export function MaxScalar(v:Vector3, n:number) : Vector3 {
+	return { x : maxfn(v.x, n), y : maxfn(v.y, n), z : maxfn(v.z, n) };
+}
+
+/**
+ * r⃗ = max(v⃗, n)
+ */
+export function maxScalar(r:Vector3, v:Vector3, n:number) : Vector3 {
+	r.x = maxfn(v.x, n);
+	r.y = maxfn(v.y, n);
+	r.z = maxfn(v.z, n);
+
+	return r;
+}
+
+/**
+ * min(max(v⃗, min(a, b)), max(a, b))
+ */
+export function ClampScalar(v:Vector3, a:number, b:number) : Vector3 {
+	return clampScalar({ x : 0.0, y : 0.0, z : 0.0}, v, a, b);
+}
+
+/**
+ * r⃗ = min(max(v⃗, min(a, b)), max(a, b))
+ */
+export function clampScalar(r:Vector3, v:Vector3, a:number, b:number) : Vector3 {
+	const min = minfn(a, b), max = maxfn(a, b);
+
+	r.x = minfn(maxfn(v.x, min), max);
+	r.y = minfn(maxfn(v.y, min), max);
+	r.z = minfn(maxfn(v.z, min), max);
+
+	return r;
 }
 
 export function Copy(v:Vector3) : Vector3 {

@@ -1038,6 +1038,128 @@ describe('negateAssign', () => {
 	});
 });
 
+describe('MinScalar', () => {
+	const inf = Number.POSITIVE_INFINITY;
+	const nnf = Number.NEGATIVE_INFINITY;
+	const nan = Number.NaN;
+
+	it('should return the minimum between each vector entry and a scalar', () => {
+		assert.deepStrictEqual(vector3.MinScalar(vector3.Create(1.0, 2.0, 3.0), 4.0), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.MinScalar(vector3.Create(1.0, 2.0, 3.0), 2.0), vector3.Create(1.0, 2.0, 2.0));
+		assert.deepStrictEqual(vector3.MinScalar(vector3.Create(1.0, 2.0, 3.0), 0.0), vector3.Create(0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vector3.MinScalar(vector3.Create(inf, nnf, nan), 0.0), vector3.Create(0.0, nnf, nan));
+		assert.deepStrictEqual(vector3.MinScalar(vector3.Create(1.0, 2.0, 3.0), inf), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.MinScalar(vector3.Create(1.0, 2.0, 3.0), nnf), vector3.Create(nnf, nnf, nnf));
+		assert.deepStrictEqual(vector3.MinScalar(vector3.Create(1.0, 2.0, 3.0), nan), vector3.Create(nan, nan, nan));
+	});
+});
+
+describe('minScalar', () => {
+	const inf = Number.POSITIVE_INFINITY;
+	const nnf = Number.NEGATIVE_INFINITY;
+	const nan = Number.NaN;
+
+	it('should assign the minimum between each vector entry and a scalar', () => {
+		const v = vector3.Create();
+		const r = vector3.minScalar(v, vector3.Create(1.0, 2.0, 3.0), 4.0)
+		assert.deepStrictEqual(r, vector3.Create(1.0, 2.0, 3.0));
+		assert.strictEqual(v, r);
+
+		assert.deepStrictEqual(vector3.minScalar(v, vector3.Create(1.0, 2.0, 3.0), 2.0), vector3.Create(1.0, 2.0, 2.0));
+		assert.deepStrictEqual(vector3.minScalar(v, vector3.Create(1.0, 2.0, 3.0), 0.0), vector3.Create(0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vector3.minScalar(v, vector3.Create(inf, nnf, nan), 0.0), vector3.Create(0.0, nnf, nan));
+		assert.deepStrictEqual(vector3.minScalar(v, vector3.Create(1.0, 2.0, 3.0), inf), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.minScalar(v, vector3.Create(1.0, 2.0, 3.0), nnf), vector3.Create(nnf, nnf, nnf));
+		assert.deepStrictEqual(vector3.minScalar(v, vector3.Create(1.0, 2.0, 3.0), nan), vector3.Create(nan, nan, nan));
+	});
+});
+
+describe('MaxScalar', () => {
+	const inf = Number.POSITIVE_INFINITY;
+	const nnf = Number.NEGATIVE_INFINITY;
+	const nan = Number.NaN;
+
+	it('should return the minimum between each vector entry and a scalar', () => {
+		assert.deepStrictEqual(vector3.MaxScalar(vector3.Create(1.0, 2.0, 3.0), 4.0), vector3.Create(4.0, 4.0, 4.0));
+		assert.deepStrictEqual(vector3.MaxScalar(vector3.Create(1.0, 2.0, 3.0), 2.0), vector3.Create(2.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.MaxScalar(vector3.Create(1.0, 2.0, 3.0), 0.0), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.MaxScalar(vector3.Create(inf, nnf, nan), 0.0), vector3.Create(inf, 0.0, nan));
+		assert.deepStrictEqual(vector3.MaxScalar(vector3.Create(1.0, 2.0, 3.0), inf), vector3.Create(inf, inf, inf));
+		assert.deepStrictEqual(vector3.MaxScalar(vector3.Create(1.0, 2.0, 3.0), nnf), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.MaxScalar(vector3.Create(1.0, 2.0, 3.0), nan), vector3.Create(nan, nan, nan));
+	});
+});
+
+describe('maxScalar', () => {
+	const inf = Number.POSITIVE_INFINITY;
+	const nnf = Number.NEGATIVE_INFINITY;
+	const nan = Number.NaN;
+
+	it('should assign the minimum between each vector3 entry and a scalar', () => {
+		const v = vector3.Create();
+		const r = vector3.maxScalar(v, vector3.Create(1.0, 2.0, 3.0), 4.0);
+		assert.deepStrictEqual(r, vector3.Create(4.0, 4.0, 4.0));
+		assert.strictEqual(v, r);
+
+		assert.deepStrictEqual(vector3.maxScalar(v, vector3.Create(1.0, 2.0, 3.0), 2.0), vector3.Create(2.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.maxScalar(v, vector3.Create(1.0, 2.0, 3.0), 0.0), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.maxScalar(v, vector3.Create(inf, nnf, nan), 0.0), vector3.Create(inf, 0.0, nan));
+		assert.deepStrictEqual(vector3.maxScalar(v, vector3.Create(1.0, 2.0, 3.0), inf), vector3.Create(inf, inf, inf));
+		assert.deepStrictEqual(vector3.maxScalar(v, vector3.Create(1.0, 2.0, 3.0), nnf), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.maxScalar(v, vector3.Create(1.0, 2.0, 3.0), nan), vector3.Create(nan, nan, nan));
+	});
+});
+
+describe('ClampScalar', () => {
+	const inf = Number.POSITIVE_INFINITY;
+	const nnf = Number.NEGATIVE_INFINITY;
+	const nan = Number.NaN;
+
+	it('should return vector3 entries clamped between two values', () => {
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(1.0, 2.0, 3.0), 0.0, 4.0), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(1.0, 2.0, 3.0), 2.0, 4.0), vector3.Create(2.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(1.0, 2.0, 3.0), 0.0, 2.0), vector3.Create(1.0, 2.0, 2.0));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(1.0, 2.0, 3.0), 4.0, 0.0), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(-1.0, -2.0, -3.0), -4.0,  0.0), vector3.Create(-1.0, -2.0, -3.0));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(-1.0, -2.0, -3.0), -4.0, -2.0), vector3.Create(-2.0, -2.0, -3.0));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(-1.0, -2.0, -3.0), -2.0,  0.0), vector3.Create(-1.0, -2.0, -2.0));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(-1.0, -2.0, -3.0),  0.0, -4.0), vector3.Create(-1.0, -2.0, -3.0));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(inf, nnf, nan), -4.0, 4.0), vector3.Create(4.0, -4.0, nan));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(1.0, 2.0, 3.0), nnf, inf), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(1.0, 2.0, 3.0), inf, nnf), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(1.0, 2.0, 3.0), nan, 4.0), vector3.Create(nan, nan, nan));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(1.0, 2.0, 3.0), 0.0, nan), vector3.Create(nan, nan, nan));
+		assert.deepStrictEqual(vector3.ClampScalar(vector3.Create(1.0, 2.0, 3.0), nan, nan), vector3.Create(nan, nan, nan));
+	});
+});
+
+describe('clampScalar', () => {
+	const inf = Number.POSITIVE_INFINITY;
+	const nnf = Number.NEGATIVE_INFINITY;
+	const nan = Number.NaN;
+
+	it('should assign vector3 entries clamped between two values', () => {
+		const v = vector3.Create();
+		const r = vector3.clampScalar(v, vector3.Create(1.0, 2.0, 3.0), 0.0, 4.0)
+		assert.deepStrictEqual(r, vector3.Create(1.0, 2.0, 3.0));
+		assert.strictEqual(v, r);
+
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(1.0, 2.0, 3.0), 2.0, 4.0), vector3.Create(2.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(1.0, 2.0, 3.0), 0.0, 2.0), vector3.Create(1.0, 2.0, 2.0));
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(1.0, 2.0, 3.0), 4.0, 0.0), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(-1.0, -2.0, -3.0), -4.0,  0.0), vector3.Create(-1.0, -2.0, -3.0));
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(-1.0, -2.0, -3.0), -4.0, -2.0), vector3.Create(-2.0, -2.0, -3.0));
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(-1.0, -2.0, -3.0), -2.0,  0.0), vector3.Create(-1.0, -2.0, -2.0));
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(-1.0, -2.0, -3.0),  0.0, -4.0), vector3.Create(-1.0, -2.0, -3.0));
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(inf, nnf, nan), -4.0, 4.0), vector3.Create(4.0, -4.0, nan));
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(1.0, 2.0, 3.0), nnf, inf), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(1.0, 2.0, 3.0), inf, nnf), vector3.Create(1.0, 2.0, 3.0));
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(1.0, 2.0, 3.0), nan, 4.0), vector3.Create(nan, nan, nan));
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(1.0, 2.0, 3.0), 0.0, nan), vector3.Create(nan, nan, nan));
+		assert.deepStrictEqual(vector3.clampScalar(v, vector3.Create(1.0, 2.0, 3.0), nan, nan), vector3.Create(nan, nan, nan));
+	});
+});
+
 describe('Copy', () => {
 	it('should return a Vector3 representing a copy', () => {
 		const v = vector3.Create(1.0, 2.0, 4.0);

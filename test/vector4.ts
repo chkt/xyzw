@@ -2,8 +2,7 @@ import * as assert from 'assert';
 import { describe, it } from 'mocha';
 import * as vec3 from '../source/vector3';
 import * as vec4 from '../source/vector4';
-import * as vector3 from "../source/vector3";
-import * as mat3 from "../source/matrix3";
+import * as mat3 from '../source/matrix3';
 
 
 const epsilon = 1e-10;
@@ -887,5 +886,85 @@ describe('copy', () => {
 		assert.notStrictEqual(v, w);
 		assert.deepStrictEqual(v, w);
 		assert.strictEqual(w, r);
+	});
+});
+
+describe('toF32', () => {
+	it('should return a Float32Array representing a Vector4', () => {
+		assert.deepStrictEqual(
+			vec4.toF32(vec4.Create(1.0, 2.0, 3.0, 4.0)),
+			new Float32Array([ 1.0, 2.0, 3.0, 4.0 ])
+		);
+	});
+});
+
+describe('assignF32', () => {
+	it('should assign a Float32Array representing a Vector4', () => {
+		const v = vec4.Create(1.0, 2.0, 3.0, 4.0);
+		const f = new Float32Array(4);
+		const r = vec4.assignF32(f, v);
+
+		assert.deepStrictEqual(r, new Float32Array([ 1.0, 2.0, 3.0, 4.0 ]));
+		assert.strictEqual(f, r);
+	});
+});
+
+describe('toF64', () => {
+	it('should return a Float64Array representing a Vector4', () => {
+		assert.deepStrictEqual(
+			vec4.toF64(vec4.Create(1.0, 2.0, 3.0, 4.0)),
+			new Float64Array([ 1.0, 2.0, 3.0, 4.0])
+		);
+	});
+});
+
+describe('assignF64', () => {
+	it('should assign a Float64Array representing a Vector4', () => {
+		const v = vec4.Create(1.0, 2.0, 3.0, 4.0);
+		const f = new Float64Array(4);
+		const r = vec4.assignF64(f, v);
+
+		assert.deepStrictEqual(r, new Float64Array([ 1.0, 2.0, 3.0, 4.0 ]));
+		assert.strictEqual(f, r);
+	});
+});
+
+describe('F32', () => {
+	it('should return a Vector4 representing a Float32Array', () => {
+		assert.deepStrictEqual(
+			vec4.F32(new Float32Array([ 1.0, 2.0, 3.0, 4.0 ])),
+			{ x : 1.0, y : 2.0, z : 3.0, w : 4.0 }
+		);
+	});
+});
+
+describe('f32', () => {
+	it('should assign a Vector4 representing a Float32Array', () => {
+		const f = new Float32Array([ 1.0, 2.0, 3.0, 4.0 ]);
+		const v = vec4.Create();
+		const r = vec4.f32(v, f);
+
+		assert.deepStrictEqual(r, { x : 1.0, y : 2.0, z : 3.0, w : 4.0 });
+		assert.strictEqual(v, r);
+	});
+});
+
+describe('F64', () => {
+	it('should return a Vector4 representing a Float64Array', () => {
+		assert.deepStrictEqual(
+			vec4.F64(new Float64Array([ 1.0, 2.0, 3.0, 4.0 ])),
+			{ x : 1.0, y : 2.0, z : 3.0, w : 4.0 }
+		);
+	});
+});
+
+describe('f64', () => {
+	it('should assign a Vector4 representing a Float64Array', () => {
+		const f = new Float64Array([ 1.0, 2.0, 3.0, 4.0]);
+		const v = vec4.Create();
+		const r = vec4.f64(v, f);
+
+		assert.deepStrictEqual(r, { x : 1.0, y : 2.0, z : 3.0, w : 4.0 });
+		assert.strictEqual(v, r);
 	});
 });

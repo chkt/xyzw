@@ -211,9 +211,10 @@ describe('property access', () => {
 
 	it('should measure double copied property access', () => {
 		const obj = { x: 0.1, y: 1.0 };
-		const x = obj.x, y = obj.y;
 
 		for (let i = 0; i < num; i += 1) {
+			const x = obj.x, y = obj.y;
+
 			obj.x = x + x;
 			obj.y = y + y;
 		}
@@ -221,9 +222,10 @@ describe('property access', () => {
 
 	it('should measure double destructured property access', () => {
 		const obj = { x: 0.1, y: 1.0 };
-		const {x, y} = obj;
 
 		for (let i = 0; i < num; i += 1) {
+			const {x, y} = obj;
+
 			obj.x = x + x;
 			obj.y = y + y;
 		}
@@ -360,3 +362,35 @@ describe('branching', () => {
 		}
 	});
 });
+
+describe('transforms', () => {
+	const num = 100_000_000;
+	const index = 32;
+	const obj = { x : 1.0, y : 2.0, z : 3.0, w : 4.0 };
+	const f3:Float32Array = new Float32Array(4);
+	const f100 = new Float32Array(100);
+
+	it('should measure simple Float*Array reads/writes', () => {
+		for (let i = 0; i < num; i += 1) {
+			f3[0] = obj.y;
+			f3[1] = obj.z;
+			f3[2] = obj.x;
+
+			obj.x = f3[0];
+			obj.y = f3[1];
+			obj.z = f3[2];
+		}
+	});
+
+	it('should measure indexed Float*Array reads/writes', () => {
+		for (let i = 0; i < num; i += 1) {
+			f100[index] = obj.y;
+			f100[index + 1] = obj.z;
+			f100[index + 2] = obj.x;
+
+			obj.x = f100[index];
+			obj.y = f100[index + 1];
+			obj.z = f100[index + 2];
+		}
+	});
+})

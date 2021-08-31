@@ -1200,6 +1200,13 @@ describe('assignF32', () => {
 		assert.deepStrictEqual(r, new Float32Array([ 1.0, 2.0, 3.0 ]));
 		assert.strictEqual(f, r);
 	});
+
+	it('should assign an offset inside a Float32Array representing a Vector3', () => {
+		const v = vector3.Create(2.0, 3.0, 4.0);
+		const f = new Float32Array([ 1.0, 0.0, 0.0, 0.0, 5.0 ]);
+
+		assert.deepStrictEqual(vector3.assignF32(f, v, 1), new Float32Array([ 1.0, 2.0, 3.0, 4.0, 5.0 ]));
+	});
 });
 
 describe('toF64', () => {
@@ -1220,6 +1227,13 @@ describe('assignF64', () => {
 		assert.deepStrictEqual(r, new Float64Array([ 1.0, 2.0, 3.0 ]));
 		assert.strictEqual(f, r);
 	});
+
+	it('should assign an offset inside a Float64Array representing a Vector3', () => {
+		const v = vector3.Create(2.0, 3.0, 4.0);
+		const f = new Float64Array([ 1.0, 0.0, 0.0, 0.0, 5.0 ]);
+
+		assert.deepStrictEqual(vector3.assignF64(f, v, 1), new Float64Array([ 1.0, 2.0, 3.0, 4.0, 5.0 ]));
+	});
 });
 
 describe('F32', () => {
@@ -1227,6 +1241,13 @@ describe('F32', () => {
 		assert.deepStrictEqual(
 			vector3.F32(new Float32Array([ 1.0, 2.0, 3.0 ])),
 			{ x : 1.0, y : 2.0, z : 3.0 }
+		);
+	});
+
+	it('should return a Vector3 representing an offset into a Float32Array', () => {
+		assert.deepStrictEqual(
+			vector3.F32(new Float32Array([ 1.0, 2.0, 3.0, 4.0, 5.0 ]), 1),
+			{ x : 2.0, y : 3.0, z : 4.0 }
 		);
 	});
 });
@@ -1240,6 +1261,15 @@ describe('f32', () => {
 		assert.deepStrictEqual(r, { x : 1.0, y : 2.0, z : 3.0 });
 		assert.strictEqual(v, r);
 	});
+
+	it('should assign a Vector3 representing an offset into a Float32Array', () => {
+		const v = vector3.Create();
+
+		assert.deepStrictEqual(
+			vector3.f32(v, new Float32Array([ 1.0, 2.0, 3.0, 4.0, 5.0 ]), 1),
+			{ x : 2.0, y : 3.0, z : 4.0 }
+		);
+	});
 });
 
 describe('F64', () => {
@@ -1247,6 +1277,13 @@ describe('F64', () => {
 		assert.deepStrictEqual(
 			vector3.F64(new Float64Array([ 1.0, 2.0, 3.0 ])),
 			{ x : 1.0, y : 2.0, z : 3.0 }
+		);
+	});
+
+	it('should return a Vector3 representing an offset into a Float64Array', () => {
+		assert.deepStrictEqual(
+			vector3.F64(new Float64Array([ 1.0, 2.0, 3.0, 4.0, 5.0 ]), 1),
+			{ x : 2.0, y : 3.0, z : 4.0 }
 		);
 	});
 });
@@ -1259,5 +1296,14 @@ describe('f64', () => {
 
 		assert.deepStrictEqual(r, { x : 1.0, y : 2.0, z : 3.0 });
 		assert.strictEqual(v, r);
+	});
+
+	it('should assign a Vector3 representing an offset into a Float64Array', () => {
+		const v = vector3.Create();
+
+		assert.deepStrictEqual(
+			vector3.f64(v, new Float64Array([ 1.0, 2.0, 3.0, 4.0, 5.0 ]), 1),
+			{ x : 2.0, y : 3.0, z : 4.0 }
+		);
 	});
 });

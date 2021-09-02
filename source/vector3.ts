@@ -606,6 +606,25 @@ export function clampScalar(r:Vector3, v:Vector3, a:number, b:number) : Vector3 
 
 	return r;
 }
+/**
+ * (1 - t)v⃗ + tw⃗
+ */
+export function Mix(v:Vector3, w:Vector3, t:number) : Vector3 {
+	return mix({ x : 0.0, y : 0.0, z : 0.0}, v, w, t);
+}
+
+/**
+ * r⃗ = (1 - t)v⃗ + tw⃗
+ */
+export function mix(r:Vector3, v:Vector3, w:Vector3, t:number) : Vector3 {
+	const s = 1.0 - t;
+
+	r.x = s * v.x + t * w.x;
+	r.y = s * v.y + t * w.y;
+	r.z = s * v.z + t * w.z;
+
+	return r;
+}
 
 export function Copy(v:Vector3) : Vector3 {
 	return { x : v.x, y : v.y, z : v.z };

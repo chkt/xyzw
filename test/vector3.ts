@@ -1160,6 +1160,41 @@ describe('clampScalar', () => {
 	});
 });
 
+describe('Mix', () => {
+	it('should return a Vector3 representing a mix of two Vector3', () => {
+		assertEquals(vector3.Mix(vector3.Create(0.0, 0.0, 0.0), vector3.Create(1.0, 2.0, 3.0), 0.0), vector3.Create(0.0, 0.0, 0.0), epsilon);
+		assertEquals(vector3.Mix(vector3.Create(0.0, 0.0, 0.0), vector3.Create(1.0, 2.0, 3.0), 1.0), vector3.Create(1.0, 2.0, 3.0), epsilon);
+		assertEquals(vector3.Mix(vector3.Create(0.0, 0.0, 0.0), vector3.Create(1.0, 2.0, 3.0), 0.5), vector3.Create(0.5, 1.0, 1.5), epsilon);
+		assertEquals(vector3.Mix(vector3.Create(-1.0, -2.0, -3.0), vector3.Create(1.0, 2.0, 3.0), 0.5), vector3.Create(0.0, 0.0, 0.0), epsilon);
+		assertEquals(vector3.Mix(
+			vector3.Create(1.0, 2.0, 3.0),
+			vector3.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NaN),
+			0.0
+		), vector3.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NaN), epsilon);
+	});
+});
+
+describe('mix', () => {
+	it('should return a Vector3 representing a mix of two Vector3', () => {
+		const v = vector3.Create();
+
+		assertEquals(vector3.mix(v, vector3.Create(0.0, 0.0, 0.0), vector3.Create(1.0, 2.0, 3.0), 0.0), vector3.Create(0.0, 0.0, 0.0), epsilon);
+		assertEquals(vector3.mix(v, vector3.Create(0.0, 0.0, 0.0), vector3.Create(1.0, 2.0, 3.0), 1.0), vector3.Create(1.0, 2.0, 3.0), epsilon);
+
+		const r = vector3.mix(v, vector3.Create(0.0, 0.0, 0.0), vector3.Create(1.0, 2.0, 3.0), 0.5);
+		assertEquals(r, vector3.Create(0.5, 1.0, 1.5), epsilon);
+		assert.strictEqual(v, r);
+
+		assertEquals(vector3.mix(v, vector3.Create(-1.0, -2.0, -3.0), vector3.Create(1.0, 2.0, 3.0), 0.5), vector3.Create(0.0, 0.0, 0.0), epsilon);
+		assertEquals(vector3.mix(
+			v,
+			vector3.Create(1.0, 2.0, 3.0),
+			vector3.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NaN),
+			0.0
+		), vector3.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NaN), epsilon);
+	});
+});
+
 describe('Copy', () => {
 	it('should return a Vector3 representing a copy', () => {
 		const v = vector3.Create(1.0, 2.0, 4.0);

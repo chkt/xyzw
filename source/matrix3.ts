@@ -119,9 +119,9 @@ export function rotationX(r:Matrix3, rad:number) : Matrix3 {
  */
 export function RotationY(rad:number) : Matrix3 {
 	return rotationY({
-		r00: 1.0, r10: 0.0, r20: 0.0,
-		r01: 0.0, r11: 1.0, r21: 0.0,
-		r02: 0.0, r12: 0.0, r22: 1.0
+		r00 : 1.0, r10 : 0.0, r20 : 0.0,
+		r01 : 0.0, r11 : 1.0, r21 : 0.0,
+		r02 : 0.0, r12 : 0.0, r22 : 1.0
 	}, rad);
 }
 
@@ -134,7 +134,7 @@ export function rotationY(r:Matrix3, rad:number) : Matrix3 {
 
 	r.r00 = cos; r.r10 = 0.0; r.r20 = -sin;
 	r.r01 = 0.0; r.r11 = 1.0; r.r21 =  0.0;
-	r.r02 = sin; r.r21 = 0.0; r.r22 =  cos;
+	r.r02 = sin; r.r12 = 0.0; r.r22 =  cos;
 
 	return r;
 }
@@ -159,7 +159,7 @@ export function rotationZ(r:Matrix3, rad:number) : Matrix3 {
 
 	r.r00 =  cos; r.r10 = sin; r.r20 = 0.0;
 	r.r01 = -sin; r.r11 = cos; r.r21 = 0.0;
-	r.r02 =  0.0; r.r21 = 0.0; r.r22 = 1.0;
+	r.r02 =  0.0; r.r12 = 0.0; r.r22 = 1.0;
 
 	return r;
 }

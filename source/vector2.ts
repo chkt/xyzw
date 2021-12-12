@@ -272,6 +272,35 @@ export function multiplyMatrix3(r:Vector2, m:Matrix3, v:Vector2) : Vector2 {
 }
 
 /**
+ * v⃗ + ( w⃗ - v⃗ ) * t
+ */
+export function Lerp(v:Vector2, w:Vector2, t:number) : Vector2 {
+	return lerp({ x : 0.0, y : 0.0 }, v, w, t);
+}
+
+/**
+ * r⃗ = v⃗ + (w⃗ - v⃗ ) * t
+ */
+export function lerp(r:Vector2, v:Vector2, w:Vector2, t:number) : Vector2 {
+	const {x : vx, y : vy} = v;
+
+	r.x = vx + (w.x - vx) * t;
+	r.y = vy + (w.y - vy) * t;
+
+	return r;
+}
+
+/**
+ * v⃗ = v⃗ + (w⃗ - v⃗ ) * t
+ */
+export function lerpAssign(v:Vector2, w:Vector2, t:number) : Vector2 {
+	v.x += (w.x - v.x) * t;
+	v.y += (w.y - v.y) * t;
+
+	return v;
+}
+
+/**
  * Return the projection of w⃗ onto v⃗, (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
  */
 export function Project(v:Vector2, w:Vector2) : Vector2 {

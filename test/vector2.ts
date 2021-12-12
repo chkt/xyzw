@@ -454,6 +454,62 @@ describe('multiplyMatrix3', () => {
 	});
 });
 
+describe('Lerp', () => {
+	it('should return a Vector2 representing a Linear intERPolation', () => {
+		assertEquals(vector2.Lerp(vector2.Create(Number.NaN), vector2.Create(), 1.0), { x : Number.NaN, y : 0.0 }, epsilon);
+		assertEquals(vector2.Lerp(vector2.Create(0.0, Number.NaN), vector2.Create(), 1.0), { x : 0.0, y : Number.NaN }, epsilon);
+		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0 }, epsilon);
+		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN }, epsilon);
+		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(), 0.0), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(), 0.5), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(), 1.0), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(1.0, 2.0), 0.0), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(1.0, 2.0), 0.5), { x : 0.5, y : 1.0 }, epsilon);
+		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(1.0, 2.0), 1.0), { x : 1.0, y : 2.0 }, epsilon);
+	});
+});
+
+describe('lerp', () => {
+	it('should set a vector2 to represent a Linear intERPolation', () => {
+		const v = vector2.Create();
+
+		assertEquals(vector2.lerp(v, vector2.Create(Number.NaN), vector2.Create(), 1.0), { x : Number.NaN, y : 0.0 }, epsilon);
+		assertEquals(vector2.lerp(v, vector2.Create(0.0, Number.NaN), vector2.Create(), 1.0), { x : 0.0, y : Number.NaN }, epsilon);
+		assertEquals(vector2.lerp(v, vector2.Create(), vector2.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0 }, epsilon);
+		assertEquals(vector2.lerp(v, vector2.Create(), vector2.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN }, epsilon);
+
+		const r = vector2.lerp(v, vector2.Create(), vector2.Create(), 0.0)
+		assertEquals(r, { x : 0.0, y : 0.0 }, epsilon);
+		assert.strictEqual(v, r);
+
+		assertEquals(vector2.lerp(v, vector2.Create(), vector2.Create(), 0.5), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.lerp(v, vector2.Create(), vector2.Create(), 1.0), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.lerp(v, vector2.Create(), vector2.Create(1.0, 2.0), 0.0), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.lerp(v, vector2.Create(), vector2.Create(1.0, 2.0), 0.5), { x : 0.5, y : 1.0 }, epsilon);
+		assertEquals(vector2.lerp(v, vector2.Create(), vector2.Create(1.0, 2.0), 1.0), { x : 1.0, y : 2.0 }, epsilon);
+	});
+});
+
+describe('lerpAssign', () => {
+	it('should set a vector2 to represent a Linear intERPolation', () => {
+		assertEquals(vector2.lerpAssign(vector2.Create(Number.NaN), vector2.Create(), 1.0), { x : Number.NaN, y : 0.0 }, epsilon);
+		assertEquals(vector2.lerpAssign(vector2.Create(0.0, Number.NaN), vector2.Create(), 1.0), { x : 0.0, y : Number.NaN }, epsilon);
+		assertEquals(vector2.lerpAssign(vector2.Create(), vector2.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0 }, epsilon);
+		assertEquals(vector2.lerpAssign(vector2.Create(), vector2.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN }, epsilon);
+		assertEquals(vector2.lerpAssign(vector2.Create(), vector2.Create(), 0.0), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.lerpAssign(vector2.Create(), vector2.Create(), 0.5), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.lerpAssign(vector2.Create(), vector2.Create(), 1.0), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.lerpAssign(vector2.Create(), vector2.Create(1.0, 2.0), 0.0), { x : 0.0, y : 0.0 }, epsilon);
+
+		const v = vector2.Create();
+		const r = vector2.lerpAssign(v, vector2.Create(1.0, 2.0), 0.5);
+		assertEquals(r, { x : 0.5, y : 1.0 }, epsilon);
+		assert.strictEqual(v, r);
+
+		assertEquals(vector2.lerpAssign(vector2.Create(), vector2.Create(1.0, 2.0), 1.0), { x : 1.0, y : 2.0 }, epsilon);
+	});
+});
+
 describe('Project', () => {
 	it('should return a Vector2 representing a projection', () => {
 		assertEquals(vector2.Project(vector2.Create(), vector2.Create(0.5, 0.5)), { x: 0.0, y : 0.0 }, epsilon);

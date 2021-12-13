@@ -839,6 +839,68 @@ describe('multiplyMatrix4', () => {
 	});
 });
 
+describe('Lerp', () => {
+	it('should return a Vector2 representing a Linear intERPolation', () => {
+		assertEquals(vector3.Lerp(vector3.Create(Number.NaN), vector3.Create(), 1.0), { x : Number.NaN, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.Lerp(vector3.Create(0.0, Number.NaN), vector3.Create(), 1.0), { x : 0.0, y : Number.NaN, z : 0.0 }, epsilon);
+		assertEquals(vector3.Lerp(vector3.Create(0.0, 0.0, Number.NaN), vector3.Create(), 1.0), { x : 0.0, y : 0.0, z : Number.NaN }, epsilon);
+		assertEquals(vector3.Lerp(vector3.Create(), vector3.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.Lerp(vector3.Create(), vector3.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN, z : 0.0 }, epsilon);
+		assertEquals(vector3.Lerp(vector3.Create(), vector3.Create(0.0, 0.0, Number.NaN), 0.0), { x : 0.0, y : 0.0, z : Number.NaN }, epsilon);
+		assertEquals(vector3.Lerp(vector3.Create(), vector3.Create(), 0.0), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.Lerp(vector3.Create(), vector3.Create(), 0.5), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.Lerp(vector3.Create(), vector3.Create(), 1.0), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.Lerp(vector3.Create(), vector3.Create(1.0, 2.0, 4.0), 0.0), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.Lerp(vector3.Create(), vector3.Create(1.0, 2.0, 4.0), 0.5), { x : 0.5, y : 1.0, z : 2.0 }, epsilon);
+		assertEquals(vector3.Lerp(vector3.Create(), vector3.Create(1.0, 2.0, 4.0), 1.0), { x : 1.0, y : 2.0, z : 4.0 }, epsilon);
+	});
+});
+
+describe('lerp', () => {
+	it('should set a vector2 to represent a Linear intERPolation', () => {
+		const v = vector3.Create();
+
+		assertEquals(vector3.lerp(v, vector3.Create(Number.NaN), vector3.Create(), 1.0), { x : Number.NaN, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerp(v, vector3.Create(0.0, Number.NaN), vector3.Create(), 1.0), { x : 0.0, y : Number.NaN, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerp(v, vector3.Create(0.0, 0.0, Number.NaN), vector3.Create(), 1.0), { x : 0.0, y : 0.0, z : Number.NaN }, epsilon);
+		assertEquals(vector3.lerp(v, vector3.Create(), vector3.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerp(v, vector3.Create(), vector3.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerp(v, vector3.Create(), vector3.Create(0.0, 0.0, Number.NaN), 0.0), { x : 0.0, y : 0.0, z : Number.NaN }, epsilon);
+
+		const r = vector3.lerp(v, vector3.Create(), vector3.Create(), 0.0)
+		assertEquals(r, { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assert.strictEqual(v, r);
+
+		assertEquals(vector3.lerp(v, vector3.Create(), vector3.Create(), 0.5), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerp(v, vector3.Create(), vector3.Create(), 1.0), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerp(v, vector3.Create(), vector3.Create(1.0, 2.0, 4.0), 0.0), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerp(v, vector3.Create(), vector3.Create(1.0, 2.0, 4.0), 0.5), { x : 0.5, y : 1.0, z : 2.0 }, epsilon);
+		assertEquals(vector3.lerp(v, vector3.Create(), vector3.Create(1.0, 2.0, 4.0), 1.0), { x : 1.0, y : 2.0, z : 4.0 }, epsilon);
+	});
+});
+
+describe('lerpAssign', () => {
+	it('should set a vector2 to represent a Linear intERPolation', () => {
+		assertEquals(vector3.lerpAssign(vector3.Create(Number.NaN), vector3.Create(), 1.0), { x : Number.NaN, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerpAssign(vector3.Create(0.0, Number.NaN), vector3.Create(), 1.0), { x : 0.0, y : Number.NaN, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerpAssign(vector3.Create(0.0, 0.0, Number.NaN), vector3.Create(), 1.0), { x : 0.0, y : 0.0, z : Number.NaN }, epsilon);
+		assertEquals(vector3.lerpAssign(vector3.Create(), vector3.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerpAssign(vector3.Create(), vector3.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerpAssign(vector3.Create(), vector3.Create(0.0, 0.0, Number.NaN), 0.0), { x : 0.0, y : 0.0, z : Number.NaN }, epsilon);
+		assertEquals(vector3.lerpAssign(vector3.Create(), vector3.Create(), 0.0), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerpAssign(vector3.Create(), vector3.Create(), 0.5), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerpAssign(vector3.Create(), vector3.Create(), 1.0), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.lerpAssign(vector3.Create(), vector3.Create(1.0, 2.0, 4.0), 0.0), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+
+		const v = vector3.Create();
+		const r = vector3.lerpAssign(v, vector3.Create(1.0, 2.0, 4.0), 0.5);
+		assertEquals(r, { x : 0.5, y : 1.0, z : 2.0 }, epsilon);
+		assert.strictEqual(v, r);
+
+		assertEquals(vector3.lerpAssign(vector3.Create(), vector3.Create(1.0, 2.0, 4.0), 1.0), { x : 1.0, y : 2.0, z : 4.0 }, epsilon);
+	});
+});
+
 describe('Project', () => {
 	it('should return a Vector3 representing a projection', () => {
 		assertEquals(vector3.Project(vector3.Create(), vector3.Create(0.5, 0.5, 0.5)), { x: 0.0, y : 0.0, z : 0.0 }, epsilon);

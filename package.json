@@ -29,6 +29,7 @@
 		"coordinates",
 		"unit",
 		"quaternion",
+		"lerp",
 		"slerp",
 		"determinant",
 		"inverse",

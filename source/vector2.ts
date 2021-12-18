@@ -214,6 +214,47 @@ export function multiplyAssignScalar(v:Vector2, n:number) : Vector2 {
 }
 
 /**
+ * zw, z = a + bi, w = c + di
+ */
+export function MultiplyComplex(z:Vector2, w:Vector2) : Vector2 {
+	return multiplyComplex({x : 0.0, y : 0.0}, z, w);
+}
+
+/**
+ * r⃗ = zw, z = a + bi, w = c + di
+ */
+export function multiplyComplex(r:Vector2, z:Vector2, w:Vector2) : Vector2 {
+	const {x : a, y : b} = z;
+	const {x : c, y : d} = w;
+
+	r.x = a * c - b * d;
+	r.y = a * d + b * c;
+
+	return r;
+}
+
+/**
+ * zz̅ / wz̅, z = a + bi, w = c = di
+ */
+export function DivideComplex(z:Vector2, w:Vector2) : Vector2 {
+	return divideComplex({ x : 0.0, y : 0.0 }, z , w);
+}
+
+/**
+ * r⃗ = zz̅ / wz̅, z = a + bi, w = c = di
+ */
+export function divideComplex(r:Vector2, z:Vector2, w:Vector2) : Vector2 {
+	const {x : a, y : b} = z;
+	const {x : c, y : d} = w;
+	const den = c ** 2 + d ** 2;
+
+	r.x = (a * c + b * d) / den;
+	r.y = (b * c - a * d) / den;
+
+	return r;
+}
+
+/**
  * M₂ₓ₂v⃗
  */
 export function MultiplyMatrix2(m:Matrix2, v:Vector2) : Vector2 {
@@ -359,6 +400,23 @@ export function normalize(r:Vector2, v:Vector2) : Vector2 {
 
 	r.x = x * n;
 	r.y = y * n;
+
+	return r;
+}
+
+/**
+ * z̅
+ */
+export function Conjugate(z:Vector2) : Vector2 {
+	return { x : z.x, y : -z.y };
+}
+
+/**
+ * r⃗ = z̅
+ */
+export function conjugate(r:Vector2, v:Vector2) : Vector2 {
+	r.x = v.x;
+	r.y = -v.y;
 
 	return r;
 }

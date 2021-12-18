@@ -38,7 +38,10 @@
 		"gauss-jordan",
 		"identity",
 		"azimuth",
-		"phi"
+		"phi",
+		"complex",
+		"real",
+		"imaginary"
 	],
 	"author": {
 		"name": "chkt",

@@ -523,10 +523,10 @@ describe('multiplyMatrix3', () => {
 
 describe('Lerp', () => {
 	it('should return a Vector2 representing a Linear intERPolation', () => {
-		assertEquals(vector2.Lerp(vector2.Create(Number.NaN), vector2.Create(), 1.0), { x : Number.NaN, y : 0.0 }, epsilon);
-		assertEquals(vector2.Lerp(vector2.Create(0.0, Number.NaN), vector2.Create(), 1.0), { x : 0.0, y : Number.NaN }, epsilon);
-		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0 }, epsilon);
-		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN }, epsilon);
+		assert.deepStrictEqual(vector2.Lerp(vector2.Create(Number.NaN), vector2.Create(), 1.0), { x : Number.NaN, y : 0.0 });
+		assert.deepStrictEqual(vector2.Lerp(vector2.Create(0.0, Number.NaN), vector2.Create(), 1.0), { x : 0.0, y : Number.NaN });
+		assert.deepStrictEqual(vector2.Lerp(vector2.Create(), vector2.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0 });
+		assert.deepStrictEqual(vector2.Lerp(vector2.Create(), vector2.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN });
 		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(), 0.0), { x : 0.0, y : 0.0 }, epsilon);
 		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(), 0.5), { x : 0.0, y : 0.0 }, epsilon);
 		assertEquals(vector2.Lerp(vector2.Create(), vector2.Create(), 1.0), { x : 0.0, y : 0.0 }, epsilon);
@@ -540,10 +540,10 @@ describe('lerp', () => {
 	it('should set a vector2 to represent a Linear intERPolation', () => {
 		const v = vector2.Create();
 
-		assertEquals(vector2.lerp(v, vector2.Create(Number.NaN), vector2.Create(), 1.0), { x : Number.NaN, y : 0.0 }, epsilon);
-		assertEquals(vector2.lerp(v, vector2.Create(0.0, Number.NaN), vector2.Create(), 1.0), { x : 0.0, y : Number.NaN }, epsilon);
-		assertEquals(vector2.lerp(v, vector2.Create(), vector2.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0 }, epsilon);
-		assertEquals(vector2.lerp(v, vector2.Create(), vector2.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN }, epsilon);
+		assert.deepStrictEqual(vector2.lerp(v, vector2.Create(Number.NaN), vector2.Create(), 1.0), { x : Number.NaN, y : 0.0 });
+		assert.deepStrictEqual(vector2.lerp(v, vector2.Create(0.0, Number.NaN), vector2.Create(), 1.0), { x : 0.0, y : Number.NaN });
+		assert.deepStrictEqual(vector2.lerp(v, vector2.Create(), vector2.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0 });
+		assert.deepStrictEqual(vector2.lerp(v, vector2.Create(), vector2.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN });
 
 		const r = vector2.lerp(v, vector2.Create(), vector2.Create(), 0.0)
 		assertEquals(r, { x : 0.0, y : 0.0 }, epsilon);
@@ -559,10 +559,10 @@ describe('lerp', () => {
 
 describe('lerpAssign', () => {
 	it('should set a vector2 to represent a Linear intERPolation', () => {
-		assertEquals(vector2.lerpAssign(vector2.Create(Number.NaN), vector2.Create(), 1.0), { x : Number.NaN, y : 0.0 }, epsilon);
-		assertEquals(vector2.lerpAssign(vector2.Create(0.0, Number.NaN), vector2.Create(), 1.0), { x : 0.0, y : Number.NaN }, epsilon);
-		assertEquals(vector2.lerpAssign(vector2.Create(), vector2.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0 }, epsilon);
-		assertEquals(vector2.lerpAssign(vector2.Create(), vector2.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN }, epsilon);
+		assert.deepStrictEqual(vector2.lerpAssign(vector2.Create(Number.NaN), vector2.Create(), 1.0), { x : Number.NaN, y : 0.0 });
+		assert.deepStrictEqual(vector2.lerpAssign(vector2.Create(0.0, Number.NaN), vector2.Create(), 1.0), { x : 0.0, y : Number.NaN });
+		assert.deepStrictEqual(vector2.lerpAssign(vector2.Create(), vector2.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0 });
+		assert.deepStrictEqual(vector2.lerpAssign(vector2.Create(), vector2.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN });
 		assertEquals(vector2.lerpAssign(vector2.Create(), vector2.Create(), 0.0), { x : 0.0, y : 0.0 }, epsilon);
 		assertEquals(vector2.lerpAssign(vector2.Create(), vector2.Create(), 0.5), { x : 0.0, y : 0.0 }, epsilon);
 		assertEquals(vector2.lerpAssign(vector2.Create(), vector2.Create(), 1.0), { x : 0.0, y : 0.0 }, epsilon);
@@ -579,7 +579,7 @@ describe('lerpAssign', () => {
 
 describe('Project', () => {
 	it('should return a Vector2 representing a projection', () => {
-		assertEquals(vector2.Project(vector2.Create(), vector2.Create(0.5, 0.5)), { x: 0.0, y : 0.0 }, epsilon);
+		assert.deepStrictEqual(vector2.Project(vector2.Create(), vector2.Create(0.5, 0.5)), { x: Number.NaN, y : Number.NaN });
 		assertEquals(vector2.Project(vector2.AxisY(), vector2.Create(0.5, 0.5)), { x: 0.0, y : 0.5 }, epsilon);
 		assertEquals(vector2.Project(vector2.AxisX(), vector2.Create(0.5, 0.5)), { x: 0.5, y : 0.0 }, epsilon);
 		assertEquals(vector2.Project(vector2.AxisY(-1.0), vector2.Create(0.5, 0.5)), { x: 0.0, y : 0.5 }, epsilon);
@@ -595,7 +595,7 @@ describe('project', () => {
 		assertEquals(r, { x: 0.0, y : 0.5 }, epsilon);
 		assert.strictEqual(v, r);
 
-		assertEquals(vector2.project(v, vector2.Create(), vector2.Create(0.5, 0.5)), { x: 0.0, y : 0.0 }, epsilon);
+		assert.deepStrictEqual(vector2.project(v, vector2.Create(), vector2.Create(0.5, 0.5)), { x: Number.NaN, y : Number.NaN });
 		assertEquals(vector2.project(v, vector2.AxisX(), vector2.Create(0.5, 0.5)), { x: 0.5, y : 0.0 }, epsilon);
 		assertEquals(vector2.project(v, vector2.AxisY(-1.0), vector2.Create(0.5, 0.5)), { x: 0.0, y : 0.5 }, epsilon);
 		assertEquals(vector2.project(v, vector2.AxisX(-1.0), vector2.Create(0.5, 0.5)), { x: 0.5, y : 0.0 }, epsilon);

@@ -112,3 +112,50 @@ describe('conjugate', () => {
 		assert.strictEqual(v, r);
 	});
 });
+
+describe('Inverse', () => {
+	it('should return a Vector2 representing a complex multiplicative inverse', () => {
+		assert.deepStrictEqual(complex.Inverse(vector2.Create()), { x : Number.NaN, y : Number.NaN });
+		assert.deepStrictEqual(complex.Inverse(vector2.Create(Number.NaN, 1.0)), { x : Number.NaN, y : Number.NaN });
+		assert.deepStrictEqual(complex.Inverse(vector2.Create(1.0, Number.NaN)), { x : Number.NaN, y : Number.NaN });
+		assertEquals(complex.Inverse(vector2.Create(1.0)), { x : 1.0, y : 0.0 }, epsilon);
+		assertEquals(complex.Inverse(vector2.Create(0.0, 1.0)), { x : 0.0, y : -1.0 }, epsilon);
+		assertEquals(complex.Inverse(vector2.Create(-1.0)), { x : -1.0, y : 0.0 }, epsilon);
+		assertEquals(complex.Inverse(vector2.Create(0.0, -1.0)), { x : 0.0, y : 1.0 }, epsilon);
+		assertEquals(complex.Inverse(vector2.Create(2.0)), { x : 0.5, y : 0.0 }, epsilon);
+		assertEquals(complex.Inverse(vector2.Create(0.5)), { x : 2.0, y : 0.0 }, epsilon);
+		assertEquals(complex.Inverse(complex.Inverse(vector2.Create(2.0, 3.0))), { x : 2.0, y : 3.0}, epsilon);
+
+		assertEquals(
+			complex.Multiply(vector2.Create(1.0, 2.0), complex.Inverse(vector2.Create(3.0, 4.0))),
+			complex.Divide(vector2.Create(1.0, 2.0), vector2.Create(3.0, 4.0)),
+			epsilon
+		);
+	});
+});
+
+describe('inverse', () => {
+	it('should set a Vector2 to represent a complex multiplicative inverse', () => {
+		const v = vector2.Create();
+
+		assert.deepStrictEqual(complex.inverse(v, vector2.Create()), { x : Number.NaN, y : Number.NaN });
+		assert.deepStrictEqual(complex.inverse(v, vector2.Create(Number.NaN, 1.0)), { x : Number.NaN, y : Number.NaN });
+		assert.deepStrictEqual(complex.inverse(v, vector2.Create(1.0, Number.NaN)), { x : Number.NaN, y : Number.NaN });
+		assertEquals(complex.inverse(v, vector2.Create(1.0)), { x : 1.0, y : 0.0 }, epsilon);
+		assertEquals(complex.inverse(v, vector2.Create(0.0, 1.0)), { x : 0.0, y : -1.0 }, epsilon);
+		assertEquals(complex.inverse(v, vector2.Create(-1.0)), { x : -1.0, y : 0.0 }, epsilon);
+		assertEquals(complex.inverse(v, vector2.Create(0.0, -1.0)), { x : 0.0, y : 1.0 }, epsilon);
+		assertEquals(complex.inverse(v, vector2.Create(2.0)), { x : 0.5, y : 0.0 }, epsilon);
+		assertEquals(complex.inverse(v, vector2.Create(0.5)), { x : 2.0, y : 0.0 }, epsilon);
+
+		const r = complex.inverse(v, complex.Inverse(vector2.Create(2.0, 3.0)));
+		assertEquals(r, { x : 2.0, y : 3.0}, epsilon);
+		assert.strictEqual(v, r);
+
+		assertEquals(
+			complex.Multiply(vector2.Create(1.0, 2.0), complex.Inverse(vector2.Create(3.0, 4.0))),
+			complex.Divide(vector2.Create(1.0, 2.0), vector2.Create(3.0, 4.0)),
+			epsilon
+		);
+	});
+});

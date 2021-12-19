@@ -58,3 +58,23 @@ export function conjugate<R extends Vector2>(r:R, v:Vector2) : R {
 
 	return r;
 }
+
+/**
+ * z⁻¹
+ */
+export function Inverse(z:Vector2) : Vector2 {
+	return inverse({ x : 0.0, y : 0.0 }, z);
+}
+
+/**
+ * r⃗ = z⁻¹
+ */
+export function inverse<R extends Vector2>(r:R, z:Vector2) : Vector2 {
+	const {x : a, y : b} = z;
+	const den = 1.0 / (a ** 2 + b ** 2);
+
+	r.x =  a * den;
+	r.y = -b * den;
+
+	return r;
+}

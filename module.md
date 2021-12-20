@@ -49,14 +49,14 @@ matrix4.identity(mat4);                  // …
 const w = vector2.copy(v, vec2);
 
 assert.strictEqual(w, v);
-assert.nonStrictEqual(vec2, v);
+assert.notStrictEqual(vec2, v);
 ```
 
 The fastest operations additionally have an assignment form roughly equivalent to primitive type assignment operations (`a += b`).
 
 ```ts
-const u = vector2.AddAssign(v, w);  // v += w
+const u = vector2.addAssign(v, w);  // v += w
 
 assert.strictEqual(u, v);
-assert.nonStrictEqual(w, v);
+assert.notStrictEqual(w, v);
 ```

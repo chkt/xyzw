@@ -1,4 +1,26 @@
-import { Vector2 } from './vector2';
+import { assign, Vector2 } from './vector2';
+
+
+const abs = Math.abs;
+const sin = Math.sin;
+const cos = Math.cos;
+const atan2 = Math.atan2;
+const TURN = 2.0 * Math.PI;
+
+
+function fill(r:Vector2[]) : Iterable<Vector2> {
+	return {
+		[Symbol.iterator] : () => ({
+			next() {
+				const value = { x : 0.0, y : 0.0 };
+
+				r.push(value);
+
+				return { value, done : false };
+			}
+		})
+	};
+}
 
 
 /**
@@ -38,6 +60,47 @@ export function divide<R extends Vector2>(r:R, z:Vector2, w:Vector2) : R {
 
 	r.x = (a * c + b * d) * den;
 	r.y = (b * c - a * d) * den;
+
+	return r;
+}
+
+/**
+ * zⁿ₍ₖ₎
+ */
+export function Power(z:Vector2, n:number) : Vector2[] {
+	const r:Vector2[] = [];
+
+	power(fill(r), z, n);
+
+	return r;
+}
+
+/**
+ * r⃗₍ₖ₎ = zⁿ₍ₖ₎
+ */
+export function power<R extends Iterable<Vector2>>(r:R, z:Vector2, n:number) : R {
+	if (n !== 0.0) {
+		const {x : a, y : b} = z;
+		const mod = (a ** 2 + b ** 2) ** (n * 0.5);
+		const arg = atan2(b, a) * n;
+		const arc = abs(n) * TURN;
+
+		let k = 0.0;
+
+		for (const w of r) {
+			w.x = mod * cos(arg + k);
+			w.y = mod * sin(arg + k);
+
+			k += arc;
+
+			if (k >= TURN) break;
+		}
+	}
+	else {
+		const val = r[Symbol.iterator]().next();
+
+		if (!val.done) assign(val.value, 1.0);
+	}
 
 	return r;
 }

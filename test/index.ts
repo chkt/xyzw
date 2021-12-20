@@ -2,6 +2,7 @@ import * as assert from 'assert';
 import { describe, it } from 'mocha';
 import * as xyzw from '../source';
 import * as vector2 from '../source/vector2';
+import * as complex from '../source/complex';
 import * as vector3 from '../source/vector3';
 import * as vector4 from '../source/vector4';
 import * as matrix2 from '../source/matrix2';
@@ -14,6 +15,10 @@ import * as matrix4Ortho from '../source/matrix4Ortho';
 describe('xyzw', () => {
 	it('should expose vector2', () => {
 		assert.deepStrictEqual(xyzw.vector2, vector2);
+	});
+
+	it('should expose complex', () => {
+		assert.deepStrictEqual(xyzw.complex, complex);
 	});
 
 	it('should expose vector3', () => {

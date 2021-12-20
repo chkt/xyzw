@@ -263,6 +263,30 @@ describe('property access', () => {
 	});
 });
 
+describe('math', () => {
+	const num = 100_000_000;
+	const sqrt = Math.sqrt;
+	const pow = Math.pow;
+
+	it('should measure the performance of Math.sqrt(x)', () => {
+		let s = 1000.0;
+
+		for (let i = 0; i < num; i += 1) s = sqrt(s) + 1000.0;
+	});
+
+	it('should measure the performance of Math.pow(x, 0.5)', () => {
+		let s = 1000.0;
+
+		for (let i = 0; i < num; i += 1) s = pow(s, 0.5) + 1000.0;
+	});
+
+	it('should measure the performance of x ** 0.5', () => {
+		let s = 1000.0;
+
+		for (let i = 0; i < num; i += 1) s = s ** 0.5 + 1000.0;
+	});
+});
+
 describe('epsilon', () => {
 	const num = 100_000_000;
 	const e = 1e-10;
@@ -359,6 +383,78 @@ describe('branching', () => {
 	it('should measure conditional product in arrow function', () => {
 		for (let i = 0; i < num; i += 1) {
 			a = -pmin(a, 1.0) * 1.1;
+		}
+	});
+});
+
+describe('looping', () => {
+	const len = 100;
+	const num = 1_000_000;
+
+	function* gen(end:number) {
+		for (let i = 0; i < end; i += 1) yield i;
+	}
+
+	function iterable(end:number) : Iterable<number> {
+		let i = 0;
+
+		return {
+			[Symbol.iterator] : () => ({
+				next : () => ({ value : i, done : ++i < end })
+			})
+		};
+	}
+
+	function factory(n:number) {
+		return n;
+	}
+
+	it('should measure for-i loops', () => {
+		for (let i = 0; i < num; i += 1) {
+			const arr:number[] = [];
+			let a = 0.0;
+
+			for (let j = 0; j < len; j += 1) arr.push(j);
+
+			for (let j = 0; j < len; j += 1) a += arr[j];
+		}
+	});
+
+	it('should measure for-of loops with arrays', () => {
+		for (let i = 0; i < num; i += 1) {
+			const arr:number[] = [];
+			let a = 0.0;
+
+			for (let j = 0; j < len; j += 1) arr.push(j);
+
+			for (const n of arr) a += n;
+		}
+	});
+
+	it('should measure for-of loops with factories', () => {
+		for (let i = 0; i < num; i += 1) {
+			const arr:number[] = [];
+			let a = 0.0;
+
+			for (let j = 0; j < len; j += 1) arr.push(factory(i));
+
+			for (const n of arr) a += n;
+		}
+	});
+
+	it('should measure for-of loops with iterables', () => {
+		let a = 0.0;
+
+		for (let i = 0; i < num; i += 1) {
+			for (const n of iterable(len)) a += n;
+		}
+	});
+
+	it('should measure for-of loops with generators', () => {
+		let a = 0.0;
+
+		for (let i = 0; i < num; i += 1) {
+			for (const n of gen(len)) a += n;
 		}
 	});
 });

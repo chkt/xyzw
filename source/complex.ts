@@ -24,6 +24,14 @@ function fill(r:Vector2[]) : Iterable<Vector2> {
 
 
 /**
+ * φ
+ */
+export function argument(z:Vector2) : number {
+	return atan2(z.y, z.x);
+}
+
+
+/**
  * zw, z = a + bi, w = c + di
  */
 export function Multiply(z:Vector2, w:Vector2) : Vector2 {

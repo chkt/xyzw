@@ -54,6 +54,21 @@ function assertMultiple(v:readonly vector2.Vector2[], w:readonly vector2.Vector2
 }
 
 
+describe('argument', () => {
+	const TURN = Math.PI * 2.0;
+
+	it('should return the value of arg(z)', () => {
+		assert.strictEqual(complex.argument(vector2.Create()), 0.0);
+		assert.strictEqual(complex.argument(vector2.Create(Number.NaN)), Number.NaN);
+		assert.strictEqual(complex.argument(vector2.Create(0.0, Number.NaN)), Number.NaN);
+		assert.strictEqual(complex.argument(vector2.Create(1.0, 0.0)), 0.0);
+		assert.strictEqual(complex.argument(vector2.Create(0.0, 1.0)), TURN * 0.25);
+		assert.strictEqual(complex.argument(vector2.Create(-1.0, 0.0)), TURN * 0.5);
+		assert.strictEqual(complex.argument(vector2.Create(-1.0, -0.0)), TURN * -0.5);
+		assert.strictEqual(complex.argument(vector2.Create(0.0, -1.0)), TURN * -0.25);
+	});
+});
+
 describe('Multiply', () => {
 	it('should return a Vector2 representing a complex number multiplication', () => {
 		assertEquals(complex.Multiply(vector2.Create(), vector2.Create()), { x : 0.0, y : 0.0 }, epsilon);

@@ -140,7 +140,7 @@ export function Inverse(z:Vector2) : Vector2 {
 /**
  * r⃗ = z⁻¹
  */
-export function inverse<R extends Vector2>(r:R, z:Vector2) : Vector2 {
+export function inverse<R extends Vector2>(r:R, z:Vector2) : R {
 	const {x : a, y : b} = z;
 	const den = 1.0 / (a ** 2 + b ** 2);
 

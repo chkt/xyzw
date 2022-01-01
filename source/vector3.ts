@@ -638,6 +638,7 @@ export function clampScalar(r:Vector3, v:Vector3, a:number, b:number) : Vector3 
 	return r;
 }
 /**
+ * @deprecated: use Lerp() instead.
  * (1 - t)v⃗ + tw⃗
  */
 export function Mix(v:Vector3, w:Vector3, t:number) : Vector3 {
@@ -645,6 +646,7 @@ export function Mix(v:Vector3, w:Vector3, t:number) : Vector3 {
 }
 
 /**
+ * @deprecated: use lerp() instead.
  * r⃗ = (1 - t)v⃗ + tw⃗
  */
 export function mix(r:Vector3, v:Vector3, w:Vector3, t:number) : Vector3 {

@@ -61,7 +61,7 @@ export function Create(x:number = 0.0, y:number = 0.0) : Vector2 {
 	return { x, y };
 }
 
-export function assign(r:Vector2, x:number = 0.0, y:number = 0.0) : Vector2 {
+export function assign<R extends Vector2>(r:R, x:number = 0.0, y:number = 0.0) : R {
 	r.x = x;
 	r.y = y;
 
@@ -78,7 +78,7 @@ export function AxisX(s:number = 1.0) : Vector2 {
 /**
  * r⃗ = sx̂
  */
-export function axisX(r:Vector2, s:number = 1.0) : Vector2 {
+export function axisX<R extends Vector2>(r:R, s:number = 1.0) : R {
 	r.x = s;
 	r.y = 0.0;
 
@@ -95,7 +95,7 @@ export function AxisY(s:number = 1.0) : Vector2 {
 /**
  * r⃗ = sŷ
  */
-export function axisY(r:Vector2, s:number = 1.0) : Vector2 {
+export function axisY<R extends Vector2>(r:R, s:number = 1.0) : R {
 	r.x = 0.0;
 	r.y = s;
 
@@ -106,7 +106,7 @@ export function Rotation(rad:number) : Vector2 {
 	return { x : cos(rad), y : sin(rad) };
 }
 
-export function rotation(r:Vector2, rad:number) : Vector2 {
+export function rotation<R extends Vector2>(r:R, rad:number) : R {
 	r.x = cos(rad);
 	r.y = sin(rad);
 
@@ -123,7 +123,7 @@ export function BarycentricUV(vx0:Vector2, vx1:Vector2, vx2:Vector2, u:number, v
 /**
  * Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
  */
-export function barycentricUV(r:Vector2, vx0:Vector2, vx1:Vector2, vx2:Vector2, u:number, v:number) : Vector2 {
+export function barycentricUV<R extends Vector2>(r:R, vx0:Vector2, vx1:Vector2, vx2:Vector2, u:number, v:number) : R {
 	const {x, y} = vx0;
 
 	r.x = x + (vx1.x - x) * u + (vx2.x - x) * v;
@@ -142,7 +142,7 @@ export function Add(v:Vector2, w:Vector2) : Vector2 {
 /**
  * r⃗ = v⃗+w⃗
  */
-export function add(r:Vector2, v:Vector2, w:Vector2) : Vector2 {
+export function add<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R {
 	r.x = v.x + w.x;
 	r.y = v.y + w.y;
 
@@ -152,7 +152,7 @@ export function add(r:Vector2, v:Vector2, w:Vector2) : Vector2 {
 /**
  * v⃗ = v⃗+w⃗
  */
-export function addAssign(v:Vector2, w:Vector2) : Vector2 {
+export function addAssign<R extends Vector2>(v:R, w:Vector2) : R {
 	v.x += w.x;
 	v.y += w.y;
 
@@ -169,7 +169,7 @@ export function Subtract(v:Vector2, w:Vector2) : Vector2 {
 /**
  * r⃗ = v⃗-w⃗
  */
-export function subtract(r:Vector2, v:Vector2, w:Vector2) : Vector2 {
+export function subtract<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R {
 	r.x = v.x - w.x;
 	r.y = v.y - w.y;
 
@@ -179,7 +179,7 @@ export function subtract(r:Vector2, v:Vector2, w:Vector2) : Vector2 {
 /**
  * v⃗ = v⃗-w⃗
  */
-export function subtractAssign(v:Vector2, w:Vector2) : Vector2 {
+export function subtractAssign<R extends Vector2>(v:R, w:Vector2) : R {
 	v.x -= w.x;
 	v.y -= w.y;
 
@@ -196,7 +196,7 @@ export function MultiplyScalar(v:Vector2, n:number) : Vector2 {
 /**
  * r⃗ = nv⃗
  */
-export function multiplyScalar(r:Vector2, v:Vector2, n:number) : Vector2 {
+export function multiplyScalar<R extends Vector2>(r:R, v:Vector2, n:number) : R {
 	r.x = v.x * n;
 	r.y = v.y * n;
 
@@ -206,7 +206,7 @@ export function multiplyScalar(r:Vector2, v:Vector2, n:number) : Vector2 {
 /**
  * v⃗ = nv⃗
  */
-export function multiplyAssignScalar(v:Vector2, n:number) : Vector2 {
+export function multiplyAssignScalar<R extends Vector2>(v:R, n:number) : R {
 	v.x *= n;
 	v.y *= n;
 
@@ -223,7 +223,7 @@ export function MultiplyMatrix2(m:Matrix2, v:Vector2) : Vector2 {
 /**
  * r⃗ = M₂ₓ₂v⃗
  */
-export function multiplyMatrix2(r:Vector2, m:Matrix2, v:Vector2) : Vector2 {
+export function multiplyMatrix2<R extends Vector2>(r:R, m:Matrix2, v:Vector2) : R {
 	const {x, y} = v;
 
 	r.x = x * m.r00 + y * m.r01;
@@ -242,7 +242,7 @@ export function Multiply2x3Matrix3(m:Matrix3, v:Vector2) : Vector2 {
 /**
  * r⃗ = M₂ₓ₃v⃗
  */
-export function multiply2x3Matrix3(r:Vector2, m:Matrix3, v:Vector2) : Vector2 {
+export function multiply2x3Matrix3<R extends Vector2>(r:R, m:Matrix3, v:Vector2) : R {
 	const {x, y} = v;
 
 	r.x = x * m.r00 + y * m.r01 + m.r02;
@@ -261,7 +261,7 @@ export function MultiplyMatrix3(m:Matrix3, v:Vector2) : Vector2 {
 /**
  * r⃗ = M₃ₓ₃v⃗
  */
-export function multiplyMatrix3(r:Vector2, m:Matrix3, v:Vector2) : Vector2 {
+export function multiplyMatrix3<R extends Vector2>(r:R, m:Matrix3, v:Vector2) : R {
 	const {x, y} = v;
 	const w = 1.0 / (x * m.r20 + y * m.r21 + m.r22);
 
@@ -281,7 +281,7 @@ export function Lerp(v:Vector2, w:Vector2, t:number) : Vector2 {
 /**
  * r⃗ = v⃗ + (w⃗ - v⃗ ) * t
  */
-export function lerp(r:Vector2, v:Vector2, w:Vector2, t:number) : Vector2 {
+export function lerp<R extends Vector2>(r:R, v:Vector2, w:Vector2, t:number) : R {
 	const {x : vx, y : vy} = v;
 
 	r.x = vx + (w.x - vx) * t;
@@ -293,7 +293,7 @@ export function lerp(r:Vector2, v:Vector2, w:Vector2, t:number) : Vector2 {
 /**
  * v⃗ = v⃗ + (w⃗ - v⃗ ) * t
  */
-export function lerpAssign(v:Vector2, w:Vector2, t:number) : Vector2 {
+export function lerpAssign<R extends Vector2>(v:R, w:Vector2, t:number) : R {
 	v.x += (w.x - v.x) * t;
 	v.y += (w.y - v.y) * t;
 
@@ -310,7 +310,7 @@ export function Project(v:Vector2, w:Vector2) : Vector2 {
 /**
  * Assign the projection of w⃗ onto v⃗ to r⃗, r⃗ = (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
  */
-export function project(r:Vector2, v:Vector2, w:Vector2) : Vector2 {
+export function project<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R {
 	const {x, y} = v;
 	const n = (x * w.x + y * w.y) / (x ** 2 + y ** 2);
 
@@ -330,7 +330,7 @@ export function Reflect(v:Vector2, w:Vector2) : Vector2 {
 /**
  * Assign the reflection of w⃗ against v⃗, r⃗ = 2(v⃗⋅w⃗ )w⃗-v⃗
  */
-export function reflect(r:Vector2, v:Vector2, w:Vector2) : Vector2 {
+export function reflect<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R {
 	const {x : vx, y : vy} = v;
 	const {x : wx, y : wy} = w;
 	const d = 2.0 * (vx * wx + vy * wy);
@@ -351,7 +351,7 @@ export function Normalize(v:Vector2) : Vector2 {
 /**
  * r⃗ = v̂
  */
-export function normalize(r:Vector2, v:Vector2) : Vector2 {
+export function normalize<R extends Vector2>(r:R, v:Vector2) : R {
 	const {x, y} = v;
 	let n = x ** 2 + y ** 2;
 
@@ -373,7 +373,7 @@ export function Perpendicular(v:Vector2) : Vector2 {
 /**
  * r⃗ = v⃗⊥
  */
-export function perpendicular(r:Vector2, v:Vector2) : Vector2 {
+export function perpendicular<R extends Vector2>(r:R, v:Vector2) : R {
 	const x = v.x;
 
 	r.x = -v.y;
@@ -386,7 +386,7 @@ export function Copy(v:Vector2) : Vector2 {
 	return { x : v.x, y: v.y };
 }
 
-export function copy(r:Vector2, v:Vector2) : Vector2 {
+export function copy<R extends Vector2>(r:R, v:Vector2) : R {
 	r.x = v.x;
 	r.y = v.y;
 

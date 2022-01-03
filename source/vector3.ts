@@ -86,7 +86,7 @@ export function Create(x:number = 0.0, y:number = 0.0, z:number = 0.0) : Vector3
 	return { x, y, z };
 }
 
-export function assign(r:Vector3, x:number = 0.0, y:number = 0.0, z:number = 0.0) : Vector3 {
+export function assign<R extends Vector3>(r:R, x:number = 0.0, y:number = 0.0, z:number = 0.0) : R {
 	r.x = x;
 	r.y = y;
 	r.z = z;
@@ -104,7 +104,7 @@ export function AxisX(s:number = 1.0) : Vector3 {
 /**
  * r⃗ = sx̂
  */
-export function axisX(r:Vector3, s:number = 1.0) : Vector3 {
+export function axisX<R extends Vector3>(r:R, s:number = 1.0) : R {
 	r.x = s;
 	r.y = 0.0;
 	r.z = 0.0;
@@ -122,7 +122,7 @@ export function AxisY(s:number = 1.0) : Vector3 {
 /**
  * r⃗ = sŷ
  */
-export function axisY(r:Vector3, s:number = 1.0) : Vector3 {
+export function axisY<R extends Vector3>(r:R, s:number = 1.0) : R {
 	r.x = 0.0;
 	r.y = s;
 	r.z = 0.0;
@@ -140,7 +140,7 @@ export function AxisZ(s:number = 1.0) : Vector3 {
 /**
  * r⃗ = sẑ
  */
-export function axisZ(r:Vector3, s:number = 1.0) : Vector3 {
+export function axisZ<R extends Vector3>(r:R, s:number = 1.0) : R {
 	r.x = 0.0;
 	r.y = 0.0;
 	r.z = s;
@@ -152,7 +152,7 @@ export function EulerXYZ(m:Matrix3) : Vector3 {
 	return eulerXYZ({ x : 0.0, y : 0.0, z : 0.0 }, m);
 }
 
-export function eulerXYZ(r:Vector3, m:Matrix3) : Vector3 {
+export function eulerXYZ<R extends Vector3>(r:R, m:Matrix3) : R {
 	const n02 = m.r02;
 
 	r.y = asin(n02);
@@ -173,7 +173,7 @@ export function EulerYXZ(m:Matrix3) : Vector3 {
 	return eulerYXZ({ x : 0.0, y : 0.0, z : 0.0}, m);
 }
 
-export function eulerYXZ(r:Vector3, m:Matrix3) : Vector3 {
+export function eulerYXZ<R extends Vector3>(r:R, m:Matrix3) : R {
 	const n12 = m.r12;
 
 	r.x = asin(-n12);
@@ -194,7 +194,7 @@ export function EulerZXY(m:Matrix3) : Vector3 {
 	return eulerZXY({ x : 0.0, y : 0.0, z : 0.0 }, m);
 }
 
-export function eulerZXY(r:Vector3, m:Matrix3) : Vector3 {
+export function eulerZXY<R extends Vector3>(r:R, m:Matrix3) : R {
 	const n21 = m.r21;
 
 	r.x = asin(n21);
@@ -221,7 +221,7 @@ export function BarycentricUV(vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v
 /**
  * Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
  */
-export function barycentricUV(r:Vector3, vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v:number) : Vector3 {
+export function barycentricUV<R extends Vector3>(r:R, vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v:number) : R {
 	const {x, y, z} = vx0;
 
 	r.x = x + (vx1.x - x) * u + (vx2.x - x) * v;
@@ -241,7 +241,7 @@ export function Add(v:Vector3, w:Vector3) : Vector3 {
 /**
  * r⃗ = v⃗+w⃗
  */
-export function add(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
+export function add<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R {
 	r.x = v.x + w.x;
 	r.y = v.y + w.y;
 	r.z = v.z + w.z;
@@ -252,7 +252,7 @@ export function add(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
 /**
  * v⃗ = v⃗+w⃗
  */
-export function addAssign(v:Vector3, w:Vector3) : Vector3 {
+export function addAssign<R extends Vector3>(v:R, w:Vector3) : R {
 	v.x += w.x;
 	v.y += w.y;
 	v.z += w.z;
@@ -270,7 +270,7 @@ export function Subtract(v:Vector3, w:Vector3) : Vector3 {
 /**
  * r⃗ = v⃗-w⃗
  */
-export function subtract(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
+export function subtract<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R {
 	r.x = v.x - w.x;
 	r.y = v.y - w.y;
 	r.z = v.z - w.z;
@@ -281,7 +281,7 @@ export function subtract(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
 /**
  * v⃗ = v⃗-w⃗
  */
-export function subtractAssign(v:Vector3, w:Vector3) : Vector3 {
+export function subtractAssign<R extends Vector3>(v:R, w:Vector3) : R {
 	v.x -= w.x;
 	v.y -= w.y;
 	v.z -= w.z;
@@ -299,7 +299,7 @@ export function MultiplyScalar(v:Vector3, n:number) : Vector3 {
 /**
  * r⃗ = nv⃗
  */
-export function multiplyScalar(r:Vector3, v:Vector3, n:number) : Vector3 {
+export function multiplyScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R {
 	r.x = v.x * n;
 	r.y = v.y * n;
 	r.z = v.z * n;
@@ -310,7 +310,7 @@ export function multiplyScalar(r:Vector3, v:Vector3, n:number) : Vector3 {
 /**
  * v⃗ = nv⃗
  */
-export function multiplyAssignScalar(v:Vector3, n:number) : Vector3 {
+export function multiplyAssignScalar<R extends Vector3>(v:R, n:number) : R {
 	v.x *= n;
 	v.y *= n;
 	v.z *= n;
@@ -332,7 +332,7 @@ export function Cross(v:Vector3, w:Vector3) : Vector3 {
 /**
  * r⃗ = v⃗×w⃗
  */
-export function cross(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
+export function cross<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R {
 	const {x : vx, y : vy, z : vz} = v;
 	const {x : wx, y : wy, z : wz} = w;
 
@@ -353,7 +353,7 @@ export function Hadamard(v:Vector3, w:Vector3) : Vector3 {
 /**
  * r⃗ = v⃗⊙w⃗
  */
-export function hadamard(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
+export function hadamard<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R {
 	r.x = v.x * w.x;
 	r.y = v.y * w.y;
 	r.z = v.z * w.z;
@@ -364,7 +364,7 @@ export function hadamard(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
 /**
  * v⃗ = v⃗⊙w⃗
  */
-export function hadamardAssign(v:Vector3, w:Vector3) : Vector3 {
+export function hadamardAssign<R extends Vector3>(v:R, w:Vector3) : R {
 	v.x *= w.x;
 	v.y *= w.y;
 	v.z *= w.z;
@@ -382,7 +382,7 @@ export function MultiplyMatrix3(m:Matrix3, v:Vector3) : Vector3 {
 /**
  * r⃗ = M₃ₓ₃v⃗
  */
-export function multiplyMatrix3(r:Vector3, m:Matrix3, v:Vector3) : Vector3 {
+export function multiplyMatrix3<R extends Vector3>(r:R, m:Matrix3, v:Vector3) : R {
 	const {x, y, z} = v;
 
 	r.x = x * m.r00 + y * m.r01 + z * m.r02;
@@ -402,7 +402,7 @@ export function Multiply3x4Matrix4(m:Matrix4, v:Vector3) : Vector3 {
 /**
  * r⃗ = M₃ₓ₄v⃗
  */
-export function multiply3x4Matrix4(r:Vector3, m:Matrix4, v:Vector3) : Vector3 {
+export function multiply3x4Matrix4<R extends Vector3>(r:R, m:Matrix4, v:Vector3) : R {
 	const {x, y, z} = v;
 
 	r.x = x * m.r00 + y * m.r01 + z * m.r02 + m.r03;
@@ -422,7 +422,7 @@ export function MultiplyMatrix4(m:Matrix4, v:Vector3) : Vector3 {
 /**
  * r⃗ = M₄ₓ₄v⃗
  */
-export function multiplyMatrix4(r:Vector3, m:Matrix4, v:Vector3) : Vector3 {
+export function multiplyMatrix4<R extends Vector3>(r:R, m:Matrix4, v:Vector3) : R {
 	const {x, y, z} = v;
 	const w = 1.0 / (x * m.r30 + y * m.r31 + z * m.r32 + m.r33);
 
@@ -443,7 +443,7 @@ export function Lerp(v:Vector3, w:Vector3, t:number) : Vector3 {
 /**
  * r⃗ = v⃗ + (w⃗ - v⃗ ) * t
  */
-export function lerp(r:Vector3, v:Vector3, w:Vector3, t:number) : Vector3 {
+export function lerp<R extends Vector3>(r:R, v:Vector3, w:Vector3, t:number) : R {
 	const {x : vx, y : vy, z : vz} = v;
 
 	r.x = vx + (w.x - vx) * t;
@@ -456,7 +456,7 @@ export function lerp(r:Vector3, v:Vector3, w:Vector3, t:number) : Vector3 {
 /**
  * v⃗ = v⃗ + (w⃗ - v⃗ ) * t
  */
-export function lerpAssign(v:Vector3, w:Vector3, t:number) : Vector3 {
+export function lerpAssign<R extends Vector3>(v:R, w:Vector3, t:number) : R {
 	v.x += (w.x - v.x) * t;
 	v.y += (w.y - v.y) * t;
 	v.z += (w.z - v.z) * t;
@@ -474,7 +474,7 @@ export function Project(v:Vector3, w:Vector3) : Vector3 {
 /**
  * Assign the projection of w⃗ onto v⃗ to r⃗, r⃗ = (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
  */
-export function project(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
+export function project<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R {
 	const {x, y, z} = v;
 	const f = (x * w.x + y * w.y + z * w.z) / (x ** 2 + y ** 2 + z ** 2);
 
@@ -495,7 +495,7 @@ export function Reflect(v:Vector3, w:Vector3) : Vector3 {
 /**
  * Assign the reflection of w⃗ against v⃗, r⃗ = 2(v⃗⋅w⃗ )w⃗-v⃗
  */
-export function reflect(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
+export function reflect<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R {
 	const {x : vx, y : vy, z : vz} = v;
 	const {x : wx, y : wy, z : wz} = w;
 	const d = 2.0 * (vx * wx + vy * wy + vz * wz);
@@ -517,7 +517,7 @@ export function OrthoNormalize(v:Vector3, w:Vector3) : Vector3 {
 /**
  * r⃗ = w⃗ - (w⃗⋅v⃗ )v⃗
  */
-export function orthoNormalize(r:Vector3, v:Vector3, w:Vector3) : Vector3 {
+export function orthoNormalize<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R {
 	const {x : vx, y : vy, z : vz} = v;
 	const {x : wx, y : wy, z : wz} = w;
 
@@ -540,7 +540,7 @@ export function Normalize(v:Vector3) : Vector3 {
 /**
  * r⃗ = v̂
  */
-export function normalize(r:Vector3, v:Vector3) : Vector3 {
+export function normalize<R extends Vector3>(r:R, v:Vector3) : R {
 	const {x, y, z} = v;
 	let n = x ** 2 + y ** 2 + z ** 2;
 
@@ -563,7 +563,7 @@ export function Negate(v:Vector3) : Vector3 {
 /**
  * r⃗ = -v⃗
  */
-export function negate(r:Vector3, v:Vector3) : Vector3 {
+export function negate<R extends Vector3>(r:R, v:Vector3) : R {
 	r.x = -v.x;
 	r.y = -v.y;
 	r.z = -v.z;
@@ -572,9 +572,10 @@ export function negate(r:Vector3, v:Vector3) : Vector3 {
 }
 
 /**
+ * @deprecated use multiplyAssignScalar() instead.
  * v⃗ = -v⃗
  */
-export function negateAssign(v:Vector3) : Vector3 {
+export function negateAssign<R extends Vector3>(v:R) : R {
 	v.x *= -1.0;
 	v.y *= -1.0;
 	v.z *= -1.0;
@@ -592,7 +593,7 @@ export function MinScalar(v:Vector3, n:number) : Vector3 {
 /**
  * r⃗ = min(v⃗, n)
  */
-export function minScalar(r:Vector3, v:Vector3, n:number) : Vector3 {
+export function minScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R {
 	r.x = minfn(v.x, n);
 	r.y = minfn(v.y, n);
 	r.z = minfn(v.z, n);
@@ -610,7 +611,7 @@ export function MaxScalar(v:Vector3, n:number) : Vector3 {
 /**
  * r⃗ = max(v⃗, n)
  */
-export function maxScalar(r:Vector3, v:Vector3, n:number) : Vector3 {
+export function maxScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R {
 	r.x = maxfn(v.x, n);
 	r.y = maxfn(v.y, n);
 	r.z = maxfn(v.z, n);
@@ -628,7 +629,7 @@ export function ClampScalar(v:Vector3, a:number, b:number) : Vector3 {
 /**
  * r⃗ = min(max(v⃗, min(a, b)), max(a, b))
  */
-export function clampScalar(r:Vector3, v:Vector3, a:number, b:number) : Vector3 {
+export function clampScalar<R extends Vector3>(r:R, v:Vector3, a:number, b:number) : R {
 	const min = minfn(a, b), max = maxfn(a, b);
 
 	r.x = minfn(maxfn(v.x, min), max);
@@ -642,7 +643,7 @@ export function Copy(v:Vector3) : Vector3 {
 	return { x : v.x, y : v.y, z : v.z };
 }
 
-export function copy(r:Vector3, v:Vector3) : Vector3 {
+export function copy<R extends Vector3>(r:R, v:Vector3) : R {
 	r.x = v.x;
 	r.y = v.y;
 	r.z = v.z;
@@ -678,7 +679,7 @@ export function F32(n:Float32Array, offset:number = 0) : Vector3 {
 	return { x : n[offset], y : n[offset + 1], z : n[offset + 2] };
 }
 
-export function f32(r:Vector3, n:Float32Array, offset:number = 0) : Vector3 {
+export function f32<R extends Vector3>(r:R, n:Float32Array, offset:number = 0) : R {
 	r.x = n[offset];
 	r.y = n[offset + 1];
 	r.z = n[offset + 2];
@@ -690,7 +691,7 @@ export function F64(n:Float64Array, offset:number = 0) : Vector3 {
 	return { x : n[offset], y : n[offset + 1], z : n[offset + 2] };
 }
 
-export function f64(r:Vector3, n:Float64Array, offset:number = 0) : Vector3 {
+export function f64<R extends Vector3>(r:R, n:Float64Array, offset:number = 0) : R {
 	r.x = n[offset];
 	r.y = n[offset + 1];
 	r.z = n[offset + 2];

@@ -33,7 +33,7 @@ export function Identity() : Matrix2 {
 /**
  * Mᵣ = Î
  */
-export function identity(r:Matrix2) : Matrix2 {
+export function identity<R extends Matrix2>(r:R) : R {
 	r.r00 = 1.0; r.r10 = 0.0;
 	r.r01 = 0.0; r.r11 = 1.0;
 
@@ -50,7 +50,7 @@ export function Rotation(rad:number) : Matrix2 {
 /**
  * Mᵣ = R(θ)
  */
-export function rotation(r:Matrix2, rad:number) : Matrix2 {
+export function rotation<R extends Matrix2>(r:R, rad:number) : R {
 	const sin = sinOf(rad);
 	const cos = cosOf(rad);
 
@@ -72,7 +72,7 @@ export function RotationVector2(v:Vector2) : Matrix2 {
 /**
  * Mᵣ = [ v⃗  v⃗⊥ ]
  */
-export function rotationVector2(r:Matrix2, v:Vector2) : Matrix2 {
+export function rotationVector2<R extends Matrix2>(r:R, v:Vector2) : R {
 	const {x, y} = v;
 
 	r.r00 = x;
@@ -93,7 +93,7 @@ export function Scale(v:Vector2) : Matrix2 {
 /**
  * Mᵣ = [ x̂v⃗₀  ŷv⃗₁ ]
  */
-export function scale(r:Matrix2, v:Vector2) : Matrix2 {
+export function scale<R extends Matrix2>(r:R, v:Vector2) : R {
 	r.r00 = v.x;
 	r.r10 = 0.0;
 	r.r01 = 0.0;
@@ -112,7 +112,7 @@ export function Shear(x:Vector2, y:Vector2) : Matrix2 {
 /**
  * Mᵣ = [ x⃗  y⃗ ]
  */
-export function shear(r:Matrix2, x:Vector2, y:Vector2) : Matrix2 {
+export function shear<R extends Matrix2>(r:R, x:Vector2, y:Vector2) : R {
 	r.r00 = x.x;
 	r.r10 = x.y;
 	r.r01 = y.x;
@@ -131,7 +131,7 @@ export function ShearMatrix3(m:Matrix3) : Matrix2 {
 /**
  * Mᵣ = [ m⁰ m¹ ]
  */
-export function shearMatrix3(r:Matrix2, m:Matrix3) : Matrix2 {
+export function shearMatrix3<R extends Matrix2>(r:R, m:Matrix3) : R {
 	r.r00 = m.r00;
 	r.r10 = m.r10;
 	r.r01 = m.r01;
@@ -155,7 +155,7 @@ export function Add(a:Matrix2, b:Matrix2) : Matrix2 {
 /**
  * Mᵣ = A+B
  */
-export function add(r:Matrix2, a:Matrix2, b:Matrix2) : Matrix2 {
+export function add<R extends Matrix2>(r:R, a:Matrix2, b:Matrix2) : R {
 	r.r00 = a.r00 + b.r00;
 	r.r10 = a.r10 + b.r10;
 	r.r01 = a.r01 + b.r01;
@@ -167,7 +167,7 @@ export function add(r:Matrix2, a:Matrix2, b:Matrix2) : Matrix2 {
 /**
  * A = A+B
  */
-export function addAssign(a:Matrix2, b:Matrix2) : Matrix2 {
+export function addAssign<R extends Matrix2>(a:R, b:Matrix2) : R {
 	a.r00 += b.r00;
 	a.r10 += b.r10;
 	a.r01 += b.r01;
@@ -191,7 +191,7 @@ export function Subtract(a:Matrix2, b:Matrix2) : Matrix2 {
 /**
  * Mᵣ = A-B
  */
-export function subtract(r:Matrix2, a:Matrix2, b:Matrix2) : Matrix2 {
+export function subtract<R extends Matrix2>(r:R, a:Matrix2, b:Matrix2) : R {
 	r.r00 = a.r00 - b.r00;
 	r.r10 = a.r10 - b.r10;
 	r.r01 = a.r01 - b.r01;
@@ -203,7 +203,7 @@ export function subtract(r:Matrix2, a:Matrix2, b:Matrix2) : Matrix2 {
 /**
  * A = A-B
  */
-export function subtractAssign(a:Matrix2, b:Matrix2) : Matrix2 {
+export function subtractAssign<R extends Matrix2>(a:R, b:Matrix2) : R {
 	a.r00 -= b.r00;
 	a.r10 -= b.r10;
 	a.r01 -= b.r01;
@@ -222,7 +222,7 @@ export function Concat(a:Matrix2, b:Matrix2) : Matrix2 {
 /**
  * Mᵣ = AB
  */
-export function concat(r:Matrix2, a:Matrix2, b:Matrix2) : Matrix2 {
+export function concat<R extends Matrix2>(r:R, a:Matrix2, b:Matrix2) : R {
 	const {r00 : a00, r10 : a10, r01 : a01, r11 : a11} = a;
 	const {r00 : b00, r10 : b10, r01 : b01, r11 : b11} = b;
 
@@ -244,7 +244,7 @@ export function Inverse(m:Matrix2) : Matrix2|void {
 /**
  * Mᵣ = M⁻¹
  */
-export function inverse(r:Matrix2, m:Matrix2) : Matrix2|void {
+export function inverse<R extends Matrix2>(r:R, m:Matrix2) : R|void {
 	const {r00, r10, r01, r11} = m;
 	let d = r00 * r11 - r01 * r10;
 
@@ -270,7 +270,7 @@ export function Transpose(m:Matrix2) : Matrix2 {
 /**
  * Mᵣ = Mᵀ
  */
-export function transpose(r:Matrix2, m:Matrix2) : Matrix2 {
+export function transpose<R extends Matrix2>(r:R, m:Matrix2) : R {
 	const n10 = m.r10;
 
 	r.r00 = m.r00;
@@ -285,7 +285,7 @@ export function Copy(m:Matrix2) : Matrix2 {
 	return { r00 : m.r00, r10 : m.r10, r01 : m.r01, r11 : m.r11 };
 }
 
-export function copy(r:Matrix2, m:Matrix2) : Matrix2 {
+export function copy<R extends Matrix2>(r:R, m:Matrix2) : R {
 	r.r00 = m.r00;
 	r.r10 = m.r10;
 	r.r01 = m.r01;

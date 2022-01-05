@@ -54,7 +54,7 @@ export function Identity() : Matrix3 {
 /**
  * Mᵣ = Î
  */
-export function identity(r:Matrix3) : Matrix3 {
+export function identity<R extends Matrix3>(r:R) : R {
 	r.r00 = 1.0; r.r10 = 0.0; r.r20 = 0.0;
 	r.r01 = 0.0; r.r11 = 1.0; r.r02 = 0.0;
 	r.r02 = 0.0; r.r12 = 0.0; r.r22 = 1.0;
@@ -76,7 +76,7 @@ export function RotationAxis(v:Vector3, rad:number) : Matrix3 {
 /**
  * Mᵣ = R(v⃗, θ)
  */
-export function rotationAxis(r:Matrix3, v:Vector3, rad:number) : Matrix3 {
+export function rotationAxis<R extends Matrix3>(r:R, v:Vector3, rad:number) : R {
 	const {x, y, z} = v;
 	const sin = sinOf(rad), cos = cosOf(rad), vers = 1.0 - cos;
 	const xSin = x * sin, ySin = y * sin, zSin = z * sin;
@@ -103,7 +103,7 @@ export function RotationX(rad:number) : Matrix3 {
 /**
  * Mᵣ = R(x̂, θ)
  */
-export function rotationX(r:Matrix3, rad:number) : Matrix3 {
+export function rotationX<R extends Matrix3>(r:R, rad:number) : R {
 	const sin = sinOf(rad);
 	const cos = cosOf(rad);
 
@@ -128,7 +128,7 @@ export function RotationY(rad:number) : Matrix3 {
 /**
  * Mᵣ = R(ŷ, θ)
  */
-export function rotationY(r:Matrix3, rad:number) : Matrix3 {
+export function rotationY<R extends Matrix3>(r:R, rad:number) : R {
 	const sin = sinOf(rad);
 	const cos = cosOf(rad);
 
@@ -153,7 +153,7 @@ export function RotationZ(rad:number) : Matrix3 {
 /**
  * Mᵣ = R(ẑ, θ)
  */
-export function rotationZ(r:Matrix3, rad:number) : Matrix3 {
+export function rotationZ<R extends Matrix3>(r:R, rad:number) : R {
 	const sin = sinOf(rad);
 	const cos = cosOf(rad);
 
@@ -178,7 +178,7 @@ export function RotationZVector2(x:Vector2) : Matrix3 {
 /**
  * Mᵣ = [ x⃗  x⃗⊥  ẑ ]
  */
-export function rotationZVector2(r:Matrix3, x:Vector2) : Matrix3 {
+export function rotationZVector2<R extends Matrix3>(r:R, x:Vector2) : R {
 	r.r00 =  x.x; r.r10 = x.y; r.r20 = 0.0;
 	r.r01 = -x.y; r.r11 = x.x; r.r21 = 0.0;
 	r.r02 =  0.0; r.r12 = 0.0; r.r22 = 1.0;
@@ -200,7 +200,7 @@ export function RotationZMatrix2(m:Matrix2) : Matrix3 {
 /**
  * Mᵣ = [ m⁰ m¹ ẑ ]
  */
-export function rotationZMatrix2(r:Matrix3, m:Matrix2) : Matrix3 {
+export function rotationZMatrix2<R extends Matrix3>(r:R, m:Matrix2) : R {
 	r.r00 = m.r00; r.r10 = m.r10; r.r20 = 0.0;
 	r.r01 = m.r01; r.r11 = m.r11; r.r21 = 0.0;
 	r.r02 =   0.0; r.r12 =   0.0; r.r22 = 1.0;
@@ -222,7 +222,7 @@ export function RotationVector3(x:Vector3, y:Vector3) : Matrix3 {
 /**
  * Mᵣ = [ x⃗  y⃗  x⃗×y⃗ ]
  */
-export function rotationVector3(r:Matrix3, x:Vector3, y:Vector3) : Matrix3 {
+export function rotationVector3<R extends Matrix3>(r:R, x:Vector3, y:Vector3) : R {
 	const z = cross(vec3, x, y);
 
 	r.r00 = x.x; r.r10 = x.y; r.r20 = x.z;
@@ -246,7 +246,7 @@ export function EulerXYZ(v:Vector3) : Matrix3 {
 /**
  * Mᵣ = R(x̂, v⃗₀)R(ŷ, v⃗₁)R(ẑ, v⃗₂)
  */
-export function eulerXYZ(r:Matrix3, v:Vector3) : Matrix3 {
+export function eulerXYZ<R extends Matrix3>(r:R, v:Vector3) : R {
 	const {x, y, z} = v;
 	const sx = sinOf(x), cx = cosOf(x);
 	const sy = sinOf(y), cy = cosOf(y);
@@ -279,7 +279,7 @@ export function EulerYXZ(v:Vector3) : Matrix3 {
 /**
  * Mᵣ = R(ŷ, v⃗₁)R(x̂, v⃗₀)R(ẑ, v⃗₂)
  */
-export function eulerYXZ(r:Matrix3, v:Vector3) : Matrix3 {
+export function eulerYXZ<R extends Matrix3>(r:R, v:Vector3) : R {
 	const {x, y, z} = v;
 	const sx = sinOf(x), cx = cosOf(x);
 	const sy = sinOf(y), cy = cosOf(y);
@@ -313,7 +313,7 @@ export function EulerZXY(v:Vector3) : Matrix3 {
 /**
  * Mᵣ = R(ẑ, v⃗₂)R(x̂, v⃗₀)R(ŷ, v⃗₁)
  */
-export function eulerZXY(r:Matrix3, v:Vector3) : Matrix3 {
+export function eulerZXY<R extends Matrix3>(r:R, v:Vector3) : R {
 	const {x, y, z} = v;
 	const sx = sinOf(x), cx = cosOf(x);
 	const sy = sinOf(y), cy = cosOf(y);
@@ -346,7 +346,7 @@ export function Quaternion(q:Vector4) : Matrix3 {
 /**
  * Mᵣ = R(q̂)
  */
-export function quaternion(r:Matrix3, q:Vector4) : Matrix3 {
+export function quaternion<R extends Matrix3>(r:R, q:Vector4) : R {
 	const {x, y, z, w} = q;
 	const xx = x ** 2, yy = y ** 2, zz = z ** 2;
 	const xy = x * y,  yz = y * z,  xz = x * z;
@@ -381,7 +381,7 @@ export function ScaleVector2(v:Vector2) : Matrix3 {
 /**
  * Mᵣ = [ x̂v⃗₀  ŷv⃗₁  ẑ ]
  */
-export function scaleVector2(r:Matrix3, v:Vector2) : Matrix3 {
+export function scaleVector2<R extends Matrix3>(r:R, v:Vector2) : R {
 	r.r00 = v.x; r.r10 = 0.0; r.r20 = 0.0;
 	r.r01 = 0.0; r.r11 = v.y; r.r21 = 0.0;
 	r.r02 = 0.0; r.r21 = 0.0; r.r22 = 1.0;
@@ -403,7 +403,7 @@ export function Scale(v:Vector3) : Matrix3 {
 /**
  * Mᵣ = [ x̂v⃗₀  ŷv⃗₁  ẑv⃗₂ ]
  */
-export function scale(r:Matrix3, v:Vector3) : Matrix3 {
+export function scale<R extends Matrix3>(r:R, v:Vector3) : R {
 	r.r00 = v.x; r.r10 = 0.0; r.r20 = 0.0;
 	r.r01 = 0.0; r.r11 = v.y; r.r21 = 0.0;
 	r.r02 = 0.0; r.r12 = 0.0; r.r22 = v.z;
@@ -425,7 +425,7 @@ export function Translation(v:Vector2) : Matrix3 {
 /**
  * Mᵣ = [ x̂  ŷ  ẑ+v⃗ ]
  */
-export function translation(r:Matrix3, v:Vector2) : Matrix3 {
+export function translation<R extends Matrix3>(r:R, v:Vector2) : R {
 	r.r00 = 1.0; r.r10 = 0.0; r.r20 = 0.0;
 	r.r01 = 0.0; r.r11 = 1.0; r.r21 = 0.0;
 	r.r02 = v.x; r.r12 = v.y; r.r22 = 1.0;
@@ -447,7 +447,7 @@ export function ShearVector2(x:Vector2, y:Vector2) : Matrix3 {
 /**
  * Mᵣ = [ x⃗  y⃗  ẑ ]
  */
-export function shearVector2(r:Matrix3, x:Vector2, y:Vector2) : Matrix3 {
+export function shearVector2<R extends Matrix3>(r:R, x:Vector2, y:Vector2) : R {
 	r.r00 = x.x; r.r10 = x.y; r.r20 = 0.0;
 	r.r01 = y.x; r.r11 = y.y; r.r21 = 0.0;
 	r.r02 = 0.0; r.r12 = 0.0; r.r22 = 1.0;
@@ -469,7 +469,7 @@ export function Shear(x:Vector3, y:Vector3, z:Vector3) : Matrix3 {
 /**
  * Mᵣ = [ x⃗  y⃗  z⃗ ]
  */
-export function shear(r:Matrix3, x:Vector3, y:Vector3, z:Vector3) : Matrix3 {
+export function shear<R extends Matrix3>(r:R, x:Vector3, y:Vector3, z:Vector3) : R {
 	r.r00 = x.x; r.r10 = x.y; r.r20 = x.z;
 	r.r01 = y.x; r.r11 = y.y; r.r21 = y.z;
 	r.r02 = z.x; r.r12 = z.y; r.r22 = z.z;
@@ -491,7 +491,7 @@ export function ShearTranslation(x:Vector2, y:Vector2, t:Vector2) : Matrix3 {
 /**
  * Mᵣ = [ x⃗  y⃗  ẑ+t⃗ ]
  */
-export function shearTranslation(r:Matrix3, x:Vector2, y:Vector2, t:Vector2) : Matrix3 {
+export function shearTranslation<R extends Matrix3>(r:R, x:Vector2, y:Vector2, t:Vector2) : R {
 	r.r00 = x.x; r.r10 = x.y; r.r20 = 0.0;
 	r.r01 = y.x; r.r11 = y.y; r.r21 = 0.0;
 	r.r02 = t.x; r.r12 = t.y; r.r22 = 1.0;
@@ -513,7 +513,7 @@ export function ShearMatrix4(m:Matrix4) : Matrix3 {
 /**
  * Mᵣ = [ m⁰ m¹ m² ]
  */
-export function shearMatrix4(r:Matrix3, m:Matrix4) : Matrix3 {
+export function shearMatrix4<R extends Matrix3>(r:R, m:Matrix4) : R {
 	r.r00 = m.r00; r.r10 = m.r10; r.r20 = m.r20;
 	r.r01 = m.r01; r.r11 = m.r11; r.r21 = m.r21;
 	r.r02 = m.r02; r.r12 = m.r12; r.r22 = m.r22;
@@ -535,7 +535,7 @@ export function Add(a:Matrix3, b:Matrix3) : Matrix3 {
 /**
  * Mᵣ = A+B
  */
-export function add(r:Matrix3, a:Matrix3, b:Matrix3) : Matrix3 {
+export function add<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R {
 	r.r00 = a.r00 + b.r00; r.r10 = a.r10 + b.r10; r.r20 = a.r20 + b.r20;
 	r.r01 = a.r01 + b.r01; r.r11 = a.r11 + b.r11; r.r21 = a.r21 + b.r21;
 	r.r02 = a.r02 + b.r02; r.r12 = a.r12 + b.r12; r.r22 = a.r22 + b.r22;
@@ -546,7 +546,7 @@ export function add(r:Matrix3, a:Matrix3, b:Matrix3) : Matrix3 {
 /**
  * A = A+B
  */
-export function addAssign(a:Matrix3, b:Matrix3) : Matrix3 {
+export function addAssign<R extends Matrix3>(a:R, b:Matrix3) : R {
 	a.r00 += b.r00; a.r10 += b.r10; a.r20 += b.r20;
 	a.r01 += b.r01; a.r11 += b.r11; a.r21 += b.r21;
 	a.r02 += b.r02; a.r12 += b.r12; a.r22 += b.r22;
@@ -568,7 +568,7 @@ export function Subtract(a:Matrix3, b:Matrix3) : Matrix3 {
 /**
  * Mᵣ = A-B
  */
-export function subtract(r:Matrix3, a:Matrix3, b:Matrix3) : Matrix3 {
+export function subtract<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R {
 	r.r00 = a.r00 - b.r00; r.r10 = a.r10 - b.r10; r.r20 = a.r20 - b.r20;
 	r.r01 = a.r01 - b.r01; r.r11 = a.r11 - b.r11; r.r21 = a.r21 - b.r21;
 	r.r02 = a.r02 - b.r02; r.r12 = a.r12 - b.r12; r.r22 = a.r22 - b.r22;
@@ -579,7 +579,7 @@ export function subtract(r:Matrix3, a:Matrix3, b:Matrix3) : Matrix3 {
 /**
  * A = A-B
  */
-export function subtractAssign(a:Matrix3, b:Matrix3) : Matrix3 {
+export function subtractAssign<R extends Matrix3>(a:R, b:Matrix3) : R {
 	a.r00 -= b.r00; a.r10 -= b.r10; a.r20 -= b.r20;
 	a.r01 -= b.r01; a.r11 -= b.r11; a.r21 -= b.r21;
 	a.r02 -= b.r02; a.r12 -= b.r12; a.r22 -= b.r22;
@@ -601,7 +601,7 @@ export function ConcatScaleVector2(m:Matrix3, v:Vector2) : Matrix3 {
 /**
  * Mᵣ = M[ x̂v⃗₀  ŷv⃗₁  ẑ ]
  */
-export function concatScaleVector2(r:Matrix3, m:Matrix3, v:Vector2) : Matrix3 {
+export function concatScaleVector2<R extends Matrix3>(r:R, m:Matrix3, v:Vector2) : R {
 	const {x, y} = v;
 
 	r.r00 = m.r00 * x; r.r10 = m.r10 * x; r.r20 = m.r20 * x;
@@ -625,7 +625,7 @@ export function ConcatTranslation(m:Matrix3, v:Vector2) : Matrix3 {
 /**
  * Mᵣ = M[ x̂  ŷ  v⃗ ]
  */
-export function concatTranslation(r:Matrix3, m:Matrix3, v:Vector2) : Matrix3 {
+export function concatTranslation<R extends Matrix3>(r:R, m:Matrix3, v:Vector2) : R {
 	const {r00, r10, r20, r01, r11, r21} = m;
 	const {x, y} = v;
 
@@ -650,7 +650,7 @@ export function ConcatMatrix2(a:Matrix3, b:Matrix2) : Matrix3 {
 /**
  * Mᵣ = AB₂ₓ₂
  */
-export function concatMatrix2(r:Matrix3, a:Matrix3, b:Matrix2) : Matrix3 {
+export function concatMatrix2<R extends Matrix3>(r:R, a:Matrix3, b:Matrix2) : R {
 	const {r00 : a00, r10 : a10, r01 : a01, r11 : a11, r02 : a02, r12 : a12} = a;
 	const {r00 : b00, r10 : b10, r01 : b01, r11 : b11} = b;
 
@@ -675,7 +675,7 @@ export function Concat2x3(a:Matrix3, b:Matrix3) : Matrix3 {
 /**
  * Mᵣ = AB₂ₓ₃
  */
-export function concat2x3(r:Matrix3, a:Matrix3, b:Matrix3) : Matrix3 {
+export function concat2x3<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R {
 	const {r00 : a00, r10 : a10, r01 : a01, r11 : a11, r02 : a02, r12 : a12} = a;
 	const {r00 : b00, r10 : b10, r01 : b01, r11 : b11, r02 : b02, r12 : b12} = b;
 
@@ -700,7 +700,7 @@ export function Concat(a:Matrix3, b:Matrix3) : Matrix3 {
 /**
  * Mᵣ = AB
  */
-export function concat(r:Matrix3, a:Matrix3, b:Matrix3) : Matrix3 {
+export function concat<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R {
 	const {r00 : a00, r10 : a10, r20 : a20, r01 : a01, r11 : a11, r21 : a21, r02 : a02, r12 : a12, r22 : a22} = a;
 	const {r00 : b00, r10 : b10, r20 : b20, r01 : b01, r11 : b11, r21 : b21, r02 : b02, r12 : b12, r22 : b22} = b;
 
@@ -725,7 +725,7 @@ export function Inverse(m:Matrix3) : Matrix3|void {
 /**
  * Mᵣ = M⁻¹
  */
-export function inverse(r:Matrix3, m:Matrix3) : Matrix3|void {
+export function inverse<R extends Matrix3>(r:R, m:Matrix3) : R|void {
 	let d = determinant(m);
 
 	if (isNaN(d) || abs(d) < 1e-10) return undefined;
@@ -755,7 +755,7 @@ export function Transpose(m:Matrix3) : Matrix3 {
 /**
  * Mᵣ = Mᵀ
  */
-export function transpose(r:Matrix3, m:Matrix3) : Matrix3 {
+export function transpose<R extends Matrix3>(r:R, m:Matrix3) : R {
 	const {r10, r20, r21} = m;
 
 	r.r00 = m.r00; r.r10 = m.r01; r.r20 = m.r02;
@@ -773,7 +773,7 @@ export function Copy(m:Matrix3) : Matrix3 {
 	};
 }
 
-export function copy(r:Matrix3, m:Matrix3) : Matrix3 {
+export function copy<R extends Matrix3>(r:R, m:Matrix3) : R {
 	r.r00 = m.r00; r.r10 = m.r10; r.r20 = m.r20;
 	r.r01 = m.r01; r.r11 = m.r11; r.r21 = m.r21;
 	r.r02 = m.r02; r.r12 = m.r12; r.r22 = m.r22;

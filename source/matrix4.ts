@@ -57,7 +57,7 @@ export function Identity() : Matrix4 {
 /**
  * Mᵣ = Î
  */
-export function identity(r:Matrix4) : Matrix4 {
+export function identity<R extends Matrix4>(r:R) : R {
 	r.r00 = 1.0; r.r10 = 0.0; r.r20 = 0.0; r.r30 = 0.0;
 	r.r01 = 0.0; r.r11 = 1.0; r.r21 = 0.0; r.r31 = 0.0;
 	r.r02 = 0.0; r.r12 = 0.0; r.r22 = 1.0; r.r32 = 0.0;
@@ -81,7 +81,7 @@ export function Translation(v:Vector3) : Matrix4 {
 /**
  * Mᵣ = [ x̂  ŷ  ẑ  ŵ+v⃗ ]
  */
-export function translation(r:Matrix4, v:Vector3) : Matrix4 {
+export function translation<R extends Matrix4>(r:R, v:Vector3) : R {
 	r.r00 = 1.0; r.r10 = 0.0; r.r20 = 0.0; r.r30 = 0.0;
 	r.r01 = 0.0; r.r11 = 1.0; r.r21 = 0.0; r.r31 = 0.0;
 	r.r02 = 0.0; r.r12 = 0.0; r.r22 = 1.0; r.r32 = 0.0;
@@ -105,7 +105,7 @@ export function ShearMatrix3(m:Matrix3) : Matrix4 {
 /**
  * Mᵣ = [ m⁰ m¹ m² ŵ ]
  */
-export function shearMatrix3(r:Matrix4, m:Matrix3) : Matrix4 {
+export function shearMatrix3<R extends Matrix4>(r:R, m:Matrix3) : R {
 	r.r00 = m.r00; r.r10 = m.r10; r.r20 = m.r20; r.r30 = 0.0;
 	r.r01 = m.r01; r.r11 = m.r11; r.r21 = m.r21; r.r31 = 0.0;
 	r.r02 = m.r02; r.r12 = m.r12; r.r22 = m.r22; r.r32 = 0.0;
@@ -129,7 +129,7 @@ export function ShearTranslation(x:Vector3, y:Vector3, z:Vector3, t:Vector3) : M
 /**
  * Mᵣ = [ x⃗  y⃗  z⃗  ŵ+t⃗ ]
  */
-export function shearTranslation(r:Matrix4, x:Vector3, y:Vector3, z:Vector3, t:Vector3) : Matrix4 {
+export function shearTranslation<R extends Matrix4>(r:R, x:Vector3, y:Vector3, z:Vector3, t:Vector3) : R {
 	r.r00 = x.x; r.r10 = x.y; r.r20 = x.z; r.r30 = 0.0;
 	r.r01 = y.x; r.r11 = y.y; r.r21 = y.z; r.r31 = 0.0;
 	r.r02 = z.x; r.r12 = z.y; r.r22 = z.z; r.r32 = 0.0;
@@ -153,7 +153,7 @@ export function Add(a:Matrix4, b:Matrix4) : Matrix4 {
 /**
  * Mᵣ = A+B
  */
-export function add(r:Matrix4, a:Matrix4, b:Matrix4) : Matrix4 {
+export function add<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R {
 	r.r00 = a.r00 + b.r00; r.r10 = a.r10 + b.r10; r.r20 = a.r20 + b.r20; r.r30 = a.r30 + b.r30;
 	r.r01 = a.r01 + b.r01; r.r11 = a.r11 + b.r11; r.r21 = a.r21 + b.r21; r.r31 = a.r31 + b.r31;
 	r.r02 = a.r02 + b.r02; r.r12 = a.r12 + b.r12; r.r22 = a.r22 + b.r22; r.r32 = a.r32 + b.r32;
@@ -165,7 +165,7 @@ export function add(r:Matrix4, a:Matrix4, b:Matrix4) : Matrix4 {
 /**
  * A = A+B
  */
-export function addAssign(a:Matrix4, b:Matrix4) : Matrix4 {
+export function addAssign<R extends Matrix4>(a:R, b:Matrix4) : R {
 	a.r00 += b.r00; a.r10 += b.r10; a.r20 += b.r20; a.r30 += b.r30;
 	a.r01 += b.r01; a.r11 += b.r11; a.r21 += b.r21; a.r31 += b.r31;
 	a.r02 += b.r02; a.r12 += b.r12; a.r22 += b.r22; a.r32 += b.r32;
@@ -189,7 +189,7 @@ export function Subtract(a:Matrix4, b:Matrix4) : Matrix4 {
 /**
  * Mᵣ = A-B
  */
-export function subtract(r:Matrix4, a:Matrix4, b:Matrix4) : Matrix4 {
+export function subtract<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R {
 	r.r00 = a.r00 - b.r00; r.r10 = a.r10 - b.r10; r.r20 = a.r20 - b.r20; r.r30 = a.r30 - b.r30;
 	r.r01 = a.r01 - b.r01; r.r11 = a.r11 - b.r11; r.r21 = a.r21 - b.r21; r.r31 = a.r31 - b.r31;
 	r.r02 = a.r02 - b.r02; r.r12 = a.r12 - b.r12; r.r22 = a.r22 - b.r22; r.r32 = a.r32 - b.r32;
@@ -201,7 +201,7 @@ export function subtract(r:Matrix4, a:Matrix4, b:Matrix4) : Matrix4 {
 /**
  * A = A-B
  */
-export function subtractAssign(a:Matrix4, b:Matrix4) : Matrix4 {
+export function subtractAssign<R extends Matrix4>(a:R, b:Matrix4) : R {
 	a.r00 -= b.r00; a.r10 -= b.r10; a.r20 -= b.r20; a.r30 -= b.r30;
 	a.r01 -= b.r01; a.r11 -= b.r11; a.r21 -= b.r21; a.r31 -= b.r31;
 	a.r02 -= b.r02; a.r12 -= b.r12; a.r22 -= b.r22; a.r32 -= b.r32;
@@ -225,7 +225,7 @@ export function ConcatScale(m:Matrix4, v:Vector3) : Matrix4 {
 /**
  * Mᵣ = M[ x̂v⃗₀  ŷv⃗₁  ẑv⃗₂  ŵ ]
  */
-export function concatScale(r:Matrix4, m:Matrix4, v:Vector3) : Matrix4 {
+export function concatScale<R extends Matrix4>(r:R, m:Matrix4, v:Vector3) : R {
 	const {x : b00, y : b11, z : b22} = v;
 
 	r.r00 = m.r00 * b00;
@@ -263,7 +263,7 @@ export function ConcatTranslation(m:Matrix4, v:Vector3) : Matrix4 {
 /**
  * Mᵣ = M[ x̂  ŷ  ẑ  ŵ+v⃗ ]
  */
-export function concatTranslation(r:Matrix4, m:Matrix4, v:Vector3) : Matrix4 {
+export function concatTranslation<R extends Matrix4>(r:R, m:Matrix4, v:Vector3) : R {
 	const {
 		r00 : a00, r10 : a10, r20 : a20,
 		r01 : a01, r11 : a11, r21 : a21,
@@ -306,7 +306,7 @@ export function ConcatMatrix3(a:Matrix4, b:Matrix3) : Matrix4 {
 /**
  * Mᵣ = AB₃ₓ₃
  */
-export function concatMatrix3(r:Matrix4, a:Matrix4, b:Matrix3) : Matrix4 {
+export function concatMatrix3<R extends Matrix4>(r:R, a:Matrix4, b:Matrix3) : R {
 	const {
 		r00 : a00, r10 : a10, r20 : a20,
 		r01 : a01, r11 : a11, r21 : a21,
@@ -353,7 +353,7 @@ export function Concat3x4(a:Matrix4, b:Matrix4) : Matrix4 {
 /**
  * Mᵣ = AB₃ₓ₄
  */
-export function concat3x4(r:Matrix4, a:Matrix4, b:Matrix4) : Matrix4 {
+export function concat3x4<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R {
 	const {
 		r00 : a00, r10 : a10, r20 : a20,
 		r01 : a01, r11 : a11, r21 : a21,
@@ -401,7 +401,7 @@ export function Concat(a:Matrix4, b:Matrix4) : Matrix4 {
 /**
  * Mᵣ = AB
  */
-export function concat(r:Matrix4, a:Matrix4, b:Matrix4) : Matrix4 {
+export function concat<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R {
 	const {
 		r00 : a00, r10 : a10, r20 : a20, r30 : a30,
 		r01 : a01, r11 : a11, r21 : a21, r31 : a31,
@@ -450,7 +450,7 @@ export function Inverse3x4(m:Matrix4) : Matrix4|void {
 /**
  * Mᵣ = [ m⁰ m¹ m² ŵ+m³ ]⁻¹
  */
-export function inverse3x4(r:Matrix4, m:Matrix4) : Matrix4|void {
+export function inverse3x4<R extends Matrix4>(r:R, m:Matrix4) : R|void {
 	const {
 		r00 : m00, r10 : m10, r20 : m20,
 		r01 : m01, r11 : m11, r21 : m21,
@@ -503,7 +503,7 @@ export function Inverse(m:Matrix4) : Matrix4|void {
 /**
  * Mᵣ = M⁻¹ (using the determinant)
  */
-export function inverse(r:Matrix4, m:Matrix4) : Matrix4|void {
+export function inverse<R extends Matrix4>(r:R, m:Matrix4) : R|void {
 	let d = determinant(m);
 
 	if (isNaN(d) || abs(d) < epsilon) return undefined;
@@ -559,7 +559,7 @@ export function InverseGauss(m:Matrix4) : Matrix4|void {
 /**
  * Mᵣ = M⁻¹ (using Gauss-Jordan elimination)
  */
-export function inverseGauss(r:Matrix4, m:Matrix4) : Matrix4|void {
+export function inverseGauss<R extends Matrix4>(r:R, m:Matrix4) : R|void {
 	const a = assignColumnF64(f64a, m), b = assignColumnF64(f64b, identity(mat4));
 
 	for (let r1 = 0; r1 < 4; r1 += 1) {
@@ -637,7 +637,7 @@ export function Transpose(m:Matrix4) : Matrix4 {
 /**
  * Mᵣ = Mᵀ
  */
-export function transpose(r:Matrix4, m:Matrix4) : Matrix4 {
+export function transpose<R extends Matrix4>(r:R, m:Matrix4) : R {
 	const {r10, r20, r30, r21, r31, r32} = m;
 
 	r.r00 = m.r00; r.r10 = m.r01; r.r20 = m.r02; r.r30 = m.r03;
@@ -657,7 +657,7 @@ export function Copy(m:Matrix4) : Matrix4 {
 	};
 }
 
-export function copy(r:Matrix4, m:Matrix4) : Matrix4 {
+export function copy<R extends Matrix4>(r:R, m:Matrix4) : R {
 	r.r00 = m.r00; r.r10 = m.r10; r.r20 = m.r20; r.r30 = m.r30;
 	r.r01 = m.r01; r.r11 = m.r11; r.r21 = m.r21; r.r31 = m.r31;
 	r.r02 = m.r02; r.r12 = m.r12; r.r22 = m.r22; r.r32 = m.r32;
@@ -712,7 +712,7 @@ export function ColumnF32(n:Float32Array) : Matrix4 {
 }
 
 
-export function columnF32(r:Matrix4, n:Float32Array) : Matrix4 {
+export function columnF32<R extends Matrix4>(r:R, n:Float32Array) : R {
 	r.r00 = n[0];  r.r10 = n[1];  r.r20 = n[2];  r.r30 = n[3];
 	r.r01 = n[4];  r.r11 = n[5];  r.r21 = n[6];  r.r31 = n[7];
 	r.r02 = n[8];  r.r12 = n[9];  r.r22 = n[10]; r.r32 = n[11];
@@ -732,7 +732,7 @@ export function ColumnF64(n:Float64Array) : Matrix4 {
 }
 
 
-export function columnF64(r:Matrix4, n:Float64Array) : Matrix4 {
+export function columnF64<R extends Matrix4>(r:R, n:Float64Array) : R {
 	r.r00 = n[0];  r.r10 = n[1];  r.r20 = n[2];  r.r30 = n[3];
 	r.r01 = n[4];  r.r11 = n[5];  r.r21 = n[6];  r.r31 = n[7];
 	r.r02 = n[8];  r.r12 = n[9];  r.r22 = n[10]; r.r32 = n[11];

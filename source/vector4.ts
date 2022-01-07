@@ -46,7 +46,7 @@ export function Create(x:number = 0.0, y:number = 0.0, z:number = 0.0, w:number 
 	return { x, y, z, w };
 }
 
-export function assign(r:Vector4, x:number = 0.0, y:number = 0.0, z:number = 0.0, w:number = 1.0) : Vector4 {
+export function assign<R extends Vector4>(r:R, x:number = 0.0, y:number = 0.0, z:number = 0.0, w:number = 1.0) : R {
 	r.x = x; r.y = y; r.z = z; r.w = w;
 
 	return r;
@@ -62,7 +62,7 @@ export function Vector3(v:Vector3) : Vector4 {
 /**
  * r⃗ = ŵ+v⃗
  */
-export function vector3(r:Vector4, v:Vector3) : Vector4 {
+export function vector3<R extends Vector4>(r:R, v:Vector3) : R {
 	r.x = v.x; r.y = v.y; r.z = v.z; r.w = 1.0;
 
 	return r;
@@ -78,7 +78,7 @@ export function RotationAxis(v:Vector3, rad:number) : Vector4 {
 /**
  * r⃗ = q̂(v⃗, θ)
  */
-export function rotationAxis(r:Vector4, v:Vector3, rad:number) : Vector4 {
+export function rotationAxis<R extends Vector4>(r:R, v:Vector3, rad:number) : R {
 	// q = cos(θ/2) + sin(θ/2)(xi + yj + zk)
 	const radDivTwo = rad * 0.5;
 	const sin = sinOf(radDivTwo);
@@ -99,7 +99,7 @@ export function RotationSlerp(v:Vector4, w:Vector4, t:number) : Vector4 {
 /**
  * r⃗ = v̂(ŵ⁻¹v̂)ᵗ
  */
-export function rotationSlerp(r:Vector4, v:Vector4, w:Vector4, t:number) : Vector4 {
+export function rotationSlerp<R extends Vector4>(r:R, v:Vector4, w:Vector4, t:number) : R {
 	// θ = acos(q0⋅q1)
 	// qi = (q0 * sin(1 - u)θ + q1 * sin(uθ))/sin(θ) = q0 * (sin(1 - u)θ)/sin(θ) + q1 * sin(uθ)/sin(θ)
 	const {x : vx, y : vy, z : vz, w : vw} = v;
@@ -128,7 +128,7 @@ export function RotationMatrix3(m:Matrix3) : Vector4 {
 /**
  * r⃗ = q̂(M)
  */
-export function rotationMatrix3(r:Vector4, m:Matrix3) : Vector4 {
+export function rotationMatrix3<R extends Vector4>(r:R, m:Matrix3) : R {
 	const {r00, r11, r22} = m;
 	let s = r00 + r11 + r22;
 
@@ -194,7 +194,7 @@ export function Add(v:Vector4, w:Vector4) : Vector4 {
 /**
  * r⃗ = v⃗+w⃗
  */
-export function add(r:Vector4, v:Vector4, w:Vector4) : Vector4 {
+export function add<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R {
 	r.x = v.x + w.x; r.y = v.y + w.y; r.z = v.z + w.z; r.w = v.w + w.w;
 
 	return r;
@@ -203,7 +203,7 @@ export function add(r:Vector4, v:Vector4, w:Vector4) : Vector4 {
 /**
  * v⃗ = v⃗+w⃗
  */
-export function addAssign(v:Vector4, w:Vector4) : Vector4 {
+export function addAssign<R extends Vector4>(v:R, w:Vector4) : R {
 	v.x += w.x; v.y += w.y; v.z += w.z; v.w += w.w;
 
 	return v;
@@ -219,7 +219,7 @@ export function Subtract(v:Vector4, w:Vector4) : Vector4 {
 /**
  * r⃗ = v⃗-w⃗
  */
-export function subtract(r:Vector4, v:Vector4, w:Vector4) : Vector4 {
+export function subtract<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R {
 	r.x = v.x - w.x; r.y = v.y - w.y; r.z = v.z - w.z; r.w = v.w - w.w;
 
 	return r;
@@ -228,7 +228,7 @@ export function subtract(r:Vector4, v:Vector4, w:Vector4) : Vector4 {
 /**
  * v⃗ = v⃗-w⃗
  */
-export function subtractAssign(v:Vector4, w:Vector4) : Vector4 {
+export function subtractAssign<R extends Vector4>(v:R, w:Vector4) : R {
 	v.x -= w.x; v.y -= w.y; v.z -= w.z; v.w -= w.w;
 
 	return v;
@@ -244,7 +244,7 @@ export function MultiplyScalar(v:Vector4, n:number) : Vector4 {
 /**
  * r⃗ = nv⃗
  */
-export function multiplyScalar(r:Vector4, v:Vector4, n:number) : Vector4 {
+export function multiplyScalar<R extends Vector4>(r:R, v:Vector4, n:number) : R {
 	r.x = v.x * n; r.y = v.y * n; r.z = v.z * n; r.w = v.w * n;
 
 	return r;
@@ -253,7 +253,7 @@ export function multiplyScalar(r:Vector4, v:Vector4, n:number) : Vector4 {
 /**
  * v⃗ = nv⃗
  */
-export function multiplyAssignScalar(v:Vector4, n:number) : Vector4 {
+export function multiplyAssignScalar<R extends Vector4>(v:R, n:number) : R {
 	v.x *= n; v.y *= n; v.z *= n; v.w *= n;
 
 	return v;
@@ -269,7 +269,7 @@ export function Outer(v:Vector4, w:Vector4) : Vector4 {
 /**
  * r⃗ = v⃗w⃗
  */
-export function outer(r:Vector4, v:Vector4, w:Vector4) : Vector4 {
+export function outer<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R {
 	// ij = -ji = k
 	// jk = -kj = i
 	// ki = -ik = j
@@ -296,7 +296,7 @@ export function Normalize(v:Vector4) : Vector4 {
 /**
  * r⃗ = v̂
  */
-export function normalize(r:Vector4, v:Vector4) : Vector4 {
+export function normalize<R extends Vector4>(r:R, v:Vector4) : R {
 	const {x, y, z, w} = v;
 	let n = x ** 2 + y ** 2 + z ** 2 + w ** 2;
 
@@ -317,7 +317,7 @@ export function Conjugate(v:Vector4) : Vector4 {
 /**
  * r⃗ = q⃗′
  */
-export function conjugate(r:Vector4, v:Vector4) : Vector4 {
+export function conjugate<R extends Vector4>(r:R, v:Vector4) : R {
 	// q* = a - bi - cj - dk;
 	r.x = -v.x; r.y = -v.y; r.z = -v.z; r.w = v.w;
 
@@ -334,7 +334,7 @@ export function Inverse(v:Vector4) : Vector4|void {
 /**
  * r⃗ = q⃗⁻¹
  */
-export function inverse(r:Vector4, v:Vector4) : Vector4|void {
+export function inverse<R extends Vector4>(r:R, v:Vector4) : R|void {
 	// qq* = (a + bi + cj + dk)(a - bi - cj - dk) = a*a + b*b + c*c + d*d
 	// 1/q = q* / qq* = (a - bi - cj - dk)/(a*a + b*b + c*c + d*d)
 	const {x, y, z, w} = v;
@@ -356,7 +356,7 @@ export function Copy(v:Vector4) : Vector4 {
 	return { x : v.x, y : v.y, z : v.z, w : v.w };
 }
 
-export function copy(r:Vector4, v:Vector4) : Vector4 {
+export function copy<R extends Vector4>(r:R, v:Vector4) : R {
 	r.x = v.x; r.y = v.y; r.z = v.z; r.w = v.w;
 
 	return r;
@@ -392,7 +392,7 @@ export function F32(n:Float32Array, offset:number = 0) : Vector4 {
 	return { x: n[offset], y : n[offset + 1], z : n[offset + 2], w : n[offset + 3] };
 }
 
-export function f32(r:Vector4, n:Float32Array, offset:number = 0) : Vector4 {
+export function f32<R extends Vector4>(r:R, n:Float32Array, offset:number = 0) : R {
 	r.x = n[offset];
 	r.y = n[offset + 1];
 	r.z = n[offset + 2];
@@ -405,7 +405,7 @@ export function F64(n:Float64Array, offset:number = 0) : Vector4 {
 	return { x: n[offset], y : n[offset + 1], z : n[offset + 2], w : n[offset + 3] };
 }
 
-export function f64(r:Vector4, n:Float64Array, offset:number = 0) : Vector4 {
+export function f64<R extends Vector4>(r:R, n:Float64Array, offset:number = 0) : R {
 	r.x = n[offset];
 	r.y = n[offset + 1];
 	r.z = n[offset + 2];

@@ -29,7 +29,7 @@ export function Ortho(lens:OrthographicLens) : Matrix4 {
 	}, lens);
 }
 
-export function ortho(r:Matrix4, lens:OrthographicLens) : Matrix4 {
+export function ortho<R extends Matrix4>(r:R, lens:OrthographicLens) : R {
 	const extend = min(max(lens.extend, EXTEND_MIN), EXTEND_MAX);
 	const aspect = min(max(lens.aspect, ASPECT_MIN), ASPECT_MAX);
 	const near = -min(max(lens.near, ZPLANE_MIN), ZPLANE_MAX);

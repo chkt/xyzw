@@ -30,7 +30,7 @@ export function Frustrum(lens:PerspectiveLens) : Matrix4 {
 	}, lens);
 }
 
-export function frustrum(r:Matrix4, lens:PerspectiveLens) : Matrix4 {
+export function frustrum<R extends Matrix4>(r:R, lens:PerspectiveLens) : R {
 	const fov = min(max(lens.fov, FOV_MIN), FOV_MAX);
 	const aspect = min(max(lens.aspect, ASPECT_MIN), ASPECT_MAX);
 	const near = min(max(lens.near, ZPLANE_MIN), ZPLANE_MAX);

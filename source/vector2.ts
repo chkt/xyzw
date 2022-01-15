@@ -382,6 +382,33 @@ export function perpendicular<R extends Vector2>(r:R, v:Vector2) : R {
 	return r;
 }
 
+/**
+ * -v⃗
+ */
+export function Negate(v:Vector2) : Vector2 {
+	return { x : v.x * -1.0, y : v.y * -1.0 };
+}
+
+/**
+ * r⃗ = -v⃗
+ */
+export function negate<R extends Vector2>(r:R, v:Vector2) : R {
+	r.x = v.x * -1.0;
+	r.y = v.y * -1.0;
+
+	return r;
+}
+
+/**
+ * v⃗ = -v⃗
+ */
+export function negateAssign<R extends Vector2>(v:R) : R {
+	v.x *= -1.0;
+	v.y *= -1.0;
+
+	return v;
+}
+
 export function Copy(v:Vector2) : Vector2 {
 	return { x : v.x, y: v.y };
 }

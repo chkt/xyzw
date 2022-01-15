@@ -572,7 +572,6 @@ export function negate<R extends Vector3>(r:R, v:Vector3) : R {
 }
 
 /**
- * @deprecated use multiplyAssignScalar() instead.
  * v⃗ = -v⃗
  */
 export function negateAssign<R extends Vector3>(v:R) : R {

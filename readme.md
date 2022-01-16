@@ -49,34 +49,53 @@ matrix4.identity(mat4);                  // …
 const w = vector2.copy(v, vec2);
 
 assert.strictEqual(w, v);
-assert.nonStrictEqual(vec2, v);
+assert.notStrictEqual(vec2, v);
 ```
 
 The fastest operations additionally have an assignment form roughly equivalent to primitive type assignment operations (`a += b`).
 
 ```ts
-const u = vector2.AddAssign(v, w);  // v += w
+const u = vector2.addAssign(v, w);  // v += w
 
 assert.strictEqual(u, v);
-assert.nonStrictEqual(w, v);
+assert.notStrictEqual(w, v);
 ```
 
 
 # Modules
+
+## complex
+`complex.ts`
+
+### Functions
+```ts
+function Conjugate(z:Vector2) : Vector2;  // z̅
+function Divide(z:Vector2, w:Vector2) : Vector2;  // zw̅ / ww̅, z = a + bi, w = c = di
+function Inverse(z:Vector2) : Vector2;  // z⁻¹
+function Multiply(z:Vector2, w:Vector2) : Vector2;  // zw, z = a + bi, w = c + di
+function Power(z:Vector2, n:number) : Vector2[];  // zⁿ₍ₖ₎
+function argument(z:Vector2) : number;  // φ
+function conjugate<R extends Vector2>(r:R, v:Vector2) : R;  // r⃗ = z̅
+function divide<R extends Vector2>(r:R, z:Vector2, w:Vector2) : R;  // r⃗ = zw̅ / ww̅, z = a + bi, w = c = di
+function inverse<R extends Vector2>(r:R, z:Vector2) : R;  // r⃗ = z⁻¹
+function multiply<R extends Vector2>(r:R, z:Vector2, w:Vector2) : R;  // r⃗ = zw, z = a + bi, w = c + di
+function power<R extends Iterable>(r:R, z:Vector2, n:number) : R;  // r⃗₍ₖ₎ = zⁿ₍ₖ₎
+```
 
 ## index
 `index.ts`
 
 ### References
 ```ts
-  export matrix2 from './matrix2';
-  export matrix3 from './matrix3';
-  export matrix4 from './matrix4';
-  export matrix4Frustrum from './matrix4Frustrum';
-  export matrix4Ortho from './matrix4Ortho';
-  export vector2 from './vector2';
-  export vector3 from './vector3';
-  export vector4 from './vector4';
+export complex from './complex';
+export matrix2 from './matrix2';
+export matrix3 from './matrix3';
+export matrix4 from './matrix4';
+export matrix4Frustrum from './matrix4Frustrum';
+export matrix4Ortho from './matrix4Ortho';
+export vector2 from './vector2';
+export vector3 from './vector3';
+export vector4 from './vector4';
 ```
 
 ## matrix2
@@ -90,7 +109,6 @@ interface Matrix2 {
   r10 : number,
   r11 : number
 }
-
 ```
 
 ### Functions
@@ -107,21 +125,21 @@ function Shear(x:Vector2, y:Vector2) : Matrix2;  // [ x⃗  y⃗ ]
 function ShearMatrix3(m:Matrix3) : Matrix2;  // [ m⁰ m¹ ]
 function Subtract(a:Matrix2, b:Matrix2) : Matrix2;  // A-B
 function Transpose(m:Matrix2) : Matrix2;  // Mᵀ
-function add(r:Matrix2, a:Matrix2, b:Matrix2) : Matrix2;  // Mᵣ = A+B
-function addAssign(a:Matrix2, b:Matrix2) : Matrix2;  // A = A+B
-function concat(r:Matrix2, a:Matrix2, b:Matrix2) : Matrix2;  // Mᵣ = AB
-function copy(r:Matrix2, m:Matrix2) : Matrix2;
+function add<R extends Matrix2>(r:R, a:Matrix2, b:Matrix2) : R;  // Mᵣ = A+B
+function addAssign<R extends Matrix2>(a:R, b:Matrix2) : R;  // A = A+B
+function concat<R extends Matrix2>(r:R, a:Matrix2, b:Matrix2) : R;  // Mᵣ = AB
+function copy<R extends Matrix2>(r:R, m:Matrix2) : R;
 function determinant(m:Matrix2) : number;  // |M|
-function identity(r:Matrix2) : Matrix2;  // Mᵣ = Î
-function inverse(r:Matrix2, m:Matrix2) : Matrix2 | void;  // Mᵣ = M⁻¹
-function rotation(r:Matrix2, rad:number) : Matrix2;  // Mᵣ = R(θ)
-function rotationVector2(r:Matrix2, v:Vector2) : Matrix2;  // Mᵣ = [ v⃗  v⃗⊥ ]
-function scale(r:Matrix2, v:Vector2) : Matrix2;  // Mᵣ = [ x̂v⃗₀  ŷv⃗₁ ]
-function shear(r:Matrix2, x:Vector2, y:Vector2) : Matrix2;  // Mᵣ = [ x⃗  y⃗ ]
-function shearMatrix3(r:Matrix2, m:Matrix3) : Matrix2;  // Mᵣ = [ m⁰ m¹ ]
-function subtract(r:Matrix2, a:Matrix2, b:Matrix2) : Matrix2;  // Mᵣ = A-B
-function subtractAssign(a:Matrix2, b:Matrix2) : Matrix2;  // A = A-B
-function transpose(r:Matrix2, m:Matrix2) : Matrix2;  // Mᵣ = Mᵀ
+function identity<R extends Matrix2>(r:R) : R;  // Mᵣ = Î
+function inverse<R extends Matrix2>(r:R, m:Matrix2) : R | void;  // Mᵣ = M⁻¹
+function rotation<R extends Matrix2>(r:R, rad:number) : R;  // Mᵣ = R(θ)
+function rotationVector2<R extends Matrix2>(r:R, v:Vector2) : R;  // Mᵣ = [ v⃗  v⃗⊥ ]
+function scale<R extends Matrix2>(r:R, v:Vector2) : R;  // Mᵣ = [ x̂v⃗₀  ŷv⃗₁ ]
+function shear<R extends Matrix2>(r:R, x:Vector2, y:Vector2) : R;  // Mᵣ = [ x⃗  y⃗ ]
+function shearMatrix3<R extends Matrix2>(r:R, m:Matrix3) : R;  // Mᵣ = [ m⁰ m¹ ]
+function subtract<R extends Matrix2>(r:R, a:Matrix2, b:Matrix2) : R;  // Mᵣ = A-B
+function subtractAssign<R extends Matrix2>(a:R, b:Matrix2) : R;  // A = A-B
+function transpose<R extends Matrix2>(r:R, m:Matrix2) : R;  // Mᵣ = Mᵀ
 ```
 
 ## matrix3
@@ -136,7 +154,6 @@ interface Matrix3 extends Matrix2 {
   r21 : number,
   r22 : number
 }
-
 ```
 
 ### Functions
@@ -170,39 +187,39 @@ function ShearVector2(x:Vector2, y:Vector2) : Matrix3;  // [ x⃗  y⃗  ẑ ]
 function Subtract(a:Matrix3, b:Matrix3) : Matrix3;  // A-B
 function Translation(v:Vector2) : Matrix3;  // [ x̂  ŷ  ẑ+v⃗ ]
 function Transpose(m:Matrix3) : Matrix3;  // Mᵀ
-function add(r:Matrix3, a:Matrix3, b:Matrix3) : Matrix3;  // Mᵣ = A+B
-function addAssign(a:Matrix3, b:Matrix3) : Matrix3;  // A = A+B
-function concat(r:Matrix3, a:Matrix3, b:Matrix3) : Matrix3;  // Mᵣ = AB
-function concat2x3(r:Matrix3, a:Matrix3, b:Matrix3) : Matrix3;  // Mᵣ = AB₂ₓ₃
-function concatMatrix2(r:Matrix3, a:Matrix3, b:Matrix2) : Matrix3;  // Mᵣ = AB₂ₓ₂
-function concatScaleVector2(r:Matrix3, m:Matrix3, v:Vector2) : Matrix3;  // Mᵣ = M[ x̂v⃗₀  ŷv⃗₁  ẑ ]
-function concatTranslation(r:Matrix3, m:Matrix3, v:Vector2) : Matrix3;  // Mᵣ = M[ x̂  ŷ  v⃗ ]
-function copy(r:Matrix3, m:Matrix3) : Matrix3;
+function add<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R;  // Mᵣ = A+B
+function addAssign<R extends Matrix3>(a:R, b:Matrix3) : R;  // A = A+B
+function concat<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R;  // Mᵣ = AB
+function concat2x3<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R;  // Mᵣ = AB₂ₓ₃
+function concatMatrix2<R extends Matrix3>(r:R, a:Matrix3, b:Matrix2) : R;  // Mᵣ = AB₂ₓ₂
+function concatScaleVector2<R extends Matrix3>(r:R, m:Matrix3, v:Vector2) : R;  // Mᵣ = M[ x̂v⃗₀  ŷv⃗₁  ẑ ]
+function concatTranslation<R extends Matrix3>(r:R, m:Matrix3, v:Vector2) : R;  // Mᵣ = M[ x̂  ŷ  v⃗ ]
+function copy<R extends Matrix3>(r:R, m:Matrix3) : R;
 function determinant(m:Matrix3) : number;  // |M|
 function equals(a:Matrix3, b:Matrix3, e?:number) : boolean;
-function eulerXYZ(r:Matrix3, v:Vector3) : Matrix3;  // Mᵣ = R(x̂, v⃗₀)R(ŷ, v⃗₁)R(ẑ, v⃗₂)
-function eulerYXZ(r:Matrix3, v:Vector3) : Matrix3;  // Mᵣ = R(ŷ, v⃗₁)R(x̂, v⃗₀)R(ẑ, v⃗₂)
-function eulerZXY(r:Matrix3, v:Vector3) : Matrix3;  // Mᵣ = R(ẑ, v⃗₂)R(x̂, v⃗₀)R(ŷ, v⃗₁)
-function identity(r:Matrix3) : Matrix3;  // Mᵣ = Î
-function inverse(r:Matrix3, m:Matrix3) : Matrix3 | void;  // Mᵣ = M⁻¹
-function quaternion(r:Matrix3, q:Vector4) : Matrix3;  // Mᵣ = R(q̂)
-function rotationAxis(r:Matrix3, v:Vector3, rad:number) : Matrix3;  // Mᵣ = R(v⃗, θ)
-function rotationVector3(r:Matrix3, x:Vector3, y:Vector3) : Matrix3;  // Mᵣ = [ x⃗  y⃗  x⃗×y⃗ ]
-function rotationX(r:Matrix3, rad:number) : Matrix3;  // Mᵣ = R(x̂, θ)
-function rotationY(r:Matrix3, rad:number) : Matrix3;  // Mᵣ = R(ŷ, θ)
-function rotationZ(r:Matrix3, rad:number) : Matrix3;  // Mᵣ = R(ẑ, θ)
-function rotationZMatrix2(r:Matrix3, m:Matrix2) : Matrix3;  // Mᵣ = [ m⁰ m¹ ẑ ]
-function rotationZVector2(r:Matrix3, x:Vector2) : Matrix3;  // Mᵣ = [ x⃗  x⃗⊥  ẑ ]
-function scale(r:Matrix3, v:Vector3) : Matrix3;  // Mᵣ = [ x̂v⃗₀  ŷv⃗₁  ẑv⃗₂ ]
-function scaleVector2(r:Matrix3, v:Vector2) : Matrix3;  // Mᵣ = [ x̂v⃗₀  ŷv⃗₁  ẑ ]
-function shear(r:Matrix3, x:Vector3, y:Vector3, z:Vector3) : Matrix3;  // Mᵣ = [ x⃗  y⃗  z⃗ ]
-function shearMatrix4(r:Matrix3, m:Matrix4) : Matrix3;  // Mᵣ = [ m⁰ m¹ m² ]
-function shearTranslation(r:Matrix3, x:Vector2, y:Vector2, t:Vector2) : Matrix3;  // Mᵣ = [ x⃗  y⃗  ẑ+t⃗ ]
-function shearVector2(r:Matrix3, x:Vector2, y:Vector2) : Matrix3;  // Mᵣ = [ x⃗  y⃗  ẑ ]
-function subtract(r:Matrix3, a:Matrix3, b:Matrix3) : Matrix3;  // Mᵣ = A-B
-function subtractAssign(a:Matrix3, b:Matrix3) : Matrix3;  // A = A-B
-function translation(r:Matrix3, v:Vector2) : Matrix3;  // Mᵣ = [ x̂  ŷ  ẑ+v⃗ ]
-function transpose(r:Matrix3, m:Matrix3) : Matrix3;  // Mᵣ = Mᵀ
+function eulerXYZ<R extends Matrix3>(r:R, v:Vector3) : R;  // Mᵣ = R(x̂, v⃗₀)R(ŷ, v⃗₁)R(ẑ, v⃗₂)
+function eulerYXZ<R extends Matrix3>(r:R, v:Vector3) : R;  // Mᵣ = R(ŷ, v⃗₁)R(x̂, v⃗₀)R(ẑ, v⃗₂)
+function eulerZXY<R extends Matrix3>(r:R, v:Vector3) : R;  // Mᵣ = R(ẑ, v⃗₂)R(x̂, v⃗₀)R(ŷ, v⃗₁)
+function identity<R extends Matrix3>(r:R) : R;  // Mᵣ = Î
+function inverse<R extends Matrix3>(r:R, m:Matrix3) : R | void;  // Mᵣ = M⁻¹
+function quaternion<R extends Matrix3>(r:R, q:Vector4) : R;  // Mᵣ = R(q̂)
+function rotationAxis<R extends Matrix3>(r:R, v:Vector3, rad:number) : R;  // Mᵣ = R(v⃗, θ)
+function rotationVector3<R extends Matrix3>(r:R, x:Vector3, y:Vector3) : R;  // Mᵣ = [ x⃗  y⃗  x⃗×y⃗ ]
+function rotationX<R extends Matrix3>(r:R, rad:number) : R;  // Mᵣ = R(x̂, θ)
+function rotationY<R extends Matrix3>(r:R, rad:number) : R;  // Mᵣ = R(ŷ, θ)
+function rotationZ<R extends Matrix3>(r:R, rad:number) : R;  // Mᵣ = R(ẑ, θ)
+function rotationZMatrix2<R extends Matrix3>(r:R, m:Matrix2) : R;  // Mᵣ = [ m⁰ m¹ ẑ ]
+function rotationZVector2<R extends Matrix3>(r:R, x:Vector2) : R;  // Mᵣ = [ x⃗  x⃗⊥  ẑ ]
+function scale<R extends Matrix3>(r:R, v:Vector3) : R;  // Mᵣ = [ x̂v⃗₀  ŷv⃗₁  ẑv⃗₂ ]
+function scaleVector2<R extends Matrix3>(r:R, v:Vector2) : R;  // Mᵣ = [ x̂v⃗₀  ŷv⃗₁  ẑ ]
+function shear<R extends Matrix3>(r:R, x:Vector3, y:Vector3, z:Vector3) : R;  // Mᵣ = [ x⃗  y⃗  z⃗ ]
+function shearMatrix4<R extends Matrix3>(r:R, m:Matrix4) : R;  // Mᵣ = [ m⁰ m¹ m² ]
+function shearTranslation<R extends Matrix3>(r:R, x:Vector2, y:Vector2, t:Vector2) : R;  // Mᵣ = [ x⃗  y⃗  ẑ+t⃗ ]
+function shearVector2<R extends Matrix3>(r:R, x:Vector2, y:Vector2) : R;  // Mᵣ = [ x⃗  y⃗  ẑ ]
+function subtract<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R;  // Mᵣ = A-B
+function subtractAssign<R extends Matrix3>(a:R, b:Matrix3) : R;  // A = A-B
+function translation<R extends Matrix3>(r:R, v:Vector2) : R;  // Mᵣ = [ x̂  ŷ  ẑ+v⃗ ]
+function transpose<R extends Matrix3>(r:R, m:Matrix3) : R;  // Mᵣ = Mᵀ
 ```
 
 ## matrix4
@@ -219,7 +236,6 @@ interface Matrix4 extends Matrix3 {
   r32 : number,
   r33 : number
 }
-
 ```
 
 ### Functions
@@ -242,32 +258,32 @@ function ShearTranslation(x:Vector3, y:Vector3, z:Vector3, t:Vector3) : Matrix4;
 function Subtract(a:Matrix4, b:Matrix4) : Matrix4;  // A-B
 function Translation(v:Vector3) : Matrix4;  // [ x̂  ŷ  ẑ  ŵ+v⃗ ]
 function Transpose(m:Matrix4) : Matrix4;  // Mᵀ
-function add(r:Matrix4, a:Matrix4, b:Matrix4) : Matrix4;  // Mᵣ = A+B
-function addAssign(a:Matrix4, b:Matrix4) : Matrix4;  // A = A+B
+function add<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R;  // Mᵣ = A+B
+function addAssign<R extends Matrix4>(a:R, b:Matrix4) : R;  // A = A+B
 function assignColumnF32(r:Float32Array, m:Matrix4) : Float32Array;
 function assignColumnF64(r:Float64Array, m:Matrix4) : Float64Array;
-function columnF32(r:Matrix4, n:Float32Array) : Matrix4;
-function columnF64(r:Matrix4, n:Float64Array) : Matrix4;
-function concat(r:Matrix4, a:Matrix4, b:Matrix4) : Matrix4;  // Mᵣ = AB
-function concat3x4(r:Matrix4, a:Matrix4, b:Matrix4) : Matrix4;  // Mᵣ = AB₃ₓ₄
-function concatMatrix3(r:Matrix4, a:Matrix4, b:Matrix3) : Matrix4;  // Mᵣ = AB₃ₓ₃
-function concatScale(r:Matrix4, m:Matrix4, v:Vector3) : Matrix4;  // Mᵣ = M[ x̂v⃗₀  ŷv⃗₁  ẑv⃗₂  ŵ ]
-function concatTranslation(r:Matrix4, m:Matrix4, v:Vector3) : Matrix4;  // Mᵣ = M[ x̂  ŷ  ẑ  ŵ+v⃗ ]
-function copy(r:Matrix4, m:Matrix4) : Matrix4;
+function columnF32<R extends Matrix4>(r:R, n:Float32Array) : R;
+function columnF64<R extends Matrix4>(r:R, n:Float64Array) : R;
+function concat<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R;  // Mᵣ = AB
+function concat3x4<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R;  // Mᵣ = AB₃ₓ₄
+function concatMatrix3<R extends Matrix4>(r:R, a:Matrix4, b:Matrix3) : R;  // Mᵣ = AB₃ₓ₃
+function concatScale<R extends Matrix4>(r:R, m:Matrix4, v:Vector3) : R;  // Mᵣ = M[ x̂v⃗₀  ŷv⃗₁  ẑv⃗₂  ŵ ]
+function concatTranslation<R extends Matrix4>(r:R, m:Matrix4, v:Vector3) : R;  // Mᵣ = M[ x̂  ŷ  ẑ  ŵ+v⃗ ]
+function copy<R extends Matrix4>(r:R, m:Matrix4) : R;
 function determinant(m:Matrix4) : number;  // |M|
 function equals(a:Matrix4, b:Matrix4, e?:number) : boolean;
-function identity(r:Matrix4) : Matrix4;  // Mᵣ = Î
-function inverse(r:Matrix4, m:Matrix4) : Matrix4 | void;  // Mᵣ = M⁻¹ (using the determinant)
-function inverse3x4(r:Matrix4, m:Matrix4) : Matrix4 | void;  // Mᵣ = [ m⁰ m¹ m² ŵ+m³ ]⁻¹
-function inverseGauss(r:Matrix4, m:Matrix4) : Matrix4 | void;  // Mᵣ = M⁻¹ (using Gauss-Jordan elimination)
-function shearMatrix3(r:Matrix4, m:Matrix3) : Matrix4;  // Mᵣ = [ m⁰ m¹ m² ŵ ]
-function shearTranslation(r:Matrix4, x:Vector3, y:Vector3, z:Vector3, t:Vector3) : Matrix4;  // Mᵣ = [ x⃗  y⃗  z⃗  ŵ+t⃗ ]
-function subtract(r:Matrix4, a:Matrix4, b:Matrix4) : Matrix4;  // Mᵣ = A-B
-function subtractAssign(a:Matrix4, b:Matrix4) : Matrix4;  // A = A-B
+function identity<R extends Matrix4>(r:R) : R;  // Mᵣ = Î
+function inverse<R extends Matrix4>(r:R, m:Matrix4) : R | void;  // Mᵣ = M⁻¹ (using the determinant)
+function inverse3x4<R extends Matrix4>(r:R, m:Matrix4) : R | void;  // Mᵣ = [ m⁰ m¹ m² ŵ+m³ ]⁻¹
+function inverseGauss<R extends Matrix4>(r:R, m:Matrix4) : R | void;  // Mᵣ = M⁻¹ (using Gauss-Jordan elimination)
+function shearMatrix3<R extends Matrix4>(r:R, m:Matrix3) : R;  // Mᵣ = [ m⁰ m¹ m² ŵ ]
+function shearTranslation<R extends Matrix4>(r:R, x:Vector3, y:Vector3, z:Vector3, t:Vector3) : R;  // Mᵣ = [ x⃗  y⃗  z⃗  ŵ+t⃗ ]
+function subtract<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R;  // Mᵣ = A-B
+function subtractAssign<R extends Matrix4>(a:R, b:Matrix4) : R;  // A = A-B
 function toColumnF32(m:Matrix4) : Float32Array;
 function toColumnF64(m:Matrix4) : Float64Array;
-function translation(r:Matrix4, v:Vector3) : Matrix4;  // Mᵣ = [ x̂  ŷ  ẑ  ŵ+v⃗ ]
-function transpose(r:Matrix4, m:Matrix4) : Matrix4;  // Mᵣ = Mᵀ
+function translation<R extends Matrix4>(r:R, v:Vector3) : R;  // Mᵣ = [ x̂  ŷ  ẑ  ŵ+v⃗ ]
+function transpose<R extends Matrix4>(r:R, m:Matrix4) : R;  // Mᵣ = Mᵀ
 ```
 
 ## matrix4Frustrum
@@ -281,13 +297,12 @@ interface PerspectiveLens {
   readonly fov : number,
   readonly near : number
 }
-
 ```
 
 ### Functions
 ```ts
 function Frustrum(lens:PerspectiveLens) : Matrix4;
-function frustrum(r:Matrix4, lens:PerspectiveLens) : Matrix4;
+function frustrum<R extends Matrix4>(r:R, lens:PerspectiveLens) : R;
 ```
 
 ## matrix4Ortho
@@ -301,13 +316,12 @@ interface OrthographicLens {
   readonly far : number,
   readonly near : number
 }
-
 ```
 
 ### Functions
 ```ts
 function Ortho(lens:OrthographicLens) : Matrix4;
-function ortho(r:Matrix4, lens:OrthographicLens) : Matrix4;
+function ortho<R extends Matrix4>(r:R, lens:OrthographicLens) : R;
 ```
 
 ## vector2
@@ -319,7 +333,6 @@ interface Vector2 {
   x : number,
   y : number
 }
-
 ```
 
 ### Functions
@@ -330,41 +343,47 @@ function AxisY(s:number = 1.0) : Vector2;  // sŷ
 function BarycentricUV(vx0:Vector2, vx1:Vector2, vx2:Vector2, u:number, v:number) : Vector2;  // Return the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2)
 function Copy(v:Vector2) : Vector2;
 function Create(x:number = 0.0, y:number = 0.0) : Vector2;
+function Lerp(v:Vector2, w:Vector2, t:number) : Vector2;  // v⃗ + ( w⃗ - v⃗ ) * t
 function Multiply2x3Matrix3(m:Matrix3, v:Vector2) : Vector2;  // M₂ₓ₃v⃗
 function MultiplyMatrix2(m:Matrix2, v:Vector2) : Vector2;  // M₂ₓ₂v⃗
 function MultiplyMatrix3(m:Matrix3, v:Vector2) : Vector2;  // M₃ₓ₃v⃗
 function MultiplyScalar(v:Vector2, n:number) : Vector2;  // nv⃗
+function Negate(v:Vector2) : Vector2;  // -v⃗
 function Normalize(v:Vector2) : Vector2;  // v̂
 function Perpendicular(v:Vector2) : Vector2;  // v⃗⊥
 function Project(v:Vector2, w:Vector2) : Vector2;  // Return the projection of w⃗ onto v⃗, (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
 function Reflect(v:Vector2, w:Vector2) : Vector2;  // Return the reflection of w⃗ against v⃗, 2(v⃗⋅w⃗ )w⃗-v⃗
 function Rotation(rad:number) : Vector2;
 function Subtract(v:Vector2, w:Vector2) : Vector2;  // v⃗-w⃗
-function add(r:Vector2, v:Vector2, w:Vector2) : Vector2;  // r⃗ = v⃗+w⃗
-function addAssign(v:Vector2, w:Vector2) : Vector2;  // v⃗ = v⃗+w⃗
-function assign(r:Vector2, x:number = 0.0, y:number = 0.0) : Vector2;
-function axisX(r:Vector2, s:number = 1.0) : Vector2;  // r⃗ = sx̂
-function axisY(r:Vector2, s:number = 1.0) : Vector2;  // r⃗ = sŷ
-function barycentricUV(r:Vector2, vx0:Vector2, vx1:Vector2, vx2:Vector2, u:number, v:number) : Vector2;  // Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
-function copy(r:Vector2, v:Vector2) : Vector2;
+function add<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R;  // r⃗ = v⃗+w⃗
+function addAssign<R extends Vector2>(v:R, w:Vector2) : R;  // v⃗ = v⃗+w⃗
+function assign<R extends Vector2>(r:R, x:number = 0.0, y:number = 0.0) : R;
+function axisX<R extends Vector2>(r:R, s:number = 1.0) : R;  // r⃗ = sx̂
+function axisY<R extends Vector2>(r:R, s:number = 1.0) : R;  // r⃗ = sŷ
+function barycentricUV<R extends Vector2>(r:R, vx0:Vector2, vx1:Vector2, vx2:Vector2, u:number, v:number) : R;  // Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
+function copy<R extends Vector2>(r:R, v:Vector2) : R;
 function cross(v:Vector2, w:Vector2) : number;  // v⃗×w⃗
 function dot(v:Vector2, w:Vector2) : number;  // v⃗⋅w⃗
 function equals(v:Vector2, w:Vector2, e?:number) : boolean;
-function multiply2x3Matrix3(r:Vector2, m:Matrix3, v:Vector2) : Vector2;  // r⃗ = M₂ₓ₃v⃗
-function multiplyAssignScalar(v:Vector2, n:number) : Vector2;  // v⃗ = nv⃗
-function multiplyMatrix2(r:Vector2, m:Matrix2, v:Vector2) : Vector2;  // r⃗ = M₂ₓ₂v⃗
-function multiplyMatrix3(r:Vector2, m:Matrix3, v:Vector2) : Vector2;  // r⃗ = M₃ₓ₃v⃗
-function multiplyScalar(r:Vector2, v:Vector2, n:number) : Vector2;  // r⃗ = nv⃗
+function lerp<R extends Vector2>(r:R, v:Vector2, w:Vector2, t:number) : R;  // r⃗ = v⃗ + (w⃗ - v⃗ ) * t
+function lerpAssign<R extends Vector2>(v:R, w:Vector2, t:number) : R;  // v⃗ = v⃗ + (w⃗ - v⃗ ) * t
+function multiply2x3Matrix3<R extends Vector2>(r:R, m:Matrix3, v:Vector2) : R;  // r⃗ = M₂ₓ₃v⃗
+function multiplyAssignScalar<R extends Vector2>(v:R, n:number) : R;  // v⃗ = nv⃗
+function multiplyMatrix2<R extends Vector2>(r:R, m:Matrix2, v:Vector2) : R;  // r⃗ = M₂ₓ₂v⃗
+function multiplyMatrix3<R extends Vector2>(r:R, m:Matrix3, v:Vector2) : R;  // r⃗ = M₃ₓ₃v⃗
+function multiplyScalar<R extends Vector2>(r:R, v:Vector2, n:number) : R;  // r⃗ = nv⃗
+function negate<R extends Vector2>(r:R, v:Vector2) : R;  // r⃗ = -v⃗
+function negateAssign<R extends Vector2>(v:R) : R;  // v⃗ = -v⃗
 function norm(v:Vector2) : number;  // ‖ v⃗ ‖
 function normSquared(v:Vector2) : number;  // ‖ v⃗ ‖²
-function normalize(r:Vector2, v:Vector2) : Vector2;  // r⃗ = v̂
-function perpendicular(r:Vector2, v:Vector2) : Vector2;  // r⃗ = v⃗⊥
-function project(r:Vector2, v:Vector2, w:Vector2) : Vector2;  // Assign the projection of w⃗ onto v⃗ to r⃗, r⃗ = (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
+function normalize<R extends Vector2>(r:R, v:Vector2) : R;  // r⃗ = v̂
+function perpendicular<R extends Vector2>(r:R, v:Vector2) : R;  // r⃗ = v⃗⊥
+function project<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R;  // Assign the projection of w⃗ onto v⃗ to r⃗, r⃗ = (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
 function radians(v:Vector2, w:Vector2) : number;  // acos(v⃗⋅w⃗ )
-function reflect(r:Vector2, v:Vector2, w:Vector2) : Vector2;  // Assign the reflection of w⃗ against v⃗, r⃗ = 2(v⃗⋅w⃗ )w⃗-v⃗
-function rotation(r:Vector2, rad:number) : Vector2;
-function subtract(r:Vector2, v:Vector2, w:Vector2) : Vector2;  // r⃗ = v⃗-w⃗
-function subtractAssign(v:Vector2, w:Vector2) : Vector2;  // v⃗ = v⃗-w⃗
+function reflect<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R;  // Assign the reflection of w⃗ against v⃗, r⃗ = 2(v⃗⋅w⃗ )w⃗-v⃗
+function rotation<R extends Vector2>(r:R, rad:number) : R;
+function subtract<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R;  // r⃗ = v⃗-w⃗
+function subtractAssign<R extends Vector2>(v:R, w:Vector2) : R;  // v⃗ = v⃗-w⃗
 ```
 
 ## vector3
@@ -375,7 +394,6 @@ function subtractAssign(v:Vector2, w:Vector2) : Vector2;  // v⃗ = v⃗-w⃗
 interface Vector3 extends Vector2 {
   z : number
 }
-
 ```
 
 ### Functions
@@ -392,9 +410,10 @@ function Cross(v:Vector3, w:Vector3) : Vector3;  // v⃗×w⃗
 function EulerXYZ(m:Matrix3) : Vector3;
 function EulerYXZ(m:Matrix3) : Vector3;
 function EulerZXY(m:Matrix3) : Vector3;
-function F32(n:Float32Array) : Vector3;
-function F64(n:Float64Array) : Vector3;
+function F32(n:Float32Array, offset:number = 0) : Vector3;
+function F64(n:Float64Array, offset:number = 0) : Vector3;
 function Hadamard(v:Vector3, w:Vector3) : Vector3;  // v⃗⊙w⃗
+function Lerp(v:Vector3, w:Vector3, t:number) : Vector3;  // v⃗ + ( w⃗ - v⃗ ) * t
 function MaxScalar(v:Vector3, n:number) : Vector3;  // max(v⃗, n)
 function MinScalar(v:Vector3, n:number) : Vector3;  // min(v⃗, n)
 function Multiply3x4Matrix4(m:Matrix4, v:Vector3) : Vector3;  // M₃ₓ₄v⃗
@@ -407,48 +426,50 @@ function OrthoNormalize(v:Vector3, w:Vector3) : Vector3;  // w⃗ - (w⃗⋅v⃗
 function Project(v:Vector3, w:Vector3) : Vector3;  // Return the projection of w⃗ onto v⃗, (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
 function Reflect(v:Vector3, w:Vector3) : Vector3;  // Return the reflection of w⃗ against v⃗, 2(v⃗⋅w⃗ )w⃗-v⃗
 function Subtract(v:Vector3, w:Vector3) : Vector3;  // v⃗-w⃗
-function add(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = v⃗+w⃗
-function addAssign(v:Vector3, w:Vector3) : Vector3;  // v⃗ = v⃗+w⃗
-function assign(r:Vector3, x:number = 0.0, y:number = 0.0, z:number = 0.0) : Vector3;
-function assignF32(r:Float32Array, v:Vector3) : Float32Array;
-function assignF64(r:Float64Array, v:Vector3) : Float64Array;
-function axisX(r:Vector3, s:number = 1.0) : Vector3;  // r⃗ = sx̂
-function axisY(r:Vector3, s:number = 1.0) : Vector3;  // r⃗ = sŷ
-function axisZ(r:Vector3, s:number = 1.0) : Vector3;  // r⃗ = sẑ
+function add<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R;  // r⃗ = v⃗+w⃗
+function addAssign<R extends Vector3>(v:R, w:Vector3) : R;  // v⃗ = v⃗+w⃗
+function assign<R extends Vector3>(r:R, x:number = 0.0, y:number = 0.0, z:number = 0.0) : R;
+function assignF32(r:Float32Array, v:Vector3, offset:number = 0) : Float32Array;
+function assignF64(r:Float64Array, v:Vector3, offset:number = 0) : Float64Array;
+function axisX<R extends Vector3>(r:R, s:number = 1.0) : R;  // r⃗ = sx̂
+function axisY<R extends Vector3>(r:R, s:number = 1.0) : R;  // r⃗ = sŷ
+function axisZ<R extends Vector3>(r:R, s:number = 1.0) : R;  // r⃗ = sẑ
 function azimuth(v:Vector3, w:Vector3, z:Vector3) : number;  // Return the cosine of azimuth angle ϕ between v̂ and ŵ against polar axis ẑ, ( (v̂ - (v̂⋅ẑ)ẑ) / ‖ v̂ - (v̂⋅ẑ)ẑ ‖ )⋅( (ŵ - (ŵ⋅ẑ)ẑ) / ‖ ŵ - (ŵ⋅ẑ)ẑ ‖ )
-function barycentricUV(r:Vector3, vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v:number) : Vector3;  // Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
-function clampScalar(r:Vector3, v:Vector3, a:number, b:number) : Vector3;  // r⃗ = min(max(v⃗, min(a, b)), max(a, b))
-function copy(r:Vector3, v:Vector3) : Vector3;
-function cross(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = v⃗×w⃗
+function barycentricUV<R extends Vector3>(r:R, vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v:number) : R;  // Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
+function clampScalar<R extends Vector3>(r:R, v:Vector3, a:number, b:number) : R;  // r⃗ = min(max(v⃗, min(a, b)), max(a, b))
+function copy<R extends Vector3>(r:R, v:Vector3) : R;
+function cross<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R;  // r⃗ = v⃗×w⃗
 function dot(v:Vector3, w:Vector3) : number;  // v⃗⋅w⃗
 function equals(v:Vector3, w:Vector3, e?:number) : boolean;
-function eulerXYZ(r:Vector3, m:Matrix3) : Vector3;
-function eulerYXZ(r:Vector3, m:Matrix3) : Vector3;
-function eulerZXY(r:Vector3, m:Matrix3) : Vector3;
-function f32(r:Vector3, n:Float32Array) : Vector3;
-function f64(r:Vector3, n:Float64Array) : Vector3;
-function hadamard(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = v⃗⊙w⃗
-function hadamardAssign(v:Vector3, w:Vector3) : Vector3;  // v⃗ = v⃗⊙w⃗
+function eulerXYZ<R extends Vector3>(r:R, m:Matrix3) : R;
+function eulerYXZ<R extends Vector3>(r:R, m:Matrix3) : R;
+function eulerZXY<R extends Vector3>(r:R, m:Matrix3) : R;
+function f32<R extends Vector3>(r:R, n:Float32Array, offset:number = 0) : R;
+function f64<R extends Vector3>(r:R, n:Float64Array, offset:number = 0) : R;
+function hadamard<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R;  // r⃗ = v⃗⊙w⃗
+function hadamardAssign<R extends Vector3>(v:R, w:Vector3) : R;  // v⃗ = v⃗⊙w⃗
 function isNormEqual(v:Vector3, n:number, e?:number) : boolean;  // ‖ v⃗ ‖ - n < ϵ
 function isNormGt(v:Vector3, n:number) : boolean;  // ‖ v⃗ ‖ > n
 function isNormLt(v:Vector3, n:number) : boolean;  // ‖ v⃗ ‖ < n
-function maxScalar(r:Vector3, v:Vector3, n:number) : Vector3;  // r⃗ = max(v⃗, n)
-function minScalar(r:Vector3, v:Vector3, n:number) : Vector3;  // r⃗ = min(v⃗, n)
-function multiply3x4Matrix4(r:Vector3, m:Matrix4, v:Vector3) : Vector3;  // r⃗ = M₃ₓ₄v⃗
-function multiplyAssignScalar(v:Vector3, n:number) : Vector3;  // v⃗ = nv⃗
-function multiplyMatrix3(r:Vector3, m:Matrix3, v:Vector3) : Vector3;  // r⃗ = M₃ₓ₃v⃗
-function multiplyMatrix4(r:Vector3, m:Matrix4, v:Vector3) : Vector3;  // r⃗ = M₄ₓ₄v⃗
-function multiplyScalar(r:Vector3, v:Vector3, n:number) : Vector3;  // r⃗ = nv⃗
-function negate(r:Vector3, v:Vector3) : Vector3;  // r⃗ = -v⃗
-function negateAssign(v:Vector3) : Vector3;  // v⃗ = -v⃗
+function lerp<R extends Vector3>(r:R, v:Vector3, w:Vector3, t:number) : R;  // r⃗ = v⃗ + (w⃗ - v⃗ ) * t
+function lerpAssign<R extends Vector3>(v:R, w:Vector3, t:number) : R;  // v⃗ = v⃗ + (w⃗ - v⃗ ) * t
+function maxScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R;  // r⃗ = max(v⃗, n)
+function minScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R;  // r⃗ = min(v⃗, n)
+function multiply3x4Matrix4<R extends Vector3>(r:R, m:Matrix4, v:Vector3) : R;  // r⃗ = M₃ₓ₄v⃗
+function multiplyAssignScalar<R extends Vector3>(v:R, n:number) : R;  // v⃗ = nv⃗
+function multiplyMatrix3<R extends Vector3>(r:R, m:Matrix3, v:Vector3) : R;  // r⃗ = M₃ₓ₃v⃗
+function multiplyMatrix4<R extends Vector3>(r:R, m:Matrix4, v:Vector3) : R;  // r⃗ = M₄ₓ₄v⃗
+function multiplyScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R;  // r⃗ = nv⃗
+function negate<R extends Vector3>(r:R, v:Vector3) : R;  // r⃗ = -v⃗
+function negateAssign<R extends Vector3>(v:R) : R;  // v⃗ = -v⃗
 function norm(v:Vector3) : number;  // ‖ v⃗ ‖
 function normSquared(v:Vector3) : number;  // ‖ v⃗ ‖²
-function normalize(r:Vector3, v:Vector3) : Vector3;  // r⃗ = v̂
-function orthoNormalize(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = w⃗ - (w⃗⋅v⃗ )v⃗
-function project(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // Assign the projection of w⃗ onto v⃗ to r⃗, r⃗ = (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
-function reflect(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // Assign the reflection of w⃗ against v⃗, r⃗ = 2(v⃗⋅w⃗ )w⃗-v⃗
-function subtract(r:Vector3, v:Vector3, w:Vector3) : Vector3;  // r⃗ = v⃗-w⃗
-function subtractAssign(v:Vector3, w:Vector3) : Vector3;  // v⃗ = v⃗-w⃗
+function normalize<R extends Vector3>(r:R, v:Vector3) : R;  // r⃗ = v̂
+function orthoNormalize<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R;  // r⃗ = w⃗ - (w⃗⋅v⃗ )v⃗
+function project<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R;  // Assign the projection of w⃗ onto v⃗ to r⃗, r⃗ = (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
+function reflect<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R;  // Assign the reflection of w⃗ against v⃗, r⃗ = 2(v⃗⋅w⃗ )w⃗-v⃗
+function subtract<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R;  // r⃗ = v⃗-w⃗
+function subtractAssign<R extends Vector3>(v:R, w:Vector3) : R;  // v⃗ = v⃗-w⃗
 function toF32(v:Vector3) : Float32Array;
 function toF64(v:Vector3) : Float64Array;
 ```
@@ -461,7 +482,6 @@ function toF64(v:Vector3) : Float64Array;
 interface Vector4 extends Vector3 {
   w : number
 }
-
 ```
 
 ### Functions
@@ -470,6 +490,8 @@ function Add(v:Vector4, w:Vector4) : Vector4;  // v⃗+w⃗
 function Conjugate(v:Vector4) : Vector4;  // q⃗′
 function Copy(v:Vector4) : Vector4;
 function Create(x:number = 0.0, y:number = 0.0, z:number = 0.0, w:number = 1.0) : Vector4;
+function F32(n:Float32Array, offset:number = 0) : Vector4;
+function F64(n:Float64Array, offset:number = 0) : Vector4;
 function Inverse(v:Vector4) : Vector4 | void;  // q⃗⁻¹
 function MultiplyScalar(v:Vector4, n:number) : Vector4;  // nv⃗
 function Normalize(v:Vector4) : Vector4;  // v̂
@@ -479,25 +501,31 @@ function RotationMatrix3(m:Matrix3) : Vector4;  // q̂(M)
 function RotationSlerp(v:Vector4, w:Vector4, t:number) : Vector4;  // v̂(ŵ⁻¹v̂)ᵗ
 function Subtract(v:Vector4, w:Vector4) : Vector4;  // v⃗-w⃗
 function Vector3(v:Vector3) : Vector4;  // ŵ+v⃗
-function add(r:Vector4, v:Vector4, w:Vector4) : Vector4;  // r⃗ = v⃗+w⃗
-function addAssign(v:Vector4, w:Vector4) : Vector4;  // v⃗ = v⃗+w⃗
-function assign(r:Vector4, x:number = 0.0, y:number = 0.0, z:number = 0.0, w:number = 1.0) : Vector4;
-function conjugate(r:Vector4, v:Vector4) : Vector4;  // r⃗ = q⃗′
-function copy(r:Vector4, v:Vector4) : Vector4;
+function add<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R;  // r⃗ = v⃗+w⃗
+function addAssign<R extends Vector4>(v:R, w:Vector4) : R;  // v⃗ = v⃗+w⃗
+function assign<R extends Vector4>(r:R, x:number = 0.0, y:number = 0.0, z:number = 0.0, w:number = 1.0) : R;
+function assignF32(r:Float32Array, v:Vector4, offset:number = 0) : Float32Array;
+function assignF64(r:Float64Array, v:Vector4, offset:number = 0) : Float64Array;
+function conjugate<R extends Vector4>(r:R, v:Vector4) : R;  // r⃗ = q⃗′
+function copy<R extends Vector4>(r:R, v:Vector4) : R;
 function dot(v:Vector4, w:Vector4) : number;  // v⃗⋅w⃗
 function equals(v:Vector4, w:Vector4, e?:number) : boolean;
-function inverse(r:Vector4, v:Vector4) : Vector4 | void;  // r⃗ = q⃗⁻¹
-function multiplyAssignScalar(v:Vector4, n:number) : Vector4;  // v⃗ = nv⃗
-function multiplyScalar(r:Vector4, v:Vector4, n:number) : Vector4;  // r⃗ = nv⃗
+function f32<R extends Vector4>(r:R, n:Float32Array, offset:number = 0) : R;
+function f64<R extends Vector4>(r:R, n:Float64Array, offset:number = 0) : R;
+function inverse<R extends Vector4>(r:R, v:Vector4) : R | void;  // r⃗ = q⃗⁻¹
+function multiplyAssignScalar<R extends Vector4>(v:R, n:number) : R;  // v⃗ = nv⃗
+function multiplyScalar<R extends Vector4>(r:R, v:Vector4, n:number) : R;  // r⃗ = nv⃗
 function norm(v:Vector4) : number;  // ‖ v⃗ ‖
 function normSquared(v:Vector4) : number;  // ‖ v⃗ ‖²
-function normalize(r:Vector4, v:Vector4) : Vector4;  // r⃗ = v̂
-function outer(r:Vector4, v:Vector4, w:Vector4) : Vector4;  // r⃗ = v⃗w⃗
-function rotationAxis(r:Vector4, v:Vector3, rad:number) : Vector4;  // r⃗ = q̂(v⃗, θ)
-function rotationMatrix3(r:Vector4, m:Matrix3) : Vector4;  // r⃗ = q̂(M)
-function rotationSlerp(r:Vector4, v:Vector4, w:Vector4, t:number) : Vector4;  // r⃗ = v̂(ŵ⁻¹v̂)ᵗ
-function subtract(r:Vector4, v:Vector4, w:Vector4) : Vector4;  // r⃗ = v⃗-w⃗
-function subtractAssign(v:Vector4, w:Vector4) : Vector4;  // v⃗ = v⃗-w⃗
-function vector3(r:Vector4, v:Vector3) : Vector4;  // r⃗ = ŵ+v⃗
+function normalize<R extends Vector4>(r:R, v:Vector4) : R;  // r⃗ = v̂
+function outer<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R;  // r⃗ = v⃗w⃗
+function rotationAxis<R extends Vector4>(r:R, v:Vector3, rad:number) : R;  // r⃗ = q̂(v⃗, θ)
+function rotationMatrix3<R extends Vector4>(r:R, m:Matrix3) : R;  // r⃗ = q̂(M)
+function rotationSlerp<R extends Vector4>(r:R, v:Vector4, w:Vector4, t:number) : R;  // r⃗ = v̂(ŵ⁻¹v̂)ᵗ
+function subtract<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R;  // r⃗ = v⃗-w⃗
+function subtractAssign<R extends Vector4>(v:R, w:Vector4) : R;  // v⃗ = v⃗-w⃗
+function toF32(v:Vector4) : Float32Array;
+function toF64(v:Vector4) : Float64Array;
+function vector3<R extends Vector4>(r:R, v:Vector3) : R;  // r⃗ = ŵ+v⃗
 ```
 

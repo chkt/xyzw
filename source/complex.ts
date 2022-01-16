@@ -1,4 +1,4 @@
-import { assign, Vector2 } from './vector2';
+import { Vector2 } from './vector2';
 
 
 const abs = Math.abs;
@@ -86,28 +86,25 @@ export function Power(z:Vector2, n:number) : Vector2[] {
 /**
  * r⃗₍ₖ₎ = zⁿ₍ₖ₎
  */
-export function power<R extends Iterable<Vector2>>(r:R, z:Vector2, n:number) : R {
-	if (n !== 0.0) {
-		const {x : a, y : b} = z;
-		const mod = (a ** 2 + b ** 2) ** (n * 0.5);
-		const arg = atan2(b, a) * n;
-		const arc = abs(n) * TURN;
+export function power<R extends Iterable<Vector2|void>>(r:R, z:Vector2, n:number) : R {
+	const {x : a, y : b} = z;
+	const mod = (a ** 2 + b ** 2) ** (n * 0.5);
+	const arg = atan2(b, a) * n;
+	const arc = (n !== 0.0 ? abs(n) : 1.0) * TURN;
 
-		let k = 0.0;
+	let k = 0.0;
 
-		for (const w of r) {
-			w.x = mod * cos(arg + k);
-			w.y = mod * sin(arg + k);
+	for (const w of r) {
+		if (w !== undefined) {
+			const argk = arg + k;
 
-			k += arc;
-
-			if (k >= TURN) break;
+			w.x = mod * cos(argk);
+			w.y = mod * sin(argk);
 		}
-	}
-	else {
-		const val = r[Symbol.iterator]().next();
 
-		if (!val.done) assign(val.value, 1.0);
+		k += arc;
+
+		if (k >= TURN) break;
 	}
 
 	return r;

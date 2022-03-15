@@ -1,3 +1,4 @@
+/* eslint max-statements-per-line : [ error, { max : 4 }] */
 import { Vector3 } from './vector3';
 import { Matrix3 } from './matrix3';
 
@@ -9,23 +10,23 @@ export interface Vector4 extends Vector3 {
 
 const epsilon = 1e-10;
 
-const nan = Number.isNaN;
-const abs = Math.abs;
+const isNaNVal = Number.isNaN;
+const absOf = Math.abs;
 const sinOf = Math.sin;
 const cosOf = Math.cos;
-const acos = Math.acos;
-const sqrt = Math.sqrt;
+const acosOf = Math.acos;
+const sqrtOf = Math.sqrt;
 
 
 export function equals(v:Vector4, w:Vector4, e:number = epsilon) : boolean {
-	return abs(w.x - v.x) < e && abs(w.y - v.y) < e && abs(w.z - v.z) < e && abs(w.w - v.w) < e;
+	return absOf(w.x - v.x) < e && absOf(w.y - v.y) < e && absOf(w.z - v.z) < e && absOf(w.w - v.w) < e;
 }
 
 /**
  * ‖ v⃗ ‖
  */
 export function norm(v:Vector4) : number {
-	return sqrt(v.x ** 2 + v.y ** 2 + v.z ** 2 + v.w ** 2);
+	return sqrtOf(v.x ** 2 + v.y ** 2 + v.z ** 2 + v.w ** 2);
 }
 
 /**
@@ -55,15 +56,15 @@ export function assign<R extends Vector4>(r:R, x:number = 0.0, y:number = 0.0, z
 /**
  * ŵ+v⃗
  */
-export function Vector3(v:Vector3) : Vector4 {
-	return { x : v.x, y : v.y, z : v.z, w : 1.0 };
+export function Vector3(v:Vector3, w:number = 1.0) : Vector4 {
+	return { ...v, w };
 }
 
 /**
  * r⃗ = ŵ+v⃗
  */
-export function vector3<R extends Vector4>(r:R, v:Vector3) : R {
-	r.x = v.x; r.y = v.y; r.z = v.z; r.w = 1.0;
+export function vector3<R extends Vector4>(r:R, v:Vector3, w:number = 1.0) : R {
+	r.x = v.x; r.y = v.y; r.z = v.z; r.w = w;
 
 	return r;
 }
@@ -72,7 +73,7 @@ export function vector3<R extends Vector4>(r:R, v:Vector3) : R {
  * q̂(v⃗, θ)
  */
 export function RotationAxis(v:Vector3, rad:number) : Vector4 {
-	return rotationAxis({ x: 0.0, y : 0.0, z : 0.0, w : 1.0 }, v, rad);
+	return rotationAxis({ x : 0.0, y : 0.0, z : 0.0, w : 1.0 }, v, rad);
 }
 
 /**
@@ -102,10 +103,10 @@ export function RotationSlerp(v:Vector4, w:Vector4, t:number) : Vector4 {
 export function rotationSlerp<R extends Vector4>(r:R, v:Vector4, w:Vector4, t:number) : R {
 	// θ = acos(q0⋅q1)
 	// qi = (q0 * sin(1 - u)θ + q1 * sin(uθ))/sin(θ) = q0 * (sin(1 - u)θ)/sin(θ) + q1 * sin(uθ)/sin(θ)
-	const {x : vx, y : vy, z : vz, w : vw} = v;
-	const {x : wx, y : wy, z : wz, w : ww} = w;
+	const { x : vx, y : vy, z : vz, w : vw } = v;
+	const { x : wx, y : wy, z : wz, w : ww } = w;
 
-	const a = acos(vx * wx + vy * wy + vz * wz + vw * ww);
+	const a = acosOf(vx * wx + vy * wy + vz * wz + vw * ww);
 	const sin = 1.0 / sinOf(a);
 	const sinQ = sinOf(a * (1.0 - t)) * sin;
 	const sinR = sinOf(a * t) * sin;
@@ -129,12 +130,12 @@ export function RotationMatrix3(m:Matrix3) : Vector4 {
  * r⃗ = q̂(M)
  */
 export function rotationMatrix3<R extends Vector4>(r:R, m:Matrix3) : R {
-	const {r00, r11, r22} = m;
+	const { r00, r11, r22 } = m;
 	let s = r00 + r11 + r22;
 
 	if (s > 0.0) {
 		// q = √(s+1)/2 + ((r21-r12)i + (r02-r20)j + (r10-r01)k)/(2√(s+1))
-		s = sqrt(s + 1.0);
+		s = sqrtOf(s + 1.0);
 
 		r.w = 0.5 * s;
 
@@ -146,7 +147,7 @@ export function rotationMatrix3<R extends Vector4>(r:R, m:Matrix3) : R {
 	}
 	else if (r00 > r11 && r00 > r22) {
 		// q = (√(s+1)/2)i + ((r21-r12) + (r10+r01)j + (r20+r02)k)/(2√(s+1))
-		s = sqrt(r00 - r11 - r22 + 1.0);
+		s = sqrtOf(r00 - r11 - r22 + 1.0);
 
 		r.x = 0.5 * s;
 
@@ -158,7 +159,7 @@ export function rotationMatrix3<R extends Vector4>(r:R, m:Matrix3) : R {
 	}
 	else if (r11 > r22) {
 		// q = (√(s+1)/2)j + ((r02-r20) + (r10+r01)i + (r21+r12)k)/(2√(s+1))
-		s = sqrt(r11 - r00 - r22 + 1.0);
+		s = sqrtOf(r11 - r00 - r22 + 1.0);
 
 		r.y = 0.5 * s;
 
@@ -170,7 +171,7 @@ export function rotationMatrix3<R extends Vector4>(r:R, m:Matrix3) : R {
 	}
 	else {
 		// q = (√(s+1)/2)k + ((r10-r01) + (r20+r02)i + (r21+r12)j)(2√(s+1))
-		s = sqrt(r22 - r00 - r11 + 1.0);
+		s = sqrtOf(r22 - r00 - r11 + 1.0);
 
 		r.z = 0.5 * s;
 
@@ -275,8 +276,8 @@ export function outer<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R {
 	// ki = -ik = j
 	// i*i = j*j = k*k = -1
 	// q*r = (qw + qx*i + qy*j + qz*k)(rw + rx*i + ry*j + rz*k)
-	const {x : vx, y : vy, z : vz, w : vw} = v;
-	const {x : wx, y : wy, z : wz, w : ww} = w;
+	const { x : vx, y : vy, z : vz, w : vw } = v;
+	const { x : wx, y : wy, z : wz, w : ww } = w;
 
 	r.x = vw * wx + vx * ww + vy * wz - vz * wy;
 	r.y = vw * wy - vx * wz + vy * ww + vz * wx;
@@ -284,6 +285,42 @@ export function outer<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R {
 	r.w = vw * ww - vx * wx - vy * wy - vz * wz;
 
 	return r;
+}
+
+/**
+ * v⃗⊙w⃗
+ */
+export function Hadamard(v:Vector4, w:Vector4) : Vector4 {
+	return {
+		x : v.x * w.x,
+		y : v.y * w.y,
+		z : v.z * w.z,
+		w : v.w * w.w
+	};
+}
+
+/**
+ * r⃗ = v⃗⊙w⃗
+ */
+export function hadamard<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R {
+	r.x = v.x * w.x;
+	r.y = v.y * w.y;
+	r.z = v.z * w.z;
+	r.w = v.w * w.w;
+
+	return r;
+}
+
+/**
+ * v⃗ = v⃗⊙w⃗
+ */
+export function hadamardAssign<R extends Vector4>(v:R, w:Vector4) : R {
+	v.x *= w.x;
+	v.y *= w.y;
+	v.z *= w.z;
+	v.w *= w.w;
+
+	return v;
 }
 
 /**
@@ -297,10 +334,10 @@ export function Normalize(v:Vector4) : Vector4 {
  * r⃗ = v̂
  */
 export function normalize<R extends Vector4>(r:R, v:Vector4) : R {
-	const {x, y, z, w} = v;
+	const { x, y, z, w } = v;
 	let n = x ** 2 + y ** 2 + z ** 2 + w ** 2;
 
-	if (n !== 0.0 && n !== 1.0) n = 1.0 / sqrt(n);
+	if (n !== 0.0 && n !== 1.0) n = 1.0 / sqrtOf(n);
 
 	r.x = x * n; r.y = y * n; r.z = z * n; r.w = w * n;
 
@@ -327,27 +364,27 @@ export function conjugate<R extends Vector4>(r:R, v:Vector4) : R {
 /**
  * q⃗⁻¹
  */
-export function Inverse(v:Vector4) : Vector4|void {
+export function Inverse(v:Vector4) : Vector4 | undefined {
 	return inverse({ x : 0.0, y : 0.0, z : 0.0, w : 1.0 }, v);
 }
 
 /**
  * r⃗ = q⃗⁻¹
  */
-export function inverse<R extends Vector4>(r:R, v:Vector4) : R|void {
+export function inverse<R extends Vector4>(r:R, v:Vector4) : R | undefined {
 	// qq* = (a + bi + cj + dk)(a - bi - cj - dk) = a*a + b*b + c*c + d*d
 	// 1/q = q* / qq* = (a - bi - cj - dk)/(a*a + b*b + c*c + d*d)
-	const {x, y, z, w} = v;
-	let n = (x ** 2 + y ** 2 + z ** 2 + w ** 2);
+	const { x, y, z, w } = v;
+	let n = x ** 2 + y ** 2 + z ** 2 + w ** 2;
 
-	if (nan(n) || abs(n) < epsilon) return;
+	if (isNaNVal(n) || absOf(n) < epsilon) return undefined;
 
 	n = 1.0 / n;
 
 	r.x = x * -n;
 	r.y = y * -n;
 	r.z = z * -n;
-	r.w = w *  n;
+	r.w = w * n;
 
 	return r;
 }
@@ -389,7 +426,7 @@ export function assignF64(r:Float64Array, v:Vector4, offset:number = 0) : Float6
 }
 
 export function F32(n:Float32Array, offset:number = 0) : Vector4 {
-	return { x: n[offset], y : n[offset + 1], z : n[offset + 2], w : n[offset + 3] };
+	return { x : n[offset], y : n[offset + 1], z : n[offset + 2], w : n[offset + 3] };
 }
 
 export function f32<R extends Vector4>(r:R, n:Float32Array, offset:number = 0) : R {
@@ -402,7 +439,7 @@ export function f32<R extends Vector4>(r:R, n:Float32Array, offset:number = 0) :
 }
 
 export function F64(n:Float64Array, offset:number = 0) : Vector4 {
-	return { x: n[offset], y : n[offset + 1], z : n[offset + 2], w : n[offset + 3] };
+	return { x : n[offset], y : n[offset + 1], z : n[offset + 2], w : n[offset + 3] };
 }
 
 export function f64<R extends Vector4>(r:R, n:Float64Array, offset:number = 0) : R {

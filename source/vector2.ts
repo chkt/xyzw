@@ -8,16 +8,17 @@ export interface Vector2 {
 }
 
 
+const absOf = Math.abs;
+const sinOf = Math.sin;
+const cosOf = Math.cos;
+const acosOf = Math.acos;
+const sqrtOf = Math.sqrt;
+
 const epsilon = 1e-10;
-const abs = Math.abs;
-const sin = Math.sin;
-const cos = Math.cos;
-const acos = Math.acos;
-const sqrt = Math.sqrt;
 
 
 export function equals(v:Vector2, w:Vector2, e:number = epsilon) : boolean {
-	return abs(w.x - v.x) < e && abs(w.y - v.y) < e;
+	return absOf(w.x - v.x) < e && absOf(w.y - v.y) < e;
 }
 
 
@@ -25,7 +26,7 @@ export function equals(v:Vector2, w:Vector2, e:number = epsilon) : boolean {
  * ‖ v⃗ ‖
  */
 export function norm(v:Vector2) : number {
-	return sqrt(v.x ** 2 + v.y ** 2);
+	return sqrtOf(v.x ** 2 + v.y ** 2);
 }
 
 /**
@@ -53,7 +54,7 @@ export function dot(v:Vector2, w:Vector2) : number {
  * acos(v⃗⋅w⃗ )
  */
 export function radians(v:Vector2, w:Vector2) : number {
-	return acos(v.x * w.x + v.y * w.y);
+	return acosOf(v.x * w.x + v.y * w.y);
 }
 
 
@@ -103,12 +104,12 @@ export function axisY<R extends Vector2>(r:R, s:number = 1.0) : R {
 }
 
 export function Rotation(rad:number) : Vector2 {
-	return { x : cos(rad), y : sin(rad) };
+	return { x : cosOf(rad), y : sinOf(rad) };
 }
 
 export function rotation<R extends Vector2>(r:R, rad:number) : R {
-	r.x = cos(rad);
-	r.y = sin(rad);
+	r.x = cosOf(rad);
+	r.y = sinOf(rad);
 
 	return r;
 }
@@ -124,7 +125,7 @@ export function BarycentricUV(vx0:Vector2, vx1:Vector2, vx2:Vector2, u:number, v
  * Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
  */
 export function barycentricUV<R extends Vector2>(r:R, vx0:Vector2, vx1:Vector2, vx2:Vector2, u:number, v:number) : R {
-	const {x, y} = vx0;
+	const { x, y } = vx0;
 
 	r.x = x + (vx1.x - x) * u + (vx2.x - x) * v;
 	r.y = y + (vx1.y - y) * u + (vx2.y - y) * v;
@@ -163,7 +164,7 @@ export function addAssign<R extends Vector2>(v:R, w:Vector2) : R {
  * v⃗-w⃗
  */
 export function Subtract(v:Vector2, w:Vector2) : Vector2 {
-	return { x: v.x - w.x, y : v.y - w.y };
+	return { x : v.x - w.x, y : v.y - w.y };
 }
 
 /**
@@ -224,7 +225,7 @@ export function MultiplyMatrix2(m:Matrix2, v:Vector2) : Vector2 {
  * r⃗ = M₂ₓ₂v⃗
  */
 export function multiplyMatrix2<R extends Vector2>(r:R, m:Matrix2, v:Vector2) : R {
-	const {x, y} = v;
+	const { x, y } = v;
 
 	r.x = x * m.r00 + y * m.r01;
 	r.y = x * m.r10 + y * m.r11;
@@ -243,7 +244,7 @@ export function Multiply2x3Matrix3(m:Matrix3, v:Vector2) : Vector2 {
  * r⃗ = M₂ₓ₃v⃗
  */
 export function multiply2x3Matrix3<R extends Vector2>(r:R, m:Matrix3, v:Vector2) : R {
-	const {x, y} = v;
+	const { x, y } = v;
 
 	r.x = x * m.r00 + y * m.r01 + m.r02;
 	r.y = x * m.r10 + y * m.r11 + m.r12;
@@ -255,14 +256,14 @@ export function multiply2x3Matrix3<R extends Vector2>(r:R, m:Matrix3, v:Vector2)
  * M₃ₓ₃v⃗
  */
 export function MultiplyMatrix3(m:Matrix3, v:Vector2) : Vector2 {
-	return multiplyMatrix3({ x: 0.0, y : 0.0 }, m, v);
+	return multiplyMatrix3({ x : 0.0, y : 0.0 }, m, v);
 }
 
 /**
  * r⃗ = M₃ₓ₃v⃗
  */
 export function multiplyMatrix3<R extends Vector2>(r:R, m:Matrix3, v:Vector2) : R {
-	const {x, y} = v;
+	const { x, y } = v;
 	const w = 1.0 / (x * m.r20 + y * m.r21 + m.r22);
 
 	r.x = (x * m.r00 + y * m.r01 + m.r02) * w;
@@ -282,7 +283,7 @@ export function Lerp(v:Vector2, w:Vector2, t:number) : Vector2 {
  * r⃗ = v⃗ + (w⃗ - v⃗ ) * t
  */
 export function lerp<R extends Vector2>(r:R, v:Vector2, w:Vector2, t:number) : R {
-	const {x : vx, y : vy} = v;
+	const { x : vx, y : vy } = v;
 
 	r.x = vx + (w.x - vx) * t;
 	r.y = vy + (w.y - vy) * t;
@@ -311,7 +312,7 @@ export function Project(v:Vector2, w:Vector2) : Vector2 {
  * Assign the projection of w⃗ onto v⃗ to r⃗, r⃗ = (v⃗w⃗ / ‖ v⃗ ‖²)v⃗
  */
 export function project<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R {
-	const {x, y} = v;
+	const { x, y } = v;
 	const n = (x * w.x + y * w.y) / (x ** 2 + y ** 2);
 
 	r.x = x * n;
@@ -331,8 +332,8 @@ export function Reflect(v:Vector2, w:Vector2) : Vector2 {
  * Assign the reflection of w⃗ against v⃗, r⃗ = 2(v⃗⋅w⃗ )w⃗-v⃗
  */
 export function reflect<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R {
-	const {x : vx, y : vy} = v;
-	const {x : wx, y : wy} = w;
+	const { x : vx, y : vy } = v;
+	const { x : wx, y : wy } = w;
 	const d = 2.0 * (vx * wx + vy * wy);
 
 	r.x = vx * d - wx;
@@ -352,10 +353,10 @@ export function Normalize(v:Vector2) : Vector2 {
  * r⃗ = v̂
  */
 export function normalize<R extends Vector2>(r:R, v:Vector2) : R {
-	const {x, y} = v;
+	const { x, y } = v;
 	let n = x ** 2 + y ** 2;
 
-	if (n !== 0.0 && n !== 1.0) n = 1.0 / sqrt(n);
+	if (n !== 0.0 && n !== 1.0) n = 1.0 / sqrtOf(n);
 
 	r.x = x * n;
 	r.y = y * n;
@@ -410,7 +411,7 @@ export function negateAssign<R extends Vector2>(v:R) : R {
 }
 
 export function Copy(v:Vector2) : Vector2 {
-	return { x : v.x, y: v.y };
+	return { x : v.x, y : v.y };
 }
 
 export function copy<R extends Vector2>(r:R, v:Vector2) : R {

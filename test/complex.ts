@@ -2,27 +2,11 @@ import * as assert from 'assert';
 import { describe, it } from 'mocha';
 import * as vector2 from '../source/vector2';
 import * as complex from '../source/complex';
+import { assertEqualsVec2 as assertEquals } from './assert/assert';
 
 
 const epsilon = 1e-10;
 
-
-function assertEquals(v:vector2.Vector2, w:vector2.Vector2, e:number, message?:string) : void {
-	const x = w.x - v.x;
-	const y = w.y - v.y;
-
-	if (
-		Number.isNaN(v.x) !== Number.isNaN(w.x) || x < -e || x > e ||
-		Number.isNaN(v.y) !== Number.isNaN(w.y) || y < -e || y > e
-	) {
-		throw new assert.AssertionError({
-			message,
-			actual : v,
-			expected : w,
-			operator : `!==[${ e }]`
-		});
-	}
-}
 
 function assertMultiple(v:readonly vector2.Vector2[], w:readonly vector2.Vector2[], e:number, message?:string) : void {
 	if (v.length !== w.length) {
@@ -149,34 +133,45 @@ describe('Power', () => {
 		assertMultiple(complex.Power(vector2.Create(0.0, 2.0), 2.0), [{ x : -4.0, y : 0.0 }], epsilon, '(bi)² ≠ -b²');
 		assertMultiple(
 			complex.Power(vector2.Create(0.0, 2.0), 0.5),
-			[{ x : 1.0 , y : 1.0 }, { x : -1.0, y : -1.0 }],
-			epsilon, '²√(bi) ≠ ±²√b( cos(½π/2) + i sin(½π/2) )'
+			[{ x : 1.0, y : 1.0 }, { x : -1.0, y : -1.0 }],
+			epsilon,
+			'²√(bi) ≠ ±²√b( cos(½π/2) + i sin(½π/2) )'
 		);
 		assertMultiple(
 			complex.Power(vector2.Create(0.0, 2.0), -1.0),
 			[ complex.Divide(vector2.Create(1.0), vector2.Create(0.0, 2.0)) ],
-			epsilon, '(ni)⁻¹ ≠ 1/(ni)'
+			epsilon,
+			'(ni)⁻¹ ≠ 1/(ni)'
 		);
-		assertMultiple(complex.Power(vector2.Create(0.0, 2.0), -2.0), [{ x : -0.25, y : 0.0 }], epsilon, '(ni)⁻² ≠ 1/(ni)²');
+		assertMultiple(
+			complex.Power(vector2.Create(0.0, 2.0), -2.0),
+			[{ x : -0.25, y : 0.0 }],
+			epsilon,
+			'(ni)⁻² ≠ 1/(ni)²'
+		);
 		assertMultiple(
 			complex.Power(complex.Power(vector2.Create(2.0, 3.0), 2.0)[0], 0.5),
 			[{ x : 2.0, y : 3.0 }, { x : -2.0, y : -3.0 }],
-			epsilon, '(²√(a+bi))² ≠ a+bi'
+			epsilon,
+			'(²√(a+bi))² ≠ a+bi'
 		);
 		assertMultiple(
 			complex.Power(complex.Power(vector2.Create(2.0, 3.0), -1.0)[0], -1.0),
 			[{ x : 2.0, y : 3.0 }],
-			epsilon, '((a+bi)⁻¹)⁻¹ ≠ a+bi'
+			epsilon,
+			'((a+bi)⁻¹)⁻¹ ≠ a+bi'
 		);
 		assertMultiple(
 			complex.Power(vector2.Create(2.0, 3.0), -2.0),
 			[ complex.Divide(vector2.Create(1.0), complex.Power(vector2.Create(2.0, 3.0), 2.0)[0]) ],
-			epsilon, '(a+bi)⁻² = 1/(a+bi)² ≠ 1/(a² - b² + 2abi)'
+			epsilon,
+			'(a+bi)⁻² = 1/(a+bi)² ≠ 1/(a² - b² + 2abi)'
 		);
 		assertMultiple(
 			complex.Power(vector2.Create(2.0, 3.0), 2.0),
 			[ complex.Multiply(vector2.Create(2.0, 3.0), vector2.Create(2.0, 3.0)) ],
-			epsilon, '(a+bi)² ≠ (a+bi)(a+bi)'
+			epsilon,
+			'(a+bi)² ≠ (a+bi)(a+bi)'
 		);
 		assert.strictEqual(complex.Power(vector2.Create(2.0, 3.0), 1.01).length, 1);
 		assert.strictEqual(complex.Power(vector2.Create(2.0, 3.0), 1.0).length, 1);
@@ -193,7 +188,8 @@ describe('power', () => {
 		assertMultiple(complex.power(v, vector2.Create(Number.NaN), 1.0), [{ x : Number.NaN, y : Number.NaN }], epsilon);
 		assertMultiple(complex.power(v, vector2.Create(0.0, Number.NaN), 1.0), [{ x : Number.NaN, y : Number.NaN }], epsilon);
 
-		const r = complex.power(v, vector2.Create(2.0), 0.0)
+		const r = complex.power(v, vector2.Create(2.0), 0.0);
+
 		assertMultiple(r, [{ x : 1.0, y : 0.0 }], epsilon, 'n⁰ ≠ 1');
 		assert.deepStrictEqual(v, r);
 
@@ -208,34 +204,45 @@ describe('power', () => {
 		assertMultiple(complex.power(v, vector2.Create(0.0, 2.0), 2.0), [{ x : -4.0, y : 0.0 }], epsilon, '(bi)² ≠ -b²');
 		assertMultiple(
 			complex.power(vv, vector2.Create(0.0, 2.0), 0.5),
-			[{ x : 1.0 , y : 1.0 }, { x : -1.0, y : -1.0 }],
-			epsilon, '²√(bi) ≠ ±²√b( cos(½π/2) + i sin(½π/2) )'
+			[{ x : 1.0, y : 1.0 }, { x : -1.0, y : -1.0 }],
+			epsilon,
+			'²√(bi) ≠ ±²√b( cos(½π/2) + i sin(½π/2) )'
 		);
 		assertMultiple(
 			complex.power(v, vector2.Create(0.0, 2.0), -1.0),
 			[ complex.Divide(vector2.Create(1.0), vector2.Create(0.0, 2.0)) ],
-			epsilon, '(ni)⁻¹ ≠ 1/(ni)'
+			epsilon,
+			'(ni)⁻¹ ≠ 1/(ni)'
 		);
-		assertMultiple(complex.power(v, vector2.Create(0.0, 2.0), -2.0), [{ x : -0.25, y : 0.0 }], epsilon, '(ni)⁻² ≠ 1/(ni)²');
+		assertMultiple(
+			complex.power(v, vector2.Create(0.0, 2.0), -2.0),
+			[{ x : -0.25, y : 0.0 }],
+			epsilon,
+			'(ni)⁻² ≠ 1/(ni)²'
+		);
 		assertMultiple(
 			complex.power(vv, complex.power(vv, vector2.Create(2.0, 3.0), 2.0)[0], 0.5),
 			[{ x : 2.0, y : 3.0 }, { x : -2.0, y : -3.0 }],
-			epsilon, '(²√(a+bi))² ≠ a+bi'
+			epsilon,
+			'(²√(a+bi))² ≠ a+bi'
 		);
 		assertMultiple(
 			complex.power(v, complex.Power(vector2.Create(2.0, 3.0), -1.0)[0], -1.0),
 			[{ x : 2.0, y : 3.0 }],
-			epsilon, '((a+bi)⁻¹)⁻¹ ≠ a+bi'
+			epsilon,
+			'((a+bi)⁻¹)⁻¹ ≠ a+bi'
 		);
 		assertMultiple(
 			complex.power(v, vector2.Create(2.0, 3.0), -2.0),
 			[ complex.Divide(vector2.Create(1.0), complex.Power(vector2.Create(2.0, 3.0), 2.0)[0]) ],
-			epsilon, '(a+bi)⁻² = 1/(a+bi)² ≠ 1/(a² - b² + 2abi)'
+			epsilon,
+			'(a+bi)⁻² = 1/(a+bi)² ≠ 1/(a² - b² + 2abi)'
 		);
 		assertMultiple(
 			complex.power(v, vector2.Create(2.0, 3.0), 2.0),
 			[ complex.Multiply(vector2.Create(2.0, 3.0), vector2.Create(2.0, 3.0)) ],
-			epsilon, '(a+bi)² ≠ (a+bi)(a+bi)'
+			epsilon,
+			'(a+bi)² ≠ (a+bi)(a+bi)'
 		);
 		assert.strictEqual(complex
 			.power([ vector2.Create(Number.NaN), vector2.Create(Number.NaN) ], vector2.Create(2.0, 3.0), 1.01)
@@ -284,7 +291,7 @@ describe('Inverse', () => {
 		assertEquals(complex.Inverse(vector2.Create(0.0, -1.0)), { x : 0.0, y : 1.0 }, epsilon);
 		assertEquals(complex.Inverse(vector2.Create(2.0)), { x : 0.5, y : 0.0 }, epsilon);
 		assertEquals(complex.Inverse(vector2.Create(0.5)), { x : 2.0, y : 0.0 }, epsilon);
-		assertEquals(complex.Inverse(complex.Inverse(vector2.Create(2.0, 3.0))), { x : 2.0, y : 3.0}, epsilon);
+		assertEquals(complex.Inverse(complex.Inverse(vector2.Create(2.0, 3.0))), { x : 2.0, y : 3.0 }, epsilon);
 
 		assertEquals(
 			complex.Multiply(vector2.Create(1.0, 2.0), complex.Inverse(vector2.Create(3.0, 4.0))),
@@ -309,7 +316,8 @@ describe('inverse', () => {
 		assertEquals(complex.inverse(v, vector2.Create(0.5)), { x : 2.0, y : 0.0 }, epsilon);
 
 		const r = complex.inverse(v, complex.Inverse(vector2.Create(2.0, 3.0)));
-		assertEquals(r, { x : 2.0, y : 3.0}, epsilon);
+
+		assertEquals(r, { x : 2.0, y : 3.0 }, epsilon);
 		assert.strictEqual(v, r);
 
 		assertEquals(

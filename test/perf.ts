@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { describe, it } from 'mocha';
 
 
@@ -10,50 +11,23 @@ const Z = 2;
 const W = 3;
 
 
-function test(name:string, fn:test, num:number) : void {
-	const now = Date.now();
-
-	fn(num);
-
-	console.log(`${ num }x ${ name }: ${ Date.now() - now }ms`);
-}
-
 describe('read/write', () => {
 	const n = 100_000_000;
 
 	it('should measure array assignments', () => {
-		test('assignArray', num => {
 			let arr = [ 0.1, 1.2, 2.3, 3.4 ];
 
-			for (let i = 0; i < num; i += 1) {
-				arr = [ arr[Y], arr[Z], arr[W], arr[X] ];
-			}
-		}, n);
+			for (let i = 0; i < n; i += 1) arr = [ arr[Y], arr[Z], arr[W], arr[X] ];
 	});
 
 	it('should measure array mutations', () => {
-		test('mutateArray', num => {
-			const arr = [ 0.1, 1.2, 2.3, 3.4 ];
-
-			for (let i = 0; i < num; i += 1) {
-				const x = arr[X];
-				const y = arr[Y];
-				const z = arr[Z];
-				const w = arr[W];
-
-				arr[X] = y;
-				arr[Y] = z;
-				arr[Z] = w;
-				arr[W] = x;
-			}
-		}, n);
-	});
-
-	it('should measure array mutations with destructured reads', () => {
 		const arr = [ 0.1, 1.2, 2.3, 3.4 ];
 
 		for (let i = 0; i < n; i += 1) {
-			const [x, y, z, w] = arr;
+			const x = arr[X];
+			const y = arr[Y];
+			const z = arr[Z];
+			const w = arr[W];
 
 			arr[X] = y;
 			arr[Y] = z;
@@ -62,138 +36,149 @@ describe('read/write', () => {
 		}
 	});
 
-	it('should measure object assignments', () => {
-		test('assignObject', () => {
-			let obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
+	it('should measure array mutations with destructured reads', () => {
+		const arr = [ 0.1, 1.2, 2.3, 3.4 ];
 
-			for (let i = 0; i < n; i += 1) {
-				obj = {
-					x : obj.y,
-					y : obj.z,
-					z : obj.w,
-					w : obj.x
-				};
-			}
-		}, n);
+		for (let i = 0; i < n; i += 1) {
+			const [ x, y, z, w ] = arr;
+
+			arr[X] = y;
+			arr[Y] = z;
+			arr[Z] = w;
+			arr[W] = x;
+		}
+	});
+
+	it('should measure array mutations with destructured assignments', () => {
+		const arr = [ 0.1, 1.2, 2.3, 3.4 ];
+
+		for (let i = 0; i < n; i += 1) {
+			[ arr[X], arr[Y], arr[Z], arr[W] ] = [ arr[Y], arr[Z], arr[W], arr[X] ];
+		}
+	});
+
+	it('should measure object assignments', () => {
+		let obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
+
+		for (let i = 0; i < n; i += 1) {
+			obj = {
+				x : obj.y,
+				y : obj.z,
+				z : obj.w,
+				w : obj.x
+			};
+		}
 	});
 
 	it('should measure object mutations', () => {
-		test('mutateObject', () => {
-			const obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
+		const obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
 
-			for (let i = 0; i < n; i += 1) {
-				const x = obj.x;
-				const y = obj.y;
-				const z = obj.z;
-				const w = obj.w;
+		for (let i = 0; i < n; i += 1) {
+			const x = obj.x;
+			const y = obj.y;
+			const z = obj.z;
+			const w = obj.w;
 
-				obj.x = y;
-				obj.y = z;
-				obj.z = w;
-				obj.w = x;
-			}
-		}, n);
+			obj.x = y;
+			obj.y = z;
+			obj.z = w;
+			obj.w = x;
+		}
 	});
 
 	it('should measure object mutations with destructured reads', () => {
-		test('mutateObjectDestructuredRead', () => {
-			const obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
+		const obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
 
-			for (let i = 0; i < n; i += 1) {
-				const {x, y, z, w} = obj;
+		for (let i = 0; i < n; i += 1) {
+			const { x, y, z, w } = obj;
 
-				obj.x = y;
-				obj.y = z;
-				obj.z = w;
-				obj.w = x;
-			}
-		}, n);
+			obj.x = y;
+			obj.y = z;
+			obj.z = w;
+			obj.w = x;
+		}
 	});
 
 	it('should measure object mutations with reassigned destructured reads', () => {
-		test('mutateObjectDestructuredRead', () => {
-			const obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
+		const obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
 
-			for (let i = 0; i < n; i += 1) {
-				const {x : xx, y : yy, z : zz, w : ww} = obj;
+		for (let i = 0; i < n; i += 1) {
+			const { x : xx, y : yy, z : zz, w : ww } = obj;
 
-				obj.x = yy;
-				obj.y = zz;
-				obj.z = ww;
-				obj.w = xx;
-			}
-		}, n);
+			obj.x = yy;
+			obj.y = zz;
+			obj.z = ww;
+			obj.w = xx;
+		}
+	});
+
+	it('should measure object mutations with destructured writes', () => {
+		const obj = { x : 0.1, y : 1.2, z : 2.3, w : 3.4 };
+
+		for (let i = 0; i < n; i += 1) {
+			[ obj.x, obj.y, obj.z, obj.w ] = [ obj.y, obj.z, obj.w, obj.x ];
+		}
 	});
 
 	it('should measure new Float32Array() assignments', () => {
-		test('assignFloat32New', () => {
-			let f32 = new Float32Array([0.1, 1.2, 2.3, 3.4]);
+		let f32 = new Float32Array([ 0.1, 1.2, 2.3, 3.4 ]);
 
-			for (let i = 0; i < n; i += 1) {
-				f32 = new Float32Array([f32[Y], f32[Z], f32[W], f32[X]]);
-			}
-		}, n);
+		for (let i = 0; i < n; i += 1) {
+			f32 = new Float32Array([ f32[Y], f32[Z], f32[W], f32[X] ]);
+		}
 	});
 
 	it('should measure Float32Array.of() assignments', () => {
-		test('assignFloat32Of', () => {
-			let f32 = new Float32Array([0.1, 1.2, 2.3, 3.4]);
+		let f32 = new Float32Array([ 0.1, 1.2, 2.3, 3.4 ]);
 
-			for (let i = 0; i < n; i += 1) {
-				f32 = Float32Array.of(f32[Y], f32[Z], f32[W], f32[X]);
-			}
-		}, n);
+		for (let i = 0; i < n; i += 1) {
+			f32 = Float32Array.of(f32[Y], f32[Z], f32[W], f32[X]);
+		}
 	});
 
 	it('should measure Float32Array[] mutations', () => {
-		test('mutateFloat32', () => {
-			const f32 = new Float32Array([0.1, 1.2, 2.3, 3.4]);
+		const f32 = new Float32Array([ 0.1, 1.2, 2.3, 3.4 ]);
 
-			for (let i = 0; i < n; i += 1) {
-				const x = f32[X];
-				const y = f32[Y];
-				const z = f32[Z];
-				const w = f32[W];
+		for (let i = 0; i < n; i += 1) {
+			const x = f32[X];
+			const y = f32[Y];
+			const z = f32[Z];
+			const w = f32[W];
 
-				f32[X] = y;
-				f32[Y] = z;
-				f32[Z] = w;
-				f32[W] = x;
-			}
-		}, n);
+			f32[X] = y;
+			f32[Y] = z;
+			f32[Z] = w;
+			f32[W] = x;
+		}
 	});
 
 	it('should measure Float64Array[] mutations', () => {
-		test('mutateFloat64', () => {
-			const f32 = new Float64Array([0.1, 1.2, 2.3, 3.4]);
+		const f32 = new Float64Array([ 0.1, 1.2, 2.3, 3.4 ]);
 
-			for (let i = 0; i < n; i += 1) {
-				const x = f32[X];
-				const y = f32[Y];
-				const z = f32[Z];
-				const w = f32[W];
+		for (let i = 0; i < n; i += 1) {
+			const x = f32[X];
+			const y = f32[Y];
+			const z = f32[Z];
+			const w = f32[W];
 
-				f32[X] = y;
-				f32[Y] = z;
-				f32[Z] = w;
-				f32[W] = x;
-			}
-		}, n);
+			f32[X] = y;
+			f32[Y] = z;
+			f32[Z] = w;
+			f32[W] = x;
+		}
 	});
 
 	it('should measure Float32Array.set() mutations', () => {
-		test('mutateFloat32Set', () => {
-			const f32 = new Float32Array([0.1, 1.2, 2.3, 3.4]);
+		const f32 = new Float32Array([ 0.1, 1.2, 2.3, 3.4 ]);
 
-			for (let i = 0; i < n; i += 1) {
-				const x = f32[X];
-				const y = f32[Y];
-				const z = f32[Z];
-				const w = f32[W];
+		for (let i = 0; i < n; i += 1) {
+			const x = f32[X];
+			const y = f32[Y];
+			const z = f32[Z];
+			const w = f32[W];
 
-				f32.set([y, z, w, x]);
-			}
-		}, n);
+			f32.set([ y, z, w, x ]);
+		}
 	});
 });
 
@@ -201,7 +186,7 @@ describe('property access', () => {
 	const num = 100_000_000;
 
 	it('should measure double direct property access', () => {
-		const obj = { x: 0.1, y: 1.0 };
+		const obj = { x : 0.1, y : 1.0 };
 
 		for (let i = 0; i < num; i += 1) {
 			obj.x = obj.x + obj.x;
@@ -210,7 +195,7 @@ describe('property access', () => {
 	});
 
 	it('should measure double copied property access', () => {
-		const obj = { x: 0.1, y: 1.0 };
+		const obj = { x : 0.1, y : 1.0 };
 
 		for (let i = 0; i < num; i += 1) {
 			const x = obj.x, y = obj.y;
@@ -221,10 +206,10 @@ describe('property access', () => {
 	});
 
 	it('should measure double destructured property access', () => {
-		const obj = { x: 0.1, y: 1.0 };
+		const obj = { x : 0.1, y : 1.0 };
 
 		for (let i = 0; i < num; i += 1) {
-			const {x, y} = obj;
+			const { x, y } = obj;
 
 			obj.x = x + x;
 			obj.y = y + y;
@@ -232,10 +217,10 @@ describe('property access', () => {
 	});
 
 	it('should measure multiplication of copied property access', () => {
-		const obj = { x : 0.1, y: 1.0 };
+		const obj = { x : 0.1, y : 1.0 };
 
 		for (let i = 0; i < num; i += 1) {
-			const {x, y} = obj;
+			const { x, y } = obj;
 
 			obj.x = x * x;
 			obj.y = y * y;
@@ -243,10 +228,10 @@ describe('property access', () => {
 	});
 
 	it('should measure square of copied property access', () => {
-		const obj = { x : 0.1, y: 1.0 };
+		const obj = { x : 0.1, y : 1.0 };
 
 		for (let i = 0; i < num; i += 1) {
-			const {x, y} = obj;
+			const { x, y } = obj;
 
 			obj.x = x ** 2;
 			obj.y = y ** 2;
@@ -254,7 +239,7 @@ describe('property access', () => {
 	});
 
 	it('should measure square of direct property access', () => {
-		const obj = { x : 0.1, y: 1.0 };
+		const obj = { x : 0.1, y : 1.0 };
 
 		for (let i = 0; i < num; i += 1) {
 			obj.x = obj.x ** 2;
@@ -325,17 +310,17 @@ describe('branching', () => {
 	const num = 100_000_000;
 	let a = 1.0;
 
-	function umin(n:number, min:number) {
+	function umin(n:number, min:number) : number {
 		return n < min ? n : min;
 	}
 
-	function bindableUmin(min:number, n:number) {
+	function bindableUmin(min:number, n:number) : number {
 		return n < min ? n : min;
 	}
 
-	const amin = (n:number, min:number) => n < min ? n : min;
+	const amin = (n:number, min:number) : number => n < min ? n : min;
 	const bmin = bindableUmin.bind(null, 1.0);
-	const pmin = (n:number, min:number) => (n * Number(n < min) + Number(n >= min));
+	const pmin = (n:number, min:number) : number => n * Number(n < min) + Number(n >= min);
 
 
 	it('should measure ternary conditions', () => {
@@ -352,7 +337,7 @@ describe('branching', () => {
 
 	it('should measure conditional products w/o type coercion', () => {
 		for (let i = 0; i < num; i += 1) {
-			a = -(a * ((a < 1.0) as any) + ((a >= 1.0) as any)) * 1.1;
+			a = -(a * ((a < 1.0) as unknown as number) + ((a >= 1.0) as unknown as number)) * 1.1;
 		}
 	});
 
@@ -391,7 +376,7 @@ describe('looping', () => {
 	const len = 100;
 	const num = 1_000_000;
 
-	function* gen(end:number) {
+	function* gen(end:number) : Generator<number> {
 		for (let i = 0; i < end; i += 1) yield i;
 	}
 
@@ -400,12 +385,13 @@ describe('looping', () => {
 
 		return {
 			[Symbol.iterator] : () => ({
+				// eslint-disable-next-line no-plusplus
 				next : () => ({ value : i, done : ++i < end })
 			})
 		};
 	}
 
-	function factory(n:number) {
+	function factory(n:number) : number {
 		return n;
 	}
 
@@ -489,4 +475,4 @@ describe('transforms', () => {
 			obj.z = f100[index + 2];
 		}
 	});
-})
+});

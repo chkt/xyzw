@@ -35,15 +35,15 @@ export function argument(z:Vector2) : number {
  * zw, z = a + bi, w = c + di
  */
 export function Multiply(z:Vector2, w:Vector2) : Vector2 {
-	return multiply({x : 0.0, y : 0.0}, z, w);
+	return multiply({ x : 0.0, y : 0.0 }, z, w);
 }
 
 /**
  * r⃗ = zw, z = a + bi, w = c + di
  */
 export function multiply<R extends Vector2>(r:R, z:Vector2, w:Vector2) : R {
-	const {x : a, y : b} = z;
-	const {x : c, y : d} = w;
+	const { x : a, y : b } = z;
+	const { x : c, y : d } = w;
 
 	r.x = a * c - b * d;
 	r.y = a * d + b * c;
@@ -55,15 +55,15 @@ export function multiply<R extends Vector2>(r:R, z:Vector2, w:Vector2) : R {
  * zw̅ / ww̅, z = a + bi, w = c = di
  */
 export function Divide(z:Vector2, w:Vector2) : Vector2 {
-	return divide({ x : 0.0, y : 0.0 }, z , w);
+	return divide({ x : 0.0, y : 0.0 }, z, w);
 }
 
 /**
  * r⃗ = zw̅ / ww̅, z = a + bi, w = c = di
  */
 export function divide<R extends Vector2>(r:R, z:Vector2, w:Vector2) : R {
-	const {x : a, y : b} = z;
-	const {x : c, y : d} = w;
+	const { x : a, y : b } = z;
+	const { x : c, y : d } = w;
 	const den = 1.0 / (c ** 2 + d ** 2);
 
 	r.x = (a * c + b * d) * den;
@@ -86,8 +86,8 @@ export function Power(z:Vector2, n:number) : Vector2[] {
 /**
  * r⃗₍ₖ₎ = zⁿ₍ₖ₎
  */
-export function power<R extends Iterable<Vector2|void>>(r:R, z:Vector2, n:number) : R {
-	const {x : a, y : b} = z;
+export function power<R extends Iterable<Vector2 | undefined>>(r:R, z:Vector2, n:number) : R {
+	const { x : a, y : b } = z;
 	const mod = (a ** 2 + b ** 2) ** (n * 0.5);
 	const arg = atan2(b, a) * n;
 	const arc = (n !== 0.0 ? abs(n) : 1.0) * TURN;
@@ -138,10 +138,10 @@ export function Inverse(z:Vector2) : Vector2 {
  * r⃗ = z⁻¹
  */
 export function inverse<R extends Vector2>(r:R, z:Vector2) : R {
-	const {x : a, y : b} = z;
+	const { x : a, y : b } = z;
 	const den = 1.0 / (a ** 2 + b ** 2);
 
-	r.x =  a * den;
+	r.x = a * den;
 	r.y = -b * den;
 
 	return r;

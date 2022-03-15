@@ -2,27 +2,13 @@ import * as assert from 'assert';
 import { describe, it } from 'mocha';
 import * as vec3 from '../source/vector3';
 import * as mat4 from '../source/matrix4';
-import { frustrum, Frustrum, PerspectiveLens } from '../source/matrix4Frustrum';
+import { Frustrum, PerspectiveLens, frustrum } from '../source/matrix4Frustrum';
+import { assertEqualsVec3 as assertEquals } from './assert/assert';
 
 
 const epsilon = 1e-10;
 const turn = Math.PI * 2.0;
 
-
-function assertEquals(actual:vec3.Vector3, expected:vec3.Vector3, e:number, message?:string) : void {
-	if (
-		Math.abs(expected.x - actual.x) > e ||
-		Math.abs(expected.y - actual.y) > e ||
-		Math.abs(expected.z - actual.z) > e
-	) {
-		throw new assert.AssertionError({
-			expected,
-			actual,
-			message,
-			operator : `!==[${ e }]`
-		});
-	}
-}
 
 function t(lens:PerspectiveLens, z:number) : number {
 	const zinv = 1.0 / (lens.far - lens.near);
@@ -56,6 +42,8 @@ describe('frustrum', () => {
 		const r = frustrum(m, f);
 
 		assertEquals(vec3.MultiplyMatrix4(m, vec3.Create(0.0, 0.0, -0.1)), vec3.Create(0.0, 0.0, -1.0), epsilon);
+		assert.strictEqual(m, r);
+
 		assertEquals(vec3.MultiplyMatrix4(m, vec3.Create(0.0, 0.0, -1000.0)), vec3.Create(0.0, 0.0, 1.0), epsilon);
 		assertEquals(vec3.MultiplyMatrix4(m, vec3.Create(0.1, 0.1, -0.1)), vec3.Create(1.0, 1.0, -1.0), epsilon);
 		assertEquals(vec3.MultiplyMatrix4(m, vec3.Create(-0.1, -0.1, -0.1)), vec3.Create(-1.0, -1.0, -1.0), epsilon);

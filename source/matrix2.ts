@@ -1,3 +1,4 @@
+/* eslint max-statements-per-line : [ error, { max : 2 } ]*/
 import { Vector2 } from './vector2';
 import { Matrix3 } from './matrix3';
 
@@ -10,8 +11,8 @@ export interface Matrix2 {
 }
 
 
-const isNaN = Number.isNaN;
-const abs = Math.abs;
+const isNanVal = Number.isNaN;
+const absOf = Math.abs;
 const sinOf = Math.sin;
 const cosOf = Math.cos;
 
@@ -73,7 +74,7 @@ export function RotationVector2(v:Vector2) : Matrix2 {
  * Mᵣ = [ v⃗  v⃗⊥ ]
  */
 export function rotationVector2<R extends Matrix2>(r:R, v:Vector2) : R {
-	const {x, y} = v;
+	const { x, y } = v;
 
 	r.r00 = x;
 	r.r10 = y;
@@ -223,8 +224,8 @@ export function Concat(a:Matrix2, b:Matrix2) : Matrix2 {
  * Mᵣ = AB
  */
 export function concat<R extends Matrix2>(r:R, a:Matrix2, b:Matrix2) : R {
-	const {r00 : a00, r10 : a10, r01 : a01, r11 : a11} = a;
-	const {r00 : b00, r10 : b10, r01 : b01, r11 : b11} = b;
+	const { r00 : a00, r10 : a10, r01 : a01, r11 : a11 } = a;
+	const { r00 : b00, r10 : b10, r01 : b01, r11 : b11 } = b;
 
 	r.r00 = a00 * b00 + a01 * b10;
 	r.r10 = a10 * b00 + a11 * b10;
@@ -237,25 +238,25 @@ export function concat<R extends Matrix2>(r:R, a:Matrix2, b:Matrix2) : R {
 /**
  * M⁻¹
  */
-export function Inverse(m:Matrix2) : Matrix2|void {
+export function Inverse(m:Matrix2) : Matrix2 | undefined {
 	return inverse({ r00 : 1.0, r10 : 0.0, r01 : 0.0, r11 : 1.0 }, m);
 }
 
 /**
  * Mᵣ = M⁻¹
  */
-export function inverse<R extends Matrix2>(r:R, m:Matrix2) : R|void {
-	const {r00, r10, r01, r11} = m;
+export function inverse<R extends Matrix2>(r:R, m:Matrix2) : R | undefined {
+	const { r00, r10, r01, r11 } = m;
 	let d = r00 * r11 - r01 * r10;
 
-	if (isNaN(d) || abs(d) < 1e-10) return undefined;
+	if (isNanVal(d) || absOf(d) < 1e-10) return undefined;
 
 	d = 1.0 / d;
 
-	r.r00 =  d * r11;
+	r.r00 = d * r11;
 	r.r10 = -d * r10;
 	r.r01 = -d * r01;
-	r.r11 =  d * r00;
+	r.r11 = d * r00;
 
 	return r;
 }

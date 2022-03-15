@@ -1,3 +1,6 @@
+/* eslint key-spacing : [ error, { beforeColon : true, afterColon : true, mode : minimum } ] */
+/* eslint max-statements-per-line: [ 'error', { 'max' : 4 }] */
+/* eslint no-multi-spaces : [ off ] */
 import { Vector3 } from './vector3';
 import { Matrix3 } from './matrix3';
 
@@ -13,20 +16,20 @@ export interface Matrix4 extends Matrix3 {
 }
 
 
-const epsilon = 1e-10;
-const isNaN = Number.isNaN;
-const abs = Math.abs;
+const isNanVal = Number.isNaN;
+const absOf = Math.abs;
 
+const epsilon = 1e-10;
 const mat4 = Identity();
 const f64a = new Float64Array(16);
 const f64b = new Float64Array(16);
 
 
 export function equals(a:Matrix4, b:Matrix4, e:number = epsilon) : boolean {
-	return abs(b.r00 - a.r00) < e && abs(b.r10 - a.r10) < e && abs(b.r20 - a.r20) < e && abs(b.r30 - a.r30) < e &&
-		abs(b.r01 - a.r01) < e && abs(b.r11 - a.r11) < e && abs(b.r21 - a.r21) < e && abs(b.r31 - a.r31) < e &&
-		abs(b.r02 - a.r02) < e && abs(b.r12 - a.r12) < e && abs(b.r22 - a.r22) < e && abs(b.r32 - a.r32) < e &&
-		abs(b.r03 - a.r03) < e && abs(b.r13 - a.r13) < e && abs(b.r23 - a.r23) < e && abs(b.r33 - a.r33) < e;
+	return absOf(b.r00 - a.r00) < e && absOf(b.r10 - a.r10) < e && absOf(b.r20 - a.r20) < e && absOf(b.r30 - a.r30) < e &&
+		absOf(b.r01 - a.r01) < e && absOf(b.r11 - a.r11) < e && absOf(b.r21 - a.r21) < e && absOf(b.r31 - a.r31) < e &&
+		absOf(b.r02 - a.r02) < e && absOf(b.r12 - a.r12) < e && absOf(b.r22 - a.r22) < e && absOf(b.r32 - a.r32) < e &&
+		absOf(b.r03 - a.r03) < e && absOf(b.r13 - a.r13) < e && absOf(b.r23 - a.r23) < e && absOf(b.r33 - a.r33) < e;
 }
 
 /**
@@ -51,7 +54,7 @@ export function Identity() : Matrix4 {
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 		r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
-	}
+	};
 }
 
 /**
@@ -98,7 +101,7 @@ export function ShearMatrix3(m:Matrix3) : Matrix4 {
 		r00 : m.r00, r10 : m.r10, r20 : m.r20, r30 : 0.0,
 		r01 : m.r01, r11 : m.r11, r21 : m.r21, r31 : 0.0,
 		r02 : m.r02, r12 : m.r12, r22 : m.r22, r32 : 0.0,
-		r03 : 0.0,   r13 : 0.0,   r23 : 0.0,   r33 : 1.0
+		r03 :   0.0, r13 :   0.0, r23 :   0.0, r33 : 1.0
 	};
 }
 
@@ -226,7 +229,7 @@ export function ConcatScale(m:Matrix4, v:Vector3) : Matrix4 {
  * Mᵣ = M[ x̂v⃗₀  ŷv⃗₁  ẑv⃗₂  ŵ ]
  */
 export function concatScale<R extends Matrix4>(r:R, m:Matrix4, v:Vector3) : R {
-	const {x : b00, y : b11, z : b22} = v;
+	const { x : b00, y : b11, z : b22 } = v;
 
 	r.r00 = m.r00 * b00;
 	r.r10 = m.r10 * b00;
@@ -438,7 +441,7 @@ export function concat<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R {
 /**
  * [ m⁰ m¹ m² ŵ+m³ ]⁻¹
  */
-export function Inverse3x4(m:Matrix4) : Matrix4|void {
+export function Inverse3x4(m:Matrix4) : Matrix4 | undefined {
 	return inverse3x4({
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
@@ -450,7 +453,7 @@ export function Inverse3x4(m:Matrix4) : Matrix4|void {
 /**
  * Mᵣ = [ m⁰ m¹ m² ŵ+m³ ]⁻¹
  */
-export function inverse3x4<R extends Matrix4>(r:R, m:Matrix4) : R|void {
+export function inverse3x4<R extends Matrix4>(r:R, m:Matrix4) : R | undefined {
 	const {
 		r00 : m00, r10 : m10, r20 : m20,
 		r01 : m01, r11 : m11, r21 : m21,
@@ -460,7 +463,7 @@ export function inverse3x4<R extends Matrix4>(r:R, m:Matrix4) : R|void {
 
 	let d = m00 * m22 * m11 + m01 * m23 + m02 * m20 * -m11 + m03 * m21;
 
-	if (isNaN(d + m10 + m12 + m13) || abs(d) < epsilon) return undefined;
+	if (isNanVal(d + m10 + m12 + m13) || absOf(d) < epsilon) return undefined;
 
 	d = 1.0 / d;
 
@@ -491,7 +494,7 @@ export function inverse3x4<R extends Matrix4>(r:R, m:Matrix4) : R|void {
 /**
  * M⁻¹ (using the determinant)
  */
-export function Inverse(m:Matrix4) : Matrix4|void {
+export function Inverse(m:Matrix4) : Matrix4 | undefined {
 	return inverse({
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
@@ -503,10 +506,10 @@ export function Inverse(m:Matrix4) : Matrix4|void {
 /**
  * Mᵣ = M⁻¹ (using the determinant)
  */
-export function inverse<R extends Matrix4>(r:R, m:Matrix4) : R|void {
+export function inverse<R extends Matrix4>(r:R, m:Matrix4) : R | undefined {
 	let d = determinant(m);
 
-	if (isNaN(d) || abs(d) < epsilon) return undefined;
+	if (isNanVal(d) || absOf(d) < epsilon) return undefined;
 
 	d = 1.0 / d;
 
@@ -547,7 +550,7 @@ export function inverse<R extends Matrix4>(r:R, m:Matrix4) : R|void {
 /**
  * M⁻¹ (using Gauss-Jordon elimination)
  */
-export function InverseGauss(m:Matrix4) : Matrix4|void {
+export function InverseGauss(m:Matrix4) : Matrix4 | undefined {
 	return inverseGauss({
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
@@ -559,7 +562,7 @@ export function InverseGauss(m:Matrix4) : Matrix4|void {
 /**
  * Mᵣ = M⁻¹ (using Gauss-Jordan elimination)
  */
-export function inverseGauss<R extends Matrix4>(r:R, m:Matrix4) : R|void {
+export function inverseGauss<R extends Matrix4>(r:R, m:Matrix4) : R | undefined {
 	const a = assignColumnF64(f64a, m), b = assignColumnF64(f64b, identity(mat4));
 
 	for (let r1 = 0; r1 < 4; r1 += 1) {
@@ -567,19 +570,19 @@ export function inverseGauss<R extends Matrix4>(r:R, m:Matrix4) : R|void {
 		let max = r1;
 
 		for (let r2 = r1 + 1; r2 < 4; r2 += 1) {
-			if (abs(a[r2 + rcol]) > abs(a[max + rcol])) max = r2;
+			if (absOf(a[r2 + rcol]) > absOf(a[max + rcol])) max = r2;
 		}
 
 		if (max !== r1) {
 			for (let c = 0; c < 4; c += 1) {
 				const ccol = c * 4, indexA = r1 + ccol, indexB = max + ccol;
 
-				[a[indexA], a[indexB]] = [a[indexB], a[indexA]];
-				[b[indexA], b[indexB]] = [b[indexB], b[indexA]];
+				[ a[indexA], a[indexB] ] = [ a[indexB], a[indexA] ];
+				[ b[indexA], b[indexB] ] = [ b[indexB], b[indexA] ];
 			}
 		}
 
-		if (isNaN(a[r1 + rcol]) || abs(a[r1 + rcol]) < epsilon) return undefined;
+		if (isNanVal(a[r1 + rcol]) || absOf(a[r1 + rcol]) < epsilon) return undefined;
 
 		for (let r2 = r1 + 1; r2 < 4; r2 += 1) {
 			const n = a[r2 + rcol] / a[r1 + rcol];
@@ -638,7 +641,7 @@ export function Transpose(m:Matrix4) : Matrix4 {
  * Mᵣ = Mᵀ
  */
 export function transpose<R extends Matrix4>(r:R, m:Matrix4) : R {
-	const {r10, r20, r30, r21, r31, r32} = m;
+	const { r10, r20, r30, r21, r31, r32 } = m;
 
 	r.r00 = m.r00; r.r10 = m.r01; r.r20 = m.r02; r.r30 = m.r03;
 	r.r01 = r10;   r.r11 = m.r11; r.r21 = m.r12; r.r31 = m.r13;
@@ -667,12 +670,14 @@ export function copy<R extends Matrix4>(r:R, m:Matrix4) : R {
 }
 
 export function toColumnF32(m:Matrix4) : Float32Array {
+	/* eslint-disable array-element-newline */
 	return new Float32Array([
 		m.r00, m.r10, m.r20, m.r30,
 		m.r01, m.r11, m.r21, m.r31,
 		m.r02, m.r12, m.r22, m.r32,
 		m.r03, m.r13, m.r23, m.r33
 	]);
+	/* eslint-enable array-element-newline */
 }
 
 export function assignColumnF32(r:Float32Array, m:Matrix4) : Float32Array {
@@ -685,12 +690,14 @@ export function assignColumnF32(r:Float32Array, m:Matrix4) : Float32Array {
 }
 
 export function toColumnF64(m:Matrix4) : Float64Array {
+	/* eslint-disable array-element-newline */
 	return new Float64Array([
 		m.r00, m.r10, m.r20, m.r30,
 		m.r01, m.r11, m.r21, m.r31,
 		m.r02, m.r12, m.r22, m.r32,
 		m.r03, m.r13, m.r23, m.r33
 	]);
+	/* eslint-enable array-element-newline */
 }
 
 export function assignColumnF64(r:Float64Array, m:Matrix4) : Float64Array {

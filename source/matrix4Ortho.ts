@@ -9,8 +9,8 @@ export interface OrthographicLens {
 }
 
 
-const max = Math.max;
-const min = Math.min;
+const maxOf = Math.max;
+const minOf = Math.min;
 
 const EXTEND_MIN = 1e-10;
 const EXTEND_MAX = 1e10;
@@ -30,10 +30,10 @@ export function Ortho(lens:OrthographicLens) : Matrix4 {
 }
 
 export function ortho<R extends Matrix4>(r:R, lens:OrthographicLens) : R {
-	const extend = min(max(lens.extend, EXTEND_MIN), EXTEND_MAX);
-	const aspect = min(max(lens.aspect, ASPECT_MIN), ASPECT_MAX);
-	const near = -min(max(lens.near, ZPLANE_MIN), ZPLANE_MAX);
-	const far = -min(max(lens.far, near), ZPLANE_MAX);
+	const extend = minOf(maxOf(lens.extend, EXTEND_MIN), EXTEND_MAX);
+	const aspect = minOf(maxOf(lens.aspect, ASPECT_MIN), ASPECT_MAX);
+	const near = -minOf(maxOf(lens.near, ZPLANE_MIN), ZPLANE_MAX);
+	const far = -minOf(maxOf(lens.far, near), ZPLANE_MAX);
 
 	const zdiff = 1.0 / (far - near);
 

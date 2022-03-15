@@ -1,28 +1,15 @@
+/* eslint key-spacing : [ error, { beforeColon : true, afterColon : true, mode : "minimum" }] */
+/* eslint no-multi-spaces : [ off ] */
+/* eslint space-in-parens : [ warn, never] */
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
 import * as vector2 from '../source/vector2';
 import * as matrix2 from '../source/matrix2';
 import * as matrix3 from '../source/matrix3';
+import { assertEqualsVec2 as assertEquals } from './assert/assert';
 
 
 const epsilon = 1e-10;
-
-function assertEquals(v:vector2.Vector2, w:vector2.Vector2, e:number, message?:string) : void {
-	const x = w.x - v.x;
-	const y = w.y - v.y;
-
-	if (
-		Number.isNaN(x) || x < -e || x > e ||
-		Number.isNaN(y) || y < -e || y > e
-	) {
-		throw new assert.AssertionError({
-			message,
-			actual : v,
-			expected : w,
-			operator : `!==[${ e }]`
-		});
-	}
-}
 
 
 describe('equals', () => {
@@ -64,7 +51,7 @@ describe('normSquared', () => {
 		assert.strictEqual(vector2.normSquared({ x : 2.0, y : 2.0 }), 8.0);
 		assert.strictEqual(vector2.normSquared({ x : Number.NaN, y : 1.0 }), Number.NaN);
 		assert.strictEqual(vector2.normSquared({ x : 1.0, y : Number.NaN }), Number.NaN);
-	})
+	});
 });
 
 describe('cross', () => {
@@ -108,16 +95,17 @@ describe('radians', () => {
 
 describe('Create', () => {
 	it('should return a Vector2', () => {
-		assert.deepStrictEqual(vector2.Create(), { x: 0.0, y: 0.0 });
-		assert.deepStrictEqual(vector2.Create(1.0), { x: 1.0, y: 0.0 });
-		assert.deepStrictEqual(vector2.Create(0.0, 1.0), { x: 0.0, y: 1.0 });
+		assert.deepStrictEqual(vector2.Create(), { x : 0.0, y : 0.0 });
+		assert.deepStrictEqual(vector2.Create(1.0), { x : 1.0, y : 0.0 });
+		assert.deepStrictEqual(vector2.Create(0.0, 1.0), { x : 0.0, y : 1.0 });
 	});
 });
 
 describe('assign', () => {
-	it ('should assign a Vector2', () => {
+	it('should assign a Vector2', () => {
 		const v = vector2.Create();
 		const r = vector2.assign(v, 1.0, 2.0);
+
 		assert.deepStrictEqual(v, { x : 1.0, y : 2.0 });
 		assert.strictEqual(v, r);
 
@@ -198,6 +186,7 @@ describe('rotation', () => {
 	it('should set a Vector2 to represent rad', () => {
 		const v = vector2.Create();
 		const r = vector2.rotation(v, 0.0);
+
 		assertEquals(r, { x : 1.0, y : 0.0 }, epsilon);
 		assert.deepStrictEqual(v, r);
 
@@ -231,6 +220,7 @@ describe('barycentricUV', () => {
 
 		const v = vector2.Create();
 		const r = vector2.barycentricUV(v, vx0, vx1, vx2, 0.0, 0.0);
+
 		assertEquals(r, { x : -1.0, y : -1.0 }, epsilon);
 		assert.strictEqual(v, r);
 
@@ -259,7 +249,8 @@ describe('Add', () => {
 describe('add', () => {
 	it('should set a Vector2 to represent an addition', () => {
 		const v = vector2.Create();
-		const r = vector2.add(v, vector2.Create( 2.0, 4.0), vector2.Create( 1.0,  3.0));
+		const r = vector2.add(v, vector2.Create(2.0, 4.0), vector2.Create(1.0,  3.0));
+
 		assertEquals(r, { x : 3.0, y : 7.0 }, epsilon);
 		assert.strictEqual(v, r);
 
@@ -273,7 +264,8 @@ describe('add', () => {
 describe('addAssign', () => {
 	it('should set a Vector2 to represent an addition', () => {
 		const v = vector2.Create(2.0, 4.0);
-		const r = vector2.addAssign(v, vector2.Create( 1.0,  3.0));
+		const r = vector2.addAssign(v, vector2.Create(1.0,  3.0));
+
 		assertEquals(r, { x : 3.0, y : 7.0 }, epsilon);
 		assert.strictEqual(v, r);
 
@@ -297,7 +289,8 @@ describe('Subtract', () => {
 describe('subtract', () => {
 	it('should set a Vector2 to represent a subtraction', () => {
 		const v = vector2.Create();
-		const r = vector2.subtract(v, vector2.Create(2.0, 4.0), vector2.Create( 1.0,  3.0));
+		const r = vector2.subtract(v, vector2.Create(2.0, 4.0), vector2.Create(1.0,  3.0));
+
 		assertEquals(r, { x : 1.0, y : 1.0 }, epsilon);
 		assert.strictEqual(v, r);
 
@@ -311,7 +304,8 @@ describe('subtract', () => {
 describe('subtractAssign', () => {
 	it('should set a Vector2 to represent a subtraction', () => {
 		const v = vector2.Create(2.0, 4.0);
-		const r = vector2.subtractAssign(v, vector2.Create( 1.0,  3.0));
+		const r = vector2.subtractAssign(v, vector2.Create(1.0,  3.0));
+
 		assertEquals(r, { x : 1.0, y : 1.0 }, epsilon);
 		assert.strictEqual(v, r);
 
@@ -335,7 +329,8 @@ describe('MultiplyScalar', () => {
 describe('multiplyScalar', () => {
 	it('should set a Vector2 to represent a scalar multiplication', () => {
 		const v = vector2.Create();
-		const r = vector2.multiplyScalar(v, vector2.Create( 2.0, 4.0), 2);
+		const r = vector2.multiplyScalar(v, vector2.Create(2.0, 4.0), 2);
+
 		assertEquals(r, { x : 4.0, y : 8.0 }, epsilon);
 		assert.strictEqual(v, r);
 
@@ -350,6 +345,7 @@ describe('multiplyAssignScalar', () => {
 	it('should set a Vector2 to represent a scalar multiplication', () => {
 		const v = vector2.Create(2.0, 4.0);
 		const r = vector2.multiplyAssignScalar(v, 2.0);
+
 		assertEquals(r, { x : 4.0, y : 8.0 }, epsilon);
 		assert.strictEqual(v, r);
 
@@ -379,6 +375,7 @@ describe('multiplyMatrix2', () => {
 		const v = vector2.Create(2.0, 1.0);
 		const w = vector2.Create();
 		const r = vector2.multiplyMatrix2(w, matrix2.Identity(), v);
+
 		assertEquals(r, { x : 2.0, y : 1.0 }, epsilon);
 		assert.strictEqual(w, r);
 
@@ -411,6 +408,7 @@ describe('multiply2x3Matrix3', () => {
 		const v = vector2.Create(2.0, 1.0);
 		const w = vector2.Create();
 		const r = vector2.multiply2x3Matrix3(w, matrix3.Identity(), v);
+
 		assertEquals(r, { x : 2.0, y : 1.0 }, epsilon);
 		assert.strictEqual(w, r);
 
@@ -444,6 +442,7 @@ describe('multiplyMatrix3', () => {
 		const v = vector2.Create(2.0, 1.0);
 		const w = vector2.Create();
 		const r = vector2.multiplyMatrix3(w, matrix3.Identity(), v);
+
 		assertEquals(r, { x : 2.0, y : 1.0 }, epsilon);
 		assert.strictEqual(w, r);
 
@@ -481,7 +480,8 @@ describe('lerp', () => {
 		assert.deepStrictEqual(vector2.lerp(v, vector2.Create(), vector2.Create(Number.NaN), 0.0), { x : Number.NaN, y : 0.0 });
 		assert.deepStrictEqual(vector2.lerp(v, vector2.Create(), vector2.Create(0.0, Number.NaN), 0.0), { x : 0.0, y : Number.NaN });
 
-		const r = vector2.lerp(v, vector2.Create(), vector2.Create(), 0.0)
+		const r = vector2.lerp(v, vector2.Create(), vector2.Create(), 0.0);
+
 		assertEquals(r, { x : 0.0, y : 0.0 }, epsilon);
 		assert.strictEqual(v, r);
 
@@ -506,6 +506,7 @@ describe('lerpAssign', () => {
 
 		const v = vector2.Create();
 		const r = vector2.lerpAssign(v, vector2.Create(1.0, 2.0), 0.5);
+
 		assertEquals(r, { x : 0.5, y : 1.0 }, epsilon);
 		assert.strictEqual(v, r);
 
@@ -515,11 +516,11 @@ describe('lerpAssign', () => {
 
 describe('Project', () => {
 	it('should return a Vector2 representing a projection', () => {
-		assert.deepStrictEqual(vector2.Project(vector2.Create(), vector2.Create(0.5, 0.5)), { x: Number.NaN, y : Number.NaN });
-		assertEquals(vector2.Project(vector2.AxisY(), vector2.Create(0.5, 0.5)), { x: 0.0, y : 0.5 }, epsilon);
-		assertEquals(vector2.Project(vector2.AxisX(), vector2.Create(0.5, 0.5)), { x: 0.5, y : 0.0 }, epsilon);
-		assertEquals(vector2.Project(vector2.AxisY(-1.0), vector2.Create(0.5, 0.5)), { x: 0.0, y : 0.5 }, epsilon);
-		assertEquals(vector2.Project(vector2.AxisX(-1.0), vector2.Create(0.5, 0.5)), { x: 0.5, y : 0.0 }, epsilon);
+		assert.deepStrictEqual(vector2.Project(vector2.Create(), vector2.Create(0.5, 0.5)), { x : Number.NaN, y : Number.NaN });
+		assertEquals(vector2.Project(vector2.AxisY(), vector2.Create(0.5, 0.5)), { x : 0.0, y : 0.5 }, epsilon);
+		assertEquals(vector2.Project(vector2.AxisX(), vector2.Create(0.5, 0.5)), { x : 0.5, y : 0.0 }, epsilon);
+		assertEquals(vector2.Project(vector2.AxisY(-1.0), vector2.Create(0.5, 0.5)), { x : 0.0, y : 0.5 }, epsilon);
+		assertEquals(vector2.Project(vector2.AxisX(-1.0), vector2.Create(0.5, 0.5)), { x : 0.5, y : 0.0 }, epsilon);
 		assertEquals(vector2.Project(vector2.Create(1.0, 1.0), vector2.AxisY(0.5)), { x : 0.25, y : 0.25 }, epsilon);
 	});
 });
@@ -528,13 +529,14 @@ describe('project', () => {
 	it('should set a Vector2 to represent a projection', () => {
 		const v = vector2.Create();
 		const r = vector2.project(v, vector2.AxisY(), vector2.Create(0.5, 0.5));
-		assertEquals(r, { x: 0.0, y : 0.5 }, epsilon);
+
+		assertEquals(r, { x : 0.0, y : 0.5 }, epsilon);
 		assert.strictEqual(v, r);
 
-		assert.deepStrictEqual(vector2.project(v, vector2.Create(), vector2.Create(0.5, 0.5)), { x: Number.NaN, y : Number.NaN });
-		assertEquals(vector2.project(v, vector2.AxisX(), vector2.Create(0.5, 0.5)), { x: 0.5, y : 0.0 }, epsilon);
-		assertEquals(vector2.project(v, vector2.AxisY(-1.0), vector2.Create(0.5, 0.5)), { x: 0.0, y : 0.5 }, epsilon);
-		assertEquals(vector2.project(v, vector2.AxisX(-1.0), vector2.Create(0.5, 0.5)), { x: 0.5, y : 0.0 }, epsilon);
+		assert.deepStrictEqual(vector2.project(v, vector2.Create(), vector2.Create(0.5, 0.5)), { x : Number.NaN, y : Number.NaN });
+		assertEquals(vector2.project(v, vector2.AxisX(), vector2.Create(0.5, 0.5)), { x : 0.5, y : 0.0 }, epsilon);
+		assertEquals(vector2.project(v, vector2.AxisY(-1.0), vector2.Create(0.5, 0.5)), { x : 0.0, y : 0.5 }, epsilon);
+		assertEquals(vector2.project(v, vector2.AxisX(-1.0), vector2.Create(0.5, 0.5)), { x : 0.5, y : 0.0 }, epsilon);
 		assertEquals(vector2.project(v, vector2.Create(1.0, 1.0), vector2.AxisY(0.5)), { x : 0.25, y : 0.25 }, epsilon);
 	});
 });
@@ -560,6 +562,7 @@ describe('reflect', () => {
 		assertEquals(vector2.reflect(v, vector2.AxisY(), vector2.AxisY()), vector2.AxisY(), epsilon);
 
 		const r = vector2.reflect(v, vector2.Normalize(vector2.Create(1.0, 1.0)), vector2.AxisX());
+
 		assertEquals(r, vector2.AxisY(), epsilon);
 		assert.strictEqual(v, r);
 
@@ -588,7 +591,8 @@ describe('normalize', () => {
 		const v = vector2.AxisX(2.0);
 		const w = vector2.Create();
 		const r = vector2.normalize(w, v);
-		assertEquals(w, { x: 1.0, y : 0.0 }, epsilon);
+
+		assertEquals(w, { x : 1.0, y : 0.0 }, epsilon);
 		assert.strictEqual(w, r);
 
 		assertEquals(vector2.normalize(w, vector2.Create()), { x : 0.0, y : 0.0 }, epsilon);
@@ -607,10 +611,10 @@ describe('normalize', () => {
 describe('Perpendicular', () => {
 	it('should return a Vector2 representing a perpendicularization', () => {
 		assertEquals(vector2.Perpendicular(vector2.Create()), { x : 0.0, y : 0.0 }, epsilon);
-		assertEquals(vector2.Perpendicular(vector2.AxisX()), { x : 0.0, y : 1.0}, epsilon);
-		assertEquals(vector2.Perpendicular(vector2.AxisY()), { x : -1.0, y : 0.0}, epsilon);
-		assertEquals(vector2.Perpendicular(vector2.AxisX(-2.0)), { x : 0.0, y : -2.0}, epsilon);
-		assertEquals(vector2.Perpendicular(vector2.AxisY(-2.0)), { x : 2.0, y : 0.0}, epsilon);
+		assertEquals(vector2.Perpendicular(vector2.AxisX()), { x : 0.0, y : 1.0 }, epsilon);
+		assertEquals(vector2.Perpendicular(vector2.AxisY()), { x : -1.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.Perpendicular(vector2.AxisX(-2.0)), { x : 0.0, y : -2.0 }, epsilon);
+		assertEquals(vector2.Perpendicular(vector2.AxisY(-2.0)), { x : 2.0, y : 0.0 }, epsilon);
 		assertEquals(vector2.Perpendicular(vector2.Create(0.5, 1.0)), { x : -1.0, y : 0.5 }, epsilon);
 	});
 });
@@ -620,13 +624,14 @@ describe('perpendicular', () => {
 		const v = vector2.AxisX();
 		const w = vector2.Create();
 		const r = vector2.perpendicular(w, v);
+
 		assertEquals(w, { x : 0.0, y : 1.0 }, epsilon);
 		assert.strictEqual(w, r);
 
 		assertEquals(vector2.perpendicular(w, vector2.Create()), { x : 0.0, y : 0.0 }, epsilon);
-		assertEquals(vector2.perpendicular(w, vector2.AxisY()), { x : -1.0, y : 0.0}, epsilon);
-		assertEquals(vector2.perpendicular(w, vector2.AxisX(-2.0)), { x : 0.0, y : -2.0}, epsilon);
-		assertEquals(vector2.perpendicular(w, vector2.AxisY(-2.0)), { x : 2.0, y : 0.0}, epsilon);
+		assertEquals(vector2.perpendicular(w, vector2.AxisY()), { x : -1.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.perpendicular(w, vector2.AxisX(-2.0)), { x : 0.0, y : -2.0 }, epsilon);
+		assertEquals(vector2.perpendicular(w, vector2.AxisY(-2.0)), { x : 2.0, y : 0.0 }, epsilon);
 		assertEquals(vector2.perpendicular(w, vector2.Create(0.5, 1.0)), { x : -1.0, y : 0.5 }, epsilon);
 	});
 });
@@ -646,6 +651,7 @@ describe('negate', () => {
 		assert.deepStrictEqual(vector2.negate(v, vector2.Create(0.0, 0.0)), vector2.Create(-0.0, -0.0));
 
 		const r = vector2.negate(v, vector2.Create(1.0, -2.0));
+
 		assert.deepStrictEqual(r, vector2.Create(-1.0, 2.0));
 		assert.strictEqual(v, r);
 
@@ -657,8 +663,9 @@ describe('negateAssign', () => {
 	it('should return the additive inverse of a vector', () => {
 		assert.deepStrictEqual(vector2.negateAssign(vector2.Create(0.0, 0.0)), vector2.Create(-0.0, -0.0));
 
-		const v = vector2.Create(1.0, -2.0)
+		const v = vector2.Create(1.0, -2.0);
 		const r = vector2.negateAssign(v);
+
 		assert.deepStrictEqual(r, vector2.Create(-1.0, 2.0));
 		assert.strictEqual(v, r);
 

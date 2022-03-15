@@ -1,0 +1,51 @@
+root: true
+parser: '@typescript-eslint/parser'
+parserOptions:
+  tsConfigRootDir: __dirname
+  project:
+    - ./tsconfig.eslint.json
+plugins:
+  - '@typescript-eslint'
+extends:
+  - '@chkt/eslint-config'
+rules:
+  'consistent-return' :
+    - warn
+    - treatUndefinedAsUnspecified : false
+  'object-property-newline': off
+  '@typescript-eslint/naming-convention':
+    - 'error'
+    - selector: 'default'
+      format:
+        - camelCase
+      leadingUnderscore: 'forbid'
+      trailingUnderscore: 'forbid'
+    - selector: 'variable'
+      modifiers:
+        - 'const'
+      format:
+        - camelCase
+        - UPPER_CASE
+    - selector: variable
+      modifiers:
+        - exported
+      types:
+        - function
+      format:
+        - strictCamelCase
+        - StrictPascalCase
+    - selector: 'function'
+      format:
+        - camelCase
+        - PascalCase
+    - selector: 'interface'
+      format:
+        - 'StrictPascalCase'
+    - selector: 'typeAlias'
+      format:
+        - 'StrictPascalCase'
+        - 'strictCamelCase'
+    - selector: 'typeParameter'
+      format:
+        - 'StrictPascalCase'
+  '@typescript-eslint/no-magic-numbers': off

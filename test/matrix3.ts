@@ -1,3 +1,5 @@
+/* eslint key-spacing : [ error, { beforeColon : true, afterColon : true, mode : "minimum" }] */
+/* eslint no-multi-spaces : [ off ] */
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
 import * as vec2 from '../source/vector2';
@@ -6,32 +8,11 @@ import * as vec4 from '../source/vector4';
 import * as mat2 from '../source/matrix2';
 import * as mat3 from '../source/matrix3';
 import * as mat4 from '../source/matrix4';
+import { assertEqualsMat3 as assertEquals } from './assert/assert';
 
 
 const epsilon = 1e-10;
 const turn = 2 * Math.PI;
-
-
-function assertEquals(actual:mat3.Matrix3, expected:mat3.Matrix3, e:number, message?:string) : void {
-	if (
-		Math.abs(expected.r00 - actual.r00) > e ||
-		Math.abs(expected.r10 - actual.r10) > e ||
-		Math.abs(expected.r20 - actual.r20) > e ||
-		Math.abs(expected.r01 - actual.r01) > e ||
-		Math.abs(expected.r11 - actual.r11) > e ||
-		Math.abs(expected.r21 - actual.r21) > e ||
-		Math.abs(expected.r02 - actual.r02) > e ||
-		Math.abs(expected.r12 - actual.r12) > e ||
-		Math.abs(expected.r22 - actual.r22) > e
-	) {
-		throw new assert.AssertionError({
-			actual,
-			expected,
-			message,
-			operator : `!==[${ e }]`
-		});
-	}
-}
 
 
 describe('equals', () => {
@@ -61,7 +42,7 @@ describe('determinant', () => {
 	it('should return the determinant of a Matrix3', () => {
 		assert.strictEqual(mat3.determinant(mat3.Identity()), 1.0);
 		assert.strictEqual(mat3.determinant(mat3.RotationZ(0.25 * Math.PI)), 1.0);
-		assert.strictEqual(mat3.determinant(mat3.RotationAxis(vec3.Normalize(vec3.Create(1.0, 1.0, 1.0 )), 0.25 * Math.PI)), 1.0);
+		assert.strictEqual(mat3.determinant(mat3.RotationAxis(vec3.Normalize(vec3.Create(1.0, 1.0, 1.0)), 0.25 * Math.PI)), 1.0);
 		assert.strictEqual(mat3.determinant(mat3.ShearVector2(vec2.AxisX(), vec2.AxisY(2.0))), 2.0);
 		assert.strictEqual(mat3.determinant(mat3.ShearVector2(vec2.AxisX(2.0), vec2.AxisY())), 2.0);
 		assert.strictEqual(mat3.determinant(mat3.ShearTranslation(vec2.AxisX(2.0), vec2.AxisY(), vec2.Create(1.0, 1.0))), 2.0);
@@ -89,6 +70,7 @@ describe('identity', () => {
 			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		};
 		const r = mat3.identity(m);
+
 		assertEquals(r, {
 			r00 : 1.0, r10 : 0.0, r20 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0,
@@ -118,6 +100,7 @@ describe('rotationAxis', () => {
 		assertEquals(mat3.rotationAxis(m, vec3.Normalize(vec3.Create(1.0, 1.0, 1.0)), 0.0), mat3.Identity(), epsilon);
 
 		const r = mat3.rotationAxis(m, vec3.AxisX(), 0.25 * Math.PI);
+
 		assertEquals(r, mat3.RotationX(0.25 * Math.PI), epsilon);
 		assert.strictEqual(m, r);
 
@@ -144,6 +127,7 @@ describe('rotationX', () => {
 		assertEquals(mat3.rotationX(m, 0.0), mat3.Identity(), epsilon);
 
 		const r = mat3.rotationX(m, 0.5 * Math.PI);
+
 		assertEquals(r, {
 			r00 : 1.0, r10 : 0.0, r20 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 1.0,
@@ -171,6 +155,7 @@ describe('rotationY', () => {
 		assertEquals(mat3.rotationY(m, 0.0), mat3.Identity(), epsilon);
 
 		const r = mat3.rotationY(m, 0.5 * Math.PI);
+
 		assertEquals(r, {
 			r00 : 0.0, r10 : 0.0, r20 : -1.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0,
@@ -198,6 +183,7 @@ describe('rotationZ', () => {
 		assertEquals(mat3.rotationZ(m, 0.0), mat3.Identity(), epsilon);
 
 		const r = mat3.rotationZ(m, 0.5 * Math.PI);
+
 		assertEquals(r, {
 			r00 : 0.0, r10 : 1.0, r20 : 0.0,
 			r01 : -1.0, r11 : 0.0, r21 : 0.0,
@@ -211,9 +197,9 @@ describe('RotationZVector2', () => {
 	it('should return a Matrix3 representing a z-axis rotation', () => {
 		assertEquals(mat3.RotationZVector2(vec2.AxisX()), mat3.Identity(), epsilon);
 		assertEquals(mat3.RotationZVector2(vec2.AxisY()), {
-			r00: 0.0, r10: 1.0, r20: 0.0,
-			r01: -1.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0
+			r00 : 0.0, r10 : 1.0, r20 : 0.0,
+			r01 : -1.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0
 		}, epsilon);
 	});
 });
@@ -225,10 +211,11 @@ describe('rotationZVector2', () => {
 		assertEquals(mat3.rotationZVector2(m, vec2.AxisX()), mat3.Identity(), epsilon);
 
 		const r = mat3.rotationZVector2(m, vec2.AxisY());
+
 		assertEquals(r, {
-			r00: 0.0, r10: 1.0, r20: 0.0,
-			r01: -1.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0
+			r00 : 0.0, r10 : 1.0, r20 : 0.0,
+			r01 : -1.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0
 		}, epsilon);
 		assert.strictEqual(m, r);
 	});
@@ -238,9 +225,9 @@ describe('RotationZMatrix2', () => {
 	it('should return a Matrix3 representing a z-axis rotation', () => {
 		assertEquals(mat3.RotationZMatrix2(mat2.Rotation(0.0)), mat3.Identity(), epsilon);
 		assertEquals(mat3.RotationZMatrix2(mat2.Rotation(0.5 * Math.PI)), {
-			r00: 0.0, r10: 1.0, r20: 0.0,
-			r01: -1.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0
+			r00 : 0.0, r10 : 1.0, r20 : 0.0,
+			r01 : -1.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0
 		}, epsilon);
 	});
 });
@@ -252,10 +239,11 @@ describe('rotationZMatrix2', () => {
 		assertEquals(mat3.rotationZMatrix2(m, mat2.Rotation(0.0)), mat3.Identity(), epsilon);
 
 		const r = mat3.rotationZMatrix2(m, mat2.Rotation(0.5 * Math.PI));
+
 		assertEquals(r, {
-			r00: 0.0, r10: 1.0, r20: 0.0,
-			r01: -1.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0
+			r00 : 0.0, r10 : 1.0, r20 : 0.0,
+			r01 : -1.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0
 		}, epsilon);
 		assert.strictEqual(m, r);
 	});
@@ -284,6 +272,7 @@ describe('rotationVector3', () => {
 		assertEquals(mat3.rotationVector3(m, vec3.AxisX(), vec3.AxisY()), mat3.Identity(), epsilon);
 
 		const r = mat3.rotationVector3(m, vec3.AxisY(), vec3.AxisX(-1.0));
+
 		assertEquals(r, {
 			r00 : 0.0, r10 : 1.0, r20 : 0.0,
 			r01 : -1.0, r11 : 0.0, r21 : 0.0,
@@ -307,7 +296,7 @@ describe('EulerXYZ', () => {
 		assertEquals(mat3.EulerXYZ(vec3.Create(0.0, 0.0, 0.25 * turn)), mat3.RotationZ(0.25 * turn), epsilon);
 		assertEquals(
 			mat3.EulerXYZ(vec3.Create(0.1 * turn, 0.2 * turn, 0.3 * turn)),
-			mat3.Concat(mat3.RotationX(0.1 * turn), mat3.Concat(mat3.RotationY(0.2 *  turn), mat3.RotationZ(0.3 * turn))),
+			mat3.Concat(mat3.RotationX(0.1 * turn), mat3.Concat(mat3.RotationY(0.2 * turn), mat3.RotationZ(0.3 * turn))),
 			epsilon
 		);
 	});
@@ -320,6 +309,7 @@ describe('eulerXYZ', () => {
 		assertEquals(mat3.eulerXYZ(m, vec3.Create()), mat3.Identity(), epsilon);
 
 		const r = mat3.eulerXYZ(m, vec3.Create(0.25 * turn));
+
 		assertEquals(r, mat3.RotationX(0.25 * turn), epsilon);
 		assert.strictEqual(m, r);
 
@@ -327,7 +317,7 @@ describe('eulerXYZ', () => {
 		assertEquals(mat3.eulerXYZ(m, vec3.Create(0.0, 0.0, 0.25 * turn)), mat3.RotationZ(0.25 * turn), epsilon);
 		assertEquals(
 			mat3.eulerXYZ(m, vec3.Create(0.1 * turn, 0.2 * turn, 0.3 * turn)),
-			mat3.Concat(mat3.RotationX(0.1 * turn), mat3.Concat(mat3.RotationY(0.2 *  turn), mat3.RotationZ(0.3 * turn))),
+			mat3.Concat(mat3.RotationX(0.1 * turn), mat3.Concat(mat3.RotationY(0.2 * turn), mat3.RotationZ(0.3 * turn))),
 			epsilon
 		);
 	});
@@ -341,7 +331,7 @@ describe('EulerYXZ', () => {
 		assertEquals(mat3.EulerYXZ(vec3.Create(0.0, 0.0, 0.25 * turn)), mat3.RotationZ(0.25 * turn), epsilon);
 		assertEquals(
 			mat3.EulerYXZ(vec3.Create(0.1 * turn, 0.2 * turn, 0.3 * turn)),
-			mat3.Concat(mat3.RotationY(0.2 * turn), mat3.Concat(mat3.RotationX(0.1 *  turn), mat3.RotationZ(0.3 * turn))),
+			mat3.Concat(mat3.RotationY(0.2 * turn), mat3.Concat(mat3.RotationX(0.1 * turn), mat3.RotationZ(0.3 * turn))),
 			epsilon
 		);
 	});
@@ -354,6 +344,7 @@ describe('eulerYXZ', () => {
 		assertEquals(mat3.eulerYXZ(m, vec3.Create()), mat3.Identity(), epsilon);
 
 		const r = mat3.eulerYXZ(m, vec3.Create(0.25 * turn));
+
 		assertEquals(r, mat3.RotationX(0.25 * turn), epsilon);
 		assert.strictEqual(m, r);
 
@@ -361,7 +352,7 @@ describe('eulerYXZ', () => {
 		assertEquals(mat3.eulerYXZ(m, vec3.Create(0.0, 0.0, 0.25 * turn)), mat3.RotationZ(0.25 * turn), epsilon);
 		assertEquals(
 			mat3.eulerYXZ(m, vec3.Create(0.1 * turn, 0.2 * turn, 0.3 * turn)),
-			mat3.Concat(mat3.RotationY(0.2 * turn), mat3.Concat(mat3.RotationX(0.1 *  turn), mat3.RotationZ(0.3 * turn))),
+			mat3.Concat(mat3.RotationY(0.2 * turn), mat3.Concat(mat3.RotationX(0.1 * turn), mat3.RotationZ(0.3 * turn))),
 			epsilon
 		);
 	});
@@ -375,7 +366,7 @@ describe('EulerZXY', () => {
 		assertEquals(mat3.EulerZXY(vec3.Create(0.0, 0.0, 0.25 * turn)), mat3.RotationZ(0.25 * turn), epsilon);
 		assertEquals(
 			mat3.EulerZXY(vec3.Create(0.1 * turn, 0.2 * turn, 0.3 * turn)),
-			mat3.Concat(mat3.RotationZ(0.3 * turn), mat3.Concat(mat3.RotationX(0.1 *  turn), mat3.RotationY(0.2 * turn))),
+			mat3.Concat(mat3.RotationZ(0.3 * turn), mat3.Concat(mat3.RotationX(0.1 * turn), mat3.RotationY(0.2 * turn))),
 			epsilon
 		);
 	});
@@ -388,6 +379,7 @@ describe('eulerZXY', () => {
 		assertEquals(mat3.eulerZXY(m, vec3.Create()), mat3.Identity(), epsilon);
 
 		const r = mat3.eulerZXY(m, vec3.Create(0.25 * turn));
+
 		assertEquals(r, mat3.RotationX(0.25 * turn), epsilon);
 		assert.strictEqual(m, r);
 
@@ -395,7 +387,7 @@ describe('eulerZXY', () => {
 		assertEquals(mat3.eulerZXY(m, vec3.Create(0.0, 0.0, 0.25 * turn)), mat3.RotationZ(0.25 * turn), epsilon);
 		assertEquals(
 			mat3.eulerZXY(m, vec3.Create(0.1 * turn, 0.2 * turn, 0.3 * turn)),
-			mat3.Concat(mat3.RotationZ(0.3 * turn), mat3.Concat(mat3.RotationX(0.1 *  turn), mat3.RotationY(0.2 * turn))),
+			mat3.Concat(mat3.RotationZ(0.3 * turn), mat3.Concat(mat3.RotationX(0.1 * turn), mat3.RotationY(0.2 * turn))),
 			epsilon
 		);
 	});
@@ -417,6 +409,7 @@ describe('quaternion', () => {
 		assertEquals(mat3.quaternion(m, vec4.Create()), mat3.Identity(), epsilon);
 
 		const r = mat3.quaternion(m, vec4.RotationAxis(vec3.Create(1.0), 0.25 * turn));
+
 		assertEquals(m, mat3.RotationX(0.25 * turn), epsilon);
 		assert.strictEqual(m, r);
 
@@ -439,6 +432,7 @@ describe('scaleVector2', () => {
 	it('should set a Matrix3 to represent a scaling', () => {
 		const m = mat3.Identity();
 		const r = mat3.scaleVector2(m, vec2.Create(2.0, 3.0));
+
 		assertEquals(r, {
 			r00 : 2.0, r10 : 0.0, r20 : 0.0,
 			r01 : 0.0, r11 : 3.0, r12 : 0.0,
@@ -462,6 +456,7 @@ describe('scale', () => {
 	it('should set a Matrix3 to represent a scaling', () => {
 		const m = mat3.Identity();
 		const r = mat3.scale(m, vec3.Create(2.0, 3.0, 4.0));
+
 		assertEquals(r, {
 			r00 : 2.0, r10 : 0.0, r20 : 0.0,
 			r01 : 0.0, r11 : 3.0, r12 : 0.0,
@@ -485,6 +480,7 @@ describe('translation', () => {
 	it('should set a Matrix3 to represent a translation', () => {
 		const m = mat3.Identity();
 		const r = mat3.translation(m, vec2.Create(2.0, 3.0));
+
 		assertEquals(r, {
 			r00 : 1.0, r10 : 0.0, r20 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0,
@@ -508,6 +504,7 @@ describe('shearVector2', () => {
 	it('should set a Matrix3 to represent a shear', () => {
 		const m = mat3.Identity();
 		const r = mat3.shearVector2(m, vec2.Create(1.0, 2.0), vec2.Create(3.0, 4.0));
+
 		assertEquals(r, {
 			r00 : 1.0, r10 : 2.0, r20 : 0.0,
 			r01 : 3.0, r11 : 4.0, r21 : 0.0,
@@ -534,11 +531,13 @@ describe('Shear', () => {
 describe('shear', () => {
 	it('should set a Matrix3 to represent a shear', () => {
 		const m = mat3.Identity();
-		const r = mat3.shear(m,
+		const r = mat3.shear(
+			m,
 			vec3.Create(1.0, 2.0, 3.0),
 			vec3.Create(4.0, 5.0, 6.0),
 			vec3.Create(7.0, 8.0, 9.0)
 		);
+
 		assertEquals(r, {
 			r00 : 1.0, r10 : 2.0, r20 : 3.0,
 			r01 : 4.0, r11 : 5.0, r21 : 6.0,
@@ -566,6 +565,7 @@ describe('shearTranslation', () => {
 	it('should set a Matrix3 to represent a shear and translation', () => {
 		const m = mat3.Identity();
 		const r = mat3.shearTranslation(m, vec2.Create(1.0, 2.0), vec2.Create(3.0, 4.0), vec2.Create(5.0, 6.0));
+
 		assertEquals(r, {
 			r00 : 1.0, r10 : 2.0, r20 : 0.0,
 			r01 : 3.0, r11 : 4.0, r21 : 0.0,
@@ -599,6 +599,7 @@ describe('shearMatrix4', () => {
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
 		});
+
 		assertEquals(r, {
 			r00 : 1.0, r10 :  2.0, r20 :  3.0,
 			r01 : 5.0, r11 :  6.0, r21 :  7.0,
@@ -638,6 +639,7 @@ describe('add', () => {
 			r01 : 0.05, r11 : 0.06, r21 : 0.07,
 			r02 : 0.09, r12 : 0.10, r22 : 0.11
 		});
+
 		assertEquals(r, {
 			r00 : 1.01, r10 :  2.02, r20 :  3.03,
 			r01 : 5.05, r11 :  6.06, r21 :  7.07,
@@ -659,6 +661,7 @@ describe('addAssign', () => {
 			r01 : 0.05, r11 : 0.06, r21 : 0.07,
 			r02 : 0.09, r12 : 0.10, r22 : 0.11
 		});
+
 		assertEquals(r, {
 			r00 : 1.01, r10 :  2.02, r20 :  3.03,
 			r01 : 5.05, r11 :  6.06, r21 :  7.07,
@@ -698,6 +701,7 @@ describe('subtract', () => {
 			r01 : 0.05, r11 : 0.06, r21 : 0.07,
 			r02 : 0.09, r12 : 0.10, r22 : 0.11
 		});
+
 		assertEquals(r, {
 			r00 : 1.0, r10 :  2.0, r20 :  3.0,
 			r01 : 5.0, r11 :  6.0, r21 :  7.0,
@@ -719,6 +723,7 @@ describe('subtractAssign', () => {
 			r01 : 0.05, r11 : 0.06, r21 : 0.07,
 			r02 : 0.09, r12 : 0.10, r22 : 0.11
 		});
+
 		assertEquals(r, {
 			r00 : 1.0, r10 :  2.0, r20 :  3.0,
 			r01 : 5.0, r11 :  6.0, r21 :  7.0,
@@ -751,6 +756,7 @@ describe('concatScaleVector2', () => {
 		assertEquals(mat3.concatScaleVector2(m, mat3.Identity(), vec2.Create(1.0, 1.0)), mat3.Identity(), epsilon);
 
 		const r = mat3.concatScaleVector2(m, mat3.Translation(vec2.Create(2.0, 3.0)), vec2.Create(4.0, 5.0));
+
 		assertEquals(
 			r,
 			mat3.Concat(mat3.Translation(vec2.Create(2.0, 3.0)), mat3.ScaleVector2(vec2.Create(4.0, 5.0))),
@@ -789,6 +795,7 @@ describe('concatTranslation', () => {
 		assertEquals(mat3.concatTranslation(m, mat3.Identity(), vec2.Create()), mat3.Identity(), epsilon);
 
 		const r = mat3.concatTranslation(m, mat3.Translation(vec2.Create(2.0, 3.0)), vec2.Create(4.0, 5.0));
+
 		assertEquals(
 			r,
 			mat3.Concat(mat3.Translation(vec2.Create(2.0, 3.0)), mat3.Translation(vec2.Create(4.0, 5.0))),
@@ -827,6 +834,7 @@ describe('concatMatrix2', () => {
 		assertEquals(mat3.concatMatrix2(m, mat3.Identity(), mat2.Identity()), mat3.Identity(), epsilon);
 
 		const r = mat3.concatMatrix2(m, mat3.Translation(vec2.Create(2.0, 3.0)), mat2.Rotation(0.25 * Math.PI));
+
 		assertEquals(
 			r,
 			mat3.Concat(mat3.Translation(vec2.Create(2.0, 3.0)), mat3.RotationZ(0.25 * Math.PI)),
@@ -876,6 +884,7 @@ describe('concat2x3', () => {
 		assertEquals(mat3.concat2x3(m, mat3.Identity(), mat3.Identity()), mat3.Identity(), epsilon);
 
 		const r = mat3.concat2x3(m, mat3.RotationZ(0.25 * Math.PI), mat3.RotationZ(0.25 * Math.PI));
+
 		assertEquals(r, mat3.RotationZ(0.5 * Math.PI), epsilon);
 		assert.strictEqual(m, r);
 
@@ -946,6 +955,7 @@ describe('concat', () => {
 		assertEquals(mat3.concat(m, mat3.Identity(), mat3.Identity()), mat3.Identity(), epsilon);
 
 		const r = mat3.concat(m, mat3.RotationZ(0.25 * Math.PI), mat3.RotationZ(0.25 * Math.PI));
+
 		assertEquals(r, mat3.RotationZ(0.5 * Math.PI), epsilon);
 		assert.strictEqual(m, r);
 
@@ -986,54 +996,54 @@ describe('Inverse', () => {
 	it('should set a Matrix3 to represent an inversion', () => {
 		assertEquals(mat3.Inverse(mat3.Identity()) as mat3.Matrix3, mat3.Identity(), epsilon);
 		assert.strictEqual(mat3.Inverse({
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.Inverse({
-			r00: Number.NaN, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : Number.NaN, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.Inverse({
-			r00: 0.0, r10: Number.NaN, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : Number.NaN, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.Inverse({
-			r00: 0.0, r10: 0.0, r20: Number.NaN,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : Number.NaN,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.Inverse({
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: Number.NaN, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : Number.NaN, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.Inverse({
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: Number.NaN, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : Number.NaN, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.Inverse({
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: Number.NaN,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : Number.NaN,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.Inverse({
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: Number.NaN, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : Number.NaN, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.Inverse({
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: Number.NaN, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : Number.NaN, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.Inverse({
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: Number.NaN
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : Number.NaN
 		}), undefined);
 		assertEquals(
 			mat3.Inverse(mat3.Inverse(mat3.Translation(vec2.Create(1.0, 2.0))) as mat3.Matrix3) as mat3.Matrix3,
@@ -1064,57 +1074,58 @@ describe('inverse', () => {
 
 		assertEquals(mat3.inverse(m, mat3.Identity()) as mat3.Matrix3, mat3.Identity(), epsilon);
 		assert.strictEqual(mat3.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.inverse(m, {
-			r00: Number.NaN, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : Number.NaN, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.inverse(m, {
-			r00: 0.0, r10: Number.NaN, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : Number.NaN, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: Number.NaN,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : Number.NaN,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: Number.NaN, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : Number.NaN, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: Number.NaN, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : Number.NaN, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: Number.NaN,
-			r02: 0.0, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : Number.NaN,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: Number.NaN, r12: 0.0, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : Number.NaN, r12 : 0.0, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: Number.NaN, r22: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : Number.NaN, r22 : 0.0
 		}), undefined);
 		assert.strictEqual(mat3.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0,
-			r02: 0.0, r12: 0.0, r22: Number.NaN
+			r00 : 0.0, r10 : 0.0, r20 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : Number.NaN
 		}), undefined);
 
 		const r = mat3.inverse(m, mat3.inverse(m, mat3.Translation(vec2.Create(1.0, 2.0))) as mat3.Matrix3) as mat3.Matrix3;
+
 		assertEquals(r, mat3.Translation(vec2.Create(1.0, 2.0)), epsilon);
 		assert.strictEqual(m, r);
 

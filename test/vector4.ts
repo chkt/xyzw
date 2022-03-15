@@ -1,45 +1,16 @@
+/* eslint key-spacing : [ error, { beforeColon : true, afterColon : true, mode : "minimum" }] */
+/* eslint no-multi-spaces : [ off ]*/
+/* eslint space-in-parens : [ warn, never ] */
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
 import * as vec3 from '../source/vector3';
 import * as vec4 from '../source/vector4';
 import * as mat3 from '../source/matrix3';
+import { assertEqualsVec4 as assertEquals, assertEqualsScalar } from './assert/assert';
 
 
 const epsilon = 1e-10;
 const turn = 2.0 * Math.PI;
-
-
-function assertEqualsScalar(actual:number, expected:number, e:number, message?:string) : void {
-	if (Math.abs(actual - expected) > e) {
-		throw new assert.AssertionError({
-			message,
-			actual,
-			expected,
-			operator : `!==[${ e }]`
-		});
-	}
-}
-
-function assertEquals(v:vec4.Vector4, w:vec4.Vector4, e:number, message?:string) : void {
-	const dx = w.x - v.x;
-	const dy = w.y - v.y;
-	const dz = w.z - v.z;
-	const dw = w.w - v.w;
-
-	if (
-		Math.abs(dx) > e ||
-		Math.abs(dy) > e ||
-		Math.abs(dz) > e ||
-		Math.abs(dw) > e
-	) {
-		throw new assert.AssertionError({
-			message,
-			actual : v,
-			expected : w,
-			operator : `!==[${ e }]`
-		});
-	}
-}
 
 
 describe('equals', () => {
@@ -93,7 +64,7 @@ describe('normSquared', () => {
 		assert.strictEqual(vec4.normSquared({ x : 1.0, y : Number.NaN, z : 1.0, w : 1.0 }), Number.NaN);
 		assert.strictEqual(vec4.normSquared({ x : 1.0, y : 1.0, z : Number.NaN, w : 1.0 }), Number.NaN);
 		assert.strictEqual(vec4.normSquared({ x : 1.0, y : 1.0, z : 1.0, w : Number.NaN }), Number.NaN);
-	})
+	});
 });
 
 describe('dot', () => {
@@ -121,7 +92,7 @@ describe('dot', () => {
 		), 0.0);
 
 		assertEqualsScalar(vec4.dot(
-			vec4.Normalize(vec4.Create( 1.0, 1.0, 1.0, 1.0)),
+			vec4.Normalize(vec4.Create(1.0, 1.0, 1.0, 1.0)),
 			vec4.Normalize(vec4.Create(-1.0, 1.0, 1.0, 1.0))
 		), 0.5, epsilon);
 		assert.strictEqual(vec4.dot(vec4.Create(2.0, 0.0, 0.0, 0.0), vec4.Create(2.0, 0.0, 0.0, 0.0)),  4.0);
@@ -131,32 +102,34 @@ describe('dot', () => {
 
 describe('Create', () => {
 	it('should return a Vector4', () => {
-		assert.deepStrictEqual(vec4.Create(), { x: 0.0, y: 0.0, z : 0.0, w : 1.0 });
-		assert.deepStrictEqual(vec4.Create(1.0), { x: 1.0, y: 0.0, z : 0.0, w : 1.0 });
-		assert.deepStrictEqual(vec4.Create(0.0, 1.0), { x: 0.0, y: 1.0, z : 0.0, w : 1.0 });
-		assert.deepStrictEqual(vec4.Create(0.0, 1.0, 2.0), { x: 0.0, y: 1.0, z : 2.0, w : 1.0 });
-		assert.deepStrictEqual(vec4.Create(0.0, 1.0, 2.0, 3.0), { x: 0.0, y: 1.0, z : 2.0, w : 3.0 });
+		assert.deepStrictEqual(vec4.Create(), { x : 0.0, y : 0.0, z : 0.0, w : 1.0 });
+		assert.deepStrictEqual(vec4.Create(1.0), { x : 1.0, y : 0.0, z : 0.0, w : 1.0 });
+		assert.deepStrictEqual(vec4.Create(0.0, 1.0), { x : 0.0, y : 1.0, z : 0.0, w : 1.0 });
+		assert.deepStrictEqual(vec4.Create(0.0, 1.0, 2.0), { x : 0.0, y : 1.0, z : 2.0, w : 1.0 });
+		assert.deepStrictEqual(vec4.Create(0.0, 1.0, 2.0, 3.0), { x : 0.0, y : 1.0, z : 2.0, w : 3.0 });
 	});
 });
 
 describe('assign', () => {
-	it ('should assign a Vector4', () => {
+	it('should assign a Vector4', () => {
 		const v = vec4.Create();
 		const r = vec4.assign(v, 1.0, 2.0, 3.0, 4.0);
+
 		assert.deepStrictEqual(v, { x : 1.0, y : 2.0, z : 3.0, w : 4.0 });
 		assert.strictEqual(v, r);
 
-		assert.deepStrictEqual(vec4.assign(v), { x: 0.0, y: 0.0, z : 0.0, w : 1.0 });
-		assert.deepStrictEqual(vec4.assign(v, 2.0), { x: 2.0, y: 0.0, z : 0.0, w : 1.0 });
-		assert.deepStrictEqual(vec4.assign(v, 3.0, 2.0), { x: 3.0, y: 2.0, z : 0.0, w : 1.0 });
-		assert.deepStrictEqual(vec4.assign(v, 4.0, 3.0, 2.0), { x: 4.0, y: 3.0, z : 2.0, w : 1.0 });
-		assert.deepStrictEqual(vec4.assign(v, 5.0, 4.0, 3.0, 2.0), { x: 5.0, y: 4.0, z : 3.0, w : 2.0 });
+		assert.deepStrictEqual(vec4.assign(v), { x : 0.0, y : 0.0, z : 0.0, w : 1.0 });
+		assert.deepStrictEqual(vec4.assign(v, 2.0), { x : 2.0, y : 0.0, z : 0.0, w : 1.0 });
+		assert.deepStrictEqual(vec4.assign(v, 3.0, 2.0), { x : 3.0, y : 2.0, z : 0.0, w : 1.0 });
+		assert.deepStrictEqual(vec4.assign(v, 4.0, 3.0, 2.0), { x : 4.0, y : 3.0, z : 2.0, w : 1.0 });
+		assert.deepStrictEqual(vec4.assign(v, 5.0, 4.0, 3.0, 2.0), { x : 5.0, y : 4.0, z : 3.0, w : 2.0 });
 	});
 });
 
 describe('Vector3', () => {
 	it('should return a Vector4 representing a Vector3', () => {
 		assert.deepStrictEqual(vec4.Vector3(vec3.Create(2.0, 3.0, 4.0)), { x : 2.0, y : 3.0, z : 4.0, w : 1.0 });
+		assert.deepStrictEqual(vec4.Vector3(vec3.Create(2.0, 3.0, 4.0), 5.0), { x : 2.0, y : 3.0, z : 4.0, w : 5.0 });
 	});
 });
 
@@ -167,6 +140,8 @@ describe('vector3', () => {
 
 		assert.deepStrictEqual(r, { x : 2.0, y : 3.0, z : 4.0, w : 1.0 });
 		assert.strictEqual(v, r);
+
+		assert.deepStrictEqual(vec4.vector3(v, vec3.Create(2.0, 3.0, 4.0), 5.0), { x : 2.0, y : 3.0, z : 4.0, w : 5.0 });
 	});
 });
 
@@ -216,6 +191,7 @@ describe('rotationAxis', () => {
 		assertEquals(vec4.rotationAxis(q, vec3.AxisX(), 0.0), vec4.Create(), epsilon);
 
 		const r = vec4.rotationAxis(q, vec3.AxisX(), turn);
+
 		assertEquals(r, vec4.Create(0.0, 0.0, 0.0, -1.0), epsilon);
 		assert.strictEqual(q, r);
 
@@ -334,6 +310,7 @@ describe('rotationSlerp', () => {
 			vec4.RotationAxis(vec3.Create(1.0, 0.0, 0.0), 0.5 * turn),
 			-0.5
 		);
+
 		assertEquals(r, vec4.RotationAxis(vec3.Create(1.0, 0.0, 0.0), -0.25 * turn), epsilon);
 		assert.strictEqual(q, r);
 
@@ -497,6 +474,7 @@ describe('rotationMatrix3', () => {
 		assertEquals(vec4.rotationMatrix3(q, mat3.Identity()), vec4.Create(), epsilon);
 
 		const r = vec4.rotationMatrix3(q, mat3.RotationAxis(vec3.Create(1.0, 0.0, 0.0), -0.25 * turn));
+
 		assertEquals(
 			r,
 			vec4.RotationAxis(vec3.Create(1.0, 0.0, 0.0), -0.25 * turn),
@@ -580,8 +558,9 @@ describe('add', () => {
 
 		assertEquals(vec4.add(v, vec4.Create(0.0, 0.0, 0.0, 0.0), vec4.Create(0.0, 0.0, 0.0, 0.0)), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
 
-		const r = vec4.add(v, vec4.Create( 2.0,  4.0,  7.0,  11.0), vec4.Create( 1.0,  3.0,  5.0,  7.0));
-		assertEquals(r, { x :  3.0, y :  7.0, z :  12.0, w :  18.0 }, epsilon);
+		const r = vec4.add(v, vec4.Create(2.0, 4.0, 7.0, 11.0), vec4.Create(1.0, 3.0, 5.0, 7.0));
+
+		assertEquals(r, { x : 3.0, y : 7.0, z : 12.0, w : 18.0 }, epsilon);
 		assert.strictEqual(v, r);
 
 		assertEquals(vec4.add(v, vec4.Create( 2.0, -4.0,  7.0, -11.0), vec4.Create(-1.0,  3.0, -5.0,  7.0)), { x :  1.0, y : -1.0, z :   2.0, w :  -4.0 }, epsilon);
@@ -594,9 +573,10 @@ describe('addAssign', () => {
 	it('should assign an addition', () => {
 		assertEquals(vec4.addAssign(vec4.Create(0.0, 0.0, 0.0, 0.0), vec4.Create(0.0, 0.0, 0.0, 0.0)), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
 
-		const v = vec4.Create( 2.0,  4.0,  7.0,  11.0);
-		const r = vec4.addAssign(v, vec4.Create( 1.0,  3.0,  5.0,  7.0));
-		assertEquals(r, { x :  3.0, y :  7.0, z :  12.0, w :  18.0 }, epsilon);
+		const v = vec4.Create(2.0, 4.0, 7.0, 11.0);
+		const r = vec4.addAssign(v, vec4.Create(1.0, 3.0, 5.0, 7.0));
+
+		assertEquals(r, { x : 3.0, y : 7.0, z : 12.0, w : 18.0 }, epsilon);
 		assert.strictEqual(v, r);
 
 		assertEquals(vec4.addAssign(vec4.Create( 2.0, -4.0,  7.0, -11.0), vec4.Create(-1.0,  3.0, -5.0,  7.0)), { x :  1.0, y : -1.0, z :   2.0, w :  -4.0 }, epsilon);
@@ -608,10 +588,10 @@ describe('addAssign', () => {
 describe('Subtract', () => {
 	it('should return a subtraction', () => {
 		assertEquals(vec4.Subtract(vec4.Create(0.0, 0.0, 0.0, 0.0), vec4.Create(0.0, 0.0, 0.0, 0.0)), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
-		assertEquals(vec4.Subtract(vec4.Create( 2.0,  4.0,  7.0,  11.0), vec4.Create(  1.0,  3.0,  5.0,  7.0)), { x :  1.0, y :  1.0, z :   2.0, w :   4.0 }, epsilon);
-		assertEquals(vec4.Subtract(vec4.Create( 2.0, -4.0,  7.0, -11.0), vec4.Create( -1.0,  3.0, -5.0,  7.0)), { x :  3.0, y : -7.0, z :  12.0, w : -18.0 }, epsilon);
-		assertEquals(vec4.Subtract(vec4.Create(-2.0,  4.0, -7.0,  11.0), vec4.Create(  1.0, -3.0,  5.0, -7.0)), { x : -3.0, y :  7.0, z : -12.0, w :  18.0 }, epsilon);
-		assertEquals(vec4.Subtract(vec4.Create(-2.0, -4.0, -7.0, -11.0), vec4.Create( -1.0, -3.0, -5.0, -7.0)), { x : -1.0, y : -1.0, z :  -2.0, w :  -4.0 }, epsilon);
+		assertEquals(vec4.Subtract(vec4.Create( 2.0,  4.0,  7.0,  11.0), vec4.Create( 1.0,  3.0,  5.0,  7.0)), { x :  1.0, y :  1.0, z :   2.0, w :   4.0 }, epsilon);
+		assertEquals(vec4.Subtract(vec4.Create( 2.0, -4.0,  7.0, -11.0), vec4.Create(-1.0,  3.0, -5.0,  7.0)), { x :  3.0, y : -7.0, z :  12.0, w : -18.0 }, epsilon);
+		assertEquals(vec4.Subtract(vec4.Create(-2.0,  4.0, -7.0,  11.0), vec4.Create( 1.0, -3.0,  5.0, -7.0)), { x : -3.0, y :  7.0, z : -12.0, w :  18.0 }, epsilon);
+		assertEquals(vec4.Subtract(vec4.Create(-2.0, -4.0, -7.0, -11.0), vec4.Create(-1.0, -3.0, -5.0, -7.0)), { x : -1.0, y : -1.0, z :  -2.0, w :  -4.0 }, epsilon);
 	});
 });
 
@@ -621,13 +601,14 @@ describe('subtract', () => {
 
 		assertEquals(vec4.subtract(v, vec4.Create(0.0, 0.0, 0.0, 0.0), vec4.Create(0.0, 0.0, 0.0, 0.0)), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
 
-		const r = vec4.subtract(v, vec4.Create( 2.0,  4.0,  7.0,  11.0), vec4.Create(  1.0,  3.0,  5.0,  7.0));
-		assertEquals(r, { x :  1.0, y :  1.0, z :   2.0, w :   4.0 }, epsilon);
+		const r = vec4.subtract(v, vec4.Create(2.0, 4.0, 7.0, 11.0), vec4.Create(1.0, 3.0, 5.0, 7.0));
+
+		assertEquals(r, { x : 1.0, y : 1.0, z : 2.0, w : 4.0 }, epsilon);
 		assert.strictEqual(v, r);
 
-		assertEquals(vec4.subtract(v, vec4.Create( 2.0, -4.0,  7.0, -11.0), vec4.Create( -1.0,  3.0, -5.0,  7.0)), { x :  3.0, y : -7.0, z :  12.0, w : -18.0 }, epsilon);
-		assertEquals(vec4.subtract(v, vec4.Create(-2.0,  4.0, -7.0,  11.0), vec4.Create(  1.0, -3.0,  5.0, -7.0)), { x : -3.0, y :  7.0, z : -12.0, w :  18.0 }, epsilon);
-		assertEquals(vec4.subtract(v, vec4.Create(-2.0, -4.0, -7.0, -11.0), vec4.Create( -1.0, -3.0, -5.0, -7.0)), { x : -1.0, y : -1.0, z :  -2.0, w :  -4.0 }, epsilon);
+		assertEquals(vec4.subtract(v, vec4.Create( 2.0, -4.0,  7.0, -11.0), vec4.Create(-1.0,  3.0, -5.0,  7.0)), { x :  3.0, y : -7.0, z :  12.0, w : -18.0 }, epsilon);
+		assertEquals(vec4.subtract(v, vec4.Create(-2.0,  4.0, -7.0,  11.0), vec4.Create( 1.0, -3.0,  5.0, -7.0)), { x : -3.0, y :  7.0, z : -12.0, w :  18.0 }, epsilon);
+		assertEquals(vec4.subtract(v, vec4.Create(-2.0, -4.0, -7.0, -11.0), vec4.Create(-1.0, -3.0, -5.0, -7.0)), { x : -1.0, y : -1.0, z :  -2.0, w :  -4.0 }, epsilon);
 	});
 });
 
@@ -635,14 +616,15 @@ describe('subtractAssign', () => {
 	it('should assign a subtraction', () => {
 		assertEquals(vec4.subtractAssign(vec4.Create(0.0, 0.0, 0.0, 0.0), vec4.Create(0.0, 0.0, 0.0, 0.0)), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
 
-		const v = vec4.Create( 2.0,  4.0,  7.0,  11.0);
-		const r = vec4.subtractAssign(v, vec4.Create(  1.0,  3.0,  5.0,  7.0));
-		assertEquals(r, { x :  1.0, y :  1.0, z :   2.0, w :   4.0 }, epsilon);
+		const v = vec4.Create(2.0, 4.0, 7.0, 11.0);
+		const r = vec4.subtractAssign(v, vec4.Create(1.0, 3.0, 5.0, 7.0));
+
+		assertEquals(r, { x : 1.0, y : 1.0, z : 2.0, w : 4.0 }, epsilon);
 		assert.strictEqual(v, r);
 
-		assertEquals(vec4.subtractAssign(vec4.Create( 2.0, -4.0,  7.0, -11.0), vec4.Create( -1.0,  3.0, -5.0,  7.0)), { x :  3.0, y : -7.0, z :  12.0, w : -18.0 }, epsilon);
-		assertEquals(vec4.subtractAssign(vec4.Create(-2.0,  4.0, -7.0,  11.0), vec4.Create(  1.0, -3.0,  5.0, -7.0)), { x : -3.0, y :  7.0, z : -12.0, w :  18.0 }, epsilon);
-		assertEquals(vec4.subtractAssign(vec4.Create(-2.0, -4.0, -7.0, -11.0), vec4.Create( -1.0, -3.0, -5.0, -7.0)), { x : -1.0, y : -1.0, z :  -2.0, w :  -4.0 }, epsilon);
+		assertEquals(vec4.subtractAssign(vec4.Create( 2.0, -4.0,  7.0, -11.0), vec4.Create(-1.0,  3.0, -5.0,  7.0)), { x :  3.0, y : -7.0, z :  12.0, w : -18.0 }, epsilon);
+		assertEquals(vec4.subtractAssign(vec4.Create(-2.0,  4.0, -7.0,  11.0), vec4.Create( 1.0, -3.0,  5.0, -7.0)), { x : -3.0, y :  7.0, z : -12.0, w :  18.0 }, epsilon);
+		assertEquals(vec4.subtractAssign(vec4.Create(-2.0, -4.0, -7.0, -11.0), vec4.Create(-1.0, -3.0, -5.0, -7.0)), { x : -1.0, y : -1.0, z :  -2.0, w :  -4.0 }, epsilon);
 	});
 });
 
@@ -662,8 +644,9 @@ describe('multiplyScalar', () => {
 
 		assertEquals(vec4.multiplyScalar(v, vec4.Create(0.0, 0.0, 0.0, 0.0), 2), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
 
-		const r = vec4.multiplyScalar(v, vec4.Create( 2.0,  4.0,  6.0,  8.0),  2);
-		assertEquals(r, { x :  4.0, y :  8.0, z :  12.0, w :  16.0 }, epsilon);
+		const r = vec4.multiplyScalar(v, vec4.Create(2.0, 4.0, 6.0, 8.0), 2);
+
+		assertEquals(r, { x : 4.0, y : 8.0, z : 12.0, w : 16.0 }, epsilon);
 		assert.strictEqual(v, r);
 
 		assertEquals(vec4.multiplyScalar(v, vec4.Create( 2.0, -4.0,  6.0, -8.0), -2), { x : -4.0, y :  8.0, z : -12.0, w :  16.0 }, epsilon);
@@ -676,9 +659,10 @@ describe('multiplyAssignScalar', () => {
 	it('should assign a scalar multiplication', () => {
 		assertEquals(vec4.multiplyAssignScalar(vec4.Create(0.0, 0.0, 0.0, 0.0), 2), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
 
-		const v = vec4.Create( 2.0,  4.0,  6.0,  8.0);
-		const r = vec4.multiplyAssignScalar(v,  2);
-		assertEquals(r, { x :  4.0, y :  8.0, z :  12.0, w :  16.0 }, epsilon);
+		const v = vec4.Create(2.0, 4.0, 6.0, 8.0);
+		const r = vec4.multiplyAssignScalar(v, 2);
+
+		assertEquals(r, { x : 4.0, y : 8.0, z : 12.0, w : 16.0 }, epsilon);
 		assert.strictEqual(v, r);
 
 		assertEquals(vec4.multiplyAssignScalar(vec4.Create( 2.0, -4.0,  6.0, -8.0), -2), { x : -4.0, y :  8.0, z : -12.0, w :  16.0 }, epsilon);
@@ -724,28 +708,75 @@ describe('outer', () => {
 		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, 0.0, 0.0), vec4.Create(0.0, 0.0, 0.0, 0.0)), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
 		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, 0.0, 1.0), vec4.Create(0.0, 0.0, 0.0, 1.0)), { x : 0.0, y : 0.0, z : 0.0, w : 1.0 }, epsilon);
 
-		const r = vec4.outer(q, vec4.Create(1.0, 0.0, 0.0, 0.0), vec4.Create(-1.0,  0.0,  0.0, 0.0));
-		assertEquals(r, { x :  0.0, y :  0.0, z :  0.0, w :  1.0 }, epsilon);
+		const r = vec4.outer(q, vec4.Create(1.0, 0.0, 0.0, 0.0), vec4.Create(-1.0, 0.0, 0.0, 0.0));
+
+		assertEquals(r, { x : 0.0, y : 0.0, z : 0.0, w : 1.0 }, epsilon);
 		assert.strictEqual(q, r);
 
-		assertEquals(vec4.outer(q, vec4.Create(1.0, 0.0, 0.0, 0.0), vec4.Create( 1.0,  0.0,  0.0, 0.0)), { x :  0.0, y :  0.0, z :  0.0, w : -1.0 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(0.0, 1.0, 0.0, 0.0), vec4.Create( 0.0, -1.0,  0.0, 0.0)), { x :  0.0, y :  0.0, z :  0.0, w :  1.0 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(0.0, 1.0, 0.0, 0.0), vec4.Create( 0.0,  1.0,  0.0, 0.0)), { x :  0.0, y :  0.0, z :  0.0, w : -1.0 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, 1.0, 0.0), vec4.Create( 0.0,  0.0, -1.0, 0.0)), { x :  0.0, y :  0.0, z :  0.0, w :  1.0 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, 1.0, 0.0), vec4.Create( 0.0,  0.0,  1.0, 0.0)), { x :  0.0, y :  0.0, z :  0.0, w : -1.0 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(1.0, 0.0, 0.0, 0.0), vec4.Create( 0.0,  1.0,  0.0, 0.0)), { x :  0.0, y :  0.0, z :  1.0, w :  0.0 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(0.0, 1.0, 0.0, 0.0), vec4.Create( 1.0,  0.0,  0.0, 0.0)), { x :  0.0, y :  0.0, z : -1.0, w :  0.0 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, 1.0, 0.0), vec4.Create( 1.0,  0.0,  0.0, 0.0)), { x :  0.0, y :  1.0, z :  0.0, w :  0.0 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(1.0, 0.0, 0.0, 0.0), vec4.Create( 0.0,  0.0,  1.0, 0.0)), { x :  0.0, y : -1.0, z :  0.0, w :  0.0 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(0.0, 1.0, 0.0, 0.0), vec4.Create( 0.0,  0.0,  1.0, 0.0)), { x :  1.0, y :  0.0, z :  0.0, w :  0.0 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, 1.0, 0.0), vec4.Create( 0.0,  1.0,  0.0, 0.0)), { x : -1.0, y :  0.0, z :  0.0, w :  0.0 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(1.0, 0.0, 0.0, 0.0), vec4.Create(1.0,  0.0,  0.0, 0.0)), { x :  0.0, y :  0.0, z :  0.0, w : -1.0 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(0.0, 1.0, 0.0, 0.0), vec4.Create(0.0, -1.0,  0.0, 0.0)), { x :  0.0, y :  0.0, z :  0.0, w :  1.0 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(0.0, 1.0, 0.0, 0.0), vec4.Create(0.0,  1.0,  0.0, 0.0)), { x :  0.0, y :  0.0, z :  0.0, w : -1.0 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, 1.0, 0.0), vec4.Create(0.0,  0.0, -1.0, 0.0)), { x :  0.0, y :  0.0, z :  0.0, w :  1.0 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, 1.0, 0.0), vec4.Create(0.0,  0.0,  1.0, 0.0)), { x :  0.0, y :  0.0, z :  0.0, w : -1.0 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(1.0, 0.0, 0.0, 0.0), vec4.Create(0.0,  1.0,  0.0, 0.0)), { x :  0.0, y :  0.0, z :  1.0, w :  0.0 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(0.0, 1.0, 0.0, 0.0), vec4.Create(1.0,  0.0,  0.0, 0.0)), { x :  0.0, y :  0.0, z : -1.0, w :  0.0 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, 1.0, 0.0), vec4.Create(1.0,  0.0,  0.0, 0.0)), { x :  0.0, y :  1.0, z :  0.0, w :  0.0 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(1.0, 0.0, 0.0, 0.0), vec4.Create(0.0,  0.0,  1.0, 0.0)), { x :  0.0, y : -1.0, z :  0.0, w :  0.0 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(0.0, 1.0, 0.0, 0.0), vec4.Create(0.0,  0.0,  1.0, 0.0)), { x :  1.0, y :  0.0, z :  0.0, w :  0.0 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, 1.0, 0.0), vec4.Create(0.0,  1.0,  0.0, 0.0)), { x : -1.0, y :  0.0, z :  0.0, w :  0.0 }, epsilon);
 
-		assertEquals(vec4.outer(q, vec4.Create(sq, 0.0, 0.0, sq), vec4.Create(0.0, sq, 0.0, sq)), { x :  0.5, y :  0.5, z :  0.5, w :  0.5 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(0.0, sq, 0.0, sq), vec4.Create(sq, 0.0, 0.0, sq)), { x :  0.5, y :  0.5, z : -0.5, w :  0.5 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(0.0, sq, 0.0, sq), vec4.Create(0.0, 0.0, sq, sq)), { x :  0.5, y :  0.5, z :  0.5, w :  0.5 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, sq, sq), vec4.Create(0.0, sq, 0.0, sq)), { x : -0.5, y :  0.5, z :  0.5, w :  0.5 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, sq, sq), vec4.Create(sq, 0.0, 0.0, sq)), { x :  0.5, y :  0.5, z :  0.5, w :  0.5 }, epsilon);
-		assertEquals(vec4.outer(q, vec4.Create(sq, 0.0, 0.0, sq), vec4.Create(0.0, 0.0, sq, sq)), { x :  0.5, y : -0.5, z :  0.5, w :  0.5 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(sq, 0.0, 0.0, sq), vec4.Create(0.0, sq, 0.0, sq)), { x :  0.5, y :  0.5, z :  0.5, w : 0.5 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(0.0, sq, 0.0, sq), vec4.Create(sq, 0.0, 0.0, sq)), { x :  0.5, y :  0.5, z : -0.5, w : 0.5 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(0.0, sq, 0.0, sq), vec4.Create(0.0, 0.0, sq, sq)), { x :  0.5, y :  0.5, z :  0.5, w : 0.5 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, sq, sq), vec4.Create(0.0, sq, 0.0, sq)), { x : -0.5, y :  0.5, z :  0.5, w : 0.5 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(0.0, 0.0, sq, sq), vec4.Create(sq, 0.0, 0.0, sq)), { x :  0.5, y :  0.5, z :  0.5, w : 0.5 }, epsilon);
+		assertEquals(vec4.outer(q, vec4.Create(sq, 0.0, 0.0, sq), vec4.Create(0.0, 0.0, sq, sq)), { x :  0.5, y : -0.5, z :  0.5, w : 0.5 }, epsilon);
+	});
+});
+
+describe('Hadamard', () => {
+	it('should return a Vector4 representing a component-wise multiplication', () => {
+		assert.deepStrictEqual(vec4.Hadamard(vec4.Create(0.0, 0.0, 0.0, 0.0), vec4.Create(0.0, 0.0, 0.0, 0.0)), vec4.Create(0.0, 0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vec4.Hadamard(vec4.Create(1.0, 2.0, 3.0, 4.0), vec4.Create(0.0, 0.0, 0.0, 0.0)), vec4.Create(0.0, 0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vec4.Hadamard(vec4.Create(0.0, 0.0, 0.0, 0.0), vec4.Create(5.0, 6.0, 7.0, 8.0)), vec4.Create(0.0, 0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vec4.Hadamard(vec4.Create(2.0, 3.0, 4.0, 5.0), vec4.Create(6.0, 7.0, 8.0, 9.0)), vec4.Create(12.0, 21.0, 32.0, 45.0));
+		assert.deepStrictEqual(vec4.Hadamard(vec4.Create(-2.0, 3.0, -4.0, 5.0), vec4.Create(6.0, -7.0, 8.0, -9.0)), vec4.Create(-12.0, -21.0, -32.0, -45.0));
+		assert.deepStrictEqual(vec4.Hadamard(vec4.Create(-2.0, -3.0, -4.0, -5.0), vec4.Create(-6.0, -7.0, -8.0, -9.0)), vec4.Create(12.0, 21.0, 32.0, 45.0));
+	});
+});
+
+describe('hadamard', () => {
+	it('should assign a Vector4 representing a component-wise multiplication', () => {
+		const v = vec4.Create();
+
+		assert.deepStrictEqual(vec4.hadamard(v, vec4.Create(0.0, 0.0, 0.0, 0.0), vec4.Create(0.0, 0.0, 0.0, 0.0)), vec4.Create(0.0, 0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vec4.hadamard(v, vec4.Create(1.0, 2.0, 3.0, 4.0), vec4.Create(0.0, 0.0, 0.0, 0.0)), vec4.Create(0.0, 0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vec4.hadamard(v, vec4.Create(0.0, 0.0, 0.0, 0.0), vec4.Create(5.0, 6.0, 7.0, 8.0)), vec4.Create(0.0, 0.0, 0.0, 0.0));
+
+		const r = vec4.hadamard(v, vec4.Create(2.0, 3.0, 4.0, 5.0), vec4.Create(6.0, 7.0, 8.0, 9.0));
+
+		assert.deepStrictEqual(r, vec4.Create(12.0, 21.0, 32.0, 45.0));
+		assert.deepStrictEqual(v, r);
+
+		assert.deepStrictEqual(vec4.hadamard(v, vec4.Create(-2.0, 3.0, -4.0, 5.0), vec4.Create(6.0, -7.0, 8.0, -9.0)), vec4.Create(-12.0, -21.0, -32.0, -45.0));
+		assert.deepStrictEqual(vec4.hadamard(v, vec4.Create(-2.0, -3.0, -4.0, -5.0), vec4.Create(-6.0, -7.0, -8.0, -9.0)), vec4.Create(12.0, 21.0, 32.0, 45.0));
+	});
+});
+
+describe('hadamardAssign', () => {
+	it('should assign a Vector4 representing a component-wise multiplication', () => {
+		assert.deepStrictEqual(vec4.hadamardAssign(vec4.Create(0.0, 0.0, 0.0, 0.0), vec4.Create(0.0, 0.0, 0.0, 0.0)), vec4.Create(0.0, 0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vec4.hadamardAssign(vec4.Create(1.0, 2.0, 3.0, 4.0), vec4.Create(0.0, 0.0, 0.0, 0.0)), vec4.Create(0.0, 0.0, 0.0, 0.0));
+		assert.deepStrictEqual(vec4.hadamardAssign(vec4.Create(0.0, 0.0, 0.0, 0.0), vec4.Create(5.0, 6.0, 7.0, 8.0)), vec4.Create(0.0, 0.0, 0.0, 0.0));
+
+		const v = vec4.Create(2.0, 3.0, 4.0, 5.0);
+		const w = vec4.hadamardAssign(v, vec4.Create(6.0, 7.0, 8.0, 9.0));
+
+		assert.deepStrictEqual(w, vec4.Create(12.0, 21.0, 32.0, 45.0));
+		assert.strictEqual(v, w);
+
+		assert.deepStrictEqual(vec4.hadamardAssign(vec4.Create(-2.0, 3.0, -4.0, 5.0), vec4.Create(6.0, -7.0, 8.0, -9.0)), vec4.Create(-12.0, -21.0, -32.0, -45.0));
+		assert.deepStrictEqual(vec4.hadamardAssign(vec4.Create(-2.0, -3.0, -4.0, -5.0), vec4.Create(-6.0, -7.0, -8.0, -9.0)), vec4.Create(12.0, 21.0, 32.0, 45.0));
 	});
 });
 
@@ -778,6 +809,7 @@ describe('normalize', () => {
 		assertEquals(vec4.normalize(v, vec4.Create()), { x : 0.0, y : 0.0, z : 0.0, w : 1.0 }, epsilon);
 
 		const r = vec4.normalize(v, vec4.Create(-2.0));
+
 		assertEquals(r, { x : -2.0 * sqrt3, y : 0.0, z : 0.0, w : sqrt3 }, epsilon);
 		assert.strictEqual(v, r);
 
@@ -822,11 +854,12 @@ describe('conjugate', () => {
 		assertEquals(vec4.conjugate(q, vec4.Create( 0.0,  0.0,  0.0,  1.0)), { x :  0.0, y :  0.0, z :  0.0, w :  1.0 }, epsilon);
 		assertEquals(vec4.conjugate(q, vec4.Create( 0.0,  0.0,  0.0, -1.0)), { x :  0.0, y :  0.0, z :  0.0, w : -1.0 }, epsilon);
 
-		const r = vec4.conjugate(q, vec4.Create( 1.0,  1.0,  1.0,  1.0));
-		assertEquals(r, { x : -1.0, y : -1.0, z : -1.0, w :  1.0 }, epsilon);
+		const r = vec4.conjugate(q, vec4.Create(1.0, 1.0, 1.0, 1.0));
+
+		assertEquals(r, { x : -1.0, y : -1.0, z : -1.0, w : 1.0 }, epsilon);
 		assert.strictEqual(q, r);
 
-		assertEquals(vec4.conjugate(q, vec4.Create(-1.0, -1.0, -1.0, -1.0)), { x :  1.0, y :  1.0, z :  1.0, w : -1.0 }, epsilon);
+		assertEquals(vec4.conjugate(q, vec4.Create(-1.0, -1.0, -1.0, -1.0)), { x : 1.0, y : 1.0, z : 1.0, w : -1.0 }, epsilon);
 	});
 });
 
@@ -858,6 +891,7 @@ describe('inverse', () => {
 		assert.strictEqual(vec4.inverse(q, vec4.Create(0.0, 0.0, 0.0, Number.NaN)), undefined);
 
 		const r = vec4.inverse(q, vec4.inverse(q, vec4.Create(2.0, 3.0, 4.0, 5.0)) as vec4.Vector4) as vec4.Vector4;
+
 		assertEquals(
 			r,
 			vec4.Create(2.0, 3.0, 4.0, 5.0),
@@ -920,7 +954,7 @@ describe('toF64', () => {
 	it('should return a Float64Array representing a Vector4', () => {
 		assert.deepStrictEqual(
 			vec4.toF64(vec4.Create(1.0, 2.0, 3.0, 4.0)),
-			new Float64Array([ 1.0, 2.0, 3.0, 4.0])
+			new Float64Array([ 1.0, 2.0, 3.0, 4.0 ])
 		);
 	});
 });
@@ -997,7 +1031,7 @@ describe('F64', () => {
 
 describe('f64', () => {
 	it('should assign a Vector4 representing a Float64Array', () => {
-		const f = new Float64Array([ 1.0, 2.0, 3.0, 4.0]);
+		const f = new Float64Array([ 1.0, 2.0, 3.0, 4.0 ]);
 		const v = vec4.Create();
 		const r = vec4.f64(v, f);
 
@@ -1010,7 +1044,7 @@ describe('f64', () => {
 
 		assert.deepStrictEqual(
 			vec4.f64(v, new Float64Array([ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ]), 1),
-			{ x : 2.0, y : 3.0, z : 4.0, w: 5.0 }
+			{ x : 2.0, y : 3.0, z : 4.0, w : 5.0 }
 		);
 	});
 });

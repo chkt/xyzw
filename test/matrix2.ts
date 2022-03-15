@@ -3,26 +3,10 @@ import { describe, it } from 'mocha';
 import * as vec2 from '../source/vector2';
 import * as mat2 from '../source/matrix2';
 import * as mat3 from '../source/matrix3';
+import { assertEqualsMat2 as assertEquals } from './assert/assert';
 
 
 const epsilon = 1e-10;
-
-
-function assertEquals(actual:mat2.Matrix2, expected:mat2.Matrix2, e:number, message?:string) : void {
-	if (
-		Math.abs(expected.r00 - actual.r00) > e ||
-		Math.abs(expected.r10 - actual.r10) > e ||
-		Math.abs(expected.r01 - actual.r01) > e ||
-		Math.abs(expected.r11 - actual.r11) > e
-	) {
-		throw new assert.AssertionError({
-			actual,
-			expected,
-			message,
-			operator : `!==[${ e }]`
-		});
-	}
-}
 
 
 describe('determinant', () => {
@@ -39,7 +23,7 @@ describe('determinant', () => {
 
 describe('Identity', () => {
 	it('should return a Matrix2 representing the identity matrix', () => {
-		assertEquals(mat2.Identity(), { r00: 1.0, r10 : 0.0, r01 : 0.0, r11 : 1.0 }, epsilon);
+		assertEquals(mat2.Identity(), { r00 : 1.0, r10 : 0.0, r01 : 0.0, r11 : 1.0 }, epsilon);
 	});
 });
 
@@ -47,7 +31,8 @@ describe('identity', () => {
 	it('should set a Matrix2 to represent the identity matrix', () => {
 		const m = { r00 : 0.0, r10 : 0.0, r01 : 0.0, r11 : 0.0 };
 		const r = mat2.identity(m);
-		assertEquals(r, { r00: 1.0, r10 : 0.0, r01 : 0.0, r11 : 1.0 }, epsilon);
+
+		assertEquals(r, { r00 : 1.0, r10 : 0.0, r01 : 0.0, r11 : 1.0 }, epsilon);
 		assert.strictEqual(m, r);
 	});
 });
@@ -70,6 +55,7 @@ describe('rotation', () => {
 	it('should set a Matrix2 to represent a rotation', () => {
 		const m = mat2.Identity();
 		const r = mat2.rotation(m, 0.5 * Math.PI);
+
 		assertEquals(r, mat2.Shear(vec2.AxisY(), vec2.AxisX(-1.0)), epsilon);
 		assert.strictEqual(m, r);
 
@@ -93,7 +79,7 @@ describe('RotationVector2', () => {
 		assertEquals(mat2.RotationVector2(vec2.Rotation(0.25 * Math.PI)), mat2.Shear(
 			vec2.Rotation(0.25 * Math.PI),
 			vec2.Rotation(0.75 * Math.PI)
-		) , epsilon);
+		), epsilon);
 	});
 });
 
@@ -101,6 +87,7 @@ describe('rotationVector2', () => {
 	it('should set a Matrix2 to represent a rotation', () => {
 		const m = mat2.Identity();
 		const r = mat2.rotationVector2(m, vec2.AxisY());
+
 		assertEquals(r, mat2.Shear(vec2.AxisY(), vec2.AxisX(-1.0)), epsilon);
 		assert.strictEqual(m, r);
 
@@ -110,7 +97,7 @@ describe('rotationVector2', () => {
 		assertEquals(mat2.rotationVector2(m, vec2.Rotation(0.25 * Math.PI)), mat2.Shear(
 			vec2.Rotation(0.25 * Math.PI),
 			vec2.Rotation(0.75 * Math.PI)
-		) , epsilon);
+		), epsilon);
 	});
 });
 
@@ -126,6 +113,7 @@ describe('scale', () => {
 	it('should set a Matrix2 to represent a scaling', () => {
 		const m = mat2.Identity();
 		const r = mat2.scale(m, vec2.Create(0.5, 2.0));
+
 		assertEquals(r, { r00 : 0.5, r10 : 0.0, r01 : 0.0, r11 : 2.0 }, epsilon);
 		assert.strictEqual(m, r);
 
@@ -147,6 +135,7 @@ describe('shear', () => {
 	it('should set a Matrix2 to represent a shear', () => {
 		const m = mat2.Identity();
 		const r = mat2.shear(m, vec2.AxisY(), vec2.AxisX(-1.0));
+
 		assertEquals(r, { r00 : 0.0, r10 : 1.0, r01 : -1.0, r11 : 0.0 }, epsilon);
 		assert.strictEqual(m, r);
 
@@ -171,6 +160,7 @@ describe('shearMatrix3', () => {
 	it('should set a Matrix2 to represent a rotation', () => {
 		const m = mat2.Identity();
 		const r = mat2.shearMatrix3(m, mat3.RotationZ(0.5 * Math.PI));
+
 		assertEquals(r, mat2.Rotation(0.5 * Math.PI), epsilon);
 		assert.strictEqual(m, r);
 
@@ -263,6 +253,7 @@ describe('concat', () => {
 	it('should set a Matrix2 to represent a concatenation', () => {
 		const m = mat2.Identity();
 		const r = mat2.concat(m, mat2.Identity(), mat2.Rotation(0.5 * Math.PI));
+
 		assertEquals(r, mat2.Rotation(0.5 * Math.PI), epsilon);
 		assert.strictEqual(m, r);
 
@@ -293,7 +284,8 @@ describe('Inverse', () => {
 describe('inverse', () => {
 	it('should set a Matrix2 to represent an inverse', () => {
 		const m = mat2.Identity();
-		const r = mat2.inverse(m, mat2.inverse(m, mat2.Rotation(0.25 * Math.PI)) as mat2.Matrix2) as mat2.Matrix2
+		const r = mat2.inverse(m, mat2.inverse(m, mat2.Rotation(0.25 * Math.PI)) as mat2.Matrix2) as mat2.Matrix2;
+
 		assertEquals(r, mat2.Rotation(0.25 * Math.PI), epsilon);
 		assert.strictEqual(m, r);
 
@@ -318,6 +310,7 @@ describe('transpose', () => {
 	it('should set a Matrix2 to represent a transpose', () => {
 		const m = mat2.Identity();
 		const r = mat2.transpose(m, mat2.Shear(vec2.AxisY(), vec2.AxisX(-1.0)));
+
 		assertEquals(r, mat2.Shear(vec2.AxisY(-1.0), vec2.AxisX()), epsilon);
 		assert.strictEqual(m, r);
 

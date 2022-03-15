@@ -1,54 +1,15 @@
+/* eslint key-spacing : [ error , { beforeColon : true, afterColon : true, mode : "minimum" }] */
+/* eslint no-multi-spaces : [ off ] */
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
 import * as vec3 from '../source/vector3';
 import * as mat3 from '../source/matrix3';
 import * as mat4 from '../source/matrix4';
+import { assertEqualsMat4 as assertEquals, assertEqualsScalar } from './assert/assert';
 
 
 const epsilon = 1e-10;
 const turn = 2.0 * Math.PI;
-
-
-function assertEqualsScalar(actual:number, expected:number, e:number, message?:string) : void {
-	const n = Math.abs(actual - expected);
-
-	if (n > e) {
-		throw new assert.AssertionError({
-			message,
-			actual,
-			expected,
-			operator : `!==[${ e }]`
-		});
-	}
-}
-
-function assertEquals(actual:mat4.Matrix4, expected:mat4.Matrix4, e:number, message?:string) : void {
-	if (
-		Math.abs(expected.r00 - actual.r00) > e ||
-		Math.abs(expected.r10 - actual.r10) > e ||
-		Math.abs(expected.r20 - actual.r20) > e ||
-		Math.abs(expected.r30 - actual.r30) > e ||
-		Math.abs(expected.r01 - actual.r01) > e ||
-		Math.abs(expected.r11 - actual.r11) > e ||
-		Math.abs(expected.r21 - actual.r21) > e ||
-		Math.abs(expected.r31 - actual.r31) > e ||
-		Math.abs(expected.r02 - actual.r02) > e ||
-		Math.abs(expected.r12 - actual.r12) > e ||
-		Math.abs(expected.r22 - actual.r22) > e ||
-		Math.abs(expected.r32 - actual.r32) > e ||
-		Math.abs(expected.r03 - actual.r03) > e ||
-		Math.abs(expected.r13 - actual.r13) > e ||
-		Math.abs(expected.r23 - actual.r23) > e ||
-		Math.abs(expected.r33 - actual.r33) > e
-	) {
-		throw new assert.AssertionError({
-			expected,
-			actual,
-			operator : `!==[${ e }]`,
-			message
-		});
-	}
-}
 
 
 describe('equals', () => {
@@ -99,12 +60,14 @@ describe('determinant', () => {
 			vec3.AxisX(1.0),
 			vec3.AxisY(2.0),
 			vec3.AxisZ(2.0),
-			vec3.Create())), 4.0, epsilon);
+			vec3.Create()
+		)), 4.0, epsilon);
 		assertEqualsScalar(mat4.determinant(mat4.ShearTranslation(
 			vec3.AxisX(2.0),
 			vec3.AxisY(2.0),
 			vec3.AxisZ(1.0),
-			vec3.Create())), 4.0, epsilon);
+			vec3.Create()
+		)), 4.0, epsilon);
 		assertEqualsScalar(mat4.determinant(mat4.ShearTranslation(
 			vec3.AxisX(2.0),
 			vec3.AxisY(1.0),
@@ -134,6 +97,7 @@ describe('identity', () => {
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
 		};
 		const r = mat4.identity(m);
+
 		assert.deepStrictEqual(r, {
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
@@ -212,10 +176,10 @@ describe('ShearTranslation', () => {
 			vec3.Create(8.0, 9.0, 10.0),
 			vec3.Create(11.0, 12.0, 13.0)
 		), {
-			r00: 2.0, r10: 3.0, r20: 4.0, r30: 0.0,
-			r01: 5.0, r11: 6.0, r21: 7.0, r31: 0.0,
-			r02: 8.0, r12: 9.0, r22: 10.0, r32: 0.0,
-			r03: 11.0, r13: 12.0, r23: 13.0, r33: 1.0
+			r00 : 2.0, r10 : 3.0, r20 : 4.0, r30 : 0.0,
+			r01 : 5.0, r11 : 6.0, r21 : 7.0, r31 : 0.0,
+			r02 : 8.0, r12 : 9.0, r22 : 10.0, r32 : 0.0,
+			r03 : 11.0, r13 : 12.0, r23 : 13.0, r33 : 1.0
 		});
 	});
 });
@@ -232,10 +196,10 @@ describe('shearTranslation', () => {
 		);
 
 		assert.deepStrictEqual(r, {
-			r00: 2.0, r10: 3.0, r20: 4.0, r30: 0.0,
-			r01: 5.0, r11: 6.0, r21: 7.0, r31: 0.0,
-			r02: 8.0, r12: 9.0, r22: 10.0, r32: 0.0,
-			r03: 11.0, r13: 12.0, r23: 13.0, r33: 1.0
+			r00 : 2.0, r10 : 3.0, r20 : 4.0, r30 : 0.0,
+			r01 : 5.0, r11 : 6.0, r21 : 7.0, r31 : 0.0,
+			r02 : 8.0, r12 : 9.0, r22 : 10.0, r32 : 0.0,
+			r03 : 11.0, r13 : 12.0, r23 : 13.0, r33 : 1.0
 		});
 		assert.strictEqual(m, r);
 	});
@@ -244,20 +208,20 @@ describe('shearTranslation', () => {
 describe('Add', () => {
 	it('should return a Matrix4 representing an addition', () => {
 		assertEquals(mat4.Add({
-			r00:  1.0, r10:  2.0, r20:  3.0, r30:  4.0,
-			r01:  5.0, r11:  6.0, r21:  7.0, r31:  8.0,
-			r02:  9.0, r12: 10.0, r22: 11.0, r32: 12.0,
-			r03: 13.0, r13: 14.0, r23: 15.0, r33: 16.0
+			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
+			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
+			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
+			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
 		}, {
-			r00: 0.01, r10: 0.02, r20: 0.03, r30: 0.04,
-			r01: 0.05, r11: 0.06, r21: 0.07, r31: 0.08,
-			r02: 0.09, r12: 0.10, r22: 0.11, r32: 0.12,
-			r03: 0.13, r13: 0.14, r23: 0.15, r33: 0.16
+			r00 : 0.01, r10 : 0.02, r20 : 0.03, r30 : 0.04,
+			r01 : 0.05, r11 : 0.06, r21 : 0.07, r31 : 0.08,
+			r02 : 0.09, r12 : 0.10, r22 : 0.11, r32 : 0.12,
+			r03 : 0.13, r13 : 0.14, r23 : 0.15, r33 : 0.16
 		}), {
-			r00:  1.01, r10:  2.02, r20:  3.03, r30:  4.04,
-			r01:  5.05, r11:  6.06, r21:  7.07, r31:  8.08,
-			r02:  9.09, r12: 10.10, r22: 11.11, r32: 12.12,
-			r03: 13.13, r13: 14.14, r23: 15.15, r33: 16.16
+			r00 :  1.01, r10 :  2.02, r20 :  3.03, r30 :  4.04,
+			r01 :  5.05, r11 :  6.06, r21 :  7.07, r31 :  8.08,
+			r02 :  9.09, r12 : 10.10, r22 : 11.11, r32 : 12.12,
+			r03 : 13.13, r13 : 14.14, r23 : 15.15, r33 : 16.16
 		}, epsilon);
 	});
 });
@@ -266,22 +230,22 @@ describe('add', () => {
 	it('should set a Matrix4 to represent an addition', () => {
 		const m = mat4.Identity();
 		const r = mat4.add(m, {
-			r00:  1.0, r10:  2.0, r20:  3.0, r30:  4.0,
-			r01:  5.0, r11:  6.0, r21:  7.0, r31:  8.0,
-			r02:  9.0, r12: 10.0, r22: 11.0, r32: 12.0,
-			r03: 13.0, r13: 14.0, r23: 15.0, r33: 16.0
+			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
+			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
+			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
+			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
 		}, {
-			r00: 0.01, r10: 0.02, r20: 0.03, r30: 0.04,
-			r01: 0.05, r11: 0.06, r21: 0.07, r31: 0.08,
-			r02: 0.09, r12: 0.10, r22: 0.11, r32: 0.12,
-			r03: 0.13, r13: 0.14, r23: 0.15, r33: 0.16
+			r00 : 0.01, r10 : 0.02, r20 : 0.03, r30 : 0.04,
+			r01 : 0.05, r11 : 0.06, r21 : 0.07, r31 : 0.08,
+			r02 : 0.09, r12 : 0.10, r22 : 0.11, r32 : 0.12,
+			r03 : 0.13, r13 : 0.14, r23 : 0.15, r33 : 0.16
 		});
 
 		assertEquals(r, {
-			r00:  1.01, r10:  2.02, r20:  3.03, r30:  4.04,
-			r01:  5.05, r11:  6.06, r21:  7.07, r31:  8.08,
-			r02:  9.09, r12: 10.10, r22: 11.11, r32: 12.12,
-			r03: 13.13, r13: 14.14, r23: 15.15, r33: 16.16
+			r00 :  1.01, r10 :  2.02, r20 :  3.03, r30 :  4.04,
+			r01 :  5.05, r11 :  6.06, r21 :  7.07, r31 :  8.08,
+			r02 :  9.09, r12 : 10.10, r22 : 11.11, r32 : 12.12,
+			r03 : 13.13, r13 : 14.14, r23 : 15.15, r33 : 16.16
 		}, epsilon);
 		assert.strictEqual(m, r);
 	});
@@ -290,23 +254,23 @@ describe('add', () => {
 describe('addAssign', () => {
 	it('should set a Matrix4 to represent an addition', () => {
 		const m:mat4.Matrix4 = {
-			r00:  1.0, r10:  2.0, r20:  3.0, r30:  4.0,
-			r01:  5.0, r11:  6.0, r21:  7.0, r31:  8.0,
-			r02:  9.0, r12: 10.0, r22: 11.0, r32: 12.0,
-			r03: 13.0, r13: 14.0, r23: 15.0, r33: 16.0
+			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
+			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
+			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
+			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
 		};
 		const r = mat4.addAssign(m, {
-			r00: 0.01, r10: 0.02, r20: 0.03, r30: 0.04,
-			r01: 0.05, r11: 0.06, r21: 0.07, r31: 0.08,
-			r02: 0.09, r12: 0.10, r22: 0.11, r32: 0.12,
-			r03: 0.13, r13: 0.14, r23: 0.15, r33: 0.16
+			r00 : 0.01, r10 : 0.02, r20 : 0.03, r30 : 0.04,
+			r01 : 0.05, r11 : 0.06, r21 : 0.07, r31 : 0.08,
+			r02 : 0.09, r12 : 0.10, r22 : 0.11, r32 : 0.12,
+			r03 : 0.13, r13 : 0.14, r23 : 0.15, r33 : 0.16
 		});
 
 		assertEquals(r, {
-			r00:  1.01, r10:  2.02, r20:  3.03, r30:  4.04,
-			r01:  5.05, r11:  6.06, r21:  7.07, r31:  8.08,
-			r02:  9.09, r12: 10.10, r22: 11.11, r32: 12.12,
-			r03: 13.13, r13: 14.14, r23: 15.15, r33: 16.16
+			r00 :  1.01, r10 :  2.02, r20 :  3.03, r30 :  4.04,
+			r01 :  5.05, r11 :  6.06, r21 :  7.07, r31 :  8.08,
+			r02 :  9.09, r12 : 10.10, r22 : 11.11, r32 : 12.12,
+			r03 : 13.13, r13 : 14.14, r23 : 15.15, r33 : 16.16
 		}, epsilon);
 		assert.strictEqual(m, r);
 	});
@@ -315,20 +279,20 @@ describe('addAssign', () => {
 describe('Subtract', () => {
 	it('should return a Matrix4 representing a subtraction', () => {
 		assertEquals(mat4.Subtract({
-			r00:  1.01, r10:  2.02, r20:  3.03, r30:  4.04,
-			r01:  5.05, r11:  6.06, r21:  7.07, r31:  8.08,
-			r02:  9.09, r12: 10.10, r22: 11.11, r32: 12.12,
-			r03: 13.13, r13: 14.14, r23: 15.15, r33: 16.16
+			r00 :  1.01, r10 :  2.02, r20 :  3.03, r30 :  4.04,
+			r01 :  5.05, r11 :  6.06, r21 :  7.07, r31 :  8.08,
+			r02 :  9.09, r12 : 10.10, r22 : 11.11, r32 : 12.12,
+			r03 : 13.13, r13 : 14.14, r23 : 15.15, r33 : 16.16
 		}, {
-			r00: 0.01, r10: 0.02, r20: 0.03, r30: 0.04,
-			r01: 0.05, r11: 0.06, r21: 0.07, r31: 0.08,
-			r02: 0.09, r12: 0.10, r22: 0.11, r32: 0.12,
-			r03: 0.13, r13: 0.14, r23: 0.15, r33: 0.16
+			r00 : 0.01, r10 : 0.02, r20 : 0.03, r30 : 0.04,
+			r01 : 0.05, r11 : 0.06, r21 : 0.07, r31 : 0.08,
+			r02 : 0.09, r12 : 0.10, r22 : 0.11, r32 : 0.12,
+			r03 : 0.13, r13 : 0.14, r23 : 0.15, r33 : 0.16
 		}), {
-			r00:  1.0, r10:  2.0, r20:  3.0, r30:  4.0,
-			r01:  5.0, r11:  6.0, r21:  7.0, r31:  8.0,
-			r02:  9.0, r12: 10.0, r22: 11.0, r32: 12.0,
-			r03: 13.0, r13: 14.0, r23: 15.0, r33: 16.0
+			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
+			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
+			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
+			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
 		}, epsilon);
 	});
 });
@@ -337,22 +301,22 @@ describe('subtract', () => {
 	it('should set a Matrix4 to represent a subtraction', () => {
 		const m = mat4.Identity();
 		const r = mat4.subtract(m, {
-			r00:  1.01, r10:  2.02, r20:  3.03, r30:  4.04,
-			r01:  5.05, r11:  6.06, r21:  7.07, r31:  8.08,
-			r02:  9.09, r12: 10.10, r22: 11.11, r32: 12.12,
-			r03: 13.13, r13: 14.14, r23: 15.15, r33: 16.16
+			r00 :  1.01, r10 :  2.02, r20 :  3.03, r30 :  4.04,
+			r01 :  5.05, r11 :  6.06, r21 :  7.07, r31 :  8.08,
+			r02 :  9.09, r12 : 10.10, r22 : 11.11, r32 : 12.12,
+			r03 : 13.13, r13 : 14.14, r23 : 15.15, r33 : 16.16
 		}, {
-			r00: 0.01, r10: 0.02, r20: 0.03, r30: 0.04,
-			r01: 0.05, r11: 0.06, r21: 0.07, r31: 0.08,
-			r02: 0.09, r12: 0.10, r22: 0.11, r32: 0.12,
-			r03: 0.13, r13: 0.14, r23: 0.15, r33: 0.16
+			r00 : 0.01, r10 : 0.02, r20 : 0.03, r30 : 0.04,
+			r01 : 0.05, r11 : 0.06, r21 : 0.07, r31 : 0.08,
+			r02 : 0.09, r12 : 0.10, r22 : 0.11, r32 : 0.12,
+			r03 : 0.13, r13 : 0.14, r23 : 0.15, r33 : 0.16
 		});
 
 		assertEquals(r, {
-			r00:  1.0, r10:  2.0, r20:  3.0, r30:  4.0,
-			r01:  5.0, r11:  6.0, r21:  7.0, r31:  8.0,
-			r02:  9.0, r12: 10.0, r22: 11.0, r32: 12.0,
-			r03: 13.0, r13: 14.0, r23: 15.0, r33: 16.0
+			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
+			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
+			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
+			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
 		}, epsilon);
 		assert.strictEqual(m, r);
 	});
@@ -361,23 +325,23 @@ describe('subtract', () => {
 describe('subtractAssign', () => {
 	it('should set a Matrix4 to represent a subtraction', () => {
 		const m:mat4.Matrix4 = {
-			r00:  1.01, r10:  2.02, r20:  3.03, r30:  4.04,
-			r01:  5.05, r11:  6.06, r21:  7.07, r31:  8.08,
-			r02:  9.09, r12: 10.10, r22: 11.11, r32: 12.12,
-			r03: 13.13, r13: 14.14, r23: 15.15, r33: 16.16
+			r00 :  1.01, r10 :  2.02, r20 :  3.03, r30 :  4.04,
+			r01 :  5.05, r11 :  6.06, r21 :  7.07, r31 :  8.08,
+			r02 :  9.09, r12 : 10.10, r22 : 11.11, r32 : 12.12,
+			r03 : 13.13, r13 : 14.14, r23 : 15.15, r33 : 16.16
 		};
 		const r = mat4.subtractAssign(m, {
-			r00: 0.01, r10: 0.02, r20: 0.03, r30: 0.04,
-			r01: 0.05, r11: 0.06, r21: 0.07, r31: 0.08,
-			r02: 0.09, r12: 0.10, r22: 0.11, r32: 0.12,
-			r03: 0.13, r13: 0.14, r23: 0.15, r33: 0.16
+			r00 : 0.01, r10 : 0.02, r20 : 0.03, r30 : 0.04,
+			r01 : 0.05, r11 : 0.06, r21 : 0.07, r31 : 0.08,
+			r02 : 0.09, r12 : 0.10, r22 : 0.11, r32 : 0.12,
+			r03 : 0.13, r13 : 0.14, r23 : 0.15, r33 : 0.16
 		});
 
 		assertEquals(r, {
-			r00:  1.0, r10:  2.0, r20:  3.0, r30:  4.0,
-			r01:  5.0, r11:  6.0, r21:  7.0, r31:  8.0,
-			r02:  9.0, r12: 10.0, r22: 11.0, r32: 12.0,
-			r03: 13.0, r13: 14.0, r23: 15.0, r33: 16.0
+			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
+			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
+			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
+			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
 		}, epsilon);
 		assert.strictEqual(m, r);
 	});
@@ -411,6 +375,7 @@ describe('concatScale', () => {
 		assertEquals(mat4.concatScale(m, mat4.Identity(), vec3.Create(1.0, 1.0, 1.0)), mat4.Identity(), epsilon);
 
 		const r = mat4.concatScale(m, mat4.ShearMatrix3(mat3.Scale(vec3.Create(1.0, 2.0, 3.0))), vec3.Create(0.5, 1.5, 2.5));
+
 		assertEquals(
 			r,
 			mat4.Concat(mat4.ShearMatrix3(mat3.Scale(vec3.Create(1.0, 2.0, 3.0))), mat4.ShearMatrix3(mat3.Scale(vec3.Create(0.5, 1.5, 2.5)))),
@@ -459,6 +424,7 @@ describe('concatTranslation', () => {
 		assertEquals(mat4.concatTranslation(m, mat4.Identity(), vec3.Create()), mat4.Identity(), epsilon);
 
 		const r = mat4.concatTranslation(m, mat4.ShearMatrix3(mat3.Scale(vec3.Create(0.5, 1.5, 2.5))), vec3.Create(1.0, 2.0, 3.0));
+
 		assertEquals(
 			r,
 			mat4.Concat(mat4.ShearMatrix3(mat3.Scale(vec3.Create(0.5, 1.5, 2.5))), mat4.Translation(vec3.Create(1.0, 2.0, 3.0))),
@@ -507,6 +473,7 @@ describe('concatMatrix3', () => {
 		assertEquals(mat4.concatMatrix3(m, mat4.Identity(), mat3.Identity()), mat4.Identity(), epsilon);
 
 		const r = mat4.concatMatrix3(m, mat4.ShearMatrix3(mat3.Scale(vec3.Create(0.5, 1.5, 2.5))), mat3.RotationX(0.125 * turn));
+
 		assertEquals(
 			r,
 			mat4.Concat(mat4.ShearMatrix3(mat3.Scale(vec3.Create(0.5, 1.5, 2.5))), mat4.ShearMatrix3(mat3.RotationX(0.125 * turn))),
@@ -560,6 +527,7 @@ describe('concat3x4', () => {
 		assertEquals(mat4.concat3x4(m, mat4.Identity(), mat4.Identity()), mat4.Identity(), epsilon);
 
 		const r = mat4.concat3x4(m, mat4.ShearMatrix3(mat3.Scale(vec3.Create(2.0, 3.0, 4.0))), mat4.ShearMatrix3(mat3.RotationZ(0.5 * Math.PI)));
+
 		assertEquals(
 			r,
 			mat4.Concat(mat4.ShearMatrix3(mat3.Scale(vec3.Create(2.0, 3.0, 4.0))), mat4.ShearMatrix3(mat3.RotationZ(0.5 * Math.PI))),
@@ -668,6 +636,7 @@ describe('concat', () => {
 			mat4.ShearMatrix3(mat3.Scale(vec3.Create(2.0, 3.0, 4.0))),
 			mat4.ShearMatrix3(mat3.RotationZ(0.5 * Math.PI))
 		);
+
 		assertEquals(r, {
 			r00 :  0.0, r10 : 3.0, r20 : 0.0, r30 : 0.0,
 			r01 : -2.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
@@ -703,20 +672,20 @@ describe('concat', () => {
 			mat4.Translation(vec3.Create(2.0, 3.0, 4.0)),
 			mat4.ShearMatrix3(mat3.Scale(vec3.Create(0.5, 1.5, 2.5)))
 		), {
-			r00 :  0.5, r10 : 0.0, r20 : 0.0, r30 : 0.0,
-			r01 :  0.0, r11 : 1.5, r21 : 0.0, r31 : 0.0,
-			r02 :  0.0, r12 : 0.0, r22 : 2.5, r32 : 0.0,
-			r03 :  2.0, r13 : 3.0, r23 : 4.0, r33 : 1.0
+			r00 : 0.5, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.5, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 2.5, r32 : 0.0,
+			r03 : 2.0, r13 : 3.0, r23 : 4.0, r33 : 1.0
 		}, epsilon);
 		assertEquals(mat4.concat(
 			m,
 			mat4.ShearMatrix3(mat3.Scale(vec3.Create(0.5, 1.5, 2.5))),
 			mat4.Translation(vec3.Create(2.0, 3.0, 4.0))
 		), {
-			r00 :  0.5, r10 : 0.0, r20 :  0.0, r30 : 0.0,
-			r01 :  0.0, r11 : 1.5, r21 :  0.0, r31 : 0.0,
-			r02 :  0.0, r12 : 0.0, r22 :  2.5, r32 : 0.0,
-			r03 :  1.0, r13 : 4.5, r23 : 10.0, r33 : 1.0
+			r00 : 0.5, r10 : 0.0, r20 :  0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.5, r21 :  0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 :  2.5, r32 : 0.0,
+			r03 : 1.0, r13 : 4.5, r23 : 10.0, r33 : 1.0
 		}, epsilon);
 		assertEquals(mat4.concat(
 			m,
@@ -745,106 +714,106 @@ describe('Inverse3x4', () => {
 	it('should return a Matrix4 representing a 3x4 inversion', () => {
 		assertEquals(mat4.Inverse3x4(mat4.Identity()) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: Number.NaN, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : Number.NaN, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: 1.0, r10: Number.NaN, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : Number.NaN, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: Number.NaN, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : Number.NaN, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assertEquals(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: Number.NaN,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : Number.NaN,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: Number.NaN, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : Number.NaN, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: Number.NaN, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : Number.NaN, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: Number.NaN, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : Number.NaN, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assertEquals(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: Number.NaN,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : Number.NaN,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: Number.NaN, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : Number.NaN, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: Number.NaN, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : Number.NaN, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: Number.NaN, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : Number.NaN, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assertEquals(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: Number.NaN,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : Number.NaN,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: Number.NaN, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : Number.NaN, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: Number.NaN, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : Number.NaN, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: Number.NaN, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : Number.NaN, r33 : 1.0
 		}), undefined);
 		assertEquals(mat4.Inverse3x4({
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: Number.NaN
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : Number.NaN
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assertEquals(
 			mat4.Inverse(mat4.Inverse3x4(mat4.Translation(vec3.Create(1.0, 2.0, 3.0))) as mat4.Matrix4) as mat4.Matrix4,
@@ -865,109 +834,110 @@ describe('inverse3x4', () => {
 
 		assertEquals(mat4.inverse3x4(m, mat4.Identity()) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: Number.NaN, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : Number.NaN, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: 1.0, r10: Number.NaN, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : Number.NaN, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: Number.NaN, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : Number.NaN, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assertEquals(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: Number.NaN,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : Number.NaN,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: Number.NaN, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : Number.NaN, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: Number.NaN, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : Number.NaN, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: Number.NaN, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : Number.NaN, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assertEquals(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: Number.NaN,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : Number.NaN,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: Number.NaN, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : Number.NaN, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: Number.NaN, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : Number.NaN, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: Number.NaN, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : Number.NaN, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assertEquals(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: Number.NaN,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : Number.NaN,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: Number.NaN, r13: 0.0, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : Number.NaN, r13 : 0.0, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: Number.NaN, r23: 0.0, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : Number.NaN, r23 : 0.0, r33 : 1.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: Number.NaN, r33: 1.0
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : Number.NaN, r33 : 1.0
 		}), undefined);
 		assertEquals(mat4.inverse3x4(m, {
-			r00: 1.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 1.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 1.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: Number.NaN
+			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : Number.NaN
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 
 		const r = mat4.inverse(m, mat4.inverse3x4(m, mat4.Translation(vec3.Create(1.0, 2.0, 3.0))) as mat4.Matrix4) as mat4.Matrix4;
+
 		assertEquals(
 			r,
 			mat4.Translation(vec3.Create(1.0, 2.0, 3.0)),
@@ -1107,109 +1077,110 @@ describe('inverse', () => {
 
 		assertEquals(mat4.inverse(m, mat4.Identity()) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: Number.NaN, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : Number.NaN, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: Number.NaN, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : Number.NaN, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: Number.NaN, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : Number.NaN, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: Number.NaN,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : Number.NaN,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: Number.NaN, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : Number.NaN, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: Number.NaN, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : Number.NaN, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: Number.NaN, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : Number.NaN, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: Number.NaN,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : Number.NaN,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: Number.NaN, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : Number.NaN, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: Number.NaN, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : Number.NaN, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: Number.NaN, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : Number.NaN, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: Number.NaN,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : Number.NaN,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: Number.NaN, r13: 0.0, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : Number.NaN, r13 : 0.0, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: Number.NaN, r23: 0.0, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : Number.NaN, r23 : 0.0, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: Number.NaN, r33: 0.0
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : Number.NaN, r33 : 0.0
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
-			r00: 0.0, r10: 0.0, r20: 0.0, r30: 0.0,
-			r01: 0.0, r11: 0.0, r21: 0.0, r31: 0.0,
-			r02: 0.0, r12: 0.0, r22: 0.0, r32: 0.0,
-			r03: 0.0, r13: 0.0, r23: 0.0, r33: Number.NaN
+			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
+			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
+			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
+			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : Number.NaN
 		}), undefined);
 
-		const r = mat4.inverse(m, mat4.inverse(m, mat4.Translation(vec3.Create(1.0, 2.0, 3.0))) as mat4.Matrix4) as mat4.Matrix4
+		const r = mat4.inverse(m, mat4.inverse(m, mat4.Translation(vec3.Create(1.0, 2.0, 3.0))) as mat4.Matrix4) as mat4.Matrix4;
+
 		assertEquals(
 			r,
 			mat4.Translation(vec3.Create(1.0, 2.0, 3.0)),
@@ -1354,7 +1325,7 @@ describe('InverseGauss', () => {
 				r03 : 13.0, r13 : 14.5, r23 : 15.0, r33 : 16.0
 			},
 			epsilon
-		)
+		);
 	});
 });
 
@@ -1467,6 +1438,7 @@ describe('inverseGauss', () => {
 		}), undefined);
 
 		const r = mat4.inverseGauss(m, mat4.inverseGauss(m, mat4.Translation(vec3.Create(1.0, 2.0, 3.0))) as mat4.Matrix4) as mat4.Matrix4;
+
 		assertEquals(
 			r,
 			mat4.Translation(vec3.Create(1.0, 2.0, 3.0)),
@@ -1493,7 +1465,7 @@ describe('inverseGauss', () => {
 				r03 : 13.0, r13 : 14.5, r23 : 15.0, r33 : 16.0
 			},
 			epsilon
-		)
+		);
 	});
 });
 
@@ -1567,6 +1539,7 @@ describe('copy', () => {
 
 describe('toColumnF32', () => {
 	it('should return a Float32Array representing a Matrix4 in column-major order', () => {
+		/* eslint-disable array-element-newline, no-mixed-spaces-and-tabs */
 		assert.deepStrictEqual(mat4.toColumnF32({
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
@@ -1578,6 +1551,7 @@ describe('toColumnF32', () => {
 			 9.0, 10.0, 11.0, 12.0,
 			13.0, 14.0, 15.0, 16.0
 		]));
+		/* eslint-enable array-element-newline, no-mixed-spaces-and-tabs */
 	});
 });
 
@@ -1592,29 +1566,34 @@ describe('assignColumnF32', () => {
 		const f = new Float32Array(16);
 		const r = mat4.assignColumnF32(f, m);
 
+		/* eslint-disable array-element-newline, no-mixed-spaces-and-tabs */
 		assert.deepStrictEqual(r, new Float32Array([
 			 1.0,  2.0,  3.0,  4.0,
 			 5.0,  6.0,  7.0,  8.0,
 			 9.0, 10.0, 11.0, 12.0,
 			13.0, 14.0, 15.0, 16.0
 		]));
+		/* eslint-enable array-element-newline, no-mixed-spaces-and-tabs */
+
 		assert.strictEqual(f, r);
 	});
 });
 
 describe('toColumnF64', () => {
 	it('should return a Float64Array representing a Matrix4 in column-major order', () => {
+		/* eslint-disable array-element-newline, no-mixed-spaces-and-tabs */
 		assert.deepStrictEqual(mat4.toColumnF64({
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
 		}), new Float64Array([
-			1.0,  2.0,  3.0,  4.0,
-			5.0,  6.0,  7.0,  8.0,
-			9.0, 10.0, 11.0, 12.0,
+			 1.0,  2.0,  3.0,  4.0,
+			 5.0,  6.0,  7.0,  8.0,
+			 9.0, 10.0, 11.0, 12.0,
 			13.0, 14.0, 15.0, 16.0
 		]));
+		/* eslint-enable array-element-newline, no-mixed-spaces-and-tabs */
 	});
 });
 
@@ -1629,18 +1608,22 @@ describe('assignColumnF64', () => {
 		const f = new Float64Array(16);
 		const r = mat4.assignColumnF64(f, m);
 
+		/* eslint-disable array-element-newline, no-mixed-spaces-and-tabs */
 		assert.deepStrictEqual(r, new Float64Array([
-			1.0,  2.0,  3.0,  4.0,
-			5.0,  6.0,  7.0,  8.0,
-			9.0, 10.0, 11.0, 12.0,
+			 1.0,  2.0,  3.0,  4.0,
+			 5.0,  6.0,  7.0,  8.0,
+			 9.0, 10.0, 11.0, 12.0,
 			13.0, 14.0, 15.0, 16.0
 		]));
+		/* eslint-enable array-element-newline, no-mixed-spaces-and-tabs */
+
 		assert.strictEqual(f, r);
 	});
 });
 
 describe('ColumnF32', () => {
 	it('should return a Matrix4 representing a column-major ordered Float32Array', () => {
+		/* eslint-disable array-element-newline, no-mixed-spaces-and-tabs */
 		assert.deepStrictEqual(mat4.ColumnF32(new Float32Array([
 			 1.0,  2.0,  3.0,  4.0,
 			 5.0,  6.0,  7.0,  8.0,
@@ -1652,17 +1635,20 @@ describe('ColumnF32', () => {
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
 		});
+		/* eslint-enable array-element-newline, no-mixed-spaces-and-tabs */
 	});
 });
 
 describe('columnF32', () => {
 	it('should assign a Matrix4 representing a column-major ordered Float32Array', () => {
+		/* eslint-disable array-element-newline, no-mixed-spaces-and-tabs */
 		const f = new Float32Array([
 			 1.0,  2.0,  3.0,  4.0,
 			 5.0,  6.0,  7.0,  8.0,
 			 9.0, 10.0, 11.0, 12.0,
 			13.0, 14.0, 15.0, 16.0
 		]);
+		/* eslint-enable array-element-newline, no-mixed-spaces-and-tabs */
 		const m = mat4.Identity();
 		const r = mat4.columnF32(m, f);
 
@@ -1678,10 +1664,11 @@ describe('columnF32', () => {
 
 describe('ColumnF64', () => {
 	it('should return a Matrix4 representing a column-major ordered Float64Array', () => {
+		/* eslint-disable array-element-newline, no-mixed-spaces-and-tabs */
 		assert.deepStrictEqual(mat4.ColumnF64(new Float64Array([
-			1.0,  2.0,  3.0,  4.0,
-			5.0,  6.0,  7.0,  8.0,
-			9.0, 10.0, 11.0, 12.0,
+			 1.0,  2.0,  3.0,  4.0,
+			 5.0,  6.0,  7.0,  8.0,
+			 9.0, 10.0, 11.0, 12.0,
 			13.0, 14.0, 15.0, 16.0
 		])), {
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
@@ -1689,25 +1676,28 @@ describe('ColumnF64', () => {
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
 		});
+		/* eslint-enable array-element-newline, no-mixed-spaces-and-tabs */
 	});
 });
 
 describe('columnF64', () => {
 	it('should assign a Matrix4 representing a column-major ordered Float64Array', () => {
+		/* eslint-disable array-element-newline, no-mixed-spaces-and-tabs */
 		const f = new Float64Array([
-			1.0, 2.0, 3.0, 4.0,
-			5.0, 6.0, 7.0, 8.0,
-			9.0, 10.0, 11.0, 12.0,
+			 1.0,  2.0,  3.0,  4.0,
+			 5.0,  6.0,  7.0,  8.0,
+			 9.0, 10.0, 11.0, 12.0,
 			13.0, 14.0, 15.0, 16.0
 		]);
+		/* eslint-enable array-element-newline, no-mixed-spaces-and-tabs */
 		const m = mat4.Identity();
 		const r = mat4.columnF64(m, f);
 
 		assert.deepStrictEqual(r, {
-			r00: 1.0, r10: 2.0, r20: 3.0, r30: 4.0,
-			r01: 5.0, r11: 6.0, r21: 7.0, r31: 8.0,
-			r02: 9.0, r12: 10.0, r22: 11.0, r32: 12.0,
-			r03: 13.0, r13: 14.0, r23: 15.0, r33: 16.0
+			r00 : 1.0, r10 : 2.0, r20 : 3.0, r30 : 4.0,
+			r01 : 5.0, r11 : 6.0, r21 : 7.0, r31 : 8.0,
+			r02 : 9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
+			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
 		});
 		assert.strictEqual(m, r);
 	});

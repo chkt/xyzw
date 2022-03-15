@@ -9,9 +9,9 @@ export interface PerspectiveLens {
 }
 
 
-const min = Math.min;
-const max = Math.max;
-const tan = Math.tan;
+const minOf = Math.min;
+const maxOf = Math.max;
+const tanOf = Math.tan;
 
 const FOV_MIN = 1e-10;
 const FOV_MAX = Math.PI * 2.0;
@@ -31,15 +31,15 @@ export function Frustrum(lens:PerspectiveLens) : Matrix4 {
 }
 
 export function frustrum<R extends Matrix4>(r:R, lens:PerspectiveLens) : R {
-	const fov = min(max(lens.fov, FOV_MIN), FOV_MAX);
-	const aspect = min(max(lens.aspect, ASPECT_MIN), ASPECT_MAX);
-	const near = min(max(lens.near, ZPLANE_MIN), ZPLANE_MAX);
-	const far = min(max(lens.far, near), ZPLANE_MAX);
+	const fov = minOf(maxOf(lens.fov, FOV_MIN), FOV_MAX);
+	const aspect = minOf(maxOf(lens.aspect, ASPECT_MIN), ASPECT_MAX);
+	const near = minOf(maxOf(lens.near, ZPLANE_MIN), ZPLANE_MAX);
+	const far = minOf(maxOf(lens.far, near), ZPLANE_MAX);
 
 	const near2 = near * 2.0;
 	const zdiff = 1.0 / (far - near);
 
-	const ymax = near * tan(fov * 0.5);
+	const ymax = near * tanOf(fov * 0.5);
 	const ymin = -ymax;
 	const ydiff = 1.0 / (ymax - ymin);
 

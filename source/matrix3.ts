@@ -1,5 +1,8 @@
+/* eslint key-spacing : [ error, { beforeColon : true, afterColon : true, mode : minimum } ] */
+/* eslint max-statements-per-line: [ error, { max : 3 }] */
+/* eslint no-multi-spaces : [ off ] */
 import { Vector2 } from './vector2';
-import { cross, Vector3 } from './vector3';
+import { Vector3, cross } from './vector3';
 import { Vector4 } from './vector4';
 import { Matrix2 } from './matrix2';
 import { Matrix4 } from './matrix4';
@@ -14,20 +17,20 @@ export interface Matrix3 extends Matrix2 {
 }
 
 
-const epsilon = 1e-10;
-const isNaN = Number.isNaN;
-const abs = Math.abs;
+const isNanVal = Number.isNaN;
+const absOf = Math.abs;
 const sinOf = Math.sin;
 const cosOf = Math.cos;
-const sqrt = Math.sqrt;
+const sqrtOf = Math.sqrt;
 
+const epsilon = 1e-10;
 const vec3:Vector3 = { x : 0.0, y : 0.0, z : 0.0 };
 
 
 export function equals(a:Matrix3, b:Matrix3, e:number = epsilon) : boolean {
-	return abs(b.r00 - a.r00) < e && abs(b.r10 - a.r10) < e && abs(b.r20 - a.r20) < e &&
-		abs(b.r01 - a.r01) < e && abs(b.r11 - a.r11) < e && abs(b.r21 - a.r21) < e &&
-		abs(b.r02 - a.r02) < e && abs(b.r12 - a.r12) < e && abs(b.r22 - a.r22) < e;
+	return absOf(b.r00 - a.r00) < e && absOf(b.r10 - a.r10) < e && absOf(b.r20 - a.r20) < e &&
+		absOf(b.r01 - a.r01) < e && absOf(b.r11 - a.r11) < e && absOf(b.r21 - a.r21) < e &&
+		absOf(b.r02 - a.r02) < e && absOf(b.r12 - a.r12) < e && absOf(b.r22 - a.r22) < e;
 }
 
 /**
@@ -77,7 +80,7 @@ export function RotationAxis(v:Vector3, rad:number) : Matrix3 {
  * Mᵣ = R(v⃗, θ)
  */
 export function rotationAxis<R extends Matrix3>(r:R, v:Vector3, rad:number) : R {
-	const {x, y, z} = v;
+	const { x, y, z } = v;
 	const sin = sinOf(rad), cos = cosOf(rad), vers = 1.0 - cos;
 	const xSin = x * sin, ySin = y * sin, zSin = z * sin;
 	const xyVers = x * y * vers, xzVers = x * z * vers, yzVers = y * z * vers;
@@ -247,7 +250,7 @@ export function EulerXYZ(v:Vector3) : Matrix3 {
  * Mᵣ = R(x̂, v⃗₀)R(ŷ, v⃗₁)R(ẑ, v⃗₂)
  */
 export function eulerXYZ<R extends Matrix3>(r:R, v:Vector3) : R {
-	const {x, y, z} = v;
+	const { x, y, z } = v;
 	const sx = sinOf(x), cx = cosOf(x);
 	const sy = sinOf(y), cy = cosOf(y);
 	const sz = sinOf(z), cz = cosOf(z);
@@ -280,7 +283,7 @@ export function EulerYXZ(v:Vector3) : Matrix3 {
  * Mᵣ = R(ŷ, v⃗₁)R(x̂, v⃗₀)R(ẑ, v⃗₂)
  */
 export function eulerYXZ<R extends Matrix3>(r:R, v:Vector3) : R {
-	const {x, y, z} = v;
+	const { x, y, z } = v;
 	const sx = sinOf(x), cx = cosOf(x);
 	const sy = sinOf(y), cy = cosOf(y);
 	const sz = sinOf(z), cz = cosOf(z);
@@ -314,7 +317,7 @@ export function EulerZXY(v:Vector3) : Matrix3 {
  * Mᵣ = R(ẑ, v⃗₂)R(x̂, v⃗₀)R(ŷ, v⃗₁)
  */
 export function eulerZXY<R extends Matrix3>(r:R, v:Vector3) : R {
-	const {x, y, z} = v;
+	const { x, y, z } = v;
 	const sx = sinOf(x), cx = cosOf(x);
 	const sy = sinOf(y), cy = cosOf(y);
 	const sz = sinOf(z), cz = cosOf(z);
@@ -347,12 +350,12 @@ export function Quaternion(q:Vector4) : Matrix3 {
  * Mᵣ = R(q̂)
  */
 export function quaternion<R extends Matrix3>(r:R, q:Vector4) : R {
-	const {x, y, z, w} = q;
+	const { x, y, z, w } = q;
 	const xx = x ** 2, yy = y ** 2, zz = z ** 2;
 	const xy = x * y,  yz = y * z,  xz = x * z;
 	const xw = x * w,  yw = y * w,  zw = z * w;
 
-	const s = 2.0 / sqrt(xx + yy + zz + w ** 2);
+	const s = 2.0 / sqrtOf(xx + yy + zz + w ** 2);
 
 	r.r00 = 1.0 - s * (yy + zz);
 	r.r10 =       s * (xy + zw);
@@ -602,11 +605,11 @@ export function ConcatScaleVector2(m:Matrix3, v:Vector2) : Matrix3 {
  * Mᵣ = M[ x̂v⃗₀  ŷv⃗₁  ẑ ]
  */
 export function concatScaleVector2<R extends Matrix3>(r:R, m:Matrix3, v:Vector2) : R {
-	const {x, y} = v;
+	const { x, y } = v;
 
 	r.r00 = m.r00 * x; r.r10 = m.r10 * x; r.r20 = m.r20 * x;
 	r.r01 = m.r01 * y; r.r11 = m.r11 * y; r.r21 = m.r21 * y;
-	r.r02 = m.r02    ; r.r12 = m.r12    ; r.r22 = m.r22    ;
+	r.r02 = m.r02;     r.r12 = m.r12;     r.r22 = m.r22;
 
 	return r;
 }
@@ -626,8 +629,8 @@ export function ConcatTranslation(m:Matrix3, v:Vector2) : Matrix3 {
  * Mᵣ = M[ x̂  ŷ  v⃗ ]
  */
 export function concatTranslation<R extends Matrix3>(r:R, m:Matrix3, v:Vector2) : R {
-	const {r00, r10, r20, r01, r11, r21} = m;
-	const {x, y} = v;
+	const { r00, r10, r20, r01, r11, r21 } = m;
+	const { x, y } = v;
 
 	r.r00 = r00; r.r01 = r01; r.r02 = r00 * x + r01 * y + m.r02;
 	r.r10 = r10; r.r11 = r11; r.r12 = r10 * x + r11 * y + m.r12;
@@ -651,8 +654,8 @@ export function ConcatMatrix2(a:Matrix3, b:Matrix2) : Matrix3 {
  * Mᵣ = AB₂ₓ₂
  */
 export function concatMatrix2<R extends Matrix3>(r:R, a:Matrix3, b:Matrix2) : R {
-	const {r00 : a00, r10 : a10, r01 : a01, r11 : a11, r02 : a02, r12 : a12} = a;
-	const {r00 : b00, r10 : b10, r01 : b01, r11 : b11} = b;
+	const { r00 : a00, r10 : a10, r01 : a01, r11 : a11, r02 : a02, r12 : a12 } = a;
+	const { r00 : b00, r10 : b10, r01 : b01, r11 : b11 } = b;
 
 	r.r00 = a00 * b00 + a01 * b10; r.r10 = a10 * b00 + a11 * b10; r.r20 = 0.0;
 	r.r01 = a00 * b01 + a01 * b11; r.r11 = a10 * b01 + a11 * b11; r.r21 = 0.0;
@@ -676,8 +679,8 @@ export function Concat2x3(a:Matrix3, b:Matrix3) : Matrix3 {
  * Mᵣ = AB₂ₓ₃
  */
 export function concat2x3<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R {
-	const {r00 : a00, r10 : a10, r01 : a01, r11 : a11, r02 : a02, r12 : a12} = a;
-	const {r00 : b00, r10 : b10, r01 : b01, r11 : b11, r02 : b02, r12 : b12} = b;
+	const { r00 : a00, r10 : a10, r01 : a01, r11 : a11, r02 : a02, r12 : a12 } = a;
+	const { r00 : b00, r10 : b10, r01 : b01, r11 : b11, r02 : b02, r12 : b12 } = b;
 
 	r.r00 = a00 * b00 + a01 * b10;       r.r10 = a10 * b00 + a11 * b10;       r.r20 = 0.0;
 	r.r01 = a00 * b01 + a01 * b11;       r.r11 = a10 * b01 + a11 * b11;       r.r21 = 0.0;
@@ -701,12 +704,20 @@ export function Concat(a:Matrix3, b:Matrix3) : Matrix3 {
  * Mᵣ = AB
  */
 export function concat<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R {
-	const {r00 : a00, r10 : a10, r20 : a20, r01 : a01, r11 : a11, r21 : a21, r02 : a02, r12 : a12, r22 : a22} = a;
-	const {r00 : b00, r10 : b10, r20 : b20, r01 : b01, r11 : b11, r21 : b21, r02 : b02, r12 : b12, r22 : b22} = b;
+	const { r00 : a00, r10 : a10, r20 : a20, r01 : a01, r11 : a11, r21 : a21, r02 : a02, r12 : a12, r22 : a22 } = a;
+	const { r00 : b00, r10 : b10, r20 : b20, r01 : b01, r11 : b11, r21 : b21, r02 : b02, r12 : b12, r22 : b22 } = b;
 
-	r.r00 = a00 * b00 + a01 * b10 + a02 * b20; r.r10 = a10 * b00 + a11 * b10 + a12 * b20; r.r20 = a20 * b00 + a21 * b10 + a22 * b20;
-	r.r01 = a00 * b01 + a01 * b11 + a02 * b21; r.r11 = a10 * b01 + a11 * b11 + a12 * b21; r.r21 = a20 * b01 + a21 * b11 + a22 * b21;
-	r.r02 = a00 * b02 + a01 * b12 + a02 * b22; r.r12 = a10 * b02 + a11 * b12 + a12 * b22; r.r22 = a20 * b02 + a21 * b12 + a22 * b22;
+	r.r00 = a00 * b00 + a01 * b10 + a02 * b20;
+	r.r10 = a10 * b00 + a11 * b10 + a12 * b20;
+	r.r20 = a20 * b00 + a21 * b10 + a22 * b20;
+
+	r.r01 = a00 * b01 + a01 * b11 + a02 * b21;
+	r.r11 = a10 * b01 + a11 * b11 + a12 * b21;
+	r.r21 = a20 * b01 + a21 * b11 + a22 * b21;
+
+	r.r02 = a00 * b02 + a01 * b12 + a02 * b22;
+	r.r12 = a10 * b02 + a11 * b12 + a12 * b22;
+	r.r22 = a20 * b02 + a21 * b12 + a22 * b22;
 
 	return r;
 }
@@ -714,7 +725,7 @@ export function concat<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R {
 /**
  * M⁻¹
  */
-export function Inverse(m:Matrix3) : Matrix3|void {
+export function Inverse(m:Matrix3) : Matrix3 | undefined {
 	return inverse({
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
@@ -725,14 +736,14 @@ export function Inverse(m:Matrix3) : Matrix3|void {
 /**
  * Mᵣ = M⁻¹
  */
-export function inverse<R extends Matrix3>(r:R, m:Matrix3) : R|void {
+export function inverse<R extends Matrix3>(r:R, m:Matrix3) : R | undefined {
 	let d = determinant(m);
 
-	if (isNaN(d) || abs(d) < 1e-10) return undefined;
+	if (isNanVal(d) || absOf(d) < 1e-10) return undefined;
 
 	d = 1.0 / d;
 
-	const {r00, r10, r20, r01, r11, r21, r02, r12, r22} = m;
+	const { r00, r10, r20, r01, r11, r21, r02, r12, r22 } = m;
 
 	r.r00 =  d * (r11 * r22 - r12 * r21); r.r10 = -d * (r10 * r22 - r12 * r20); r.r20 =  d * (r10 * r21 - r11 * r20);
 	r.r01 = -d * (r01 * r22 - r02 * r21); r.r11 =  d * (r00 * r22 - r02 * r20); r.r21 = -d * (r00 * r21 - r01 * r20);
@@ -756,7 +767,7 @@ export function Transpose(m:Matrix3) : Matrix3 {
  * Mᵣ = Mᵀ
  */
 export function transpose<R extends Matrix3>(r:R, m:Matrix3) : R {
-	const {r10, r20, r21} = m;
+	const { r10, r20, r21 } = m;
 
 	r.r00 = m.r00; r.r10 = m.r01; r.r20 = m.r02;
 	r.r01 = r10;   r.r11 = m.r11; r.r21 = m.r12;

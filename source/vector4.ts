@@ -1,4 +1,5 @@
 /* eslint max-statements-per-line : [ error, { max : 4 }] */
+import { PRECISION_SAFE, StringifyOptions, stringify, stringifyDefaultsCommon } from './strings';
 import { Vector3 } from './vector3';
 import { Matrix3 } from './matrix3';
 
@@ -16,6 +17,12 @@ const sinOf = Math.sin;
 const cosOf = Math.cos;
 const acosOf = Math.acos;
 const sqrtOf = Math.sqrt;
+
+const stringifyDefaults:StringifyOptions<Vector4> = {
+	...stringifyDefaultsCommon,
+	clampMin : { x : -PRECISION_SAFE, y : -PRECISION_SAFE, z : -PRECISION_SAFE, w : -PRECISION_SAFE },
+	clampMax : { x : PRECISION_SAFE, y : PRECISION_SAFE, z : PRECISION_SAFE, w : PRECISION_SAFE }
+};
 
 
 export function equals(v:Vector4, w:Vector4, e:number = epsilon) : boolean {
@@ -398,6 +405,11 @@ export function copy<R extends Vector4>(r:R, v:Vector4) : R {
 
 	return r;
 }
+
+export function createStringifier(opts?:Partial<StringifyOptions<Vector4>>) : stringify<Vector4> {
+	return stringify.bind<null, StringifyOptions<Vector4>, [ Vector4 ], string>(null, { ...stringifyDefaults, ...opts });
+}
+
 
 export function toF32(v:Vector4) : Float32Array {
 	return new Float32Array([ v.x, v.y, v.z, v.w ]);

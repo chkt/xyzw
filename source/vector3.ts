@@ -1,3 +1,4 @@
+import { PRECISION_SAFE, StringifyOptions, stringify, stringifyDefaultsCommon } from './strings';
 import { Vector2 } from './vector2';
 import { Matrix3 } from './matrix3';
 import { Matrix4 } from './matrix4';
@@ -18,6 +19,12 @@ const sqrtOf = Math.sqrt;
 const epsilon = 1e-10;
 const vec3a:Vector3 = { x : 0.0, y : 0.0, z : 0.0 };
 const vec3b:Vector3 = { x : 0.0, y : 0.0, z : 0.0 };
+
+const stringifyDefaults:StringifyOptions<Vector3> = {
+	...stringifyDefaultsCommon,
+	clampMin : { x : -PRECISION_SAFE, y : -PRECISION_SAFE, z : -PRECISION_SAFE },
+	clampMax : { x : PRECISION_SAFE, y : PRECISION_SAFE, z : PRECISION_SAFE }
+};
 
 
 export function equals(v:Vector3, w:Vector3, e:number = epsilon) : boolean {
@@ -653,6 +660,10 @@ export function copy<R extends Vector3>(r:R, v:Vector3) : R {
 	r.z = v.z;
 
 	return r;
+}
+
+export function createStringifier(opts?:Partial<StringifyOptions<Vector3>>) : stringify<Vector3> {
+	return stringify.bind<null, StringifyOptions<Vector3>, [ Vector3 ], string>(null, { ...stringifyDefaults, ...opts });
 }
 
 export function toF32(v:Vector3) : Float32Array {

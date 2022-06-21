@@ -923,6 +923,65 @@ describe('copy', () => {
 	});
 });
 
+describe('createStringifier', () => {
+	it('should return a function converting a Vector3 to a string', () => {
+		assert.strictEqual(vec4.createStringifier()(vec4.Create()), '0.000,0.000,0.000,1.000');
+		assert.strictEqual(vec4.createStringifier()(vec4.Create(Number.NaN)), 'NaN,0.000,0.000,1.000');
+		assert.strictEqual(vec4.createStringifier()(vec4.Create(0.0, Number.NaN)), '0.000,NaN,0.000,1.000');
+		assert.strictEqual(vec4.createStringifier()(vec4.Create(0.0, 0.0, Number.NaN)), '0.000,0.000,NaN,1.000');
+		assert.strictEqual(vec4.createStringifier()(vec4.Create(0.0, 0.0, 0.0, Number.NaN)), '0.000,0.000,0.000,NaN');
+		assert.strictEqual(vec4.createStringifier({ nanString : '-' })(vec4.Create(0.0, Number.NaN)), '0.000,-,0.000,1.000');
+		assert.strictEqual(
+			vec4.createStringifier()(vec4.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY)),
+			'999999999999999868928.000,-999999999999999868928.000,999999999999999868928.000,-999999999999999868928.000'
+		);
+		assert.strictEqual(
+			vec4.createStringifier({
+				clampMin : vec4.Create(-1000.0, -2000.0, -3000.0, -4000.0),
+				clampMax : vec4.Create(1000.0, 2000.0, 3000.0, 4000.0)
+			})(vec4.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY)),
+			'1000.000,-2000.000,3000.000,-4000.000'
+		);
+		assert.strictEqual(
+			vec4.createStringifier({
+				clampMin : vec4.Create(-1e21, -1e21, -1e21, -1e21),
+				clampMax : vec4.Create(1e21, 1e21, 1e21, 1e21)
+			})(vec4.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY)),
+			'1e+21,-1e+21,1e+21,-1e+21'
+		);
+		assert.strictEqual(
+			vec4.createStringifier({
+				clampMin : vec4.Create(Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY),
+				clampMax : vec4.Create(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY)
+			})(vec4.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY)),
+			'+Infinity,-Infinity,+Infinity,-Infinity'
+		);
+		assert.strictEqual(
+			vec4.createStringifier({
+				clampMin : vec4.Create(Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY),
+				clampMax : vec4.Create(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY),
+				posInfString : '+∞',
+				negInfString : '-∞'
+			})(vec4.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY)),
+			'+∞,-∞,+∞,-∞'
+		);
+		assert.strictEqual(
+			// eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+			vec4.createStringifier()(vec4.Create(0.00049, 0.0005, 0.00049999999999999999)),
+			'0.000,0.001,0.001,1.000'
+		);
+		assert.strictEqual(
+			// eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+			vec4.createStringifier({ precision : 2 })(vec4.Create(0.0049, 0.005, 0.0049999999999999999)),
+			'0.00,0.01,0.01,1.00'
+		);
+		assert.strictEqual(
+			vec4.createStringifier({ delimiter : ', ' })(vec4.Create(1.0, 2.0, 3.0, 4.0)),
+			'1.000, 2.000, 3.000, 4.000'
+		);
+	});
+});
+
 describe('toF32', () => {
 	it('should return a Float32Array representing a Vector4', () => {
 		assert.deepStrictEqual(

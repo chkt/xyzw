@@ -1,3 +1,4 @@
+import { PRECISION_SAFE, StringifyOptions, stringify, stringifyDefaultsCommon } from './strings';
 import { Matrix2 } from './matrix2';
 import { Matrix3 } from './matrix3';
 
@@ -15,6 +16,12 @@ const acosOf = Math.acos;
 const sqrtOf = Math.sqrt;
 
 const epsilon = 1e-10;
+
+const stringifyDefaults:StringifyOptions<Vector2> = {
+	...stringifyDefaultsCommon,
+	clampMin : { x : -PRECISION_SAFE, y : -PRECISION_SAFE },
+	clampMax : { x : PRECISION_SAFE, y : PRECISION_SAFE }
+};
 
 
 export function equals(v:Vector2, w:Vector2, e:number = epsilon) : boolean {
@@ -463,4 +470,8 @@ export function copy<R extends Vector2>(r:R, v:Vector2) : R {
 	r.y = v.y;
 
 	return r;
+}
+
+export function createStringifier(opts?:Partial<StringifyOptions<Vector2>>) : stringify<Vector2> {
+	return stringify.bind<null, StringifyOptions<Vector2>, [ Vector2 ], string>(null, { ...stringifyDefaults, ...opts });
 }

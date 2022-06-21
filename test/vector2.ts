@@ -766,3 +766,49 @@ describe('copy', () => {
 		assert.strictEqual(w, r);
 	});
 });
+
+describe('createStringifier', () => {
+	it('should return a function converting a Vector2 to a string', () => {
+		assert.strictEqual(vector2.createStringifier()(vector2.Create()), '0.000,0.000');
+		assert.strictEqual(vector2.createStringifier()(vector2.Create(Number.NaN)), 'NaN,0.000');
+		assert.strictEqual(vector2.createStringifier()(vector2.Create(0.0, Number.NaN)), '0.000,NaN');
+		assert.strictEqual(vector2.createStringifier({ nanString : '-' })(vector2.Create(Number.NaN, Number.NaN)), '-,-');
+		assert.strictEqual(
+			vector2.createStringifier()(vector2.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY)),
+			'999999999999999868928.000,-999999999999999868928.000'
+		);
+		assert.strictEqual(
+			vector2.createStringifier({
+				clampMin : vector2.Create(-1000.0, -1000.0),
+				clampMax : vector2.Create(1000.0, 1000.0)
+			})(vector2.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY)),
+			'1000.000,-1000.000'
+		);
+		assert.strictEqual(
+			vector2.createStringifier({
+				clampMin : vector2.Create(-1e21, -1e21),
+				clampMax : vector2.Create(1e21, 1e21)
+			})(vector2.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY)),
+			'1e+21,-1e+21'
+		);
+		assert.strictEqual(
+			vector2.createStringifier({
+				clampMin : vector2.Create(Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY),
+				clampMax : vector2.Create(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY)
+			})(vector2.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY)),
+			'+Infinity,-Infinity'
+		);
+		assert.strictEqual(
+			vector2.createStringifier({
+				clampMin : vector2.Create(Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY),
+				clampMax : vector2.Create(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY),
+				posInfString : '+∞',
+				negInfString : '-∞'
+			})(vector2.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY)),
+			'+∞,-∞'
+		);
+		assert.strictEqual(vector2.createStringifier()(vector2.Create(0.00049, 0.0005)), '0.000,0.001');
+		assert.strictEqual(vector2.createStringifier({ precision : 2 })(vector2.Create(0.0049, 0.005)), '0.00,0.01');
+		assert.strictEqual(vector2.createStringifier({ delimiter : ', ' })(vector2.Create(1.0, 2.0)), '1.000, 2.000');
+	});
+});

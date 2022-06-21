@@ -1242,6 +1242,64 @@ describe('copy', () => {
 	});
 });
 
+describe('createStringifier', () => {
+	it('should return a function converting a Vector3 to a string', () => {
+		assert.strictEqual(vector3.createStringifier()(vector3.Create()), '0.000,0.000,0.000');
+		assert.strictEqual(vector3.createStringifier()(vector3.Create(Number.NaN)), 'NaN,0.000,0.000');
+		assert.strictEqual(vector3.createStringifier()(vector3.Create(0.0, Number.NaN)), '0.000,NaN,0.000');
+		assert.strictEqual(vector3.createStringifier()(vector3.Create(0.0, 0.0, Number.NaN)), '0.000,0.000,NaN');
+		assert.strictEqual(vector3.createStringifier({ nanString : '-' })(vector3.Create(0.0, Number.NaN)), '0.000,-,0.000');
+		assert.strictEqual(
+			vector3.createStringifier()(vector3.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY)),
+			'999999999999999868928.000,-999999999999999868928.000,999999999999999868928.000'
+		);
+		assert.strictEqual(
+			vector3.createStringifier({
+				clampMin : vector3.Create(-1000.0, -2000.0, -3000.0),
+				clampMax : vector3.Create(1000.0, 2000.0, 3000.0)
+			})(vector3.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY)),
+			'1000.000,-2000.000,3000.000'
+		);
+		assert.strictEqual(
+			vector3.createStringifier({
+				clampMin : vector3.Create(-1e21, -1e21, -1e21),
+				clampMax : vector3.Create(1e21, 1e21, 1e21)
+			})(vector3.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY)),
+			'1e+21,-1e+21,1e+21'
+		);
+		assert.strictEqual(
+			vector3.createStringifier({
+				clampMin : vector3.Create(Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY),
+				clampMax : vector3.Create(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY)
+			})(vector3.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY)),
+			'+Infinity,-Infinity,+Infinity'
+		);
+		assert.strictEqual(
+			vector3.createStringifier({
+				clampMin : vector3.Create(Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY),
+				clampMax : vector3.Create(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY),
+				posInfString : '+∞',
+				negInfString : '-∞'
+			})(vector3.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY)),
+			'+∞,-∞,+∞'
+		);
+		assert.strictEqual(
+			// eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+			vector3.createStringifier()(vector3.Create(0.00049, 0.0005, 0.00049999999999999999)),
+			'0.000,0.001,0.001'
+		);
+		assert.strictEqual(
+			// eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+			vector3.createStringifier({ precision : 2 })(vector3.Create(0.0049, 0.005, 0.0049999999999999999)),
+			'0.00,0.01,0.01'
+		);
+		assert.strictEqual(
+			vector3.createStringifier({ delimiter : ', ' })(vector3.Create(1.0, 2.0, 3.0)),
+			'1.000, 2.000, 3.000'
+		);
+	});
+});
+
 describe('toF32', () => {
 	it('should return a Float32Array representing a Vector3', () => {
 		assert.deepStrictEqual(

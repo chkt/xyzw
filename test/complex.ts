@@ -78,7 +78,7 @@ describe('multiply', () => {
 
 		const r = complex.multiply(v, vector2.Create(1.0, 2.0), vector2.Create(3.0, 4.0));
 
-		assertEquals(r, { x : -5.0, y : 10.0}, epsilon);
+		assertEquals(r, { x : -5.0, y : 10.0 }, epsilon);
 		assert.strictEqual(v, r);
 	});
 });

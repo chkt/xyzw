@@ -63,8 +63,8 @@
 	],
 	"scripts": {
 		"prepublishOnly": "yarn outdated && yarn test && yarn lint && yarn build && yarn doc",
-		"lint": "./node_modules/tslint/bin/tslint -p tsconfig.json",
-		"test": "./node_modules/mocha/bin/mocha -r ts-node/register test/**/*.ts --exclude test/perf.ts",
+		"lint": "yarn eslint source/**/*.ts test/**/*.ts test/*.ts",
+		"test": "yarn mocha -r ts-node/register test/*.ts --exclude test/perf.ts",
 		"doc": "./node_modules/.bin/typedoc --theme ../typedoc_theme --readme ./module.md --out ./.docs source/*.ts && cp ./.docs/modules.md ./readme.md",
 		"build": "rm -rf ./dist/* && ./node_modules/typescript/bin/tsc"
 	},

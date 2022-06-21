@@ -117,7 +117,7 @@ function Add(a:Matrix2, b:Matrix2) : Matrix2;  // A+B
 function Concat(a:Matrix2, b:Matrix2) : Matrix2;  // AB
 function Copy(m:Matrix2) : Matrix2;
 function Identity() : Matrix2;  // Î
-function Inverse(m:Matrix2) : Matrix2 | void;  // M⁻¹
+function Inverse(m:Matrix2) : Matrix2 | undefined;  // M⁻¹
 function Rotation(rad:number) : Matrix2;  // R(θ)
 function RotationVector2(v:Vector2) : Matrix2;  // [ v⃗  v⃗⊥ ]
 function Scale(v:Vector2) : Matrix2;  // [ x̂v⃗₀  ŷv⃗₁ ]
@@ -131,7 +131,7 @@ function concat<R extends Matrix2>(r:R, a:Matrix2, b:Matrix2) : R;  // Mᵣ = AB
 function copy<R extends Matrix2>(r:R, m:Matrix2) : R;
 function determinant(m:Matrix2) : number;  // |M|
 function identity<R extends Matrix2>(r:R) : R;  // Mᵣ = Î
-function inverse<R extends Matrix2>(r:R, m:Matrix2) : R | void;  // Mᵣ = M⁻¹
+function inverse<R extends Matrix2>(r:R, m:Matrix2) : R | undefined;  // Mᵣ = M⁻¹
 function rotation<R extends Matrix2>(r:R, rad:number) : R;  // Mᵣ = R(θ)
 function rotationVector2<R extends Matrix2>(r:R, v:Vector2) : R;  // Mᵣ = [ v⃗  v⃗⊥ ]
 function scale<R extends Matrix2>(r:R, v:Vector2) : R;  // Mᵣ = [ x̂v⃗₀  ŷv⃗₁ ]
@@ -169,7 +169,7 @@ function EulerXYZ(v:Vector3) : Matrix3;  // R(x̂, v⃗₀)R(ŷ, v⃗₁)R(ẑ,
 function EulerYXZ(v:Vector3) : Matrix3;  // R(ŷ, v⃗₁)R(x̂, v⃗₀)R(ẑ, v⃗₂)
 function EulerZXY(v:Vector3) : Matrix3;  // R(ẑ, v⃗₂)R(x̂, v⃗₀)R(ŷ, v⃗₁)
 function Identity() : Matrix3;  // Î
-function Inverse(m:Matrix3) : Matrix3 | void;  // M⁻¹
+function Inverse(m:Matrix3) : Matrix3 | undefined;  // M⁻¹
 function Quaternion(q:Vector4) : Matrix3;  // R(q̂)
 function RotationAxis(v:Vector3, rad:number) : Matrix3;  // R(v⃗, θ)
 function RotationVector3(x:Vector3, y:Vector3) : Matrix3;  // [ x⃗  y⃗  x⃗×y⃗ ]
@@ -201,7 +201,7 @@ function eulerXYZ<R extends Matrix3>(r:R, v:Vector3) : R;  // Mᵣ = R(x̂, v⃗
 function eulerYXZ<R extends Matrix3>(r:R, v:Vector3) : R;  // Mᵣ = R(ŷ, v⃗₁)R(x̂, v⃗₀)R(ẑ, v⃗₂)
 function eulerZXY<R extends Matrix3>(r:R, v:Vector3) : R;  // Mᵣ = R(ẑ, v⃗₂)R(x̂, v⃗₀)R(ŷ, v⃗₁)
 function identity<R extends Matrix3>(r:R) : R;  // Mᵣ = Î
-function inverse<R extends Matrix3>(r:R, m:Matrix3) : R | void;  // Mᵣ = M⁻¹
+function inverse<R extends Matrix3>(r:R, m:Matrix3) : R | undefined;  // Mᵣ = M⁻¹
 function quaternion<R extends Matrix3>(r:R, q:Vector4) : R;  // Mᵣ = R(q̂)
 function rotationAxis<R extends Matrix3>(r:R, v:Vector3, rad:number) : R;  // Mᵣ = R(v⃗, θ)
 function rotationVector3<R extends Matrix3>(r:R, x:Vector3, y:Vector3) : R;  // Mᵣ = [ x⃗  y⃗  x⃗×y⃗ ]
@@ -250,9 +250,9 @@ function ConcatScale(m:Matrix4, v:Vector3) : Matrix4;  // M[ x̂v⃗₀  ŷv⃗
 function ConcatTranslation(m:Matrix4, v:Vector3) : Matrix4;  // M[ x̂  ŷ  ẑ  ŵ+v⃗ ]
 function Copy(m:Matrix4) : Matrix4;
 function Identity() : Matrix4;  // Î
-function Inverse(m:Matrix4) : Matrix4 | void;  // M⁻¹ (using the determinant)
-function Inverse3x4(m:Matrix4) : Matrix4 | void;  // [ m⁰ m¹ m² ŵ+m³ ]⁻¹
-function InverseGauss(m:Matrix4) : Matrix4 | void;  // M⁻¹ (using Gauss-Jordon elimination)
+function Inverse(m:Matrix4) : Matrix4 | undefined;  // M⁻¹ (using the determinant)
+function Inverse3x4(m:Matrix4) : Matrix4 | undefined;  // [ m⁰ m¹ m² ŵ+m³ ]⁻¹
+function InverseGauss(m:Matrix4) : Matrix4 | undefined;  // M⁻¹ (using Gauss-Jordon elimination)
 function ShearMatrix3(m:Matrix3) : Matrix4;  // [ m⁰ m¹ m² ŵ ]
 function ShearTranslation(x:Vector3, y:Vector3, z:Vector3, t:Vector3) : Matrix4;  // [ x⃗  y⃗  z⃗  ŵ+t⃗ ]
 function Subtract(a:Matrix4, b:Matrix4) : Matrix4;  // A-B
@@ -273,9 +273,9 @@ function copy<R extends Matrix4>(r:R, m:Matrix4) : R;
 function determinant(m:Matrix4) : number;  // |M|
 function equals(a:Matrix4, b:Matrix4, e?:number) : boolean;
 function identity<R extends Matrix4>(r:R) : R;  // Mᵣ = Î
-function inverse<R extends Matrix4>(r:R, m:Matrix4) : R | void;  // Mᵣ = M⁻¹ (using the determinant)
-function inverse3x4<R extends Matrix4>(r:R, m:Matrix4) : R | void;  // Mᵣ = [ m⁰ m¹ m² ŵ+m³ ]⁻¹
-function inverseGauss<R extends Matrix4>(r:R, m:Matrix4) : R | void;  // Mᵣ = M⁻¹ (using Gauss-Jordan elimination)
+function inverse<R extends Matrix4>(r:R, m:Matrix4) : R | undefined;  // Mᵣ = M⁻¹ (using the determinant)
+function inverse3x4<R extends Matrix4>(r:R, m:Matrix4) : R | undefined;  // Mᵣ = [ m⁰ m¹ m² ŵ+m³ ]⁻¹
+function inverseGauss<R extends Matrix4>(r:R, m:Matrix4) : R | undefined;  // Mᵣ = M⁻¹ (using Gauss-Jordan elimination)
 function shearMatrix3<R extends Matrix4>(r:R, m:Matrix3) : R;  // Mᵣ = [ m⁰ m¹ m² ŵ ]
 function shearTranslation<R extends Matrix4>(r:R, x:Vector3, y:Vector3, z:Vector3, t:Vector3) : R;  // Mᵣ = [ x⃗  y⃗  z⃗  ŵ+t⃗ ]
 function subtract<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R;  // Mᵣ = A-B
@@ -343,6 +343,8 @@ function AxisY(s:number = 1.0) : Vector2;  // sŷ
 function BarycentricUV(vx0:Vector2, vx1:Vector2, vx2:Vector2, u:number, v:number) : Vector2;  // Return the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2)
 function Copy(v:Vector2) : Vector2;
 function Create(x:number = 0.0, y:number = 0.0) : Vector2;
+function Hadamard(v:Vector2, w:Vector2) : Vector2;  // v⃗⊙w⃗
+function HadamardInvert<R extends Vector2>(r:R, v:Vector2) : R;  // r⃗ = 1⁄v⃗
 function Lerp(v:Vector2, w:Vector2, t:number) : Vector2;  // v⃗ + ( w⃗ - v⃗ ) * t
 function Multiply2x3Matrix3(m:Matrix3, v:Vector2) : Vector2;  // M₂ₓ₃v⃗
 function MultiplyMatrix2(m:Matrix2, v:Vector2) : Vector2;  // M₂ₓ₂v⃗
@@ -362,9 +364,13 @@ function axisX<R extends Vector2>(r:R, s:number = 1.0) : R;  // r⃗ = sx̂
 function axisY<R extends Vector2>(r:R, s:number = 1.0) : R;  // r⃗ = sŷ
 function barycentricUV<R extends Vector2>(r:R, vx0:Vector2, vx1:Vector2, vx2:Vector2, u:number, v:number) : R;  // Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
 function copy<R extends Vector2>(r:R, v:Vector2) : R;
+function createStringifier(opts?:Partial<StringifyOptions<Vector2>>) : stringify<Vector2>;
 function cross(v:Vector2, w:Vector2) : number;  // v⃗×w⃗
 function dot(v:Vector2, w:Vector2) : number;  // v⃗⋅w⃗
 function equals(v:Vector2, w:Vector2, e?:number) : boolean;
+function hadamard<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R;  // r⃗ = v⃗⊙w⃗
+function hadamardAssign<R extends Vector2>(v:R, w:Vector2) : R;  // v⃗ = v⃗⊙w⃗
+function hadamardInvert(v:Vector2) : Vector2;  // 1⁄v⃗
 function lerp<R extends Vector2>(r:R, v:Vector2, w:Vector2, t:number) : R;  // r⃗ = v⃗ + (w⃗ - v⃗ ) * t
 function lerpAssign<R extends Vector2>(v:R, w:Vector2, t:number) : R;  // v⃗ = v⃗ + (w⃗ - v⃗ ) * t
 function multiply2x3Matrix3<R extends Vector2>(r:R, m:Matrix3, v:Vector2) : R;  // r⃗ = M₂ₓ₃v⃗
@@ -438,6 +444,7 @@ function azimuth(v:Vector3, w:Vector3, z:Vector3) : number;  // Return the cosin
 function barycentricUV<R extends Vector3>(r:R, vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v:number) : R;  // Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
 function clampScalar<R extends Vector3>(r:R, v:Vector3, a:number, b:number) : R;  // r⃗ = min(max(v⃗, min(a, b)), max(a, b))
 function copy<R extends Vector3>(r:R, v:Vector3) : R;
+function createStringifier(opts?:Partial<StringifyOptions<Vector3>>) : stringify<Vector3>;
 function cross<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R;  // r⃗ = v⃗×w⃗
 function dot(v:Vector3, w:Vector3) : number;  // v⃗⋅w⃗
 function equals(v:Vector3, w:Vector3, e?:number) : boolean;
@@ -492,7 +499,8 @@ function Copy(v:Vector4) : Vector4;
 function Create(x:number = 0.0, y:number = 0.0, z:number = 0.0, w:number = 1.0) : Vector4;
 function F32(n:Float32Array, offset:number = 0) : Vector4;
 function F64(n:Float64Array, offset:number = 0) : Vector4;
-function Inverse(v:Vector4) : Vector4 | void;  // q⃗⁻¹
+function Hadamard(v:Vector4, w:Vector4) : Vector4;  // v⃗⊙w⃗
+function Inverse(v:Vector4) : Vector4 | undefined;  // q⃗⁻¹
 function MultiplyScalar(v:Vector4, n:number) : Vector4;  // nv⃗
 function Normalize(v:Vector4) : Vector4;  // v̂
 function Outer(v:Vector4, w:Vector4) : Vector4;  // v⃗w⃗
@@ -500,7 +508,7 @@ function RotationAxis(v:Vector3, rad:number) : Vector4;  // q̂(v⃗, θ)
 function RotationMatrix3(m:Matrix3) : Vector4;  // q̂(M)
 function RotationSlerp(v:Vector4, w:Vector4, t:number) : Vector4;  // v̂(ŵ⁻¹v̂)ᵗ
 function Subtract(v:Vector4, w:Vector4) : Vector4;  // v⃗-w⃗
-function Vector3(v:Vector3) : Vector4;  // ŵ+v⃗
+function Vector3(v:Vector3, w:number = 1.0) : Vector4;  // ŵ+v⃗
 function add<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R;  // r⃗ = v⃗+w⃗
 function addAssign<R extends Vector4>(v:R, w:Vector4) : R;  // v⃗ = v⃗+w⃗
 function assign<R extends Vector4>(r:R, x:number = 0.0, y:number = 0.0, z:number = 0.0, w:number = 1.0) : R;
@@ -508,11 +516,14 @@ function assignF32(r:Float32Array, v:Vector4, offset:number = 0) : Float32Array;
 function assignF64(r:Float64Array, v:Vector4, offset:number = 0) : Float64Array;
 function conjugate<R extends Vector4>(r:R, v:Vector4) : R;  // r⃗ = q⃗′
 function copy<R extends Vector4>(r:R, v:Vector4) : R;
+function createStringifier(opts?:Partial<StringifyOptions<Vector4>>) : stringify<Vector4>;
 function dot(v:Vector4, w:Vector4) : number;  // v⃗⋅w⃗
 function equals(v:Vector4, w:Vector4, e?:number) : boolean;
 function f32<R extends Vector4>(r:R, n:Float32Array, offset:number = 0) : R;
 function f64<R extends Vector4>(r:R, n:Float64Array, offset:number = 0) : R;
-function inverse<R extends Vector4>(r:R, v:Vector4) : R | void;  // r⃗ = q⃗⁻¹
+function hadamard<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R;  // r⃗ = v⃗⊙w⃗
+function hadamardAssign<R extends Vector4>(v:R, w:Vector4) : R;  // v⃗ = v⃗⊙w⃗
+function inverse<R extends Vector4>(r:R, v:Vector4) : R | undefined;  // r⃗ = q⃗⁻¹
 function multiplyAssignScalar<R extends Vector4>(v:R, n:number) : R;  // v⃗ = nv⃗
 function multiplyScalar<R extends Vector4>(r:R, v:Vector4, n:number) : R;  // r⃗ = nv⃗
 function norm(v:Vector4) : number;  // ‖ v⃗ ‖
@@ -526,6 +537,6 @@ function subtract<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R;  // r⃗ = 
 function subtractAssign<R extends Vector4>(v:R, w:Vector4) : R;  // v⃗ = v⃗-w⃗
 function toF32(v:Vector4) : Float32Array;
 function toF64(v:Vector4) : Float64Array;
-function vector3<R extends Vector4>(r:R, v:Vector3) : R;  // r⃗ = ŵ+v⃗
+function vector3<R extends Vector4>(r:R, v:Vector3, w:number = 1.0) : R;  // r⃗ = ŵ+v⃗
 ```
 

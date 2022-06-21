@@ -356,6 +356,52 @@ describe('multiplyAssignScalar', () => {
 	});
 });
 
+describe('Hadamard', () => {
+	it('should return a Vector2 representing a component-wise multiplication', () => {
+		assert.deepStrictEqual(vector2.Hadamard(vector2.Create(0.0, 0.0), vector2.Create(0.0, 0.0)), vector2.Create(0.0, 0.0));
+		assert.deepStrictEqual(vector2.Hadamard(vector2.Create(1.0, 2.0), vector2.Create(0.0, 0.0)), vector2.Create(0.0, 0.0));
+		assert.deepStrictEqual(vector2.Hadamard(vector2.Create(0.0, 0.0), vector2.Create(4.0, 4.0)), vector2.Create(0.0, 0.0));
+		assert.deepStrictEqual(vector2.Hadamard(vector2.Create(2.0, 3.0), vector2.Create(4.0, 5.0)), vector2.Create(8.0, 15.0));
+		assert.deepStrictEqual(vector2.Hadamard(vector2.Create(-2.0, 3.0), vector2.Create(4.0, -5.0)), vector2.Create(-8.0, -15.0));
+		assert.deepStrictEqual(vector2.Hadamard(vector2.Create(-2.0, -3.0), vector2.Create(-4.0, -5.0)), vector2.Create(8.0, 15.0));
+	});
+});
+
+describe('hadamard', () => {
+	it('should assign a Vector2 representing a component-wise multiplication', () => {
+		const v = vector2.Create();
+
+		assert.deepStrictEqual(vector2.hadamard(v, vector2.Create(0.0, 0.0), vector2.Create(0.0, 0.0)), vector2.Create(0.0, 0.0));
+		assert.deepStrictEqual(vector2.hadamard(v, vector2.Create(1.0, 2.0), vector2.Create(0.0, 0.0)), vector2.Create(0.0, 0.0));
+		assert.deepStrictEqual(vector2.hadamard(v, vector2.Create(0.0, 0.0), vector2.Create(4.0, 4.0)), vector2.Create(0.0, 0.0));
+
+		const r = vector2.hadamard(v, vector2.Create(2.0, 3.0), vector2.Create(4.0, 5.0));
+
+		assert.deepStrictEqual(r, vector2.Create(8.0, 15.0));
+		assert.strictEqual(v, r);
+
+		assert.deepStrictEqual(vector2.hadamard(v, vector2.Create(-2.0, 3.0), vector2.Create(4.0, -5.0)), vector2.Create(-8.0, -15.0));
+		assert.deepStrictEqual(vector2.hadamard(v, vector2.Create(-2.0, -3.0), vector2.Create(-4.0, -5.0)), vector2.Create(8.0, 15.0));
+	});
+});
+
+describe('hadamardAssign', () => {
+	it('should assign a Vector2 representing a component-wise multiplication', () => {
+		assert.deepStrictEqual(vector2.hadamardAssign(vector2.Create(0.0, 0.0), vector2.Create(0.0, 0.0)), vector2.Create(0.0, 0.0));
+		assert.deepStrictEqual(vector2.hadamardAssign(vector2.Create(1.0, 2.0), vector2.Create(0.0, 0.0)), vector2.Create(0.0, 0.0));
+		assert.deepStrictEqual(vector2.hadamardAssign(vector2.Create(0.0, 0.0), vector2.Create(4.0, 4.0)), vector2.Create(0.0, 0.0));
+
+		const v = vector2.Create(2.0, 3.0);
+		const r = vector2.hadamardAssign(v, vector2.Create(4.0, 5.0));
+
+		assert.deepStrictEqual(r, vector2.Create(8.0, 15.0));
+		assert.strictEqual(v, r);
+
+		assert.deepStrictEqual(vector2.hadamardAssign(vector2.Create(-2.0, 3.0), vector2.Create(4.0, -5.0)), vector2.Create(-8.0, -15.0));
+		assert.deepStrictEqual(vector2.hadamardAssign(vector2.Create(-2.0, -3.0), vector2.Create(-4.0, -5.0)), vector2.Create(8.0, 15.0));
+	});
+});
+
 describe('MultiplyMatrix2', () => {
 	it('should return a Vector2 representing a Matrix2 multiplication', () => {
 		const v = vector2.Create(2.0, 1.0);
@@ -633,6 +679,32 @@ describe('perpendicular', () => {
 		assertEquals(vector2.perpendicular(w, vector2.AxisX(-2.0)), { x : 0.0, y : -2.0 }, epsilon);
 		assertEquals(vector2.perpendicular(w, vector2.AxisY(-2.0)), { x : 2.0, y : 0.0 }, epsilon);
 		assertEquals(vector2.perpendicular(w, vector2.Create(0.5, 1.0)), { x : -1.0, y : 0.5 }, epsilon);
+	});
+});
+
+describe('hadamardInvert', () => {
+	it('should return the hadamard-multiplicative inverse of a vector', () => {
+		assert.deepStrictEqual(vector2.hadamardInvert(vector2.Create(0.0, -0.0)), vector2.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY));
+		assert.deepStrictEqual(vector2.hadamardInvert(vector2.Create(1.0, -1.0)), vector2.Create(1.0, -1.0));
+		assert.deepStrictEqual(vector2.hadamardInvert(vector2.Create(Number.NaN, 1.0)), vector2.Create(Number.NaN, 1.0));
+		assert.deepStrictEqual(vector2.hadamardInvert(vector2.Create(1.0, Number.NaN)), vector2.Create(1.0, Number.NaN));
+		assert.deepStrictEqual(vector2.hadamardInvert(vector2.Create(10.0, 0.1)), vector2.Create(0.1, 10.0));
+	});
+});
+
+describe('HadamardInvert', () => {
+	it('should assign the hadamard-multiplicative inverse of a vector', () => {
+		const v = vector2.Create();
+
+		assert.deepStrictEqual(vector2.HadamardInvert(v, vector2.Create(0.0, -0.0)), vector2.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY));
+		assert.deepStrictEqual(vector2.HadamardInvert(v, vector2.Create(1.0, -1.0)), vector2.Create(1.0, -1.0));
+		assert.deepStrictEqual(vector2.HadamardInvert(v, vector2.Create(Number.NaN, 1.0)), vector2.Create(Number.NaN, 1.0));
+		assert.deepStrictEqual(vector2.HadamardInvert(v, vector2.Create(1.0, Number.NaN)), vector2.Create(1.0, Number.NaN));
+
+		const r = vector2.HadamardInvert(v, vector2.Create(10.0, 0.1));
+
+		assert.deepStrictEqual(r, vector2.Create(0.1, 10.0));
+		assert.strictEqual(v, r);
 	});
 });
 

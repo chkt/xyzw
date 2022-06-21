@@ -215,6 +215,33 @@ export function multiplyAssignScalar<R extends Vector2>(v:R, n:number) : R {
 }
 
 /**
+ * v⃗⊙w⃗
+ */
+export function Hadamard(v:Vector2, w:Vector2) : Vector2 {
+	return { x : v.x * w.x, y : v.y * w.y };
+}
+
+/**
+ * r⃗ = v⃗⊙w⃗
+ */
+export function hadamard<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R {
+	r.x = v.x * w.x;
+	r.y = v.y * w.y;
+
+	return r;
+}
+
+/**
+ * v⃗ = v⃗⊙w⃗
+ */
+export function hadamardAssign<R extends Vector2>(v:R, w:Vector2) : R {
+	v.x *= w.x;
+	v.y *= w.y;
+
+	return v;
+}
+
+/**
  * M₂ₓ₂v⃗
  */
 export function MultiplyMatrix2(m:Matrix2, v:Vector2) : Vector2 {
@@ -379,6 +406,23 @@ export function perpendicular<R extends Vector2>(r:R, v:Vector2) : R {
 
 	r.x = -v.y;
 	r.y = x;
+
+	return r;
+}
+
+/**
+ * 1⁄v⃗
+ */
+export function hadamardInvert(v:Vector2) : Vector2 {
+	return { x : 1.0 / v.x, y : 1.0 / v.y };
+}
+
+/**
+ * r⃗ = 1⁄v⃗
+ */
+export function HadamardInvert<R extends Vector2>(r:R, v:Vector2) : R {
+	r.x = 1.0 / v.x;
+	r.y = 1.0 / v.y;
 
 	return r;
 }

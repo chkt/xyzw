@@ -65,7 +65,7 @@
 		"prepublishOnly": "yarn outdated && yarn test && yarn lint && yarn build && yarn doc",
 		"lint": "yarn eslint source/**/*.ts test/**/*.ts test/*.ts",
 		"test": "yarn mocha -r ts-node/register test/*.ts --exclude test/perf.ts",
-		"doc": "./node_modules/.bin/typedoc --theme ../typedoc_theme --readme ./module.md --out ./.docs source/*.ts && cp ./.docs/modules.md ./readme.md",
+		"doc": "yarn typedoc --plugin ../typedoc-theme-md --theme md --readme ./module.md --out ./.docs source/*.ts && cp ./.docs/modules.md ./readme.md",
 		"build": "rm -rf ./dist/* && ./node_modules/typescript/bin/tsc"
 	},
 	"dependencies": {},
@@ -79,7 +79,7 @@
 		"mocha": "^10.0",
 		"nyc": "^15.1",
 		"ts-node": "^10.8",
-		"typedoc": "^0.21",
+		"typedoc": "^0.22",
 		"typescript": "^4.7"
 	}
 }

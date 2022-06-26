@@ -60,13 +60,9 @@ const u = vector2.addAssign(v, w);  // v += w
 assert.strictEqual(u, v);
 assert.notStrictEqual(w, v);
 ```
-
-
 # Modules
-
 ## complex
 `complex.ts`
-
 ### Functions
 ```ts
 function Conjugate(z:Vector2) : Vector2;  // z̅
@@ -79,38 +75,33 @@ function conjugate<R extends Vector2>(r:R, v:Vector2) : R;  // r⃗ = z̅
 function divide<R extends Vector2>(r:R, z:Vector2, w:Vector2) : R;  // r⃗ = zw̅ / ww̅, z = a + bi, w = c = di
 function inverse<R extends Vector2>(r:R, z:Vector2) : R;  // r⃗ = z⁻¹
 function multiply<R extends Vector2>(r:R, z:Vector2, w:Vector2) : R;  // r⃗ = zw, z = a + bi, w = c + di
-function power<R extends Iterable>(r:R, z:Vector2, n:number) : R;  // r⃗₍ₖ₎ = zⁿ₍ₖ₎
+function power<R extends Iterable<undefined | Vector2>>(r:R, z:Vector2, n:number) : R;  // r⃗₍ₖ₎ = zⁿ₍ₖ₎
 ```
-
 ## index
 `index.ts`
-
 ### References
 ```ts
-export complex from './complex';
-export matrix2 from './matrix2';
-export matrix3 from './matrix3';
-export matrix4 from './matrix4';
-export matrix4Frustrum from './matrix4Frustrum';
-export matrix4Ortho from './matrix4Ortho';
-export vector2 from './vector2';
-export vector3 from './vector3';
-export vector4 from './vector4';
+export * as complex from "./complex";
+export * as matrix2 from "./matrix2";
+export * as matrix3 from "./matrix3";
+export * as matrix4 from "./matrix4";
+export * as matrix4Frustrum from "./matrix4Frustrum";
+export * as matrix4Ortho from "./matrix4Ortho";
+export * as vector2 from "./vector2";
+export * as vector3 from "./vector3";
+export * as vector4 from "./vector4";
 ```
-
 ## matrix2
 `matrix2.ts`
-
 ### Interfaces
 ```ts
 interface Matrix2 {
-  r00 : number,
-  r01 : number,
-  r10 : number,
-  r11 : number
+  r00 : number;
+  r01 : number;
+  r10 : number;
+  r11 : number;
 }
 ```
-
 ### Functions
 ```ts
 function Add(a:Matrix2, b:Matrix2) : Matrix2;  // A+B
@@ -141,21 +132,18 @@ function subtract<R extends Matrix2>(r:R, a:Matrix2, b:Matrix2) : R;  // Mᵣ = 
 function subtractAssign<R extends Matrix2>(a:R, b:Matrix2) : R;  // A = A-B
 function transpose<R extends Matrix2>(r:R, m:Matrix2) : R;  // Mᵣ = Mᵀ
 ```
-
 ## matrix3
 `matrix3.ts`
-
 ### Interfaces
 ```ts
 interface Matrix3 extends Matrix2 {
-  r02 : number,
-  r12 : number,
-  r20 : number,
-  r21 : number,
-  r22 : number
+  r02 : number;
+  r12 : number;
+  r20 : number;
+  r21 : number;
+  r22 : number;
 }
 ```
-
 ### Functions
 ```ts
 function Add(a:Matrix3, b:Matrix3) : Matrix3;  // A+B
@@ -196,7 +184,7 @@ function concatScaleVector2<R extends Matrix3>(r:R, m:Matrix3, v:Vector2) : R;  
 function concatTranslation<R extends Matrix3>(r:R, m:Matrix3, v:Vector2) : R;  // Mᵣ = M[ x̂  ŷ  v⃗ ]
 function copy<R extends Matrix3>(r:R, m:Matrix3) : R;
 function determinant(m:Matrix3) : number;  // |M|
-function equals(a:Matrix3, b:Matrix3, e?:number) : boolean;
+function equals(a:Matrix3, b:Matrix3, e:number = epsilon) : boolean;
 function eulerXYZ<R extends Matrix3>(r:R, v:Vector3) : R;  // Mᵣ = R(x̂, v⃗₀)R(ŷ, v⃗₁)R(ẑ, v⃗₂)
 function eulerYXZ<R extends Matrix3>(r:R, v:Vector3) : R;  // Mᵣ = R(ŷ, v⃗₁)R(x̂, v⃗₀)R(ẑ, v⃗₂)
 function eulerZXY<R extends Matrix3>(r:R, v:Vector3) : R;  // Mᵣ = R(ẑ, v⃗₂)R(x̂, v⃗₀)R(ŷ, v⃗₁)
@@ -221,23 +209,20 @@ function subtractAssign<R extends Matrix3>(a:R, b:Matrix3) : R;  // A = A-B
 function translation<R extends Matrix3>(r:R, v:Vector2) : R;  // Mᵣ = [ x̂  ŷ  ẑ+v⃗ ]
 function transpose<R extends Matrix3>(r:R, m:Matrix3) : R;  // Mᵣ = Mᵀ
 ```
-
 ## matrix4
 `matrix4.ts`
-
 ### Interfaces
 ```ts
 interface Matrix4 extends Matrix3 {
-  r03 : number,
-  r13 : number,
-  r23 : number,
-  r30 : number,
-  r31 : number,
-  r32 : number,
-  r33 : number
+  r03 : number;
+  r13 : number;
+  r23 : number;
+  r30 : number;
+  r31 : number;
+  r32 : number;
+  r33 : number;
 }
 ```
-
 ### Functions
 ```ts
 function Add(a:Matrix4, b:Matrix4) : Matrix4;  // A+B
@@ -271,7 +256,7 @@ function concatScale<R extends Matrix4>(r:R, m:Matrix4, v:Vector3) : R;  // Mᵣ
 function concatTranslation<R extends Matrix4>(r:R, m:Matrix4, v:Vector3) : R;  // Mᵣ = M[ x̂  ŷ  ẑ  ŵ+v⃗ ]
 function copy<R extends Matrix4>(r:R, m:Matrix4) : R;
 function determinant(m:Matrix4) : number;  // |M|
-function equals(a:Matrix4, b:Matrix4, e?:number) : boolean;
+function equals(a:Matrix4, b:Matrix4, e:number = epsilon) : boolean;
 function identity<R extends Matrix4>(r:R) : R;  // Mᵣ = Î
 function inverse<R extends Matrix4>(r:R, m:Matrix4) : R | undefined;  // Mᵣ = M⁻¹ (using the determinant)
 function inverse3x4<R extends Matrix4>(r:R, m:Matrix4) : R | undefined;  // Mᵣ = [ m⁰ m¹ m² ŵ+m³ ]⁻¹
@@ -285,56 +270,69 @@ function toColumnF64(m:Matrix4) : Float64Array;
 function translation<R extends Matrix4>(r:R, v:Vector3) : R;  // Mᵣ = [ x̂  ŷ  ẑ  ŵ+v⃗ ]
 function transpose<R extends Matrix4>(r:R, m:Matrix4) : R;  // Mᵣ = Mᵀ
 ```
-
 ## matrix4Frustrum
 `matrix4Frustrum.ts`
-
 ### Interfaces
 ```ts
 interface PerspectiveLens {
-  readonly aspect : number,
-  readonly far : number,
-  readonly fov : number,
-  readonly near : number
+  readonly aspect : number;
+  readonly far : number;
+  readonly fov : number;
+  readonly near : number;
 }
 ```
-
 ### Functions
 ```ts
 function Frustrum(lens:PerspectiveLens) : Matrix4;
 function frustrum<R extends Matrix4>(r:R, lens:PerspectiveLens) : R;
 ```
-
 ## matrix4Ortho
 `matrix4Ortho.ts`
-
 ### Interfaces
 ```ts
 interface OrthographicLens {
-  readonly aspect : number,
-  readonly extend : number,
-  readonly far : number,
-  readonly near : number
+  readonly aspect : number;
+  readonly extend : number;
+  readonly far : number;
+  readonly near : number;
 }
 ```
-
 ### Functions
 ```ts
 function Ortho(lens:OrthographicLens) : Matrix4;
 function ortho<R extends Matrix4>(r:R, lens:OrthographicLens) : R;
 ```
-
+## strings
+`strings.ts`
+### Interfaces
+```ts
+interface StringifyOptions<T> extends StringifyOptionsCommon {
+  readonly clampMax : VectorRecord<T>;
+  readonly clampMin : VectorRecord<T>;
+}
+```
+### Type Aliases
+```ts
+type stringify = (v:VectorRecord<T>) => string;
+```
+### Variables
+```ts
+const PRECISION_SAFE:number;
+const stringifyDefaultsCommon:StringifyOptionsCommon;
+```
+### Functions
+```ts
+function stringify<T>(opts:StringifyOptions<T>, v:VectorRecord<T>) : string;
+```
 ## vector2
 `vector2.ts`
-
 ### Interfaces
 ```ts
 interface Vector2 {
-  x : number,
-  y : number
+  x : number;
+  y : number;
 }
 ```
-
 ### Functions
 ```ts
 function Add(v:Vector2, w:Vector2) : Vector2;  // v⃗+w⃗
@@ -367,7 +365,7 @@ function copy<R extends Vector2>(r:R, v:Vector2) : R;
 function createStringifier(opts?:Partial<StringifyOptions<Vector2>>) : stringify<Vector2>;
 function cross(v:Vector2, w:Vector2) : number;  // v⃗×w⃗
 function dot(v:Vector2, w:Vector2) : number;  // v⃗⋅w⃗
-function equals(v:Vector2, w:Vector2, e?:number) : boolean;
+function equals(v:Vector2, w:Vector2, e:number = epsilon) : boolean;
 function hadamard<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R;  // r⃗ = v⃗⊙w⃗
 function hadamardAssign<R extends Vector2>(v:R, w:Vector2) : R;  // v⃗ = v⃗⊙w⃗
 function hadamardInvert(v:Vector2) : Vector2;  // 1⁄v⃗
@@ -391,17 +389,14 @@ function rotation<R extends Vector2>(r:R, rad:number) : R;
 function subtract<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R;  // r⃗ = v⃗-w⃗
 function subtractAssign<R extends Vector2>(v:R, w:Vector2) : R;  // v⃗ = v⃗-w⃗
 ```
-
 ## vector3
 `vector3.ts`
-
 ### Interfaces
 ```ts
 interface Vector3 extends Vector2 {
-  z : number
+  z : number;
 }
 ```
-
 ### Functions
 ```ts
 function Add(v:Vector3, w:Vector3) : Vector3;  // v⃗+w⃗
@@ -410,6 +405,7 @@ function AxisY(s:number = 1.0) : Vector3;  // sŷ
 function AxisZ(s:number = 1.0) : Vector3;  // sẑ
 function BarycentricUV(vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v:number) : Vector3;  // Return the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2)
 function ClampScalar(v:Vector3, a:number, b:number) : Vector3;  // min(max(v⃗, min(a, b)), max(a, b))
+@ deprecated
 function Copy(v:Vector3) : Vector3;
 function Create(x:number = 0.0, y:number = 0.0, z:number = 0.0) : Vector3;
 function Cross(v:Vector3, w:Vector3) : Vector3;  // v⃗×w⃗
@@ -421,7 +417,9 @@ function F64(n:Float64Array, offset:number = 0) : Vector3;
 function Hadamard(v:Vector3, w:Vector3) : Vector3;  // v⃗⊙w⃗
 function Lerp(v:Vector3, w:Vector3, t:number) : Vector3;  // v⃗ + ( w⃗ - v⃗ ) * t
 function MaxScalar(v:Vector3, n:number) : Vector3;  // max(v⃗, n)
+@ deprecated
 function MinScalar(v:Vector3, n:number) : Vector3;  // min(v⃗, n)
+@ deprecated
 function Multiply3x4Matrix4(m:Matrix4, v:Vector3) : Vector3;  // M₃ₓ₄v⃗
 function MultiplyMatrix3(m:Matrix3, v:Vector3) : Vector3;  // M₃ₓ₃v⃗
 function MultiplyMatrix4(m:Matrix4, v:Vector3) : Vector3;  // M₄ₓ₄v⃗
@@ -443,11 +441,12 @@ function axisZ<R extends Vector3>(r:R, s:number = 1.0) : R;  // r⃗ = sẑ
 function azimuth(v:Vector3, w:Vector3, z:Vector3) : number;  // Return the cosine of azimuth angle ϕ between v̂ and ŵ against polar axis ẑ, ( (v̂ - (v̂⋅ẑ)ẑ) / ‖ v̂ - (v̂⋅ẑ)ẑ ‖ )⋅( (ŵ - (ŵ⋅ẑ)ẑ) / ‖ ŵ - (ŵ⋅ẑ)ẑ ‖ )
 function barycentricUV<R extends Vector3>(r:R, vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v:number) : R;  // Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
 function clampScalar<R extends Vector3>(r:R, v:Vector3, a:number, b:number) : R;  // r⃗ = min(max(v⃗, min(a, b)), max(a, b))
+@ deprecated
 function copy<R extends Vector3>(r:R, v:Vector3) : R;
 function createStringifier(opts?:Partial<StringifyOptions<Vector3>>) : stringify<Vector3>;
 function cross<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R;  // r⃗ = v⃗×w⃗
 function dot(v:Vector3, w:Vector3) : number;  // v⃗⋅w⃗
-function equals(v:Vector3, w:Vector3, e?:number) : boolean;
+function equals(v:Vector3, w:Vector3, e:number = epsilon) : boolean;
 function eulerXYZ<R extends Vector3>(r:R, m:Matrix3) : R;
 function eulerYXZ<R extends Vector3>(r:R, m:Matrix3) : R;
 function eulerZXY<R extends Vector3>(r:R, m:Matrix3) : R;
@@ -455,13 +454,15 @@ function f32<R extends Vector3>(r:R, n:Float32Array, offset:number = 0) : R;
 function f64<R extends Vector3>(r:R, n:Float64Array, offset:number = 0) : R;
 function hadamard<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R;  // r⃗ = v⃗⊙w⃗
 function hadamardAssign<R extends Vector3>(v:R, w:Vector3) : R;  // v⃗ = v⃗⊙w⃗
-function isNormEqual(v:Vector3, n:number, e?:number) : boolean;  // ‖ v⃗ ‖ - n < ϵ
+function isNormEqual(v:Vector3, n:number, e:number = epsilon) : boolean;  // ‖ v⃗ ‖ - n < ϵ
 function isNormGt(v:Vector3, n:number) : boolean;  // ‖ v⃗ ‖ > n
 function isNormLt(v:Vector3, n:number) : boolean;  // ‖ v⃗ ‖ < n
 function lerp<R extends Vector3>(r:R, v:Vector3, w:Vector3, t:number) : R;  // r⃗ = v⃗ + (w⃗ - v⃗ ) * t
 function lerpAssign<R extends Vector3>(v:R, w:Vector3, t:number) : R;  // v⃗ = v⃗ + (w⃗ - v⃗ ) * t
 function maxScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R;  // r⃗ = max(v⃗, n)
+@ deprecated
 function minScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R;  // r⃗ = min(v⃗, n)
+@ deprecated
 function multiply3x4Matrix4<R extends Vector3>(r:R, m:Matrix4, v:Vector3) : R;  // r⃗ = M₃ₓ₄v⃗
 function multiplyAssignScalar<R extends Vector3>(v:R, n:number) : R;  // v⃗ = nv⃗
 function multiplyMatrix3<R extends Vector3>(r:R, m:Matrix3, v:Vector3) : R;  // r⃗ = M₃ₓ₃v⃗
@@ -480,17 +481,14 @@ function subtractAssign<R extends Vector3>(v:R, w:Vector3) : R;  // v⃗ = v⃗-
 function toF32(v:Vector3) : Float32Array;
 function toF64(v:Vector3) : Float64Array;
 ```
-
 ## vector4
 `vector4.ts`
-
 ### Interfaces
 ```ts
 interface Vector4 extends Vector3 {
-  w : number
+  w : number;
 }
 ```
-
 ### Functions
 ```ts
 function Add(v:Vector4, w:Vector4) : Vector4;  // v⃗+w⃗
@@ -518,7 +516,7 @@ function conjugate<R extends Vector4>(r:R, v:Vector4) : R;  // r⃗ = q⃗′
 function copy<R extends Vector4>(r:R, v:Vector4) : R;
 function createStringifier(opts?:Partial<StringifyOptions<Vector4>>) : stringify<Vector4>;
 function dot(v:Vector4, w:Vector4) : number;  // v⃗⋅w⃗
-function equals(v:Vector4, w:Vector4, e?:number) : boolean;
+function equals(v:Vector4, w:Vector4, e:number = epsilon) : boolean;
 function f32<R extends Vector4>(r:R, n:Float32Array, offset:number = 0) : R;
 function f64<R extends Vector4>(r:R, n:Float64Array, offset:number = 0) : R;
 function hadamard<R extends Vector4>(r:R, v:Vector4, w:Vector4) : R;  // r⃗ = v⃗⊙w⃗
@@ -539,4 +537,3 @@ function toF32(v:Vector4) : Float32Array;
 function toF64(v:Vector4) : Float64Array;
 function vector3<R extends Vector4>(r:R, v:Vector3, w:number = 1.0) : R;  // r⃗ = ŵ+v⃗
 ```
-

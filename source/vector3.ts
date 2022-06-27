@@ -590,7 +590,7 @@ export function negateAssign<R extends Vector3>(v:R) : R {
 
 /**
  * min(v⃗, n)
- * @ deprecated
+ * @deprecated use same function in xyzw-rgba instead
  */
 export function MinScalar(v:Vector3, n:number) : Vector3 {
 	return { x : minOf(v.x, n), y : minOf(v.y, n), z : minOf(v.z, n) };
@@ -598,7 +598,7 @@ export function MinScalar(v:Vector3, n:number) : Vector3 {
 
 /**
  * r⃗ = min(v⃗, n)
- * @ deprecated
+ * @deprecated use same function in xyzw-rgba instead
  */
 export function minScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R {
 	r.x = minOf(v.x, n);
@@ -610,7 +610,7 @@ export function minScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R {
 
 /**
  * max(v⃗, n)
- * @ deprecated
+ * @deprecated use same function in xyzw-rgba instead
  */
 export function MaxScalar(v:Vector3, n:number) : Vector3 {
 	return { x : maxOf(v.x, n), y : maxOf(v.y, n), z : maxOf(v.z, n) };
@@ -618,7 +618,7 @@ export function MaxScalar(v:Vector3, n:number) : Vector3 {
 
 /**
  * r⃗ = max(v⃗, n)
- * @ deprecated
+ * @deprecated use same function in xyzw-rgba instead
  */
 export function maxScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R {
 	r.x = maxOf(v.x, n);
@@ -630,7 +630,7 @@ export function maxScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R {
 
 /**
  * min(max(v⃗, min(a, b)), max(a, b))
- * @ deprecated
+ * @deprecated use same function in xyzw-rgba instead
  */
 export function ClampScalar(v:Vector3, a:number, b:number) : Vector3 {
 	return clampScalar({ x : 0.0, y : 0.0, z : 0.0 }, v, a, b);
@@ -638,7 +638,7 @@ export function ClampScalar(v:Vector3, a:number, b:number) : Vector3 {
 
 /**
  * r⃗ = min(max(v⃗, min(a, b)), max(a, b))
- * @ deprecated
+ * @deprecated use same function in xyzw-rgba instead
  */
 export function clampScalar<R extends Vector3>(r:R, v:Vector3, a:number, b:number) : R {
 	const min = minOf(a, b), max = maxOf(a, b);

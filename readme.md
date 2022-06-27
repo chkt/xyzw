@@ -75,7 +75,7 @@ function conjugate<R extends Vector2>(r:R, v:Vector2) : R;  // r⃗ = z̅
 function divide<R extends Vector2>(r:R, z:Vector2, w:Vector2) : R;  // r⃗ = zw̅ / ww̅, z = a + bi, w = c = di
 function inverse<R extends Vector2>(r:R, z:Vector2) : R;  // r⃗ = z⁻¹
 function multiply<R extends Vector2>(r:R, z:Vector2, w:Vector2) : R;  // r⃗ = zw, z = a + bi, w = c + di
-function power<R extends Iterable<undefined | Vector2>>(r:R, z:Vector2, n:number) : R;  // r⃗₍ₖ₎ = zⁿ₍ₖ₎
+function power<R extends Iterable<undefined | Vector2, R>>(r:R, z:Vector2, n:number) : R;  // r⃗₍ₖ₎ = zⁿ₍ₖ₎
 ```
 ## index
 `index.ts`
@@ -404,8 +404,8 @@ function AxisX(s:number = 1.0) : Vector3;  // sx̂
 function AxisY(s:number = 1.0) : Vector3;  // sŷ
 function AxisZ(s:number = 1.0) : Vector3;  // sẑ
 function BarycentricUV(vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v:number) : Vector3;  // Return the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2)
+// @deprecated use same function in xyzw-rgba instead
 function ClampScalar(v:Vector3, a:number, b:number) : Vector3;  // min(max(v⃗, min(a, b)), max(a, b))
-@ deprecated
 function Copy(v:Vector3) : Vector3;
 function Create(x:number = 0.0, y:number = 0.0, z:number = 0.0) : Vector3;
 function Cross(v:Vector3, w:Vector3) : Vector3;  // v⃗×w⃗
@@ -416,10 +416,10 @@ function F32(n:Float32Array, offset:number = 0) : Vector3;
 function F64(n:Float64Array, offset:number = 0) : Vector3;
 function Hadamard(v:Vector3, w:Vector3) : Vector3;  // v⃗⊙w⃗
 function Lerp(v:Vector3, w:Vector3, t:number) : Vector3;  // v⃗ + ( w⃗ - v⃗ ) * t
+// @deprecated use same function in xyzw-rgba instead
 function MaxScalar(v:Vector3, n:number) : Vector3;  // max(v⃗, n)
-@ deprecated
+// @deprecated use same function in xyzw-rgba instead
 function MinScalar(v:Vector3, n:number) : Vector3;  // min(v⃗, n)
-@ deprecated
 function Multiply3x4Matrix4(m:Matrix4, v:Vector3) : Vector3;  // M₃ₓ₄v⃗
 function MultiplyMatrix3(m:Matrix3, v:Vector3) : Vector3;  // M₃ₓ₃v⃗
 function MultiplyMatrix4(m:Matrix4, v:Vector3) : Vector3;  // M₄ₓ₄v⃗
@@ -440,8 +440,8 @@ function axisY<R extends Vector3>(r:R, s:number = 1.0) : R;  // r⃗ = sŷ
 function axisZ<R extends Vector3>(r:R, s:number = 1.0) : R;  // r⃗ = sẑ
 function azimuth(v:Vector3, w:Vector3, z:Vector3) : number;  // Return the cosine of azimuth angle ϕ between v̂ and ŵ against polar axis ẑ, ( (v̂ - (v̂⋅ẑ)ẑ) / ‖ v̂ - (v̂⋅ẑ)ẑ ‖ )⋅( (ŵ - (ŵ⋅ẑ)ẑ) / ‖ ŵ - (ŵ⋅ẑ)ẑ ‖ )
 function barycentricUV<R extends Vector3>(r:R, vx0:Vector3, vx1:Vector3, vx2:Vector3, u:number, v:number) : R;  // Assign the point represented by barycentric coordinates (u, v) in ↻ triangle (vx0, vx1, vx2) to r⃗
+// @deprecated use same function in xyzw-rgba instead
 function clampScalar<R extends Vector3>(r:R, v:Vector3, a:number, b:number) : R;  // r⃗ = min(max(v⃗, min(a, b)), max(a, b))
-@ deprecated
 function copy<R extends Vector3>(r:R, v:Vector3) : R;
 function createStringifier(opts?:Partial<StringifyOptions<Vector3>>) : stringify<Vector3>;
 function cross<R extends Vector3>(r:R, v:Vector3, w:Vector3) : R;  // r⃗ = v⃗×w⃗
@@ -459,10 +459,10 @@ function isNormGt(v:Vector3, n:number) : boolean;  // ‖ v⃗ ‖ > n
 function isNormLt(v:Vector3, n:number) : boolean;  // ‖ v⃗ ‖ < n
 function lerp<R extends Vector3>(r:R, v:Vector3, w:Vector3, t:number) : R;  // r⃗ = v⃗ + (w⃗ - v⃗ ) * t
 function lerpAssign<R extends Vector3>(v:R, w:Vector3, t:number) : R;  // v⃗ = v⃗ + (w⃗ - v⃗ ) * t
+// @deprecated use same function in xyzw-rgba instead
 function maxScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R;  // r⃗ = max(v⃗, n)
-@ deprecated
+// @deprecated use same function in xyzw-rgba instead
 function minScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R;  // r⃗ = min(v⃗, n)
-@ deprecated
 function multiply3x4Matrix4<R extends Vector3>(r:R, m:Matrix4, v:Vector3) : R;  // r⃗ = M₃ₓ₄v⃗
 function multiplyAssignScalar<R extends Vector3>(v:R, n:number) : R;  // v⃗ = nv⃗
 function multiplyMatrix3<R extends Vector3>(r:R, m:Matrix3, v:Vector3) : R;  // r⃗ = M₃ₓ₃v⃗

@@ -62,7 +62,7 @@ assert.notStrictEqual(w, v);
 ```
 # Modules
 ## complex
-[`./source/complex.ts`](https://github.com/chkt/xyzw/blob/404cfdc/source/complex.ts#L1)
+[`./source/complex.ts`](https://github.com/chkt/xyzw/blob/356f790/source/complex.ts#L1)
 ### Functions
 ```ts
 function Conjugate(z:Vector2) : Vector2;  // z̅
@@ -78,7 +78,7 @@ function multiply<R extends Vector2>(r:R, z:Vector2, w:Vector2) : R;  // r⃗ = 
 function power<R extends Iterable<undefined | Vector2, R>>(r:R, z:Vector2, n:number) : R;  // r⃗₍ₖ₎ = zⁿ₍ₖ₎
 ```
 ## index
-[`./source/index.ts`](https://github.com/chkt/xyzw/blob/404cfdc/source/index.ts#L1)
+[`./source/index.ts`](https://github.com/chkt/xyzw/blob/356f790/source/index.ts#L1)
 ### References
 ```ts
 export * as complex from "./complex";
@@ -92,7 +92,7 @@ export * as vector3 from "./vector3";
 export * as vector4 from "./vector4";
 ```
 ## matrix2
-[`./source/matrix2.ts`](https://github.com/chkt/xyzw/blob/404cfdc/source/matrix2.ts#L2)
+[`./source/matrix2.ts`](https://github.com/chkt/xyzw/blob/356f790/source/matrix2.ts#L2)
 ### Interfaces
 ```ts
 interface Matrix2 {
@@ -133,7 +133,7 @@ function subtractAssign<R extends Matrix2>(a:R, b:Matrix2) : R;  // A = A-B
 function transpose<R extends Matrix2>(r:R, m:Matrix2) : R;  // Mᵣ = Mᵀ
 ```
 ## matrix3
-[`./source/matrix3.ts`](https://github.com/chkt/xyzw/blob/404cfdc/source/matrix3.ts#L4)
+[`./source/matrix3.ts`](https://github.com/chkt/xyzw/blob/356f790/source/matrix3.ts#L4)
 ### Interfaces
 ```ts
 interface Matrix3 extends Matrix2 {
@@ -210,7 +210,7 @@ function translation<R extends Matrix3>(r:R, v:Vector2) : R;  // Mᵣ = [ x̂  y
 function transpose<R extends Matrix3>(r:R, m:Matrix3) : R;  // Mᵣ = Mᵀ
 ```
 ## matrix4
-[`./source/matrix4.ts`](https://github.com/chkt/xyzw/blob/404cfdc/source/matrix4.ts#L4)
+[`./source/matrix4.ts`](https://github.com/chkt/xyzw/blob/356f790/source/matrix4.ts#L4)
 ### Interfaces
 ```ts
 interface Matrix4 extends Matrix3 {
@@ -271,7 +271,7 @@ function translation<R extends Matrix4>(r:R, v:Vector3) : R;  // Mᵣ = [ x̂  y
 function transpose<R extends Matrix4>(r:R, m:Matrix4) : R;  // Mᵣ = Mᵀ
 ```
 ## matrix4Frustrum
-[`./source/matrix4Frustrum.ts`](https://github.com/chkt/xyzw/blob/404cfdc/source/matrix4Frustrum.ts#L1)
+[`./source/matrix4Frustrum.ts`](https://github.com/chkt/xyzw/blob/356f790/source/matrix4Frustrum.ts#L1)
 ### Interfaces
 ```ts
 interface PerspectiveLens {
@@ -287,7 +287,7 @@ function Frustrum(lens:PerspectiveLens) : Matrix4;
 function frustrum<R extends Matrix4>(r:R, lens:PerspectiveLens) : R;
 ```
 ## matrix4Ortho
-[`./source/matrix4Ortho.ts`](https://github.com/chkt/xyzw/blob/404cfdc/source/matrix4Ortho.ts#L1)
+[`./source/matrix4Ortho.ts`](https://github.com/chkt/xyzw/blob/356f790/source/matrix4Ortho.ts#L1)
 ### Interfaces
 ```ts
 interface OrthographicLens {
@@ -303,7 +303,7 @@ function Ortho(lens:OrthographicLens) : Matrix4;
 function ortho<R extends Matrix4>(r:R, lens:OrthographicLens) : R;
 ```
 ## strings
-[`./source/strings.ts`](https://github.com/chkt/xyzw/blob/404cfdc/source/strings.ts#L1)
+[`./source/strings.ts`](https://github.com/chkt/xyzw/blob/356f790/source/strings.ts#L1)
 ### Interfaces
 ```ts
 interface StringifyOptions<T> extends StringifyOptionsCommon {
@@ -325,7 +325,7 @@ const stringifyDefaultsCommon:StringifyOptionsCommon;
 function stringify<T>(opts:StringifyOptions<T>, v:VectorRecord<T>) : string;
 ```
 ## vector2
-[`./source/vector2.ts`](https://github.com/chkt/xyzw/blob/404cfdc/source/vector2.ts#L1)
+[`./source/vector2.ts`](https://github.com/chkt/xyzw/blob/356f790/source/vector2.ts#L1)
 ### Interfaces
 ```ts
 interface Vector2 {
@@ -390,7 +390,7 @@ function subtract<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R;  // r⃗ = 
 function subtractAssign<R extends Vector2>(v:R, w:Vector2) : R;  // v⃗ = v⃗-w⃗
 ```
 ## vector3
-[`./source/vector3.ts`](https://github.com/chkt/xyzw/blob/404cfdc/source/vector3.ts#L1)
+[`./source/vector3.ts`](https://github.com/chkt/xyzw/blob/356f790/source/vector3.ts#L1)
 ### Interfaces
 ```ts
 interface Vector3 extends Vector2 {
@@ -484,7 +484,7 @@ function toF32(v:Vector3) : Float32Array;
 function toF64(v:Vector3) : Float64Array;
 ```
 ## vector4
-[`./source/vector4.ts`](https://github.com/chkt/xyzw/blob/404cfdc/source/vector4.ts#L2)
+[`./source/vector4.ts`](https://github.com/chkt/xyzw/blob/356f790/source/vector4.ts#L2)
 ### Interfaces
 ```ts
 interface Vector4 extends Vector3 {

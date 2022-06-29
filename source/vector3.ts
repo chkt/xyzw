@@ -560,6 +560,24 @@ export function normalize<R extends Vector3>(r:R, v:Vector3) : R {
 }
 
 /**
+ * 1⁄v⃗
+ */
+export function HadamardInvert(v:Vector3) : Vector3 {
+	return { x : 1.0 / v.x, y : 1.0 / v.y, z : 1.0 / v.z };
+}
+
+/**
+ * r⃗ = 1⁄v⃗
+ */
+export function hadamardInvert<R extends Vector3>(r:R, v:Vector3) : R {
+	r.x = 1.0 / v.x;
+	r.y = 1.0 / v.y;
+	r.z = 1.0 / v.z;
+
+	return r;
+}
+
+/**
  * -v⃗
  */
 export function Negate(v:Vector3) : Vector3 {

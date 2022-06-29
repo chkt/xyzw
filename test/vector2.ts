@@ -682,26 +682,26 @@ describe('perpendicular', () => {
 	});
 });
 
-describe('hadamardInvert', () => {
+describe('HadamardInvert', () => {
 	it('should return the hadamard-multiplicative inverse of a vector', () => {
-		assert.deepStrictEqual(vector2.hadamardInvert(vector2.Create(0.0, -0.0)), vector2.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY));
-		assert.deepStrictEqual(vector2.hadamardInvert(vector2.Create(1.0, -1.0)), vector2.Create(1.0, -1.0));
-		assert.deepStrictEqual(vector2.hadamardInvert(vector2.Create(Number.NaN, 1.0)), vector2.Create(Number.NaN, 1.0));
-		assert.deepStrictEqual(vector2.hadamardInvert(vector2.Create(1.0, Number.NaN)), vector2.Create(1.0, Number.NaN));
-		assert.deepStrictEqual(vector2.hadamardInvert(vector2.Create(10.0, 0.1)), vector2.Create(0.1, 10.0));
+		assert.deepStrictEqual(vector2.HadamardInvert(vector2.Create(0.0, -0.0)), vector2.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY));
+		assert.deepStrictEqual(vector2.HadamardInvert(vector2.Create(1.0, -1.0)), vector2.Create(1.0, -1.0));
+		assert.deepStrictEqual(vector2.HadamardInvert(vector2.Create(Number.NaN, 1.0)), vector2.Create(Number.NaN, 1.0));
+		assert.deepStrictEqual(vector2.HadamardInvert(vector2.Create(1.0, Number.NaN)), vector2.Create(1.0, Number.NaN));
+		assert.deepStrictEqual(vector2.HadamardInvert(vector2.Create(10.0, 0.1)), vector2.Create(0.1, 10.0));
 	});
 });
 
-describe('HadamardInvert', () => {
+describe('hadamardInvert', () => {
 	it('should assign the hadamard-multiplicative inverse of a vector', () => {
 		const v = vector2.Create();
 
-		assert.deepStrictEqual(vector2.HadamardInvert(v, vector2.Create(0.0, -0.0)), vector2.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY));
-		assert.deepStrictEqual(vector2.HadamardInvert(v, vector2.Create(1.0, -1.0)), vector2.Create(1.0, -1.0));
-		assert.deepStrictEqual(vector2.HadamardInvert(v, vector2.Create(Number.NaN, 1.0)), vector2.Create(Number.NaN, 1.0));
-		assert.deepStrictEqual(vector2.HadamardInvert(v, vector2.Create(1.0, Number.NaN)), vector2.Create(1.0, Number.NaN));
+		assert.deepStrictEqual(vector2.hadamardInvert(v, vector2.Create(0.0, -0.0)), vector2.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY));
+		assert.deepStrictEqual(vector2.hadamardInvert(v, vector2.Create(1.0, -1.0)), vector2.Create(1.0, -1.0));
+		assert.deepStrictEqual(vector2.hadamardInvert(v, vector2.Create(Number.NaN, 1.0)), vector2.Create(Number.NaN, 1.0));
+		assert.deepStrictEqual(vector2.hadamardInvert(v, vector2.Create(1.0, Number.NaN)), vector2.Create(1.0, Number.NaN));
 
-		const r = vector2.HadamardInvert(v, vector2.Create(10.0, 0.1));
+		const r = vector2.hadamardInvert(v, vector2.Create(10.0, 0.1));
 
 		assert.deepStrictEqual(r, vector2.Create(0.1, 10.0));
 		assert.strictEqual(v, r);

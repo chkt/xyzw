@@ -1058,6 +1058,38 @@ describe('normalize', () => {
 	});
 });
 
+describe('HadamardInvert', () => {
+	const nan = Number.NaN;
+
+	it('should return the hadamard-multiplicative inverse of a vector', () => {
+		assert.deepStrictEqual(vector3.HadamardInvert(vector3.Create(0.0, -0.0, 0.0)), vector3.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY));
+		assert.deepStrictEqual(vector3.HadamardInvert(vector3.Create(1.0, -1.0, 1.0)), vector3.Create(1.0, -1.0, 1.0));
+		assert.deepStrictEqual(vector3.HadamardInvert(vector3.Create(nan, -1.0, 1.0)), vector3.Create(nan, -1.0, 1.0));
+		assert.deepStrictEqual(vector3.HadamardInvert(vector3.Create(1.0, nan, 1.0)), vector3.Create(1.0, nan, 1.0));
+		assert.deepStrictEqual(vector3.HadamardInvert(vector3.Create(1.0, -1.0, nan)), vector3.Create(1.0, -1.0, nan));
+		assert.deepStrictEqual(vector3.HadamardInvert(vector3.Create(10.0, 0.1, -5.0)), vector3.Create(0.1, 10.0, -0.2));
+	});
+});
+
+describe('hadamardInvert', () => {
+	const nan = Number.NaN;
+
+	it('should assign the hadamart-multiplicative inverse of a vector', () => {
+		const v = vector3.Create();
+
+		assert.deepStrictEqual(vector3.hadamardInvert(v, vector3.Create(0.0, -0.0, 0.0)), vector3.Create(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY));
+		assert.deepStrictEqual(vector3.hadamardInvert(v, vector3.Create(1.0, -1.0, 1.0)), vector3.Create(1.0, -1.0, 1.0));
+		assert.deepStrictEqual(vector3.hadamardInvert(v, vector3.Create(nan, -1.0, 1.0)), vector3.Create(nan, -1.0, 1.0));
+		assert.deepStrictEqual(vector3.hadamardInvert(v, vector3.Create(1.0, nan, 1.0)), vector3.Create(1.0, nan, 1.0));
+		assert.deepStrictEqual(vector3.hadamardInvert(v, vector3.Create(1.0, -1.0, nan)), vector3.Create(1.0, -1.0, nan));
+
+		const r = vector3.hadamardInvert(v, vector3.Create(10.0, 0.1, -5.0));
+
+		assert.deepStrictEqual(r, vector3.Create(0.1, 10.0, -0.2));
+		assert.strictEqual(v, r);
+	});
+});
+
 describe('Negate', () => {
 	it('should return the additive inverse of a vector', () => {
 		assert.deepStrictEqual(vector3.Negate(vector3.Create(0.0, 0.0, 0.0)), vector3.Create(-0.0, -0.0, -0.0));

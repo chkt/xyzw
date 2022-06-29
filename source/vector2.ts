@@ -420,14 +420,14 @@ export function perpendicular<R extends Vector2>(r:R, v:Vector2) : R {
 /**
  * 1⁄v⃗
  */
-export function hadamardInvert(v:Vector2) : Vector2 {
+export function HadamardInvert(v:Vector2) : Vector2 {
 	return { x : 1.0 / v.x, y : 1.0 / v.y };
 }
 
 /**
  * r⃗ = 1⁄v⃗
  */
-export function HadamardInvert<R extends Vector2>(r:R, v:Vector2) : R {
+export function hadamardInvert<R extends Vector2>(r:R, v:Vector2) : R {
 	r.x = 1.0 / v.x;
 	r.y = 1.0 / v.y;
 

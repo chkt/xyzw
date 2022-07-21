@@ -30,6 +30,46 @@ describe('equals', () => {
 	});
 });
 
+describe('isNormLt', () => {
+	it('should return true if the norm of v is less than n', () => {
+		assert.strictEqual(vector2.isNormLt(vector2.Create(), 0.1), true);
+		assert.strictEqual(vector2.isNormLt(vector2.AxisX(), 0.9), false);
+		assert.strictEqual(vector2.isNormLt(vector2.AxisX(), 1.1), true);
+		assert.strictEqual(vector2.isNormLt(vector2.AxisY(), 0.9), false);
+		assert.strictEqual(vector2.isNormLt(vector2.AxisY(), 1.1), true);
+		assert.strictEqual(vector2.isNormLt(vector2.Create(1.0, 1.0), Math.sqrt(1.9)), false);
+		assert.strictEqual(vector2.isNormLt(vector2.Create(1.0, 1.0), Math.sqrt(2.1)), true);
+	});
+});
+
+describe('isNormGt', () => {
+	it('should return true if the norm of v is less than n', () => {
+		assert.strictEqual(vector2.isNormGt(vector2.Create(), 0.1), false);
+		assert.strictEqual(vector2.isNormGt(vector2.AxisX(), 0.9), true);
+		assert.strictEqual(vector2.isNormGt(vector2.AxisX(), 1.1), false);
+		assert.strictEqual(vector2.isNormGt(vector2.AxisY(), 0.9), true);
+		assert.strictEqual(vector2.isNormGt(vector2.AxisY(), 1.1), false);
+		assert.strictEqual(vector2.isNormGt(vector2.Create(1.0, 1.0), Math.sqrt(1.9)), true);
+		assert.strictEqual(vector2.isNormGt(vector2.Create(1.0, 1.0), Math.sqrt(2.1)), false);
+	});
+});
+
+describe('isNormEqual', () => {
+	it('should return true if the norm of v is equal to n', () => {
+		assert.strictEqual(vector2.isNormEqual(vector2.Create(), 0.0), true);
+		assert.strictEqual(vector2.isNormEqual(vector2.AxisX(), 0.9), false);
+		assert.strictEqual(vector2.isNormEqual(vector2.AxisX(), 1.0), true);
+		assert.strictEqual(vector2.isNormEqual(vector2.AxisX(), 1.1), false);
+		assert.strictEqual(vector2.isNormEqual(vector2.AxisY(), 0.9), false);
+		assert.strictEqual(vector2.isNormEqual(vector2.AxisY(), 1.0), true);
+		assert.strictEqual(vector2.isNormEqual(vector2.AxisY(), 1.1), false);
+		assert.strictEqual(vector2.isNormEqual(vector2.Create(1.0, 1.0), Math.sqrt(1.9)), false);
+		assert.strictEqual(vector2.isNormEqual(vector2.Create(1.0, 1.0), Math.sqrt(2.0)), true);
+		assert.strictEqual(vector2.isNormEqual(vector2.Create(1.0, 1.0), Math.sqrt(2.1)), false);
+		assert.strictEqual(vector2.isNormEqual(vector2.AxisX(1.01), 1.0, 1e-1), true);
+	});
+});
+
 describe('norm', () => {
 	it('should return the norm (length) of v', () => {
 		assert.strictEqual(vector2.norm({ x : 0.0, y : 0.0 }), 0.0);

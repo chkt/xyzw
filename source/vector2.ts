@@ -28,6 +28,27 @@ export function equals(v:Vector2, w:Vector2, e:number = epsilon) : boolean {
 	return absOf(w.x - v.x) < e && absOf(w.y - v.y) < e;
 }
 
+/**
+ * ‖ v⃗ ‖ < n
+ */
+export function isNormLt(v:Vector2, n:number) : boolean {
+	return v.x ** 2 + v.y ** 2 < n ** 2;
+}
+
+/**
+ * ‖ v⃗ ‖ > n
+ */
+export function isNormGt(v:Vector2, n:number) : boolean {
+	return v.x ** 2 + v.y ** 2 > n ** 2;
+}
+
+/**
+ * ‖ v⃗ ‖ - n < ϵ
+ */
+export function isNormEqual(v:Vector2, n:number, e:number = epsilon) : boolean {
+	return absOf(v.x ** 2 + v.y ** 2 - n ** 2) < e;
+}
+
 
 /**
  * ‖ v⃗ ‖

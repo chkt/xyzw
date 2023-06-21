@@ -5,7 +5,6 @@ import { Vector2 } from './vector2';
 import { Vector3, cross } from './vector3';
 import { Vector4 } from './vector4';
 import { Matrix2 } from './matrix2';
-import { Matrix4 } from './matrix4';
 
 
 export interface Matrix3 extends Matrix2 {
@@ -504,25 +503,15 @@ export function shearTranslation<R extends Matrix3>(r:R, x:Vector2, y:Vector2, t
 
 /**
  * [ m⁰ m¹ m² ]
+ * @deprecated alias of Copy()
  */
-export function ShearMatrix4(m:Matrix4) : Matrix3 {
-	return  {
-		r00 : m.r00, r10 : m.r10, r20 : m.r20,
-		r01 : m.r01, r11 : m.r11, r21 : m.r21,
-		r02 : m.r02, r12 : m.r12, r22 : m.r22
-	};
-}
+export const ShearMatrix4 = Copy;
 
 /**
  * Mᵣ = [ m⁰ m¹ m² ]
+ * @deprecated alias of copy()
  */
-export function shearMatrix4<R extends Matrix3>(r:R, m:Matrix4) : R {
-	r.r00 = m.r00; r.r10 = m.r10; r.r20 = m.r20;
-	r.r01 = m.r01; r.r11 = m.r11; r.r21 = m.r21;
-	r.r02 = m.r02; r.r12 = m.r12; r.r22 = m.r22;
-
-	return r;
-}
+export const shearMatrix4 = copy;
 
 /**
  * A+B

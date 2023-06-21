@@ -582,7 +582,7 @@ describe('ShearMatrix4', () => {
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
-		}), {
+		} as mat4.Matrix4), {
 			r00 : 1.0, r10 :  2.0, r20 :  3.0,
 			r01 : 5.0, r11 :  6.0, r21 :  7.0,
 			r02 : 9.0, r12 : 10.0, r22 : 11.0
@@ -598,7 +598,7 @@ describe('shearMatrix4', () => {
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
-		});
+		} as mat4.Matrix4);
 
 		assertEquals(r, {
 			r00 : 1.0, r10 :  2.0, r20 :  3.0,
@@ -1191,6 +1191,17 @@ describe('Copy', () => {
 		assert.deepStrictEqual(m, r);
 		assert.notStrictEqual(m, r);
 	});
+
+	it('should return a Matrix3 representing the 3x3 components of a derived matrix', () => {
+		const a = mat3.RotationAxis(vec3.Normalize(vec3.Create(1.0, 2.0, 3.0)), Math.PI * 0.5);
+		const b = mat4.ShearTranslationMatrix3(a, vec3.Create(4.0, 5.0, 6.0));
+		const r = mat3.Copy(b);
+
+		assert.notStrictEqual(b, r);
+		assert.notDeepStrictEqual(b, r);
+		assert.deepStrictEqual(a, r);
+		assert.notStrictEqual(a, r);
+	});
 });
 
 describe('copy', () => {
@@ -1206,5 +1217,18 @@ describe('copy', () => {
 		assert.deepStrictEqual(a, r);
 		assert.notStrictEqual(a, r);
 		assert.strictEqual(b, r);
+	});
+
+	it('should set a Matrix3 to represent the 3x3 components of a derived matrix', () => {
+		const a = mat3.RotationAxis(vec3.Normalize(vec3.Create(1.0, 2.0, 3.0)), Math.PI * 0.5);
+		const b = mat4.ShearTranslationMatrix3(a, vec3.Create(4.0, 5.0, 6.0));
+		const c = mat3.Identity();
+		const r = mat3.copy(c, b);
+
+		assert.notStrictEqual(b, r);
+		assert.notDeepStrictEqual(b, r);
+		assert.deepStrictEqual(a, r);
+		assert.notStrictEqual(a, r);
+		assert.strictEqual(c, r);
 	});
 });

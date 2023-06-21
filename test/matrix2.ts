@@ -327,6 +327,15 @@ describe('Copy', () => {
 		assert.deepStrictEqual(m, r);
 		assert.notStrictEqual(m, r);
 	});
+
+	it('should return a Matrix2 representing the 2x2 components of a derived matrix', () => {
+		const m = mat3.ConcatTranslation(mat3.RotationZ(0.5 * Math.PI), vec2.Create(1.0, 2.0));
+		const r = mat2.Copy(m);
+
+		assert.notStrictEqual(m, r);
+		assert.notDeepStrictEqual(m, r);
+		assert.deepStrictEqual(r, mat2.Rotation(0.5 * Math.PI));
+	});
 });
 
 describe('copy', () => {
@@ -337,6 +346,17 @@ describe('copy', () => {
 
 		assert.notStrictEqual(a, b);
 		assert.deepStrictEqual(a, b);
+		assert.strictEqual(b, r);
+	});
+
+	it('should set a Matrix2 to represent the 2x2 components of a derived matrix', () => {
+		const a = mat3.ConcatTranslation(mat3.RotationZ(0.5 * Math.PI), vec2.Create(1.0, 2.0));
+		const b = mat2.Identity();
+		const r = mat2.copy(b, a);
+
+		assert.notStrictEqual(a, r);
+		assert.notDeepStrictEqual(a, r);
+		assert.deepStrictEqual(r, mat2.Rotation(0.5 * Math.PI));
 		assert.strictEqual(b, r);
 	});
 });

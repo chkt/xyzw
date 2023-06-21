@@ -4,6 +4,7 @@
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
 import * as vector3 from '../source/vector3';
+import * as vector4 from '../source/vector4';
 import * as matrix3 from '../source/matrix3';
 import * as matrix4 from '../source/matrix4';
 import { assertEqualsVec3 as assertEquals, assertEqualsScalar } from './assert/assert';
@@ -1260,6 +1261,15 @@ describe('Copy', () => {
 		assert.notStrictEqual(v, w);
 		assert.deepStrictEqual(v, w);
 	});
+
+	it('should return a Vector3 representing the (x y z) components of a derived vector', () => {
+		const v = vector4.Create(1.0, 2.0, 3.0, 4.0);
+		const w = vector3.Copy(v);
+
+		assert.notStrictEqual(v, w);
+		assert.notDeepStrictEqual(v, w);
+		assert.deepStrictEqual(w, vector3.Create(1.0, 2.0, 3.0));
+	});
 });
 
 describe('copy', () => {
@@ -1270,6 +1280,17 @@ describe('copy', () => {
 
 		assert.notStrictEqual(v, w);
 		assert.deepStrictEqual(v, w);
+		assert.strictEqual(w, r);
+	});
+
+	it('should set a Vector3 to represent the (x y z) components of a derived vector', () => {
+		const v = vector4.Create(1.0, 2.0, 3.0, 4.0);
+		const w = vector3.Create();
+		const r = vector3.copy(w, v);
+
+		assert.notStrictEqual(v, w);
+		assert.notDeepStrictEqual(v, w);
+		assert.deepStrictEqual(w, vector3.Create(1.0, 2.0, 3.0));
 		assert.strictEqual(w, r);
 	});
 });

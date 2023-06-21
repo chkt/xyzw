@@ -1,6 +1,5 @@
 /* eslint max-statements-per-line : [ error, { max : 2 } ]*/
 import { Vector2 } from './vector2';
-import { Matrix3 } from './matrix3';
 
 
 export interface Matrix2 {
@@ -124,22 +123,15 @@ export function shear<R extends Matrix2>(r:R, x:Vector2, y:Vector2) : R {
 
 /**
  * [ m⁰ m¹ ]
+ * @deprecated alias of Copy()
  */
-export function ShearMatrix3(m:Matrix3) : Matrix2 {
-	return { r00 : m.r00, r10 : m.r10, r01 : m.r01, r11 : m.r11 };
-}
+export const ShearMatrix3 = Copy;
 
 /**
  * Mᵣ = [ m⁰ m¹ ]
+ * @deprecated alias of copy()
  */
-export function shearMatrix3<R extends Matrix2>(r:R, m:Matrix3) : R {
-	r.r00 = m.r00;
-	r.r10 = m.r10;
-	r.r01 = m.r01;
-	r.r11 = m.r11;
-
-	return r;
-}
+export const shearMatrix3 = copy;
 
 /**
  * A+B

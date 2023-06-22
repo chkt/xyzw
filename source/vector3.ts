@@ -681,7 +681,12 @@ export function copy<R extends Vector3>(r:R, v:Vector3) : R {
 }
 
 export function createStringifier(opts?:Partial<StringifyOptions<Vector3>>) : stringify<Vector3> {
-	return stringify.bind<null, StringifyOptions<Vector3>, [ Vector3 ], string>(null, { ...stringifyDefaults, ...opts });
+	return stringify.bind<
+		null,
+		[ StringifyOptions<Vector3> ],
+		[ Vector3 ],
+		string
+	>(null, { ...stringifyDefaults, ...opts });
 }
 
 export function toF32(v:Vector3) : Float32Array {

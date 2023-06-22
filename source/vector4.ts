@@ -407,7 +407,12 @@ export function copy<R extends Vector4>(r:R, v:Vector4) : R {
 }
 
 export function createStringifier(opts?:Partial<StringifyOptions<Vector4>>) : stringify<Vector4> {
-	return stringify.bind<null, StringifyOptions<Vector4>, [ Vector4 ], string>(null, { ...stringifyDefaults, ...opts });
+	return stringify.bind<
+		null,
+		[ StringifyOptions<Vector4> ],
+		[ Vector4 ],
+		string
+	>(null, { ...stringifyDefaults, ...opts });
 }
 
 

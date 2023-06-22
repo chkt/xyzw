@@ -118,9 +118,33 @@ export function shearMatrix3<R extends Matrix4>(r:R, m:Matrix3) : R {
 }
 
 /**
+ * [ m⁰ m¹ m² ŵ+t⃗ ]
+ */
+export function ShearTranslationMatrix3(m:Matrix3, t:Vector3) : Matrix4 {
+	return {
+		r00 : m.r00, r01 : m.r01, r02 : m.r02, r03 : t.x,
+		r10 : m.r10, r11 : m.r11, r12 : m.r12, r13 : t.y,
+		r20 : m.r20, r21 : m.r21, r22 : m.r22, r23 : t.z,
+		r30 : 0.0, r31 : 0.0, r32 : 0.0, r33 : 1.0
+	};
+}
+
+/**
+ * Mᵣ = [ m⁰ m¹ m² ŵ+t⃗ ]
+ */
+export function shearTranslationMatrix3<R extends Matrix4>(r:R, m:Matrix3, t:Vector3) : R {
+	r.r00 = m.r00; r.r01 = m.r01; r.r02 = m.r02; r.r03 = t.x;
+	r.r10 = m.r10; r.r11 = m.r11; r.r12 = m.r12; r.r13 = t.y;
+	r.r20 = m.r20; r.r21 = m.r21; r.r22 = m.r22; r.r23 = t.z;
+	r.r30 = 0.0; r.r31 = 0.0; r.r32 = 0.0; r.r33 = 1.0;
+
+	return r;
+}
+
+/**
  * [ x⃗  y⃗  z⃗  ŵ+t⃗ ]
  */
-export function ShearTranslation(x:Vector3, y:Vector3, z:Vector3, t:Vector3) : Matrix4 {
+export function ShearTranslationAxes(x:Vector3, y:Vector3, z:Vector3, t:Vector3) : Matrix4 {
 	return {
 		r00 : x.x, r10 : x.y, r20 : x.z, r30 : 0.0,
 		r01 : y.x, r11 : y.y, r21 : y.z, r31 : 0.0,
@@ -129,10 +153,7 @@ export function ShearTranslation(x:Vector3, y:Vector3, z:Vector3, t:Vector3) : M
 	};
 }
 
-/**
- * Mᵣ = [ x⃗  y⃗  z⃗  ŵ+t⃗ ]
- */
-export function shearTranslation<R extends Matrix4>(r:R, x:Vector3, y:Vector3, z:Vector3, t:Vector3) : R {
+export function shearTranslationAxes<R extends Matrix4>(r:R, x:Vector3, y:Vector3, z:Vector3, t:Vector3) : R {
 	r.r00 = x.x; r.r10 = x.y; r.r20 = x.z; r.r30 = 0.0;
 	r.r01 = y.x; r.r11 = y.y; r.r21 = y.z; r.r31 = 0.0;
 	r.r02 = z.x; r.r12 = z.y; r.r22 = z.z; r.r32 = 0.0;
@@ -140,6 +161,18 @@ export function shearTranslation<R extends Matrix4>(r:R, x:Vector3, y:Vector3, z
 
 	return r;
 }
+
+/**
+ * [ x⃗  y⃗  z⃗  ŵ+t⃗ ]
+ * @deprecated alias of ShearTranslationAxes()
+ */
+export const ShearTranslation = ShearTranslationAxes;
+
+/**
+ * Mᵣ = [ x⃗  y⃗  z⃗  ŵ+t⃗ ]
+ * @deprecated alias of shearTranslationAxes()
+ */
+export const shearTranslation = shearTranslationAxes;
 
 /**
  * A+B

@@ -168,26 +168,60 @@ describe('shearMatrix3', () => {
 	});
 });
 
-describe('ShearTranslation', () => {
-	it('should return a Matrix4 representing a shear and translation', () => {
-		assert.deepStrictEqual(mat4.ShearTranslation(
+describe('ShearTranslationMatrix3', () => {
+	it('should return a Matrix4 representing a shear matrix and translation vector', () => {
+		assert.deepStrictEqual(mat4.ShearTranslationMatrix3({
+			r00 : 2.0, r10 : 3.0, r20 :  4.0,
+			r01 : 5.0, r11 : 6.0, r21 :  7.0,
+			r02 : 8.0, r12 : 9.0, r22 : 10.0
+		}, vec3.Create(11.0, 12.0, 13.0)), {
+			r00 : 2.0, r01 : 5.0, r02 :  8.0, r03 : 11.0,
+			r10 : 3.0, r11 : 6.0, r12 :  9.0, r13 : 12.0,
+			r20 : 4.0, r21 : 7.0, r22 : 10.0, r23 : 13.0,
+			r30 : 0.0, r31 : 0.0, r32 :  0.0, r33 :  1.0
+		});
+	});
+});
+
+describe('shearTranslationMatrix3', () => {
+	it('should set a Matrix4 to represent a shear matrix and translation vector', () => {
+		const m = mat4.Identity();
+		const r = mat4.shearTranslationMatrix3(m, {
+			r00 : 2.0, r10 : 3.0, r20 :  4.0,
+			r01 : 5.0, r11 : 6.0, r21 :  7.0,
+			r02 : 8.0, r12 : 9.0, r22 : 10.0
+		}, vec3.Create(11.0, 12.0, 13.0));
+
+		assert.deepStrictEqual(r, {
+			r00 : 2.0, r01 : 5.0, r02 :  8.0, r03 : 11.0,
+			r10 : 3.0, r11 : 6.0, r12 :  9.0, r13 : 12.0,
+			r20 : 4.0, r21 : 7.0, r22 : 10.0, r23 : 13.0,
+			r30 : 0.0, r31 : 0.0, r32 :  0.0, r33 :  1.0
+		});
+		assert.strictEqual(m, r);
+	});
+});
+
+describe('ShearTranslationAxes', () => {
+	it('should return a Matrix4 representing shear axes and translation', () => {
+		assert.deepStrictEqual(mat4.ShearTranslationAxes(
 			vec3.Create(2.0, 3.0, 4.0),
 			vec3.Create(5.0, 6.0, 7.0),
 			vec3.Create(8.0, 9.0, 10.0),
 			vec3.Create(11.0, 12.0, 13.0)
 		), {
-			r00 : 2.0, r10 : 3.0, r20 : 4.0, r30 : 0.0,
-			r01 : 5.0, r11 : 6.0, r21 : 7.0, r31 : 0.0,
-			r02 : 8.0, r12 : 9.0, r22 : 10.0, r32 : 0.0,
-			r03 : 11.0, r13 : 12.0, r23 : 13.0, r33 : 1.0
+			r00 : 2.0, r01 : 5.0, r02 :  8.0, r03 : 11.0,
+			r10 : 3.0, r11 : 6.0, r12 :  9.0, r13 : 12.0,
+			r20 : 4.0, r21 : 7.0, r22 : 10.0, r23 : 13.0,
+			r30 : 0.0, r31 : 0.0, r32 :  0.0, r33 :  1.0
 		});
 	});
 });
 
-describe('shearTranslation', () => {
-	it('should set a Matrix4 to represent a shear and translation', () => {
+describe('shearTranslationAxes', () => {
+	it('should set a Matrix4 to represent shear axes and translation', () => {
 		const m = mat4.Identity();
-		const r = mat4.shearTranslation(
+		const r = mat4.shearTranslationAxes(
 			m,
 			vec3.Create(2.0, 3.0, 4.0),
 			vec3.Create(5.0, 6.0, 7.0),
@@ -196,11 +230,40 @@ describe('shearTranslation', () => {
 		);
 
 		assert.deepStrictEqual(r, {
-			r00 : 2.0, r10 : 3.0, r20 : 4.0, r30 : 0.0,
-			r01 : 5.0, r11 : 6.0, r21 : 7.0, r31 : 0.0,
-			r02 : 8.0, r12 : 9.0, r22 : 10.0, r32 : 0.0,
-			r03 : 11.0, r13 : 12.0, r23 : 13.0, r33 : 1.0
+			r00 : 2.0, r01 : 5.0, r02 :  8.0, r03 : 11.0,
+			r10 : 3.0, r11 : 6.0, r12 :  9.0, r13 : 12.0,
+			r20 : 4.0, r21 : 7.0, r22 : 10.0, r23 : 13.0,
+			r30 : 0.0, r31 : 0.0, r32 :  0.0, r33 :  1.0
 		});
+		assert.strictEqual(m, r);
+	});
+});
+
+describe('ShearTranslation', () => {
+	it('should return the result of ShearTranslationAxes', () => {
+		const x = vec3.Create(2.0, 3.0, 4.0);
+		const y = vec3.Create(5.0, 6.0, 7.0);
+		const z = vec3.Create(8.0, 9.0, 10.0);
+		const t = vec3.Create(11.0, 12.0, 13.0);
+
+		assert.deepStrictEqual(
+			mat4.ShearTranslation(x, y, z, t),
+			mat4.ShearTranslationAxes(x, y, z, t)
+		);
+	});
+});
+
+describe('shearTranslation', () => {
+	it('should return the result of shearTranslationAxes', () => {
+		const x = vec3.Create(2.0, 3.0, 4.0);
+		const y = vec3.Create(5.0, 6.0, 7.0);
+		const z = vec3.Create(8.0, 9.0, 10.0);
+		const t = vec3.Create(11.0, 12.0, 13.0);
+
+		const m = mat4.Identity();
+		const r = mat4.shearTranslation(m, x, y, z, t);
+
+		assert.deepStrictEqual(r, mat4.shearTranslationAxes(mat4.Identity(), x, y, z, t));
 		assert.strictEqual(m, r);
 	});
 });

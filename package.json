@@ -55,7 +55,7 @@
 		"url": "https://github.com/chkt/xyzw/issues"
 	},
 	"engines": {
-		"node": ">=12.0"
+		"node": ">=14.0"
 	},
 	"main": "./dist/index.js",
 	"files": [

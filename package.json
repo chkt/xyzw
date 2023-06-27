@@ -1,7 +1,7 @@
 {
 	"name": "xyzw",
 	"description": "A functional, fast, comprehensive and dependencyless typescript vector algebra library",
-	"version": "2.7.0",
+	"version": "2.8.0",
 	"license": "MIT",
 	"keywords": [
 		"algebra",

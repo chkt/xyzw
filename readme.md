@@ -62,7 +62,7 @@ assert.notStrictEqual(w, v);
 ```
 # Modules
 ## complex
-[`./source/complex.ts`](https://github.com/chkt/xyzw/blob/8062d54/source/complex.ts#L1)
+[`./source/complex.ts`](https://github.com/chkt/xyzw/blob/1b87a06/source/complex.ts#L1)
 ### Functions
 ```ts
 function Conjugate(z:Vector2) : Vector2;  // z̅
@@ -78,7 +78,7 @@ function multiply<R extends Vector2>(r:R, z:Vector2, w:Vector2) : R;  // r⃗ = 
 function power<R extends Iterable<undefined | Vector2, R>>(r:R, z:Vector2, n:number) : R;  // r⃗₍ₖ₎ = zⁿ₍ₖ₎
 ```
 ## index
-[`./source/index.ts`](https://github.com/chkt/xyzw/blob/8062d54/source/index.ts#L1)
+[`./source/index.ts`](https://github.com/chkt/xyzw/blob/1b87a06/source/index.ts#L1)
 ### References
 ```ts
 export * as complex from "./complex";
@@ -92,7 +92,7 @@ export * as vector3 from "./vector3";
 export * as vector4 from "./vector4";
 ```
 ## matrix2
-[`./source/matrix2.ts`](https://github.com/chkt/xyzw/blob/8062d54/source/matrix2.ts#L2)
+[`./source/matrix2.ts`](https://github.com/chkt/xyzw/blob/1b87a06/source/matrix2.ts#L1)
 ### Interfaces
 ```ts
 interface Matrix2 {
@@ -113,7 +113,8 @@ function Rotation(rad:number) : Matrix2;  // R(θ)
 function RotationVector2(v:Vector2) : Matrix2;  // [ v⃗  v⃗⊥ ]
 function Scale(v:Vector2) : Matrix2;  // [ x̂v⃗₀  ŷv⃗₁ ]
 function Shear(x:Vector2, y:Vector2) : Matrix2;  // [ x⃗  y⃗ ]
-function ShearMatrix3(m:Matrix3) : Matrix2;  // [ m⁰ m¹ ]
+// @deprecated alias of Copy()
+function ShearMatrix3(m:Matrix2) : Matrix2;  // [ m⁰ m¹ ]
 function Subtract(a:Matrix2, b:Matrix2) : Matrix2;  // A-B
 function Transpose(m:Matrix2) : Matrix2;  // Mᵀ
 function add<R extends Matrix2>(r:R, a:Matrix2, b:Matrix2) : R;  // Mᵣ = A+B
@@ -127,13 +128,14 @@ function rotation<R extends Matrix2>(r:R, rad:number) : R;  // Mᵣ = R(θ)
 function rotationVector2<R extends Matrix2>(r:R, v:Vector2) : R;  // Mᵣ = [ v⃗  v⃗⊥ ]
 function scale<R extends Matrix2>(r:R, v:Vector2) : R;  // Mᵣ = [ x̂v⃗₀  ŷv⃗₁ ]
 function shear<R extends Matrix2>(r:R, x:Vector2, y:Vector2) : R;  // Mᵣ = [ x⃗  y⃗ ]
-function shearMatrix3<R extends Matrix2>(r:R, m:Matrix3) : R;  // Mᵣ = [ m⁰ m¹ ]
+// @deprecated alias of copy()
+function shearMatrix3<R extends Matrix2>(r:R, m:Matrix2) : R;  // Mᵣ = [ m⁰ m¹ ]
 function subtract<R extends Matrix2>(r:R, a:Matrix2, b:Matrix2) : R;  // Mᵣ = A-B
 function subtractAssign<R extends Matrix2>(a:R, b:Matrix2) : R;  // A = A-B
 function transpose<R extends Matrix2>(r:R, m:Matrix2) : R;  // Mᵣ = Mᵀ
 ```
 ## matrix3
-[`./source/matrix3.ts`](https://github.com/chkt/xyzw/blob/8062d54/source/matrix3.ts#L4)
+[`./source/matrix3.ts`](https://github.com/chkt/xyzw/blob/1b87a06/source/matrix3.ts#L1)
 ### Interfaces
 ```ts
 interface Matrix3 extends Matrix2 {
@@ -169,7 +171,8 @@ function RotationZVector2(x:Vector2) : Matrix3;  // [ x⃗  x⃗⊥  ẑ ]
 function Scale(v:Vector3) : Matrix3;  // [ x̂v⃗₀  ŷv⃗₁  ẑv⃗₂ ]
 function ScaleVector2(v:Vector2) : Matrix3;  // [ x̂v⃗₀  ŷv⃗₁  ẑ ]
 function Shear(x:Vector3, y:Vector3, z:Vector3) : Matrix3;  // [ x⃗  y⃗  z⃗ ]
-function ShearMatrix4(m:Matrix4) : Matrix3;  // [ m⁰ m¹ m² ]
+// @deprecated alias of Copy()
+function ShearMatrix4(m:Matrix3) : Matrix3;  // [ m⁰ m¹ m² ]
 function ShearTranslation(x:Vector2, y:Vector2, t:Vector2) : Matrix3;  // [ x⃗  y⃗  ẑ+t⃗ ]
 function ShearVector2(x:Vector2, y:Vector2) : Matrix3;  // [ x⃗  y⃗  ẑ ]
 function Subtract(a:Matrix3, b:Matrix3) : Matrix3;  // A-B
@@ -201,7 +204,8 @@ function rotationZVector2<R extends Matrix3>(r:R, x:Vector2) : R;  // Mᵣ = [ x
 function scale<R extends Matrix3>(r:R, v:Vector3) : R;  // Mᵣ = [ x̂v⃗₀  ŷv⃗₁  ẑv⃗₂ ]
 function scaleVector2<R extends Matrix3>(r:R, v:Vector2) : R;  // Mᵣ = [ x̂v⃗₀  ŷv⃗₁  ẑ ]
 function shear<R extends Matrix3>(r:R, x:Vector3, y:Vector3, z:Vector3) : R;  // Mᵣ = [ x⃗  y⃗  z⃗ ]
-function shearMatrix4<R extends Matrix3>(r:R, m:Matrix4) : R;  // Mᵣ = [ m⁰ m¹ m² ]
+// @deprecated alias of copy()
+function shearMatrix4<R extends Matrix3>(r:R, m:Matrix3) : R;  // Mᵣ = [ m⁰ m¹ m² ]
 function shearTranslation<R extends Matrix3>(r:R, x:Vector2, y:Vector2, t:Vector2) : R;  // Mᵣ = [ x⃗  y⃗  ẑ+t⃗ ]
 function shearVector2<R extends Matrix3>(r:R, x:Vector2, y:Vector2) : R;  // Mᵣ = [ x⃗  y⃗  ẑ ]
 function subtract<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R;  // Mᵣ = A-B
@@ -210,7 +214,7 @@ function translation<R extends Matrix3>(r:R, v:Vector2) : R;  // Mᵣ = [ x̂  y
 function transpose<R extends Matrix3>(r:R, m:Matrix3) : R;  // Mᵣ = Mᵀ
 ```
 ## matrix4
-[`./source/matrix4.ts`](https://github.com/chkt/xyzw/blob/8062d54/source/matrix4.ts#L4)
+[`./source/matrix4.ts`](https://github.com/chkt/xyzw/blob/1b87a06/source/matrix4.ts#L1)
 ### Interfaces
 ```ts
 interface Matrix4 extends Matrix3 {
@@ -239,7 +243,10 @@ function Inverse(m:Matrix4) : Matrix4 | undefined;  // M⁻¹ (using the determi
 function Inverse3x4(m:Matrix4) : Matrix4 | undefined;  // [ m⁰ m¹ m² ŵ+m³ ]⁻¹
 function InverseGauss(m:Matrix4) : Matrix4 | undefined;  // M⁻¹ (using Gauss-Jordon elimination)
 function ShearMatrix3(m:Matrix3) : Matrix4;  // [ m⁰ m¹ m² ŵ ]
+// @deprecated alias of ShearTranslationAxes()
 function ShearTranslation(x:Vector3, y:Vector3, z:Vector3, t:Vector3) : Matrix4;  // [ x⃗  y⃗  z⃗  ŵ+t⃗ ]
+function ShearTranslationAxes(x:Vector3, y:Vector3, z:Vector3, t:Vector3) : Matrix4;  // [ x⃗  y⃗  z⃗  ŵ+t⃗ ]
+function ShearTranslationMatrix3(m:Matrix3, t:Vector3) : Matrix4;  // [ m⁰ m¹ m² ŵ+t⃗ ]
 function Subtract(a:Matrix4, b:Matrix4) : Matrix4;  // A-B
 function Translation(v:Vector3) : Matrix4;  // [ x̂  ŷ  ẑ  ŵ+v⃗ ]
 function Transpose(m:Matrix4) : Matrix4;  // Mᵀ
@@ -262,7 +269,10 @@ function inverse<R extends Matrix4>(r:R, m:Matrix4) : R | undefined;  // Mᵣ = 
 function inverse3x4<R extends Matrix4>(r:R, m:Matrix4) : R | undefined;  // Mᵣ = [ m⁰ m¹ m² ŵ+m³ ]⁻¹
 function inverseGauss<R extends Matrix4>(r:R, m:Matrix4) : R | undefined;  // Mᵣ = M⁻¹ (using Gauss-Jordan elimination)
 function shearMatrix3<R extends Matrix4>(r:R, m:Matrix3) : R;  // Mᵣ = [ m⁰ m¹ m² ŵ ]
+// @deprecated alias of shearTranslationAxes()
 function shearTranslation<R extends Matrix4>(r:R, x:Vector3, y:Vector3, z:Vector3, t:Vector3) : R;  // Mᵣ = [ x⃗  y⃗  z⃗  ŵ+t⃗ ]
+function shearTranslationAxes<R extends Matrix4>(r:R, x:Vector3, y:Vector3, z:Vector3, t:Vector3) : R;
+function shearTranslationMatrix3<R extends Matrix4>(r:R, m:Matrix3, t:Vector3) : R;  // Mᵣ = [ m⁰ m¹ m² ŵ+t⃗ ]
 function subtract<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R;  // Mᵣ = A-B
 function subtractAssign<R extends Matrix4>(a:R, b:Matrix4) : R;  // A = A-B
 function toColumnF32(m:Matrix4) : Float32Array;
@@ -271,7 +281,7 @@ function translation<R extends Matrix4>(r:R, v:Vector3) : R;  // Mᵣ = [ x̂  y
 function transpose<R extends Matrix4>(r:R, m:Matrix4) : R;  // Mᵣ = Mᵀ
 ```
 ## matrix4Frustrum
-[`./source/matrix4Frustrum.ts`](https://github.com/chkt/xyzw/blob/8062d54/source/matrix4Frustrum.ts#L1)
+[`./source/matrix4Frustrum.ts`](https://github.com/chkt/xyzw/blob/1b87a06/source/matrix4Frustrum.ts#L1)
 ### Interfaces
 ```ts
 interface PerspectiveLens {
@@ -287,7 +297,7 @@ function Frustrum(lens:PerspectiveLens) : Matrix4;
 function frustrum<R extends Matrix4>(r:R, lens:PerspectiveLens) : R;
 ```
 ## matrix4Ortho
-[`./source/matrix4Ortho.ts`](https://github.com/chkt/xyzw/blob/8062d54/source/matrix4Ortho.ts#L1)
+[`./source/matrix4Ortho.ts`](https://github.com/chkt/xyzw/blob/1b87a06/source/matrix4Ortho.ts#L1)
 ### Interfaces
 ```ts
 interface OrthographicLens {
@@ -303,7 +313,7 @@ function Ortho(lens:OrthographicLens) : Matrix4;
 function ortho<R extends Matrix4>(r:R, lens:OrthographicLens) : R;
 ```
 ## strings
-[`./source/strings.ts`](https://github.com/chkt/xyzw/blob/8062d54/source/strings.ts#L1)
+[`./source/strings.ts`](https://github.com/chkt/xyzw/blob/1b87a06/source/strings.ts#L1)
 ### Interfaces
 ```ts
 interface StringifyOptions<T> extends StringifyOptionsCommon {
@@ -313,7 +323,7 @@ interface StringifyOptions<T> extends StringifyOptionsCommon {
 ```
 ### Type Aliases
 ```ts
-type stringify = (v:VectorRecord<T>) => string;
+type stringify<T> = (v:VectorRecord<T>) => string;
 ```
 ### Variables
 ```ts
@@ -325,7 +335,7 @@ const stringifyDefaultsCommon:StringifyOptionsCommon;
 function stringify<T>(opts:StringifyOptions<T>, v:VectorRecord<T>) : string;
 ```
 ## vector2
-[`./source/vector2.ts`](https://github.com/chkt/xyzw/blob/8062d54/source/vector2.ts#L1)
+[`./source/vector2.ts`](https://github.com/chkt/xyzw/blob/1b87a06/source/vector2.ts#L1)
 ### Interfaces
 ```ts
 interface Vector2 {
@@ -393,7 +403,7 @@ function subtract<R extends Vector2>(r:R, v:Vector2, w:Vector2) : R;  // r⃗ = 
 function subtractAssign<R extends Vector2>(v:R, w:Vector2) : R;  // v⃗ = v⃗-w⃗
 ```
 ## vector3
-[`./source/vector3.ts`](https://github.com/chkt/xyzw/blob/8062d54/source/vector3.ts#L1)
+[`./source/vector3.ts`](https://github.com/chkt/xyzw/blob/1b87a06/source/vector3.ts#L1)
 ### Interfaces
 ```ts
 interface Vector3 extends Vector2 {
@@ -487,7 +497,7 @@ function toF32(v:Vector3) : Float32Array;
 function toF64(v:Vector3) : Float64Array;
 ```
 ## vector4
-[`./source/vector4.ts`](https://github.com/chkt/xyzw/blob/8062d54/source/vector4.ts#L2)
+[`./source/vector4.ts`](https://github.com/chkt/xyzw/blob/1b87a06/source/vector4.ts#L1)
 ### Interfaces
 ```ts
 interface Vector4 extends Vector3 {

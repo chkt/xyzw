@@ -567,43 +567,61 @@ describe('subtractAssign', () => {
 	});
 });
 
-describe('MultiplyScalar', () => {
+describe('Scale', () => {
 	it('should return a Vector3 representing a scalar multiplication', () => {
-		assertEquals(vector3.MultiplyScalar(vector3.Create(), 2), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
-		assertEquals(vector3.MultiplyScalar(vector3.Create( 2.0,  4.0,  6.0),  2), { x :  4.0, y :  8.0, z :  12.0 }, epsilon);
-		assertEquals(vector3.MultiplyScalar(vector3.Create( 2.0, -4.0,  6.0), -2), { x : -4.0, y :  8.0, z : -12.0 }, epsilon);
-		assertEquals(vector3.MultiplyScalar(vector3.Create(-2.0,  4.0, -6.0), -2), { x :  4.0, y : -8.0, z :  12.0 }, epsilon);
-		assertEquals(vector3.MultiplyScalar(vector3.Create(-2.0, -4.0, -6.0),  2), { x : -4.0, y : -8.0, z : -12.0 }, epsilon);
+		assertEquals(vector3.Scale(vector3.Create(), 2), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.Scale(vector3.Create( 2.0,  4.0,  6.0),  2), { x :  4.0, y :  8.0, z :  12.0 }, epsilon);
+		assertEquals(vector3.Scale(vector3.Create( 2.0, -4.0,  6.0), -2), { x : -4.0, y :  8.0, z : -12.0 }, epsilon);
+		assertEquals(vector3.Scale(vector3.Create(-2.0,  4.0, -6.0), -2), { x :  4.0, y : -8.0, z :  12.0 }, epsilon);
+		assertEquals(vector3.Scale(vector3.Create(-2.0, -4.0, -6.0),  2), { x : -4.0, y : -8.0, z : -12.0 }, epsilon);
 	});
 });
 
-describe('multiplyScalar', () => {
+describe('MultiplyScalar', () => {
+	it('should alias Scale()', () => {
+		assert.strictEqual(vector3.Scale, vector3.MultiplyScalar);
+	});
+});
+
+describe('scale', () => {
 	it('should set a Vector3 to represent a scalar multiplication', () => {
 		const v = vector3.Create();
-		const r = vector3.multiplyScalar(v, vector3.Create(2.0, 4.0, 6.0), 2);
+		const r = vector3.scale(v, vector3.Create(2.0, 4.0, 6.0), 2);
 
 		assertEquals(r, { x : 4.0, y : 8.0, z : 12 }, epsilon);
 		assert.strictEqual(v, r);
 
-		assertEquals(vector3.multiplyScalar(v, vector3.Create(), 2), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
-		assertEquals(vector3.multiplyScalar(v, vector3.Create( 2.0, -4.0,  6.0), -2), { x : -4.0, y :  8.0, z : -12.0 }, epsilon);
-		assertEquals(vector3.multiplyScalar(v, vector3.Create(-2.0,  4.0, -6.0), -2), { x :  4.0, y : -8.0, z :  12.0 }, epsilon);
-		assertEquals(vector3.multiplyScalar(v, vector3.Create(-2.0, -4.0, -6.0),  2), { x : -4.0, y : -8.0, z : -12.0 }, epsilon);
+		assertEquals(vector3.scale(v, vector3.Create(), 2), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.scale(v, vector3.Create( 2.0, -4.0,  6.0), -2), { x : -4.0, y :  8.0, z : -12.0 }, epsilon);
+		assertEquals(vector3.scale(v, vector3.Create(-2.0,  4.0, -6.0), -2), { x :  4.0, y : -8.0, z :  12.0 }, epsilon);
+		assertEquals(vector3.scale(v, vector3.Create(-2.0, -4.0, -6.0),  2), { x : -4.0, y : -8.0, z : -12.0 }, epsilon);
 	});
 });
 
-describe('multiplyAssignScalar', () => {
+describe('multiplyScalar', () => {
+	it('should alias scale()', () => {
+		assert.strictEqual(vector3.scale, vector3.multiplyScalar);
+	});
+});
+
+describe('scaleAssign', () => {
 	it('should set a Vector3 to represent a scalar multiplication', () => {
 		const v = vector3.Create(2.0, 4.0, 6.0);
-		const r = vector3.multiplyAssignScalar(v, 2.0);
+		const r = vector3.scaleAssign(v, 2.0);
 
 		assertEquals(r, { x : 4.0, y : 8.0, z : 12.0 }, epsilon);
 		assert.strictEqual(v, r);
 
-		assertEquals(vector3.multiplyAssignScalar(vector3.Create(), 2), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
-		assertEquals(vector3.multiplyAssignScalar(vector3.Create( 2.0, -4.0,  6.0), -2), { x : -4.0, y :  8.0, z : -12.0 }, epsilon);
-		assertEquals(vector3.multiplyAssignScalar(vector3.Create(-2.0,  4.0, -6.0), -2), { x :  4.0, y : -8.0, z :  12.0 }, epsilon);
-		assertEquals(vector3.multiplyAssignScalar(vector3.Create(-2.0, -4.0, -6.0),  2), { x : -4.0, y : -8.0, z : -12.0 }, epsilon);
+		assertEquals(vector3.scaleAssign(vector3.Create(), 2), { x : 0.0, y : 0.0, z : 0.0 }, epsilon);
+		assertEquals(vector3.scaleAssign(vector3.Create( 2.0, -4.0,  6.0), -2), { x : -4.0, y :  8.0, z : -12.0 }, epsilon);
+		assertEquals(vector3.scaleAssign(vector3.Create(-2.0,  4.0, -6.0), -2), { x :  4.0, y : -8.0, z :  12.0 }, epsilon);
+		assertEquals(vector3.scaleAssign(vector3.Create(-2.0, -4.0, -6.0),  2), { x : -4.0, y : -8.0, z : -12.0 }, epsilon);
+	});
+});
+
+describe('multiplyAssignScalar', () => {
+	it('should alias scaleAssign()', () => {
+		assert.strictEqual(vector3.scaleAssign, vector3.multiplyAssignScalar);
 	});
 });
 

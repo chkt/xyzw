@@ -357,43 +357,61 @@ describe('subtractAssign', () => {
 	});
 });
 
-describe('MultiplyScalar', () => {
+describe('Scale', () => {
 	it('should return a Vector2 representing a scalar multiplication', () => {
-		assertEquals(vector2.MultiplyScalar(vector2.Create(), 2), { x : 0.0, y : 0.0 }, epsilon);
-		assertEquals(vector2.MultiplyScalar(vector2.Create( 2.0,  4.0),  2), { x :  4.0, y :  8.0 }, epsilon);
-		assertEquals(vector2.MultiplyScalar(vector2.Create( 2.0, -4.0), -2), { x : -4.0, y :  8.0 }, epsilon);
-		assertEquals(vector2.MultiplyScalar(vector2.Create(-2.0,  4.0), -2), { x :  4.0, y : -8.0 }, epsilon);
-		assertEquals(vector2.MultiplyScalar(vector2.Create(-2.0, -4.0),  2), { x : -4.0, y : -8.0 }, epsilon);
+		assertEquals(vector2.Scale(vector2.Create(), 2), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.Scale(vector2.Create( 2.0,  4.0),  2), { x :  4.0, y :  8.0 }, epsilon);
+		assertEquals(vector2.Scale(vector2.Create( 2.0, -4.0), -2), { x : -4.0, y :  8.0 }, epsilon);
+		assertEquals(vector2.Scale(vector2.Create(-2.0,  4.0), -2), { x :  4.0, y : -8.0 }, epsilon);
+		assertEquals(vector2.Scale(vector2.Create(-2.0, -4.0),  2), { x : -4.0, y : -8.0 }, epsilon);
+	});
+});
+
+describe('MultiplyScalar', () => {
+	it('should alias Scale()', () => {
+		assert.strictEqual(vector2.Scale, vector2.MultiplyScalar);
+	});
+});
+
+describe('scale', () => {
+	it('should set a Vector2 to represent a scalar multiplication', () => {
+		const v = vector2.Create();
+		const r = vector2.scale(v, vector2.Create(2.0, 4.0), 2);
+
+		assertEquals(r, { x : 4.0, y : 8.0 }, epsilon);
+		assert.strictEqual(v, r);
+
+		assertEquals(vector2.scale(v, vector2.Create(), 2), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.scale(v, vector2.Create( 2.0, -4.0), -2), { x : -4.0, y :  8.0 }, epsilon);
+		assertEquals(vector2.scale(v, vector2.Create(-2.0,  4.0), -2), { x :  4.0, y : -8.0 }, epsilon);
+		assertEquals(vector2.scale(v, vector2.Create(-2.0, -4.0),  2), { x : -4.0, y : -8.0 }, epsilon);
 	});
 });
 
 describe('multiplyScalar', () => {
+	it('should alias scale()', () => {
+		assert.strictEqual(vector2.scale, vector2.multiplyScalar);
+	});
+});
+
+describe('scaleAssign', () => {
 	it('should set a Vector2 to represent a scalar multiplication', () => {
-		const v = vector2.Create();
-		const r = vector2.multiplyScalar(v, vector2.Create(2.0, 4.0), 2);
+		const v = vector2.Create(2.0, 4.0);
+		const r = vector2.scaleAssign(v, 2.0);
 
 		assertEquals(r, { x : 4.0, y : 8.0 }, epsilon);
 		assert.strictEqual(v, r);
 
-		assertEquals(vector2.multiplyScalar(v, vector2.Create(), 2), { x : 0.0, y : 0.0 }, epsilon);
-		assertEquals(vector2.multiplyScalar(v, vector2.Create( 2.0, -4.0), -2), { x : -4.0, y :  8.0 }, epsilon);
-		assertEquals(vector2.multiplyScalar(v, vector2.Create(-2.0,  4.0), -2), { x :  4.0, y : -8.0 }, epsilon);
-		assertEquals(vector2.multiplyScalar(v, vector2.Create(-2.0, -4.0),  2), { x : -4.0, y : -8.0 }, epsilon);
+		assertEquals(vector2.scaleAssign(vector2.Create(), 2.0), { x : 0.0, y : 0.0 }, epsilon);
+		assertEquals(vector2.scaleAssign(vector2.Create( 2.0, -4.0), -2.0), { x : -4.0, y :  8.0 }, epsilon);
+		assertEquals(vector2.scaleAssign(vector2.Create(-2.0,  4.0), -2.0), { x :  4.0, y : -8.0 }, epsilon);
+		assertEquals(vector2.scaleAssign(vector2.Create(-2.0, -4.0),  2.0), { x : -4.0, y : -8.0 }, epsilon);
 	});
 });
 
 describe('multiplyAssignScalar', () => {
-	it('should set a Vector2 to represent a scalar multiplication', () => {
-		const v = vector2.Create(2.0, 4.0);
-		const r = vector2.multiplyAssignScalar(v, 2.0);
-
-		assertEquals(r, { x : 4.0, y : 8.0 }, epsilon);
-		assert.strictEqual(v, r);
-
-		assertEquals(vector2.multiplyAssignScalar(vector2.Create(), 2.0), { x : 0.0, y : 0.0 }, epsilon);
-		assertEquals(vector2.multiplyAssignScalar(vector2.Create( 2.0, -4.0), -2.0), { x : -4.0, y :  8.0 }, epsilon);
-		assertEquals(vector2.multiplyAssignScalar(vector2.Create(-2.0,  4.0), -2.0), { x :  4.0, y : -8.0 }, epsilon);
-		assertEquals(vector2.multiplyAssignScalar(vector2.Create(-2.0, -4.0),  2.0), { x : -4.0, y : -8.0 }, epsilon);
+	it('should alias scaleAssign()', () => {
+		assert.strictEqual(vector2.scaleAssign, vector2.multiplyAssignScalar);
 	});
 });
 

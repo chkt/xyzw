@@ -628,46 +628,64 @@ describe('subtractAssign', () => {
 	});
 });
 
-describe('MultiplyScalar', () => {
+describe('Scale', () => {
 	it('should return scalar multiplication', () => {
-		assertEquals(vec4.MultiplyScalar(vec4.Create(0.0, 0.0, 0.0, 0.0), 2), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
-		assertEquals(vec4.MultiplyScalar(vec4.Create( 2.0,  4.0,  6.0,  8.0),  2), { x :  4.0, y :  8.0, z :  12.0, w :  16.0 }, epsilon);
-		assertEquals(vec4.MultiplyScalar(vec4.Create( 2.0, -4.0,  6.0, -8.0), -2), { x : -4.0, y :  8.0, z : -12.0, w :  16.0 }, epsilon);
-		assertEquals(vec4.MultiplyScalar(vec4.Create(-2.0,  4.0, -6.0,  8.0), -2), { x :  4.0, y : -8.0, z :  12.0, w : -16.0 }, epsilon);
-		assertEquals(vec4.MultiplyScalar(vec4.Create(-2.0, -4.0, -6.0, -8.0),  2), { x : -4.0, y : -8.0, z : -12.0, w : -16.0 }, epsilon);
+		assertEquals(vec4.Scale(vec4.Create(0.0, 0.0, 0.0, 0.0), 2), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
+		assertEquals(vec4.Scale(vec4.Create( 2.0,  4.0,  6.0,  8.0),  2), { x :  4.0, y :  8.0, z :  12.0, w :  16.0 }, epsilon);
+		assertEquals(vec4.Scale(vec4.Create( 2.0, -4.0,  6.0, -8.0), -2), { x : -4.0, y :  8.0, z : -12.0, w :  16.0 }, epsilon);
+		assertEquals(vec4.Scale(vec4.Create(-2.0,  4.0, -6.0,  8.0), -2), { x :  4.0, y : -8.0, z :  12.0, w : -16.0 }, epsilon);
+		assertEquals(vec4.Scale(vec4.Create(-2.0, -4.0, -6.0, -8.0),  2), { x : -4.0, y : -8.0, z : -12.0, w : -16.0 }, epsilon);
+	});
+});
+
+describe('MultiplyScalar', () => {
+	it('should alias Scale()', () => {
+		assert.strictEqual(vec4.Scale, vec4.MultiplyScalar);
+	});
+});
+
+describe('scale', () => {
+	it('should assign a scalar multiplication', () => {
+		const v = vec4.Create();
+
+		assertEquals(vec4.scale(v, vec4.Create(0.0, 0.0, 0.0, 0.0), 2), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
+
+		const r = vec4.scale(v, vec4.Create(2.0, 4.0, 6.0, 8.0), 2);
+
+		assertEquals(r, { x : 4.0, y : 8.0, z : 12.0, w : 16.0 }, epsilon);
+		assert.strictEqual(v, r);
+
+		assertEquals(vec4.scale(v, vec4.Create( 2.0, -4.0,  6.0, -8.0), -2), { x : -4.0, y :  8.0, z : -12.0, w :  16.0 }, epsilon);
+		assertEquals(vec4.scale(v, vec4.Create(-2.0,  4.0, -6.0,  8.0), -2), { x :  4.0, y : -8.0, z :  12.0, w : -16.0 }, epsilon);
+		assertEquals(vec4.scale(v, vec4.Create(-2.0, -4.0, -6.0, -8.0),  2), { x : -4.0, y : -8.0, z : -12.0, w : -16.0 }, epsilon);
 	});
 });
 
 describe('multiplyScalar', () => {
+	it('should alias scale()', () => {
+		assert.strictEqual(vec4.scale, vec4.multiplyScalar);
+	});
+});
+
+describe('scaleAssign', () => {
 	it('should assign a scalar multiplication', () => {
-		const v = vec4.Create();
+		assertEquals(vec4.scaleAssign(vec4.Create(0.0, 0.0, 0.0, 0.0), 2), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
 
-		assertEquals(vec4.multiplyScalar(v, vec4.Create(0.0, 0.0, 0.0, 0.0), 2), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
-
-		const r = vec4.multiplyScalar(v, vec4.Create(2.0, 4.0, 6.0, 8.0), 2);
+		const v = vec4.Create(2.0, 4.0, 6.0, 8.0);
+		const r = vec4.scaleAssign(v, 2);
 
 		assertEquals(r, { x : 4.0, y : 8.0, z : 12.0, w : 16.0 }, epsilon);
 		assert.strictEqual(v, r);
 
-		assertEquals(vec4.multiplyScalar(v, vec4.Create( 2.0, -4.0,  6.0, -8.0), -2), { x : -4.0, y :  8.0, z : -12.0, w :  16.0 }, epsilon);
-		assertEquals(vec4.multiplyScalar(v, vec4.Create(-2.0,  4.0, -6.0,  8.0), -2), { x :  4.0, y : -8.0, z :  12.0, w : -16.0 }, epsilon);
-		assertEquals(vec4.multiplyScalar(v, vec4.Create(-2.0, -4.0, -6.0, -8.0),  2), { x : -4.0, y : -8.0, z : -12.0, w : -16.0 }, epsilon);
+		assertEquals(vec4.scaleAssign(vec4.Create( 2.0, -4.0,  6.0, -8.0), -2), { x : -4.0, y :  8.0, z : -12.0, w :  16.0 }, epsilon);
+		assertEquals(vec4.scaleAssign(vec4.Create(-2.0,  4.0, -6.0,  8.0), -2), { x :  4.0, y : -8.0, z :  12.0, w : -16.0 }, epsilon);
+		assertEquals(vec4.scaleAssign(vec4.Create(-2.0, -4.0, -6.0, -8.0),  2), { x : -4.0, y : -8.0, z : -12.0, w : -16.0 }, epsilon);
 	});
 });
 
 describe('multiplyAssignScalar', () => {
-	it('should assign a scalar multiplication', () => {
-		assertEquals(vec4.multiplyAssignScalar(vec4.Create(0.0, 0.0, 0.0, 0.0), 2), { x : 0.0, y : 0.0, z : 0.0, w : 0.0 }, epsilon);
-
-		const v = vec4.Create(2.0, 4.0, 6.0, 8.0);
-		const r = vec4.multiplyAssignScalar(v, 2);
-
-		assertEquals(r, { x : 4.0, y : 8.0, z : 12.0, w : 16.0 }, epsilon);
-		assert.strictEqual(v, r);
-
-		assertEquals(vec4.multiplyAssignScalar(vec4.Create( 2.0, -4.0,  6.0, -8.0), -2), { x : -4.0, y :  8.0, z : -12.0, w :  16.0 }, epsilon);
-		assertEquals(vec4.multiplyAssignScalar(vec4.Create(-2.0,  4.0, -6.0,  8.0), -2), { x :  4.0, y : -8.0, z :  12.0, w : -16.0 }, epsilon);
-		assertEquals(vec4.multiplyAssignScalar(vec4.Create(-2.0, -4.0, -6.0, -8.0),  2), { x : -4.0, y : -8.0, z : -12.0, w : -16.0 }, epsilon);
+	it('should alias scaleAssign()', () => {
+		assert.strictEqual(vec4.scaleAssign, vec4.multiplyAssignScalar);
 	});
 });
 

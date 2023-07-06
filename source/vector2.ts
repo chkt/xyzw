@@ -218,14 +218,19 @@ export function subtractAssign<R extends Vector2>(v:R, w:Vector2) : R {
 /**
  * nv⃗
  */
-export function MultiplyScalar(v:Vector2, n:number) : Vector2 {
+export function Scale(v:Vector2, n:number) : Vector2 {
 	return { x : v.x * n, y : v.y * n };
 }
 
 /**
+ * @deprecated use Scale()
+ */
+export const MultiplyScalar = Scale;
+
+/**
  * r⃗ = nv⃗
  */
-export function multiplyScalar<R extends Vector2>(r:R, v:Vector2, n:number) : R {
+export function scale<R extends Vector2>(r:R, v:Vector2, n:number) : R {
 	r.x = v.x * n;
 	r.y = v.y * n;
 
@@ -233,14 +238,24 @@ export function multiplyScalar<R extends Vector2>(r:R, v:Vector2, n:number) : R 
 }
 
 /**
+ * @deprecated use scale()
+ */
+export const multiplyScalar = scale;
+
+/**
  * v⃗ = nv⃗
  */
-export function multiplyAssignScalar<R extends Vector2>(v:R, n:number) : R {
+export function scaleAssign<R extends Vector2>(v:R, n:number) : R {
 	v.x *= n;
 	v.y *= n;
 
 	return v;
 }
+
+/**
+ * @deprecated use scaleAssign()
+ */
+export const multiplyAssignScalar = scaleAssign;
 
 /**
  * v⃗⊙w⃗

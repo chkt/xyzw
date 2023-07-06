@@ -82,8 +82,8 @@ export function azimuth(v:Vector3, w:Vector3, z:Vector3) : number {
 
 	if (absOf(cosThetaV) === 1.0 || absOf(cosThetaW) === 1.0) return 1.0;
 
-	const normalVZ = normalize(vec3a, subtract(vec3a, v, multiplyScalar(vec3a, z, cosThetaV)));
-	const normalWZ = normalize(vec3b, subtract(vec3b, w, multiplyScalar(vec3b, z, cosThetaW)));
+	const normalVZ = normalize(vec3a, subtract(vec3a, v, scale(vec3a, z, cosThetaV)));
+	const normalWZ = normalize(vec3b, subtract(vec3b, w, scale(vec3b, z, cosThetaW)));
 
 	return dot(normalVZ, normalWZ);
 }
@@ -298,14 +298,19 @@ export function subtractAssign<R extends Vector3>(v:R, w:Vector3) : R {
 /**
  * nv⃗
  */
-export function MultiplyScalar(v:Vector3, n:number) : Vector3 {
+export function Scale(v:Vector3, n:number) : Vector3 {
 	return { x : v.x * n, y : v.y * n, z : v.z * n };
 }
 
 /**
+ * @deprecated use Scale()
+ */
+export const MultiplyScalar = Scale;
+
+/**
  * r⃗ = nv⃗
  */
-export function multiplyScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R {
+export function scale<R extends Vector3>(r:R, v:Vector3, n:number) : R {
 	r.x = v.x * n;
 	r.y = v.y * n;
 	r.z = v.z * n;
@@ -314,15 +319,25 @@ export function multiplyScalar<R extends Vector3>(r:R, v:Vector3, n:number) : R 
 }
 
 /**
+ * @deprecated use scale()
+ */
+export const multiplyScalar = scale;
+
+/**
  * v⃗ = nv⃗
  */
-export function multiplyAssignScalar<R extends Vector3>(v:R, n:number) : R {
+export function scaleAssign<R extends Vector3>(v:R, n:number) : R {
 	v.x *= n;
 	v.y *= n;
 	v.z *= n;
 
 	return v;
 }
+
+/**
+ * @deprecated use scaleAssign()
+ */
+export const multiplyAssignScalar = scaleAssign;
 
 /**
  * v⃗×w⃗

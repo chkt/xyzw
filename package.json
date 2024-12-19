@@ -62,24 +62,24 @@
 		"/dist/"
 	],
 	"scripts": {
-		"prepublishOnly": "yarn outdated && yarn test && yarn lint && yarn build && yarn doc",
-		"lint": "yarn eslint source/**/*.ts test/**/*.ts test/*.ts",
-		"test": "yarn mocha -r ts-node/register test/*.ts --exclude test/perf.ts",
-		"doc": "yarn typedoc --plugin ../typedoc-theme-md --theme md --readme ./module.md --out ./.docs source/*.ts && cp ./.docs/modules.md ./readme.md",
+		"prepublishOnly": "npm outdated && npm test && npm run lint && npm build && npm run doc",
+		"lint": "eslint source/**/*.ts test/**/*.ts test/*.ts",
+		"test": "mocha -r ts-node/register test/*.ts --exclude test/perf.ts",
+		"doc": "typedoc --plugin ../typedoc-theme-md --theme md --readme ./module.md --out ./.docs source/*.ts && cp ./.docs/modules.md ./readme.md",
 		"build": "rm -rf ./dist/* && ./node_modules/typescript/bin/tsc"
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@chkt/eslint-config": "^1.0.5",
+		"@chkt/eslint-config": "^1.0.8",
 		"@types/mocha": "^10.0",
-		"@types/node": "^20.3",
-		"@typescript-eslint/eslint-plugin": "^5.60",
-		"@typescript-eslint/parser": "^5.60",
-		"eslint": "^8.43",
-		"mocha": "^10.2",
-		"nyc": "^15.1",
+		"@types/node": "^22.10",
+		"@typescript-eslint/eslint-plugin": "^6.21",
+		"@typescript-eslint/parser": "^6.21",
+		"eslint": "^8.57",
+		"mocha": "^11.0",
+		"nyc": "^17.1",
 		"ts-node": "^10.9",
-		"typedoc": "^0.24",
-		"typescript": "^5.1"
+		"typedoc": "^0.27",
+		"typescript": "^5.7"
 	}
 }

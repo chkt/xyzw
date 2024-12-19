@@ -23,10 +23,12 @@ const ZPLANE_MAX = Number.MAX_VALUE;
 
 export function Frustrum(lens:PerspectiveLens) : Matrix4 {
 	return frustrum({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 		r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	}, lens);
 }
 

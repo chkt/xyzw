@@ -1,8 +1,8 @@
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
-import * as vec3 from '../source/vector3';
 import * as mat4 from '../source/matrix4';
 import { Ortho, OrthographicLens, ortho } from '../source/matrix4Ortho';
+import * as vec3 from '../source/vector3';
 import { assertEqualsVec3 as assertEquals } from './assert/assert';
 
 

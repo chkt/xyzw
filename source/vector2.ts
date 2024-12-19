@@ -1,6 +1,6 @@
-import { PRECISION_SAFE, StringifyOptions, stringify, stringifyDefaultsCommon } from './strings';
 import { Matrix2 } from './matrix2';
 import { Matrix3 } from './matrix3';
+import { PRECISION_SAFE, StringifyOptions, stringify, stringifyDefaultsCommon } from './strings';
 
 
 export interface Vector2 {

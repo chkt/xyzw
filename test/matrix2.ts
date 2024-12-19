@@ -1,8 +1,8 @@
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
-import * as vec2 from '../source/vector2';
 import * as mat2 from '../source/matrix2';
 import * as mat3 from '../source/matrix3';
+import * as vec2 from '../source/vector2';
 import { assertEqualsMat2 as assertEquals } from './assert/assert';
 
 

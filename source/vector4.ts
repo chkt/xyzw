@@ -1,7 +1,7 @@
 /* eslint max-statements-per-line : [ error, { max : 4 }] */
+import { Matrix3 } from './matrix3';
 import { PRECISION_SAFE, StringifyOptions, stringify, stringifyDefaultsCommon } from './strings';
 import { Vector3 } from './vector3';
-import { Matrix3 } from './matrix3';
 
 
 export interface Vector4 extends Vector3 {

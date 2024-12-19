@@ -1,10 +1,10 @@
 /* eslint key-spacing : [ error, { beforeColon : true, afterColon : true, mode : minimum } ] */
 /* eslint max-statements-per-line: [ error, { max : 3 }] */
 /* eslint no-multi-spaces : [ off ] */
+import { Matrix2 } from './matrix2';
 import { Vector2 } from './vector2';
 import { Vector3, cross } from './vector3';
 import { Vector4 } from './vector4';
-import { Matrix2 } from './matrix2';
 
 
 export interface Matrix3 extends Matrix2 {
@@ -47,9 +47,11 @@ export function determinant(m:Matrix3) : number {
  */
 export function Identity() : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -69,9 +71,11 @@ export function identity<R extends Matrix3>(r:R) : R {
  */
 export function RotationAxis(v:Vector3, rad:number) : Matrix3 {
 	return rotationAxis({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, v, rad);
 }
 
@@ -96,9 +100,11 @@ export function rotationAxis<R extends Matrix3>(r:R, v:Vector3, rad:number) : R 
  */
 export function RotationX(rad:number) : Matrix3 {
 	return rotationX({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, rad);
 }
 
@@ -121,9 +127,11 @@ export function rotationX<R extends Matrix3>(r:R, rad:number) : R {
  */
 export function RotationY(rad:number) : Matrix3 {
 	return rotationY({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, rad);
 }
 
@@ -146,9 +154,11 @@ export function rotationY<R extends Matrix3>(r:R, rad:number) : R {
  */
 export function RotationZ(rad:number) : Matrix3 {
 	return rotationZ({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, rad);
 }
 
@@ -171,9 +181,11 @@ export function rotationZ<R extends Matrix3>(r:R, rad:number) : R {
  */
 export function RotationZVector2(x:Vector2) : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 :  x.x, r10 : x.y, r20 : 0.0,
 		r01 : -x.y, r11 : x.x, r21 : 0.0,
 		r02 :  0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -193,9 +205,11 @@ export function rotationZVector2<R extends Matrix3>(r:R, x:Vector2) : R {
  */
 export function RotationZMatrix2(m:Matrix2) : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : m.r00, r10 : m.r10, r20 : 0.0,
 		r01 : m.r01, r11 : m.r11, r21 : 0.0,
 		r02 :   0.0, r12 :   0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -215,9 +229,11 @@ export function rotationZMatrix2<R extends Matrix3>(r:R, m:Matrix2) : R {
  */
 export function RotationVector3(x:Vector3, y:Vector3) : Matrix3 {
 	return rotationVector3({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, x, y);
 }
 
@@ -239,9 +255,11 @@ export function rotationVector3<R extends Matrix3>(r:R, x:Vector3, y:Vector3) : 
  */
 export function EulerXYZ(v:Vector3) : Matrix3 {
 	return eulerXYZ({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, v);
 }
 
@@ -272,9 +290,11 @@ export function eulerXYZ<R extends Matrix3>(r:R, v:Vector3) : R {
  */
 export function EulerYXZ(v:Vector3) : Matrix3 {
 	return eulerYXZ({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, v);
 }
 
@@ -305,9 +325,11 @@ export function eulerYXZ<R extends Matrix3>(r:R, v:Vector3) : R {
  */
 export function EulerZXY(v:Vector3) : Matrix3 {
 	return eulerZXY({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, v);
 }
 
@@ -339,9 +361,11 @@ export function eulerZXY<R extends Matrix3>(r:R, v:Vector3) : R {
  */
 export function Quaternion(q:Vector4) : Matrix3 {
 	return quaternion({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, q);
 }
 
@@ -374,9 +398,11 @@ export function quaternion<R extends Matrix3>(r:R, q:Vector4) : R {
  */
 export function ScaleVector2(v:Vector2) : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : v.x, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : v.y, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -396,9 +422,11 @@ export function scaleVector2<R extends Matrix3>(r:R, v:Vector2) : R {
  */
 export function Scale(v:Vector3) : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : v.x, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : v.y, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : v.z
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -418,9 +446,11 @@ export function scale<R extends Matrix3>(r:R, v:Vector3) : R {
  */
 export function Translation(v:Vector2) : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : v.x, r12 : v.y, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -440,9 +470,11 @@ export function translation<R extends Matrix3>(r:R, v:Vector2) : R {
  */
 export function ShearVector2(x:Vector2, y:Vector2) : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : x.x, r10 : x.y, r20 : 0.0,
 		r01 : y.x, r11 : y.y, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -462,9 +494,11 @@ export function shearVector2<R extends Matrix3>(r:R, x:Vector2, y:Vector2) : R {
  */
 export function Shear(x:Vector3, y:Vector3, z:Vector3) : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : x.x, r10 : x.y, r20 : x.z,
 		r01 : y.x, r11 : y.y, r21 : y.z,
 		r02 : z.x, r12 : z.y, r22 : z.z
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -484,9 +518,11 @@ export function shear<R extends Matrix3>(r:R, x:Vector3, y:Vector3, z:Vector3) :
  */
 export function ShearTranslation(x:Vector2, y:Vector2, t:Vector2) : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : x.x, r10 : x.y, r20 : 0.0,
 		r01 : y.x, r11 : y.y, r21 : 0.0,
 		r02 : t.x, r12 : t.y, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -518,9 +554,11 @@ export const shearMatrix4 = copy;
  */
 export function Add(a:Matrix3, b:Matrix3) : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : a.r00 + b.r00, r10 : a.r10 + b.r10, r20 : a.r20 + b.r20,
 		r01 : a.r01 + b.r01, r11 : a.r11 + b.r11, r21 : a.r21 + b.r21,
 		r02 : a.r02 + b.r02, r12 : a.r12 + b.r12, r22 : a.r22 + b.r22
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -551,9 +589,11 @@ export function addAssign<R extends Matrix3>(a:R, b:Matrix3) : R {
  */
 export function Subtract(a:Matrix3, b:Matrix3) : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : a.r00 - b.r00, r10 : a.r10 - b.r10, r20 : a.r20 - b.r20,
 		r01 : a.r01 - b.r01, r11 : a.r11 - b.r11, r21 : a.r21 - b.r21,
 		r02 : a.r02 - b.r02, r12 : a.r12 - b.r12, r22 : a.r22 - b.r22
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -584,9 +624,11 @@ export function subtractAssign<R extends Matrix3>(a:R, b:Matrix3) : R {
  */
 export function ConcatScaleVector2(m:Matrix3, v:Vector2) : Matrix3 {
 	return concatScaleVector2({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, m, v);
 }
 
@@ -608,9 +650,11 @@ export function concatScaleVector2<R extends Matrix3>(r:R, m:Matrix3, v:Vector2)
  */
 export function ConcatTranslation(m:Matrix3, v:Vector2) : Matrix3 {
 	return concatTranslation({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, m, v);
 }
 
@@ -633,9 +677,11 @@ export function concatTranslation<R extends Matrix3>(r:R, m:Matrix3, v:Vector2) 
  */
 export function ConcatMatrix2(a:Matrix3, b:Matrix2) : Matrix3 {
 	return concatMatrix2({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, a, b);
 }
 
@@ -658,9 +704,11 @@ export function concatMatrix2<R extends Matrix3>(r:R, a:Matrix3, b:Matrix2) : R 
  */
 export function Concat2x3(a:Matrix3, b:Matrix3) : Matrix3 {
 	return concat2x3({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, a, b);
 }
 
@@ -683,9 +731,11 @@ export function concat2x3<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R {
  */
 export function Concat(a:Matrix3, b:Matrix3) : Matrix3 {
 	return concat({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, a, b);
 }
 
@@ -716,9 +766,11 @@ export function concat<R extends Matrix3>(r:R, a:Matrix3, b:Matrix3) : R {
  */
 export function Inverse(m:Matrix3) : Matrix3 | undefined {
 	return inverse({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0
+		/* eslint-enable object-property-newline */
 	}, m);
 }
 
@@ -746,9 +798,11 @@ export function inverse<R extends Matrix3>(r:R, m:Matrix3) : R | undefined {
  */
 export function Transpose(m:Matrix3) : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : m.r00, r10 : m.r01, r20 : m.r02,
 		r01 : m.r10, r11 : m.r11, r21 : m.r12,
 		r02 : m.r20, r12 : m.r21, r22 : m.r22
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -767,9 +821,11 @@ export function transpose<R extends Matrix3>(r:R, m:Matrix3) : R {
 
 export function Copy(m:Matrix3) : Matrix3 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : m.r00, r10 : m.r10, r20 : m.r20,
 		r01 : m.r01, r11 : m.r11, r21 : m.r21,
 		r02 : m.r02, r12 : m.r12, r22 : m.r22
+		/* eslint-enable object-property-newline */
 	};
 }
 

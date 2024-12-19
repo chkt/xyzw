@@ -1,15 +1,15 @@
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
 import * as xyzw from '../source';
-import * as vector2 from '../source/vector2';
 import * as complex from '../source/complex';
-import * as vector3 from '../source/vector3';
-import * as vector4 from '../source/vector4';
 import * as matrix2 from '../source/matrix2';
 import * as matrix3 from '../source/matrix3';
 import * as matrix4 from '../source/matrix4';
 import * as matrix4Frustrum from '../source/matrix4Frustrum';
 import * as matrix4Ortho from '../source/matrix4Ortho';
+import * as vector2 from '../source/vector2';
+import * as vector3 from '../source/vector3';
+import * as vector4 from '../source/vector4';
 
 
 describe('xyzw', () => {

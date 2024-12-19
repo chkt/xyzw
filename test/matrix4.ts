@@ -2,9 +2,9 @@
 /* eslint no-multi-spaces : [ off ] */
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
-import * as vec3 from '../source/vector3';
 import * as mat3 from '../source/matrix3';
 import * as mat4 from '../source/matrix4';
+import * as vec3 from '../source/vector3';
 import { assertEqualsMat4 as assertEquals, assertEqualsScalar } from './assert/assert';
 
 
@@ -15,10 +15,12 @@ const turn = 2.0 * Math.PI;
 describe('equals', () => {
 	it('should return true if a equals b', () => {
 		const a:mat4.Matrix4 = {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		};
 		const c = { ...a, r00 : Number.NaN };
 
@@ -80,10 +82,12 @@ describe('determinant', () => {
 describe('Identity', () => {
 	it('should return a Matrix4 representing the 4x4 identity matrix', () => {
 		assert.deepStrictEqual(mat4.Identity(), {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		});
 	});
 });
@@ -91,18 +95,22 @@ describe('Identity', () => {
 describe('identity', () => {
 	it('should set a Matrix4 to represent the 4x4 identity matrix', () => {
 		const m:mat4.Matrix4 = {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		};
 		const r = mat4.identity(m);
 
 		assert.deepStrictEqual(r, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		});
 		assert.strictEqual(m, r);
 	});
@@ -111,10 +119,12 @@ describe('identity', () => {
 describe('Translation', () => {
 	it('should return a Matrix4 representing a translation', () => {
 		assert.deepStrictEqual(mat4.Translation(vec3.Create(2.0, 3.0, 4.0)), {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 2.0, r13 : 3.0, r23 : 4.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		});
 	});
 });
@@ -125,10 +135,12 @@ describe('translation', () => {
 		const r = mat4.translation(m, vec3.Create(2.0, 3.0, 4.0));
 
 		assert.deepStrictEqual(r, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 2.0, r13 : 3.0, r23 : 4.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		});
 		assert.strictEqual(m, r);
 	});
@@ -137,14 +149,18 @@ describe('translation', () => {
 describe('ShearMatrix3', () => {
 	it('should return a Matrix4 representing a shear', () => {
 		assert.deepStrictEqual(mat4.ShearMatrix3({
+			/* eslint-disable object-property-newline */
 			r00 : 2.0, r10 : 3.0, r20 :  4.0,
 			r01 : 5.0, r11 : 6.0, r21 :  7.0,
 			r02 : 8.0, r12 : 9.0, r22 : 10.0
+			/* eslint-enable object-property-newline */
 		}), {
+			/* eslint-disable object-property-newline */
 			r00 : 2.0, r10 : 3.0, r20 :  4.0, r30 : 0.0,
 			r01 : 5.0, r11 : 6.0, r21 :  7.0, r31 : 0.0,
 			r02 : 8.0, r12 : 9.0, r22 : 10.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 :  0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		});
 	});
 });
@@ -153,16 +169,20 @@ describe('shearMatrix3', () => {
 	it('should set a Matrix4 to represent a shear', () => {
 		const m = mat4.Identity();
 		const r = mat4.shearMatrix3(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 2.0, r10 : 3.0, r20 :  4.0,
 			r01 : 5.0, r11 : 6.0, r21 :  7.0,
 			r02 : 8.0, r12 : 9.0, r22 : 10.0
+			/* eslint-enable object-property-newline */
 		});
 
 		assert.deepStrictEqual(r, {
+			/* eslint-disable object-property-newline */
 			r00 : 2.0, r10 : 3.0, r20 :  4.0, r30 : 0.0,
 			r01 : 5.0, r11 : 6.0, r21 :  7.0, r31 : 0.0,
 			r02 : 8.0, r12 : 9.0, r22 : 10.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 :  0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		});
 		assert.deepStrictEqual(m, r);
 	});
@@ -171,14 +191,18 @@ describe('shearMatrix3', () => {
 describe('ShearTranslationMatrix3', () => {
 	it('should return a Matrix4 representing a shear matrix and translation vector', () => {
 		assert.deepStrictEqual(mat4.ShearTranslationMatrix3({
+			/* eslint-disable object-property-newline */
 			r00 : 2.0, r10 : 3.0, r20 :  4.0,
 			r01 : 5.0, r11 : 6.0, r21 :  7.0,
 			r02 : 8.0, r12 : 9.0, r22 : 10.0
+			/* eslint-enable object-property-newline */
 		}, vec3.Create(11.0, 12.0, 13.0)), {
+			/* eslint-disable object-property-newline */
 			r00 : 2.0, r01 : 5.0, r02 :  8.0, r03 : 11.0,
 			r10 : 3.0, r11 : 6.0, r12 :  9.0, r13 : 12.0,
 			r20 : 4.0, r21 : 7.0, r22 : 10.0, r23 : 13.0,
 			r30 : 0.0, r31 : 0.0, r32 :  0.0, r33 :  1.0
+			/* eslint-enable object-property-newline */
 		});
 	});
 });
@@ -187,16 +211,20 @@ describe('shearTranslationMatrix3', () => {
 	it('should set a Matrix4 to represent a shear matrix and translation vector', () => {
 		const m = mat4.Identity();
 		const r = mat4.shearTranslationMatrix3(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 2.0, r10 : 3.0, r20 :  4.0,
 			r01 : 5.0, r11 : 6.0, r21 :  7.0,
 			r02 : 8.0, r12 : 9.0, r22 : 10.0
+			/* eslint-enable object-property-newline */
 		}, vec3.Create(11.0, 12.0, 13.0));
 
 		assert.deepStrictEqual(r, {
+			/* eslint-disable object-property-newline */
 			r00 : 2.0, r01 : 5.0, r02 :  8.0, r03 : 11.0,
 			r10 : 3.0, r11 : 6.0, r12 :  9.0, r13 : 12.0,
 			r20 : 4.0, r21 : 7.0, r22 : 10.0, r23 : 13.0,
 			r30 : 0.0, r31 : 0.0, r32 :  0.0, r33 :  1.0
+			/* eslint-enable object-property-newline */
 		});
 		assert.strictEqual(m, r);
 	});
@@ -210,10 +238,12 @@ describe('ShearTranslationAxes', () => {
 			vec3.Create(8.0, 9.0, 10.0),
 			vec3.Create(11.0, 12.0, 13.0)
 		), {
+			/* eslint-disable object-property-newline */
 			r00 : 2.0, r01 : 5.0, r02 :  8.0, r03 : 11.0,
 			r10 : 3.0, r11 : 6.0, r12 :  9.0, r13 : 12.0,
 			r20 : 4.0, r21 : 7.0, r22 : 10.0, r23 : 13.0,
 			r30 : 0.0, r31 : 0.0, r32 :  0.0, r33 :  1.0
+			/* eslint-enable object-property-newline */
 		});
 	});
 });
@@ -230,10 +260,12 @@ describe('shearTranslationAxes', () => {
 		);
 
 		assert.deepStrictEqual(r, {
+			/* eslint-disable object-property-newline */
 			r00 : 2.0, r01 : 5.0, r02 :  8.0, r03 : 11.0,
 			r10 : 3.0, r11 : 6.0, r12 :  9.0, r13 : 12.0,
 			r20 : 4.0, r21 : 7.0, r22 : 10.0, r23 : 13.0,
 			r30 : 0.0, r31 : 0.0, r32 :  0.0, r33 :  1.0
+			/* eslint-enable object-property-newline */
 		});
 		assert.strictEqual(m, r);
 	});
@@ -271,20 +303,26 @@ describe('shearTranslation', () => {
 describe('Add', () => {
 	it('should return a Matrix4 representing an addition', () => {
 		assertEquals(mat4.Add({
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		}, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.01, r10 : 0.02, r20 : 0.03, r30 : 0.04,
 			r01 : 0.05, r11 : 0.06, r21 : 0.07, r31 : 0.08,
 			r02 : 0.09, r12 : 0.10, r22 : 0.11, r32 : 0.12,
 			r03 : 0.13, r13 : 0.14, r23 : 0.15, r33 : 0.16
+			/* eslint-enable object-property-newline */
 		}), {
+			/* eslint-disable object-property-newline */
 			r00 :  1.01, r10 :  2.02, r20 :  3.03, r30 :  4.04,
 			r01 :  5.05, r11 :  6.06, r21 :  7.07, r31 :  8.08,
 			r02 :  9.09, r12 : 10.10, r22 : 11.11, r32 : 12.12,
 			r03 : 13.13, r13 : 14.14, r23 : 15.15, r33 : 16.16
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 	});
 });
@@ -293,22 +331,28 @@ describe('add', () => {
 	it('should set a Matrix4 to represent an addition', () => {
 		const m = mat4.Identity();
 		const r = mat4.add(m, {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		}, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.01, r10 : 0.02, r20 : 0.03, r30 : 0.04,
 			r01 : 0.05, r11 : 0.06, r21 : 0.07, r31 : 0.08,
 			r02 : 0.09, r12 : 0.10, r22 : 0.11, r32 : 0.12,
 			r03 : 0.13, r13 : 0.14, r23 : 0.15, r33 : 0.16
+			/* eslint-enable object-property-newline */
 		});
 
 		assertEquals(r, {
+			/* eslint-disable object-property-newline */
 			r00 :  1.01, r10 :  2.02, r20 :  3.03, r30 :  4.04,
 			r01 :  5.05, r11 :  6.06, r21 :  7.07, r31 :  8.08,
 			r02 :  9.09, r12 : 10.10, r22 : 11.11, r32 : 12.12,
 			r03 : 13.13, r13 : 14.14, r23 : 15.15, r33 : 16.16
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assert.strictEqual(m, r);
 	});
@@ -317,23 +361,29 @@ describe('add', () => {
 describe('addAssign', () => {
 	it('should set a Matrix4 to represent an addition', () => {
 		const m:mat4.Matrix4 = {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		};
 		const r = mat4.addAssign(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.01, r10 : 0.02, r20 : 0.03, r30 : 0.04,
 			r01 : 0.05, r11 : 0.06, r21 : 0.07, r31 : 0.08,
 			r02 : 0.09, r12 : 0.10, r22 : 0.11, r32 : 0.12,
 			r03 : 0.13, r13 : 0.14, r23 : 0.15, r33 : 0.16
+			/* eslint-enable object-property-newline */
 		});
 
 		assertEquals(r, {
+			/* eslint-disable object-property-newline */
 			r00 :  1.01, r10 :  2.02, r20 :  3.03, r30 :  4.04,
 			r01 :  5.05, r11 :  6.06, r21 :  7.07, r31 :  8.08,
 			r02 :  9.09, r12 : 10.10, r22 : 11.11, r32 : 12.12,
 			r03 : 13.13, r13 : 14.14, r23 : 15.15, r33 : 16.16
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assert.strictEqual(m, r);
 	});
@@ -342,20 +392,26 @@ describe('addAssign', () => {
 describe('Subtract', () => {
 	it('should return a Matrix4 representing a subtraction', () => {
 		assertEquals(mat4.Subtract({
+			/* eslint-disable object-property-newline */
 			r00 :  1.01, r10 :  2.02, r20 :  3.03, r30 :  4.04,
 			r01 :  5.05, r11 :  6.06, r21 :  7.07, r31 :  8.08,
 			r02 :  9.09, r12 : 10.10, r22 : 11.11, r32 : 12.12,
 			r03 : 13.13, r13 : 14.14, r23 : 15.15, r33 : 16.16
+			/* eslint-enable object-property-newline */
 		}, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.01, r10 : 0.02, r20 : 0.03, r30 : 0.04,
 			r01 : 0.05, r11 : 0.06, r21 : 0.07, r31 : 0.08,
 			r02 : 0.09, r12 : 0.10, r22 : 0.11, r32 : 0.12,
 			r03 : 0.13, r13 : 0.14, r23 : 0.15, r33 : 0.16
+			/* eslint-enable object-property-newline */
 		}), {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 	});
 });
@@ -364,22 +420,28 @@ describe('subtract', () => {
 	it('should set a Matrix4 to represent a subtraction', () => {
 		const m = mat4.Identity();
 		const r = mat4.subtract(m, {
+			/* eslint-disable object-property-newline */
 			r00 :  1.01, r10 :  2.02, r20 :  3.03, r30 :  4.04,
 			r01 :  5.05, r11 :  6.06, r21 :  7.07, r31 :  8.08,
 			r02 :  9.09, r12 : 10.10, r22 : 11.11, r32 : 12.12,
 			r03 : 13.13, r13 : 14.14, r23 : 15.15, r33 : 16.16
+			/* eslint-enable object-property-newline */
 		}, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.01, r10 : 0.02, r20 : 0.03, r30 : 0.04,
 			r01 : 0.05, r11 : 0.06, r21 : 0.07, r31 : 0.08,
 			r02 : 0.09, r12 : 0.10, r22 : 0.11, r32 : 0.12,
 			r03 : 0.13, r13 : 0.14, r23 : 0.15, r33 : 0.16
+			/* eslint-enable object-property-newline */
 		});
 
 		assertEquals(r, {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assert.strictEqual(m, r);
 	});
@@ -388,23 +450,29 @@ describe('subtract', () => {
 describe('subtractAssign', () => {
 	it('should set a Matrix4 to represent a subtraction', () => {
 		const m:mat4.Matrix4 = {
+			/* eslint-disable object-property-newline */
 			r00 :  1.01, r10 :  2.02, r20 :  3.03, r30 :  4.04,
 			r01 :  5.05, r11 :  6.06, r21 :  7.07, r31 :  8.08,
 			r02 :  9.09, r12 : 10.10, r22 : 11.11, r32 : 12.12,
 			r03 : 13.13, r13 : 14.14, r23 : 15.15, r33 : 16.16
+			/* eslint-enable object-property-newline */
 		};
 		const r = mat4.subtractAssign(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.01, r10 : 0.02, r20 : 0.03, r30 : 0.04,
 			r01 : 0.05, r11 : 0.06, r21 : 0.07, r31 : 0.08,
 			r02 : 0.09, r12 : 0.10, r22 : 0.11, r32 : 0.12,
 			r03 : 0.13, r13 : 0.14, r23 : 0.15, r33 : 0.16
+			/* eslint-enable object-property-newline */
 		});
 
 		assertEquals(r, {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assert.strictEqual(m, r);
 	});
@@ -623,67 +691,83 @@ describe('Concat', () => {
 			mat4.ShearMatrix3(mat3.Scale(vec3.Create(2.0, 3.0, 4.0))),
 			mat4.ShearMatrix3(mat3.RotationZ(0.5 * Math.PI))
 		), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.0, r10 : 3.0, r20 : 0.0, r30 : 0.0,
 			r01 : -2.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 :  0.0, r12 : 0.0, r22 : 4.0, r32 : 0.0,
 			r03 :  0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assertEquals(mat4.Concat(
 			mat4.ShearMatrix3(mat3.RotationZ(0.5 * Math.PI)),
 			mat4.ShearMatrix3(mat3.Scale(vec3.Create(2.0, 3.0, 4.0)))
 		), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.0, r10 : 2.0, r20 : 0.0, r30 : 0.0,
 			r01 : -3.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 :  0.0, r12 : 0.0, r22 : 4.0, r32 : 0.0,
 			r03 :  0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assertEquals(mat4.Concat(mat4.Translation(vec3.Create(2.0, 3.0, 4.0)), mat4.ShearMatrix3(mat3.RotationZ(0.25 * turn))), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.0, r10 : 1.0, r20 : 0.0, r30 : 0.0,
 			r01 : -1.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 :  0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 :  2.0, r13 : 3.0, r23 : 4.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assertEquals(mat4.Concat(mat4.ShearMatrix3(mat3.RotationZ(0.25 * turn)), mat4.Translation(vec3.Create(2.0, 3.0, 4.0))), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.0, r10 : 1.0, r20 : 0.0, r30 : 0.0,
 			r01 : -1.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 :  0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : -3.0, r13 : 2.0, r23 : 4.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assertEquals(mat4.Concat(
 			mat4.Translation(vec3.Create(2.0, 3.0, 4.0)),
 			mat4.ShearMatrix3(mat3.Scale(vec3.Create(0.5, 1.5, 2.5)))
 		), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.5, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 :  0.0, r11 : 1.5, r21 : 0.0, r31 : 0.0,
 			r02 :  0.0, r12 : 0.0, r22 : 2.5, r32 : 0.0,
 			r03 :  2.0, r13 : 3.0, r23 : 4.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assertEquals(mat4.Concat(
 			mat4.ShearMatrix3(mat3.Scale(vec3.Create(0.5, 1.5, 2.5))),
 			mat4.Translation(vec3.Create(2.0, 3.0, 4.0))
 		), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.5, r10 : 0.0, r20 :  0.0, r30 : 0.0,
 			r01 :  0.0, r11 : 1.5, r21 :  0.0, r31 : 0.0,
 			r02 :  0.0, r12 : 0.0, r22 :  2.5, r32 : 0.0,
 			r03 :  1.0, r13 : 4.5, r23 : 10.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assertEquals(mat4.Concat(
 			mat4.ShearMatrix3(mat3.RotationZ(0.25 * Math.PI)),
 			mat4.ShearMatrix3(mat3.RotationX(0.25 * Math.PI))
 		), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.7071, r10 :  0.7071, r20 : 0.0,    r30 : 0.0,
 			r01 : -0.5,    r11 :  0.5,    r21 : 0.7071, r31 : 0.0,
 			r02 :  0.5,    r12 : -0.5,    r22 : 0.7071, r32 : 0.0,
 			r03 :  0.0,    r13 :  0.0,    r23 : 0.0,    r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, 1e-4);
 		assertEquals(mat4.Concat(
 			mat4.ShearMatrix3(mat3.RotationX(0.25 * Math.PI)),
 			mat4.ShearMatrix3(mat3.RotationZ(0.25 * Math.PI))
 		), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.7071, r10 :  0.5,    r20 : 0.5,    r30 : 0.0,
 			r01 : -0.7071, r11 :  0.5,    r21 : 0.5,    r31 : 0.0,
 			r02 :  0.0,    r12 : -0.7071, r22 : 0.7071, r32 : 0.0,
 			r03 :  0.0,    r13 :  0.0,    r23 : 0.0,    r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, 1e-4);
 	});
 });
@@ -701,10 +785,12 @@ describe('concat', () => {
 		);
 
 		assertEquals(r, {
+			/* eslint-disable object-property-newline */
 			r00 :  0.0, r10 : 3.0, r20 : 0.0, r30 : 0.0,
 			r01 : -2.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 :  0.0, r12 : 0.0, r22 : 4.0, r32 : 0.0,
 			r03 :  0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assert.strictEqual(m, r);
 
@@ -713,62 +799,76 @@ describe('concat', () => {
 			mat4.ShearMatrix3(mat3.RotationZ(0.5 * Math.PI)),
 			mat4.ShearMatrix3(mat3.Scale(vec3.Create(2.0, 3.0, 4.0)))
 		), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.0, r10 : 2.0, r20 : 0.0, r30 : 0.0,
 			r01 : -3.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 :  0.0, r12 : 0.0, r22 : 4.0, r32 : 0.0,
 			r03 :  0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assertEquals(mat4.concat(m, mat4.Translation(vec3.Create(2.0, 3.0, 4.0)), mat4.ShearMatrix3(mat3.RotationZ(0.25 * turn))), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.0, r10 : 1.0, r20 : 0.0, r30 : 0.0,
 			r01 : -1.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 :  0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 :  2.0, r13 : 3.0, r23 : 4.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assertEquals(mat4.concat(m, mat4.ShearMatrix3(mat3.RotationZ(0.25 * turn)), mat4.Translation(vec3.Create(2.0, 3.0, 4.0))), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.0, r10 : 1.0, r20 : 0.0, r30 : 0.0,
 			r01 : -1.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 :  0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : -3.0, r13 : 2.0, r23 : 4.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assertEquals(mat4.concat(
 			m,
 			mat4.Translation(vec3.Create(2.0, 3.0, 4.0)),
 			mat4.ShearMatrix3(mat3.Scale(vec3.Create(0.5, 1.5, 2.5)))
 		), {
+			/* eslint-disable object-property-newline */
 			r00 : 0.5, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.5, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 2.5, r32 : 0.0,
 			r03 : 2.0, r13 : 3.0, r23 : 4.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assertEquals(mat4.concat(
 			m,
 			mat4.ShearMatrix3(mat3.Scale(vec3.Create(0.5, 1.5, 2.5))),
 			mat4.Translation(vec3.Create(2.0, 3.0, 4.0))
 		), {
+			/* eslint-disable object-property-newline */
 			r00 : 0.5, r10 : 0.0, r20 :  0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.5, r21 :  0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 :  2.5, r32 : 0.0,
 			r03 : 1.0, r13 : 4.5, r23 : 10.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, epsilon);
 		assertEquals(mat4.concat(
 			m,
 			mat4.ShearMatrix3(mat3.RotationZ(0.25 * Math.PI)),
 			mat4.ShearMatrix3(mat3.RotationX(0.25 * Math.PI))
 		), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.7071, r10 :  0.7071, r20 : 0.0,    r30 : 0.0,
 			r01 : -0.5,    r11 :  0.5,    r21 : 0.7071, r31 : 0.0,
 			r02 :  0.5,    r12 : -0.5,    r22 : 0.7071, r32 : 0.0,
 			r03 :  0.0,    r13 :  0.0,    r23 : 0.0,    r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, 1e-4);
 		assertEquals(mat4.concat(
 			m,
 			mat4.ShearMatrix3(mat3.RotationX(0.25 * Math.PI)),
 			mat4.ShearMatrix3(mat3.RotationZ(0.25 * Math.PI))
 		), {
+			/* eslint-disable object-property-newline */
 			r00 :  0.7071, r10 :  0.5,    r20 : 0.5,    r30 : 0.0,
 			r01 : -0.7071, r11 :  0.5,    r21 : 0.5,    r31 : 0.0,
 			r02 :  0.0,    r12 : -0.7071, r22 : 0.7071, r32 : 0.0,
 			r03 :  0.0,    r13 :  0.0,    r23 : 0.0,    r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}, 1e-4);
 	});
 });
@@ -777,106 +877,140 @@ describe('Inverse3x4', () => {
 	it('should return a Matrix4 representing a 3x4 inversion', () => {
 		assertEquals(mat4.Inverse3x4(mat4.Identity()) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : Number.NaN, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : Number.NaN, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : Number.NaN, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assertEquals(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : Number.NaN,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : Number.NaN, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : Number.NaN, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : Number.NaN, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assertEquals(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : Number.NaN,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : Number.NaN, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : Number.NaN, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : Number.NaN, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assertEquals(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : Number.NaN,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : Number.NaN, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : Number.NaN, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : Number.NaN, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assertEquals(mat4.Inverse3x4({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : Number.NaN
+			/* eslint-enable object-property-newline */
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assertEquals(
 			mat4.Inverse(mat4.Inverse3x4(mat4.Translation(vec3.Create(1.0, 2.0, 3.0))) as mat4.Matrix4) as mat4.Matrix4,
@@ -897,106 +1031,140 @@ describe('inverse3x4', () => {
 
 		assertEquals(mat4.inverse3x4(m, mat4.Identity()) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : Number.NaN, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : Number.NaN, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : Number.NaN, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assertEquals(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : Number.NaN,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : Number.NaN, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : Number.NaN, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : Number.NaN, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assertEquals(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : Number.NaN,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : Number.NaN, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : Number.NaN, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : Number.NaN, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assertEquals(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : Number.NaN,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : Number.NaN, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : Number.NaN, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : Number.NaN, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assertEquals(mat4.inverse3x4(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : Number.NaN
+			/* eslint-enable object-property-newline */
 		}) as mat4.Matrix4, mat4.Identity(), epsilon);
 
 		const r = mat4.inverse(m, mat4.inverse3x4(m, mat4.Translation(vec3.Create(1.0, 2.0, 3.0))) as mat4.Matrix4) as mat4.Matrix4;
@@ -1020,106 +1188,140 @@ describe('Inverse', () => {
 	it('should return a Matrix4 representing a 4x4 inversion', () => {
 		assertEquals(mat4.Inverse(mat4.Identity()) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : Number.NaN, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : Number.NaN, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : Number.NaN, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : Number.NaN,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : Number.NaN, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : Number.NaN, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : Number.NaN, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : Number.NaN,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : Number.NaN, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : Number.NaN, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : Number.NaN, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : Number.NaN,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : Number.NaN, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : Number.NaN, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : Number.NaN, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.Inverse({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : Number.NaN
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assertEquals(
 			mat4.Inverse(mat4.Inverse(mat4.Translation(vec3.Create(1.0, 2.0, 3.0))) as mat4.Matrix4) as mat4.Matrix4,
@@ -1140,106 +1342,140 @@ describe('inverse', () => {
 
 		assertEquals(mat4.inverse(m, mat4.Identity()) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : Number.NaN, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : Number.NaN, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : Number.NaN, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : Number.NaN,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : Number.NaN, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : Number.NaN, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : Number.NaN, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : Number.NaN,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : Number.NaN, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : Number.NaN, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : Number.NaN, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : Number.NaN,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : Number.NaN, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : Number.NaN, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : Number.NaN, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverse(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : Number.NaN
+			/* eslint-enable object-property-newline */
 		}), undefined);
 
 		const r = mat4.inverse(m, mat4.inverse(m, mat4.Translation(vec3.Create(1.0, 2.0, 3.0))) as mat4.Matrix4) as mat4.Matrix4;
@@ -1263,106 +1499,140 @@ describe('InverseGauss', () => {
 	it('should return a Matrix4 representing a 4x4 inversion', () => {
 		assertEquals(mat4.InverseGauss(mat4.Identity()) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : Number.NaN, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : Number.NaN, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : Number.NaN, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : Number.NaN,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : Number.NaN, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : Number.NaN, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : Number.NaN, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : Number.NaN,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : Number.NaN, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : Number.NaN, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : Number.NaN, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : Number.NaN,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : Number.NaN, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : Number.NaN, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : Number.NaN, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.InverseGauss({
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : Number.NaN
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assertEquals(
 			mat4.InverseGauss(mat4.InverseGauss(mat4.Translation(vec3.Create(1.0, 2.0, 3.0))) as mat4.Matrix4) as mat4.Matrix4,
@@ -1376,16 +1646,20 @@ describe('InverseGauss', () => {
 		);
 		assertEquals(
 			mat4.InverseGauss(mat4.InverseGauss({
+				/* eslint-disable object-property-newline */
 				r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 				r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 				r02 :  9.0, r12 : 10.0, r22 : 11.5, r32 : 12.0,
 				r03 : 13.0, r13 : 14.5, r23 : 15.0, r33 : 16.0
+				/* eslint-enable object-property-newline */
 			}) as mat4.Matrix4) as mat4.Matrix4,
 			{
+				/* eslint-disable object-property-newline */
 				r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 				r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 				r02 :  9.0, r12 : 10.0, r22 : 11.5, r32 : 12.0,
 				r03 : 13.0, r13 : 14.5, r23 : 15.0, r33 : 16.0
+				/* eslint-enable object-property-newline */
 			},
 			epsilon
 		);
@@ -1398,106 +1672,140 @@ describe('inverseGauss', () => {
 
 		assertEquals(mat4.inverseGauss(m, mat4.Identity()) as mat4.Matrix4, mat4.Identity(), epsilon);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 0.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 0.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 0.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 0.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : Number.NaN, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : Number.NaN, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : Number.NaN, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : Number.NaN,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : Number.NaN, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : Number.NaN, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : Number.NaN, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : Number.NaN,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : Number.NaN, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : Number.NaN, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : Number.NaN, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : Number.NaN,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : Number.NaN, r13 : 0.0, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : Number.NaN, r23 : 0.0, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : Number.NaN, r33 : 1.0
+			/* eslint-enable object-property-newline */
 		}), undefined);
 		assert.strictEqual(mat4.inverseGauss(m, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 			r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 			r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 			r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : Number.NaN
+			/* eslint-enable object-property-newline */
 		}), undefined);
 
 		const r = mat4.inverseGauss(m, mat4.inverseGauss(m, mat4.Translation(vec3.Create(1.0, 2.0, 3.0))) as mat4.Matrix4) as mat4.Matrix4;
@@ -1516,16 +1824,20 @@ describe('inverseGauss', () => {
 		);
 		assertEquals(
 			mat4.inverseGauss(m, mat4.inverseGauss(m, {
+				/* eslint-disable object-property-newline */
 				r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 				r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 				r02 :  9.0, r12 : 10.0, r22 : 11.5, r32 : 12.0,
 				r03 : 13.0, r13 : 14.5, r23 : 15.0, r33 : 16.0
+				/* eslint-enable object-property-newline */
 			}) as mat4.Matrix4) as mat4.Matrix4,
 			{
+				/* eslint-disable object-property-newline */
 				r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 				r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 				r02 :  9.0, r12 : 10.0, r22 : 11.5, r32 : 12.0,
 				r03 : 13.0, r13 : 14.5, r23 : 15.0, r33 : 16.0
+				/* eslint-enable object-property-newline */
 			},
 			epsilon
 		);
@@ -1535,15 +1847,19 @@ describe('inverseGauss', () => {
 describe('Transpose', () => {
 	it('should return a Matrix4 representing a transpose', () => {
 		assert.deepStrictEqual(mat4.Transpose({
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		}), {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 5.0, r20 :  9.0, r30 : 13.0,
 			r01 : 2.0, r11 : 6.0, r21 : 10.0, r31 : 14.0,
 			r02 : 3.0, r12 : 7.0, r22 : 11.0, r32 : 15.0,
 			r03 : 4.0, r13 : 8.0, r23 : 12.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		});
 	});
 });
@@ -1552,17 +1868,21 @@ describe('transpose', () => {
 	it('should set a Matrix3 to represent a transpose', () => {
 		const m = mat4.Identity();
 		const r = mat4.transpose(m, {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		});
 
 		assert.deepStrictEqual(r, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 5.0, r20 :  9.0, r30 : 13.0,
 			r01 : 2.0, r11 : 6.0, r21 : 10.0, r31 : 14.0,
 			r02 : 3.0, r12 : 7.0, r22 : 11.0, r32 : 15.0,
 			r03 : 4.0, r13 : 8.0, r23 : 12.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		});
 		assert.strictEqual(m, r);
 	});
@@ -1571,10 +1891,12 @@ describe('transpose', () => {
 describe('Copy', () => {
 	it('should return a Matrix4 representing a copy', () => {
 		const m:mat4.Matrix4 = {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		};
 		const r = mat4.Copy(m);
 
@@ -1586,10 +1908,12 @@ describe('Copy', () => {
 describe('copy', () => {
 	it('should set a Matrix4 to represent a copy', () => {
 		const a:mat4.Matrix4 = {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		};
 		const b = mat4.Identity();
 		const r = mat4.copy(b, a);
@@ -1604,10 +1928,12 @@ describe('toColumnF32', () => {
 	it('should return a Float32Array representing a Matrix4 in column-major order', () => {
 		/* eslint-disable array-element-newline, no-mixed-spaces-and-tabs */
 		assert.deepStrictEqual(mat4.toColumnF32({
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		}), new Float32Array([
 			 1.0,  2.0,  3.0,  4.0,
 			 5.0,  6.0,  7.0,  8.0,
@@ -1621,10 +1947,12 @@ describe('toColumnF32', () => {
 describe('assignColumnF32', () => {
 	it('should assign a Float32Array representing a Matrix4 in column-major order', () => {
 		const m = {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		};
 		const f = new Float32Array(16);
 		const r = mat4.assignColumnF32(f, m);
@@ -1646,10 +1974,12 @@ describe('toColumnF64', () => {
 	it('should return a Float64Array representing a Matrix4 in column-major order', () => {
 		/* eslint-disable array-element-newline, no-mixed-spaces-and-tabs */
 		assert.deepStrictEqual(mat4.toColumnF64({
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		}), new Float64Array([
 			 1.0,  2.0,  3.0,  4.0,
 			 5.0,  6.0,  7.0,  8.0,
@@ -1663,10 +1993,12 @@ describe('toColumnF64', () => {
 describe('assignColumnF64', () => {
 	it('should assign a Float64Array representing a Matrix4 in column-major order', () => {
 		const m = {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		};
 		const f = new Float64Array(16);
 		const r = mat4.assignColumnF64(f, m);
@@ -1693,10 +2025,12 @@ describe('ColumnF32', () => {
 			 9.0, 10.0, 11.0, 12.0,
 			13.0, 14.0, 15.0, 16.0
 		])), {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		});
 		/* eslint-enable array-element-newline, no-mixed-spaces-and-tabs */
 	});
@@ -1716,10 +2050,12 @@ describe('columnF32', () => {
 		const r = mat4.columnF32(m, f);
 
 		assert.deepStrictEqual(r, {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		});
 		assert.strictEqual(m, r);
 	});
@@ -1734,10 +2070,12 @@ describe('ColumnF64', () => {
 			 9.0, 10.0, 11.0, 12.0,
 			13.0, 14.0, 15.0, 16.0
 		])), {
+			/* eslint-disable object-property-newline */
 			r00 :  1.0, r10 :  2.0, r20 :  3.0, r30 :  4.0,
 			r01 :  5.0, r11 :  6.0, r21 :  7.0, r31 :  8.0,
 			r02 :  9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		});
 		/* eslint-enable array-element-newline, no-mixed-spaces-and-tabs */
 	});
@@ -1757,10 +2095,12 @@ describe('columnF64', () => {
 		const r = mat4.columnF64(m, f);
 
 		assert.deepStrictEqual(r, {
+			/* eslint-disable object-property-newline */
 			r00 : 1.0, r10 : 2.0, r20 : 3.0, r30 : 4.0,
 			r01 : 5.0, r11 : 6.0, r21 : 7.0, r31 : 8.0,
 			r02 : 9.0, r12 : 10.0, r22 : 11.0, r32 : 12.0,
 			r03 : 13.0, r13 : 14.0, r23 : 15.0, r33 : 16.0
+			/* eslint-enable object-property-newline */
 		});
 		assert.strictEqual(m, r);
 	});

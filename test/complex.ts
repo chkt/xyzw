@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
-import * as vector2 from '../source/vector2';
 import * as complex from '../source/complex';
+import * as vector2 from '../source/vector2';
 import { assertEqualsVec2 as assertEquals } from './assert/assert';
 
 

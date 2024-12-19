@@ -9,10 +9,6 @@ plugins:
 extends:
   - '@chkt/eslint-config'
 rules:
-  'consistent-return' :
-    - warn
-    - treatUndefinedAsUnspecified : false
-  'object-property-newline': off
   '@typescript-eslint/naming-convention':
     - 'error'
     - selector: 'default'

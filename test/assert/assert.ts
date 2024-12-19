@@ -1,10 +1,10 @@
 import * as assert from 'assert';
-import * as vec2 from '../../source/vector2';
-import * as vec3 from '../../source/vector3';
-import * as vec4 from '../../source/vector4';
 import * as mat2 from '../../source/matrix2';
 import * as mat3 from '../../source/matrix3';
 import * as mat4 from '../../source/matrix4';
+import * as vec2 from '../../source/vector2';
+import * as vec3 from '../../source/vector3';
+import * as vec4 from '../../source/vector4';
 
 
 export function assertEqualsScalar(actual:number, expected:number, e:number, message?:string) : void {

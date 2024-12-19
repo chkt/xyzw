@@ -3,10 +3,10 @@
 /* eslint space-in-parens : [ warn, never] */
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
-import * as vector2 from '../source/vector2';
-import * as vector3 from '../source/vector3';
 import * as matrix2 from '../source/matrix2';
 import * as matrix3 from '../source/matrix3';
+import * as vector2 from '../source/vector2';
+import * as vector3 from '../source/vector3';
 import { assertEqualsVec2 as assertEquals } from './assert/assert';
 
 

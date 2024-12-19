@@ -1,8 +1,8 @@
 /* eslint key-spacing : [ error, { beforeColon : true, afterColon : true, mode : minimum } ] */
 /* eslint max-statements-per-line: [ 'error', { 'max' : 4 }] */
 /* eslint no-multi-spaces : [ off ] */
-import { Vector3 } from './vector3';
 import { Matrix3 } from './matrix3';
+import { Vector3 } from './vector3';
 
 
 export interface Matrix4 extends Matrix3 {
@@ -50,10 +50,12 @@ export function determinant(m:Matrix4) : number {
  */
 export function Identity() : Matrix4 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 		r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -74,10 +76,12 @@ export function identity<R extends Matrix4>(r:R) : R {
  */
 export function Translation(v:Vector3) : Matrix4 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 		r03 : v.x, r13 : v.y, r23 : v.z, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -98,10 +102,12 @@ export function translation<R extends Matrix4>(r:R, v:Vector3) : R {
  */
 export function ShearMatrix3(m:Matrix3) : Matrix4 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : m.r00, r10 : m.r10, r20 : m.r20, r30 : 0.0,
 		r01 : m.r01, r11 : m.r11, r21 : m.r21, r31 : 0.0,
 		r02 : m.r02, r12 : m.r12, r22 : m.r22, r32 : 0.0,
 		r03 :   0.0, r13 :   0.0, r23 :   0.0, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -122,10 +128,12 @@ export function shearMatrix3<R extends Matrix4>(r:R, m:Matrix3) : R {
  */
 export function ShearTranslationMatrix3(m:Matrix3, t:Vector3) : Matrix4 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : m.r00, r01 : m.r01, r02 : m.r02, r03 : t.x,
 		r10 : m.r10, r11 : m.r11, r12 : m.r12, r13 : t.y,
 		r20 : m.r20, r21 : m.r21, r22 : m.r22, r23 : t.z,
-		r30 : 0.0, r31 : 0.0, r32 : 0.0, r33 : 1.0
+		r30 : 0.0,   r31 : 0.0,   r32 : 0.0,   r33 : 1.0
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -136,7 +144,7 @@ export function shearTranslationMatrix3<R extends Matrix4>(r:R, m:Matrix3, t:Vec
 	r.r00 = m.r00; r.r01 = m.r01; r.r02 = m.r02; r.r03 = t.x;
 	r.r10 = m.r10; r.r11 = m.r11; r.r12 = m.r12; r.r13 = t.y;
 	r.r20 = m.r20; r.r21 = m.r21; r.r22 = m.r22; r.r23 = t.z;
-	r.r30 = 0.0; r.r31 = 0.0; r.r32 = 0.0; r.r33 = 1.0;
+	r.r30 = 0.0;   r.r31 = 0.0;   r.r32 = 0.0;   r.r33 = 1.0;
 
 	return r;
 }
@@ -146,10 +154,12 @@ export function shearTranslationMatrix3<R extends Matrix4>(r:R, m:Matrix3, t:Vec
  */
 export function ShearTranslationAxes(x:Vector3, y:Vector3, z:Vector3, t:Vector3) : Matrix4 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : x.x, r10 : x.y, r20 : x.z, r30 : 0.0,
 		r01 : y.x, r11 : y.y, r21 : y.z, r31 : 0.0,
 		r02 : z.x, r12 : z.y, r22 : z.z, r32 : 0.0,
 		r03 : t.x, r13 : t.y, r23 : t.z, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -179,10 +189,12 @@ export const shearTranslation = shearTranslationAxes;
  */
 export function Add(a:Matrix4, b:Matrix4) : Matrix4 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : a.r00 + b.r00, r10 : a.r10 + b.r10, r20 : a.r20 + b.r20, r30 : a.r30 + b.r30,
 		r01 : a.r01 + b.r01, r11 : a.r11 + b.r11, r21 : a.r21 + b.r21, r31 : a.r31 + b.r31,
 		r02 : a.r02 + b.r02, r12 : a.r12 + b.r12, r22 : a.r22 + b.r22, r32 : a.r32 + b.r32,
 		r03 : a.r03 + b.r03, r13 : a.r13 + b.r13, r23 : a.r23 + b.r23, r33 : a.r33 + b.r33
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -215,10 +227,12 @@ export function addAssign<R extends Matrix4>(a:R, b:Matrix4) : R {
  */
 export function Subtract(a:Matrix4, b:Matrix4) : Matrix4 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : a.r00 - b.r00, r10 : a.r10 - b.r10, r20 : a.r20 - b.r20, r30 : a.r30 - b.r30,
 		r01 : a.r01 - b.r01, r11 : a.r11 - b.r11, r21 : a.r21 - b.r21, r31 : a.r31 - b.r31,
 		r02 : a.r02 - b.r02, r12 : a.r12 - b.r12, r22 : a.r22 - b.r22, r32 : a.r32 - b.r32,
 		r03 : a.r03 - b.r03, r13 : a.r13 - b.r13, r23 : a.r23 - b.r23, r33 : a.r33 - b.r33
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -251,10 +265,12 @@ export function subtractAssign<R extends Matrix4>(a:R, b:Matrix4) : R {
  */
 export function ConcatScale(m:Matrix4, v:Vector3) : Matrix4 {
 	return concatScale({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 		r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	}, m, v);
 }
 
@@ -289,10 +305,12 @@ export function concatScale<R extends Matrix4>(r:R, m:Matrix4, v:Vector3) : R {
  */
 export function ConcatTranslation(m:Matrix4, v:Vector3) : Matrix4 {
 	return concatTranslation({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 		r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	}, m, v);
 }
 
@@ -332,10 +350,12 @@ export function concatTranslation<R extends Matrix4>(r:R, m:Matrix4, v:Vector3) 
  */
 export function ConcatMatrix3(a:Matrix4, b:Matrix3) : Matrix4 {
 	return concatMatrix3({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 		r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	}, a, b);
 }
 
@@ -379,10 +399,12 @@ export function concatMatrix3<R extends Matrix4>(r:R, a:Matrix4, b:Matrix3) : R 
  */
 export function Concat3x4(a:Matrix4, b:Matrix4) : Matrix4 {
 	return concat3x4({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 		r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	}, a, b);
 }
 
@@ -427,10 +449,12 @@ export function concat3x4<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R {
  */
 export function Concat(a:Matrix4, b:Matrix4) : Matrix4 {
 	return concat({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 		r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	}, a, b);
 }
 
@@ -476,10 +500,12 @@ export function concat<R extends Matrix4>(r:R, a:Matrix4, b:Matrix4) : R {
  */
 export function Inverse3x4(m:Matrix4) : Matrix4 | undefined {
 	return inverse3x4({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 		r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	}, m);
 }
 
@@ -529,10 +555,12 @@ export function inverse3x4<R extends Matrix4>(r:R, m:Matrix4) : R | undefined {
  */
 export function Inverse(m:Matrix4) : Matrix4 | undefined {
 	return inverse({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 		r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	}, m);
 }
 
@@ -585,10 +613,12 @@ export function inverse<R extends Matrix4>(r:R, m:Matrix4) : R | undefined {
  */
 export function InverseGauss(m:Matrix4) : Matrix4 | undefined {
 	return inverseGauss({
+		/* eslint-disable object-property-newline */
 		r00 : 1.0, r10 : 0.0, r20 : 0.0, r30 : 0.0,
 		r01 : 0.0, r11 : 1.0, r21 : 0.0, r31 : 0.0,
 		r02 : 0.0, r12 : 0.0, r22 : 1.0, r32 : 0.0,
 		r03 : 0.0, r13 : 0.0, r23 : 0.0, r33 : 1.0
+		/* eslint-enable object-property-newline */
 	}, m);
 }
 
@@ -663,10 +693,12 @@ export function inverseGauss<R extends Matrix4>(r:R, m:Matrix4) : R | undefined 
  */
 export function Transpose(m:Matrix4) : Matrix4 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : m.r00, r10 : m.r01, r20 : m.r02, r30 : m.r03,
 		r01 : m.r10, r11 : m.r11, r21 : m.r12, r31 : m.r13,
 		r02 : m.r20, r12 : m.r21, r22 : m.r22, r32 : m.r23,
 		r03 : m.r30, r13 : m.r31, r23 : m.r32, r33 : m.r33
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -686,10 +718,12 @@ export function transpose<R extends Matrix4>(r:R, m:Matrix4) : R {
 
 export function Copy(m:Matrix4) : Matrix4 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : m.r00, r10 : m.r10, r20 : m.r20, r30 : m.r30,
 		r01 : m.r01, r11 : m.r11, r21 : m.r21, r31 : m.r31,
 		r02 : m.r02, r12 : m.r12, r22 : m.r22, r32 : m.r32,
 		r03 : m.r03, r13 : m.r13, r23 : m.r23, r33 : m.r33
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -744,10 +778,12 @@ export function assignColumnF64(r:Float64Array, m:Matrix4) : Float64Array {
 
 export function ColumnF32(n:Float32Array) : Matrix4 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : n[0],  r10 : n[1],  r20 : n[2],  r30 : n[3],
 		r01 : n[4],  r11 : n[5],  r21 : n[6],  r31 : n[7],
 		r02 : n[8],  r12 : n[9],  r22 : n[10], r32 : n[11],
 		r03 : n[12], r13 : n[13], r23 : n[14], r33 : n[15]
+		/* eslint-enable object-property-newline */
 	};
 }
 
@@ -764,10 +800,12 @@ export function columnF32<R extends Matrix4>(r:R, n:Float32Array) : R {
 
 export function ColumnF64(n:Float64Array) : Matrix4 {
 	return {
+		/* eslint-disable object-property-newline */
 		r00 : n[0],  r10 : n[1],  r20 : n[2],  r30 : n[3],
 		r01 : n[4],  r11 : n[5],  r21 : n[6],  r31 : n[7],
 		r02 : n[8],  r12 : n[9],  r22 : n[10], r32 : n[11],
 		r03 : n[12], r13 : n[13], r23 : n[14], r33 : n[15]
+		/* eslint-enable object-property-newline */
 	};
 }
 

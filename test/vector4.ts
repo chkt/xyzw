@@ -3,9 +3,9 @@
 /* eslint space-in-parens : [ warn, never ] */
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
+import * as mat3 from '../source/matrix3';
 import * as vec3 from '../source/vector3';
 import * as vec4 from '../source/vector4';
-import * as mat3 from '../source/matrix3';
 import { assertEqualsVec4 as assertEquals, assertEqualsScalar } from './assert/assert';
 
 

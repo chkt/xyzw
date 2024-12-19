@@ -285,7 +285,7 @@ export function concatScale<R extends Matrix4>(r:R, m:Matrix4, v:Vector3) : R {
 }
 
 /**
- * M[ x̂  ŷ  ẑ  ŵ+v⃗ ]
+ * M[ x⃗  y⃗  z⃗  w⃗+v⃗ ]
  */
 export function ConcatTranslation(m:Matrix4, v:Vector3) : Matrix4 {
 	return concatTranslation({
@@ -297,7 +297,7 @@ export function ConcatTranslation(m:Matrix4, v:Vector3) : Matrix4 {
 }
 
 /**
- * Mᵣ = M[ x̂  ŷ  ẑ  ŵ+v⃗ ]
+ * Mᵣ = M[ x⃗  y⃗  z⃗  w⃗+v⃗ ]
  */
 export function concatTranslation<R extends Matrix4>(r:R, m:Matrix4, v:Vector3) : R {
 	const {

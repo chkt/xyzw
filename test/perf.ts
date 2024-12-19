@@ -273,34 +273,56 @@ describe('math', () => {
 });
 
 describe('epsilon', () => {
-	const num = 100_000_000;
+	const num = 10_000_000;
 	const e = 1e-10;
 
-	it('should measure n > -e && n < e comparisons', () => {
-		const obj = { x : 0.1, y : 1.0 };
-		let b:boolean;
+	function* elements() : Generator<{ x:number; y:number }> {
+		for (let i = 0; i < num; i += 1) yield { x : Math.random(), y : Math.random() };
+	}
 
-		for (let i = 0; i < num; i += 1) {
-			b = obj.x > -e && obj.x < e && obj.y > -e && obj.y < e;
+
+	it('should measure n > -e && n < e comparisons', () => {
+		let b = false;
+
+		for (const obj of elements()) {
+			b = b !== obj.x > -e && obj.x < e && obj.y > -e && obj.y < e;
 		}
 	});
 
 	it('should measure Math.abs(n) < e comparisons', () => {
-		const obj = { x : 0.1, y : 1.0 };
-		let b:boolean;
+		let b = false;
 
-		for (let i = 0; i < num; i += 1) {
-			b = Math.abs(obj.x) < e && Math.abs(obj.y) < e;
+		for (const obj of elements()) {
+			b = b !== Math.abs(obj.x) < e && Math.abs(obj.y) < e;
 		}
 	});
 
 	it('should measure abs(n) < e comparisons', () => {
 		const abs = Math.abs;
-		const obj = { x : 0.1, y : 1.0 };
-		let b:boolean;
+		let b = false;
 
-		for (let i = 0; i < num; i += 1) {
-			b = abs(obj.x) < e && abs(obj.y) < e;
+		for (const obj of elements()) {
+			b = b !== abs(obj.x) < e && abs(obj.y) < e;
+		}
+	});
+
+	it('should measure n ** 2 < e ** 2 comparisons', () => {
+		let b = false;
+
+		for (const obj of elements()) {
+			const ee = e ** 2;
+
+			b = obj.x ** 2 < ee && obj.y ** 2 < ee;
+		}
+	});
+
+	it('should measure n * n < e * e comparisons', () => {
+		let b = false;
+
+		for (const { x, y } of elements()) {
+			const ee = e * e;
+
+			b = b !== x * x < ee && y * y < ee;
 		}
 	});
 });
